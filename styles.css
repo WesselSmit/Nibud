@@ -1,0 +1,11 @@
+div {
+    width: 200px;
+    height: 20px;
+    background-color: grey;
+}
+
+#progression {
+    background-color: red;
+    height: 20px;
+    padding: 0px;
+}
