@@ -9,3 +9,10 @@ div {
     height: 20px;
     padding: 0px;
 }
+
+label:nth-last-of-type(3),
+input:nth-of-type(3) {
+    display: none;
+    /* position: absolute;
+    left: -9999px; */
+}
