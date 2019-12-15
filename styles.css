@@ -16,3 +16,15 @@ input:nth-of-type(3) {
     /* position: absolute;
     left: -9999px; */
 }
+
+svg {
+    position: absolute;
+    left: 1000px;
+}
+
+img {
+    position: absolute;
+    left: 500px;
+    width: 220.923;
+    height: 619.73;
+}
