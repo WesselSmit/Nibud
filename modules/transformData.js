@@ -45,7 +45,7 @@ export function createHousehold(data) {
             if (j === 0 || j === 1 || j === 23) {
                 //unnecessary grouped values
             } else if (j === 13 || j === 19 || j === 22) {
-                totalePostenBedrag += data[(i * 24) + j].Bedrag //calc total expenses value
+                totalePostenBedrag += data[(i * 24) + j].Bedrag //calc total expense
             } else {
                 obj = { //create expense objects
                     post: data[(i * 24) + j].Post,
