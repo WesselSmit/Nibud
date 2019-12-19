@@ -11,29 +11,33 @@
 </head>
 
 <body>
+    <!-- UW SITUATIE -->
     <form>
         <fieldset>
-            <legend>Partner 1</legend>
-            <label for="netto_maandinkomen">Netto maandinkomen</label>
-            <input type="text" name="netto_maandinkomen" id="netto_maandinkomen" tabindex="1" />
+            <legend>GEZIN</legend>
 
-            <label for="netto_vakantiegeld">Netto vakantiegeld</label>
-            <input type="number" name="netto_vakantiegeld" id="netto_vakantiegeld" tabindex="2" />
+            <label for="partner">Partner</label>
+            <input type="radio" name="partner" value="true" id="partner" />Ja
+            <input type="radio" name="partner" value="false" id="partner" />Nee
 
-            <label for="reiskostenvergoeding">Reiskostenvergoeding</label>
-            <input type="number" name="reiskostenvergoeding" id="reiskostenvergoeding" tabindex="3" />
+            <label for="kinderen">Kinderen</label>
+            <input type="number" max="5" min="0" placeholder="0" id="kinderen">
+            <!-- TODO: dynamisch kinder-leeftijd aanmaken aan de hand van aantal kinderen -->
 
-            <label for="13e_maand">13e maand/bonus</label>
-            <input type="number" name="13e_maand" id="13e_maand" tabindex="4" />
+        </fieldset>
 
-            <label for="bijverdiensten">Bijverdiensten</label>
-            <input type="number" name="bijverdiensten" id="bijverdiensten" tabindex="5" />
 
-            <div><span id="progression"></span></div>
+        <fieldset>
+            <legend>HUIS</legend>
+
+
+        </fieldset>
+
+
+        <fieldset>
+            <legend>AUTO</legend>
         </fieldset>
     </form>
-
-    <img src="/person.svg">
 
     <script type="module" src="./script.js"></script>
 </body>
