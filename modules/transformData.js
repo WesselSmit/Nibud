@@ -33,8 +33,6 @@ export function createIndividualObjects(string) {
     }
 
     //TODO:
-    //csv heeft lege waardes niet vervangen, dit resulteert in ;;
-    //inkomen 1 & inkomen 2 fixen
     //maak JSON objecten per huishouden, stop deze allemaal in een array
 
 
@@ -59,16 +57,12 @@ export function createIndividualObjects(string) {
 // Bepaal hier aan de hand van de ingevulde data in het form in welke categorie de persoon wordt geplaatsts
 // ! andere functienaam
 export function createArray(data) {
-    let obj = new Object()
-
+    var array = []
     data.forEach(row => {
-        if (row.huishoudType == row.huishoudType && row.woonsituatie == row.woonsituatie && row.inkomen == row.inkomen) {
-            console.log(obj[row])
-            console.log(obj)
+        if (row.huishoudType == "alleenstaand" && row.woonsituatie == "gemiddelde huur" && row.inkomen == 1) {
+            console.log(row)
         }
     })
-
-    // return data
 }
 
 // // Function that rewrites every string
