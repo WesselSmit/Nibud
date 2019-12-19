@@ -11,34 +11,471 @@
 </head>
 
 <body>
-    <!-- UW SITUATIE -->
+    <!-- Uw situatie -->
     <form>
         <fieldset>
-            <legend>GEZIN</legend>
+            <legend>Gezin</legend>
+
+            <label for="leeftijd">Leeftijd</label>
+            <input type="number" min="18" max="100" placeholder="30" id="leeftijd">
 
             <label for="partner">Partner</label>
-            <input type="radio" name="partner" value="true" id="partner" />Ja
-            <input type="radio" name="partner" value="false" id="partner" />Nee
+            <input type="radio" name="partner" value="true" id="partner" />
+            <label for="partner">Ja</label>
+            <input type="radio" name="partner" value="false" id="geen-partner" />
+            <label for="geen-partner">Nee</label>
 
             <label for="kinderen">Kinderen</label>
             <input type="number" max="5" min="0" placeholder="0" id="kinderen">
             <!-- TODO: dynamisch kinder-leeftijd aanmaken aan de hand van aantal kinderen -->
 
+            <fieldset>
+                <legend>Inkomen</legend>
+                <fieldset>
+                    <legend>Jouw inkomen</legend>
+                    <label for="netto_maandinkomen">Netto maandinkomen</label>
+                    <input type="number" name="netto_maandinkomen" id="netto_maandinkomen" />
+
+                    <label for="netto_vakantiegeld">Netto vakantiegeld</label>
+                    <input type="number" name="netto_vakantiegeld" id="netto_vakantiegeld" />
+
+                    <label for="reiskostenvergoeding">Reiskostenvergoeding</label>
+                    <input type="number" name="reiskostenvergoeding" id="reiskostenvergoeding" />
+
+                    <label for="13e_maand">13e maand/bonus</label>
+                    <input type="number" name="13e_maand" id="13e_maand" />
+
+                    <label for="bijverdiensten">Bijverdiensten</label>
+                    <input type="number" name="bijverdiensten" id="bijverdiensten" />
+                </fieldset>
+
+                <fieldset>
+                    <legend>Partners inkomen</legend>
+                    <label for="netto_maandinkomen">Netto maandinkomen</label>
+                    <input type="number" name="netto_maandinkomen" id="netto_maandinkomen" />
+
+                    <label for="netto_vakantiegeld">Netto vakantiegeld</label>
+                    <input type="number" name="netto_vakantiegeld" id="netto_vakantiegeld" />
+
+                    <label for="reiskostenvergoeding">Reiskostenvergoeding</label>
+                    <input type="number" name="reiskostenvergoeding" id="reiskostenvergoeding" />
+
+                    <label for="13e_maand">13e maand/bonus</label>
+                    <input type="number" name="13e_maand" id="13e_maand" />
+
+                    <label for="bijverdiensten">Bijverdiensten</label>
+                    <input type="number" name="bijverdiensten" id="bijverdiensten" />
+                </fieldset>
+
+                <fieldset>
+                    <legend>Huishouden</legend>
+                    <label for="kinderbijslag">Kinderbijslag</label>
+                    <input type="number" name="kinderbijslag" id="kinderbijslag" />
+
+                    <fieldset>
+                        <legend>Toeslagen</legend>
+                        <label for="zorgtoeslag">Zorgtoeslag</label>
+                        <input type="number" name="zorgtoeslag" id="zorgtoeslag" />
+
+                        <label for="kindgebonden_budget">Kindgebonden budget</label>
+                        <input type="number" name="kindgebonden_budget" id="kindgebonden_budget" />
+
+                        <label for="huurtoeslag">Huurtoeslag</label>
+                        <input type="number" name="huurtoeslag" id="huurtoeslag" />
+
+                        <label for="kinderopvangtoeslag">Kinderopvangtoeslag</label>
+                        <input type="number" name="kinderopvangtoeslag" id="kinderopvangtoeslag" />
+                    </fieldset>
+
+                    <label for="teruggave_belasting">Teruggave belasting</label>
+                    <input type="number" name="teruggave_belasting" id="teruggave_belasting" />
+
+                    <label for="alimentatie">Alimentatie</label>
+                    <input type="number" name="alimentatie" id="alimentatie" />
+
+                    <label for="kostgeld_inwonende_personen">Kostgeld inwonende personen</label>
+                    <input type="number" name="kostgeld_inwonende_personen" id="kostgeld_inwonende_personen" />
+
+                    <label for="inkomsten_uit_vermogen">Inkomsten uit vermogen</label>
+                    <input type="number" name="inkomsten_uit_vermogen" id="inkomsten_uit_vermogen" />
+
+                    <label for="gemeentelijke_ondersteuning">Gemeentelijke ondersteuning</label>
+                    <input type="number" name="gemeentelijke_ondersteuning" id="gemeentelijke_ondersteuning" />
+
+                    <label for="overige_inkomsten">Overige inkomsten</label>
+                    <input type="number" name="overige_inkomsten" id="overige_inkomsten" />
+                </fieldset>
+
+                <p>Totaal:</p>
+            </fieldset>
         </fieldset>
 
 
         <fieldset>
-            <legend>HUIS</legend>
+            <legend>Woning</legend>
 
+            <label for="woning">Woningtype</label>
+            <select>
+                <option value="" disabled selected hidden>Selecteer uw woningtype</option>
+                <option value="Appartement" id="woning">Appartement</option>
+                <option value="Tussenwoning">Tussenwoning</option>
+                <option value="Hoekwoning">Hoekwoning</option>
+                <option value="Vrijstaand">Vrijstaand</option>
+            </select>
 
+            <label for="bouwjaar">Bouwjaar</label>
+            <select>
+                <option value="" disabled selected hidden>Selecteer uw woning bouwjaar</option>
+                <option value="Voor 1965" id="bouwjaar">Voor 1965</option>
+                <option value="1966 - 1988">1966 - 1988</option>
+                <option value="1989 - 2000">1989 - 2000</option>
+                <option value="Na 2001">Na 2001</option>
+            </select>
+
+            <label for="huur">Huur of koop</label>
+            <input type="radio" name="huurOfKoop" value="huur" id="huur" />
+            <label for="huur">Huur</label>
+            <input type="radio" name="huurOfKoop" value="koop" id="koop" />
+            <label for="koop">Koop</label>
+            <!-- TODO: aan de hand van huur of koop input moeten additionele vragen tevoorschijn komen -->
+            <fieldset id="showHuur">
+                <label for="huurPerMaand">Huur per maand</label>
+                <input type="number" max="100000" min="0" placeholder="500" id="huurPerMaand" step="100">
+            </fieldset>
+
+            <fieldset id="showKoop">
+                <label for="hypotheekPerMaand">Hypotheek per maand</label>
+                <input type="number" max="100000" min="0" placeholder="500" id="hypotheekPerMaand" step="100">
+
+                <label for="WOZ">WOZ-waarde</label>
+                <select>
+                    <option value="" disabled selected hidden>Selecteer uw huis WOZ-waarde</option>
+                    <option value="€0 - €150.000" id="WOZ">€0 - €150.000</option>
+                    <option value="€150.000 - €300.000">€150.000 - €300.000</option>
+                    <option value="€300.000 - €450.000">€300.000 - €450.000</option>
+                    <option value="€450.000+">€450.000+</option>
+                </select>
+            </fieldset>
+            <!-- TODO: getallen moeten een euro teken krijgen (:before is miss een goede oplossing?) -->
+            <!-- * Willen we de number pijltjes in de input verstoppen? Ze gaan toch niet veel gebruikt worden omdat de mogelijke antwoorden teveel uit elkaar liggen -->
         </fieldset>
 
 
         <fieldset>
-            <legend>AUTO</legend>
+            <legend>Auto</legend>
+
+            <label for="autotype">Privé auto</label>
+            <select>
+                <option value="" disabled selected hidden>Selecteer uw privé auto type</option>
+                <option value="geen" id="autotype">Geen</option>
+                <option value="klein">Klein</option>
+                <option value="compact">Compact</option>
+                <option value="compact middenklasse">Compact middenklasse</option>
+                <option value="middenklasse">Middenklasse</option>
+            </select>
+
+            <label for="kilometers">Kilometers per jaar</label>
+            <select>
+                <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
+                <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
+                <option value="10.000 - 20.000">10.000 - 20.000</option>
+                <option value="20.000+">20.000+</option>
+            </select>
+
+            <label for="nieuw">Waarde auto</label>
+            <input type="radio" name="waardeAuto" value="nieuw" id="nieuw" />
+            <label for="nieuw">Nieuw</label>
+            <input type="radio" name="waardeAuto" value="tweedehands" id="tweedehands" />
+            <label for="tweedehands">Tweedehands</label>
+            <p id="extraAuto">+Voeg extra auto toe</p>
         </fieldset>
     </form>
 
+    <!-- Uw uitgaven -->
+    <form>
+        <fieldset>
+            <legend>Uitgaven</legend>
+            <fieldset>
+                <legend>Vaste lasten</legend>
+                <fieldset>
+                    <legend>Huur</legend>
+                    <label for="huur">Huur</label>
+                    <input type="number" name="huur" id="huur" />
+
+                    <label for="servicekosten">Servicekosten</label>
+                    <input type="number" name="servicekosten" id="servicekosten" />
+                    <p>Subtotaal Huur:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Hypotheek</legend>
+                    <label for="rente_a">Rente</label>
+                    <input type="number" name="rente" id="rente_a" />
+
+                    <label for="aflossing_a">Aflossing</label>
+                    <input type="number" name="aflossing" id="aflossing_a" />
+
+                    <label for="spaarpremies">Spaarpremies</label>
+                    <input type="number" name="spaarpremies" id="spaarpremies" />
+
+                    <label for="overlijdensrisicoverzekering">Overlijdensrisicoverzekering</label>
+                    <input type="number" name="overlijdensrisicoverzekering" id="overlijdensrisicoverzekering" />
+
+                    <label for="erfpacht">Erfpacht</label>
+                    <input type="number" name="erfpacht" id="erfpacht" />
+                    <p>Subtotaal Hypotheek:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Energie</legend>
+                    <label for="gas">Gas</label>
+                    <input type="number" name="gas" id="gas" />
+
+                    <label for="elektriciteit">Elektriciteit</label>
+                    <input type="number" name="elektriciteit" id="elektriciteit" />
+
+                    <label for="water">Water</label>
+                    <input type="number" name="water" id="water" />
+                    <p>Subtotaal Energie:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Lokale lasten</legend>
+                    <label for="onroerendezaakbelasting">Onroerendezaakbelasting</label>
+                    <input type="number" name="onroerendezaakbelasting" id="onroerendezaakbelasting" />
+
+                    <label for="reinigingsheffing">Reinigingsheffing</label>
+                    <input type="number" name="reinigingsheffing" id="reinigingsheffing" />
+
+                    <label for="rioolheffing">Rioolheffing</label>
+                    <input type="number" name="rioolheffing" id="rioolheffing" />
+
+                    <label for="ingezetenenheffing">Ingezetenenheffing</label>
+                    <input type="number" name="ingezetenenheffing" id="ingezetenenheffing" />
+
+                    <label for="zuiveringsheffing">Zuiveringsheffing</label>
+                    <input type="number" name="zuiveringsheffing" id="zuiveringsheffing" />
+
+                    <label for="heffing_gebouwd">Heffing gebouwd</label>
+                    <input type="number" name="heffing_gebouwd" id="heffing_gebouwd" />
+
+                    <label for="overige_lokale_lasten">Overige lokale lasten</label>
+                    <input type="number" name="overige_lokale_lasten" id="overige_lokale_lasten" />
+                    <p>Subtotaal Lokale lasten:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Telefoon, televisie en internet</legend>
+                    <label for="combinatie_pakket">Alles-in-één/combinatie pakket</label>
+                    <input type="number" name="combinatie_pakket" id="combinatie_pakket" />
+
+                    <label for="vaste_telefoon">Vaste telefoon</label>
+                    <input type="number" name="vaste_telefoon" id="vaste_telefoon" />
+
+                    <label for="mobiele_telefoon">Mobiele telefoon</label>
+                    <input type="number" name="mobiele_telefoon" id="mobiele_telefoon" />
+
+                    <label for="televisie">Televisie</label>
+                    <input type="number" name="televisie" id="televisie" />
+
+                    <label for="internet">Internet</label>
+                    <input type="number" name="internet" id="internet" />
+
+                    <label for="overige_telefoon">Overige</label>
+                    <input type="number" name="overige_telefoon" id="overige_telefoon" />
+                    <p>Subtotaal Telefoon/televisie/internet:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Verzekeringen</legend>
+                    <label for="zorgverzekering_basis">Zorgverzekering: basis</label>
+                    <input type="number" name="zorgverzekering_basis" id="zorgverzekering_basis" />
+
+                    <label for="zorgverzekering_aanvullend">Zorgverzekering: aanvullend</label>
+                    <input type="number" name="zorgverzekering_aanvullend" id="zorgverzekering_aanvullend" />
+
+                    <label for="aansprakelijkheidsverzekering">Aansprakelijkheidsverzekering</label>
+                    <input type="number" name="aansprakelijkheidsverzekering" id="aansprakelijkheidsverzekering" />
+
+                    <label for="inboedelverzekering">Inboedelverzekering</label>
+                    <input type="number" name="inboedelverzekering" id="inboedelverzekering" />
+
+                    <label for="opstalverzekering">Opstalverzekering</label>
+                    <input type="number" name="opstalverzekering" id="opstalverzekering" />
+
+                    <label for="uitvaartverzekering">Uitvaartverzekering</label>
+                    <input type="number" name="uitvaartverzekering" id="uitvaartverzekering" />
+
+                    <label for="pensioenverzekering">Pensioenverzekering/pensioensparen</label>
+                    <input type="number" name="pensioenverzekering" id="pensioenverzekering" />
+
+                    <label for="verzekering_inkomensaanvulling">Verzekering inkomensaanvulling</label>
+                    <input type="number" name="verzekering_inkomensaanvulling" id="verzekering_inkomensaanvulling" />
+
+                    <label for="overige_verzekeringen">Overige verzekeringen</label>
+                    <input type="number" name="overige_verzekeringen" id="overige_verzekeringen" />
+                    <p>Subtotaal Verzekeringen:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Onderwijs</legend>
+                    <label for="schookosten_kinderen">Schoolkosten kinderen</label>
+                    <input type="number" name="schookosten_kinderen" id="schookosten_kinderen" />
+
+                    <label for="studiekosten_volwassenen">Studiekosten volwassenen</label>
+                    <input type="number" name="studiekosten_volwassenen" id="studiekosten_volwassenen" />
+                    <p>Subtotaal Onderwijs:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Kinderopvang</legend>
+                    <label for="kinderopvang">Kinderopvang</label>
+                    <input type="number" name="kinderopvang" id="kinderopvang" />
+                </fieldset>
+
+                <fieldset>
+                    <legend>Contributies en abonnementen</legend>
+                    <label for="contributies_sport_en_cultuur">Contributies sport en cultuur</label>
+                    <input type="number" name="contributies_sport_en_cultuur" id="contributies_sport_en_cultuur" />
+
+                    <label for="abonnementen">Abonnementen</label>
+                    <input type="number" name="abonnementen" id="abonnementen" />
+
+                    <label for="bankkosten_en_financieel_advies">Bankkosten en financieel advies</label>
+                    <input type="number" name="bankkosten_en_financieel_advies" id="bankkosten_en_financieel_advies" />
+
+                    <label for="loterijen">Loterijen</label>
+                    <input type="number" name="loterijen" id="loterijen" />
+
+                    <label for="overige_contributies">Overige contributies</label>
+                    <input type="number" name="overige_contributies" id="overige_contributies" />
+                    <p>Subtotaal Contributies en abonnementen:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Vervoer</legend>
+                    <fieldset>
+                        <legend>Auto, motor, scooter 1</legend>
+                        <label for="afschrijving">Afschrijving</label>
+                        <input type="number" name="afschrijving" id="afschrijving" />
+
+                        <label for="motorrijtuigenbelasting">Motorrijtuigenbelasting</label>
+                        <input type="number" name="motorrijtuigenbelasting" id="motorrijtuigenbelasting" />
+
+                        <label for="onderhoud">Onderhoud</label>
+                        <input type="number" name="onderhoud" id="onderhoud" />
+
+                        <label for="verzekering">Verzekering</label>
+                        <input type="number" name="verzekering" id="verzekering" />
+
+                        <label for="brandstof">Brandstof</label>
+                        <input type="number" name="brandstof" id="brandstof" />
+                    </fieldset>
+
+                    <label for="openbaar_vervoer">Openbaar vervoer</label>
+                    <input type="number" name="openbaar_vervoer" id="openbaar_vervoer" />
+
+                    <label for="fiets">Fiets</label>
+                    <input type="number" name="fiets" id="fiets" />
+
+                    <label for="overige_vervoerskosten">Overige vervoerskosten</label>
+                    <input type="number" name="overige_vervoerskosten" id="overige_vervoerskosten" />
+                    <p>Subtotaal Vervoer:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Levensonderhoud anderen</legend>
+                    <label for="partneralimentatie">Partneralimentatie</label>
+                    <input type="number" name="partneralimentatie" id="partneralimentatie" />
+
+                    <label for="kinderalimentatie">Kinderalimentatie</label>
+                    <input type="number" name="kinderalimentatie" id="kinderalimentatie" />
+
+                    <label for="bijdrage_studerende_kinderen">Bijdrage studerende kinderen</label>
+                    <input type="number" name="bijdrage_studerende_kinderen" id="bijdrage_studerende_kinderen" />
+                    <p>Subtotaal Levensonderhoud anderen:</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Afbetalingen</legend>
+                    <label for="rente_b">Rente</label>
+                    <input type="number" name="rente" id="rente_b" />
+
+                    <label for="aflossing_b">Aflossing</label>
+                    <input type="number" name="aflossing" id="aflossing_b" />
+                    <p>Subtotaal Afbetalingen:</p>
+                </fieldset>
+                <p>Totaal Vaste lasten:</p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Reserveringsuitgaven</legend>
+                <fieldset>
+                    <legend>Kleding en schoenen</legend>
+                    <label for="kleding_en_schoenen">Kleding en schoenen</label>
+                    <input type="number" name="kleding_en_schoenen" id="kleding_en_schoenen" />
+                </fieldset>
+                <fieldset>
+                    <legend>Inventaris</legend>
+                    <label for="inventaris">Inventaris</label>
+                    <input type="number" name="inventaris" id="inventaris" />
+                </fieldset>
+                <fieldset>
+                    <legend>Onderhoud huis en tuin</legend>
+                    <label for="onderhoud_huis_en_tuin">Onderhoud huis en tuin</label>
+                    <input type="number" name="onderhoud_huis_en_tuin" id="onderhoud_huis_en_tuin" />
+                </fieldset>
+                <fieldset>
+                    <legend>Niet-vergoede ziektekosten</legend>
+                    <label for="zelfzorgmiddelen">Zelfzorgmiddelen</label>
+                    <input type="number" name="zelfzorgmiddelen" id="zelfzorgmiddelen" />
+
+                    <label for="eigen_risico_zorgverzekering">Eigen risico zorgverzekering</label>
+                    <input type="number" name="eigen_risico_zorgverzekering" id="eigen_risico_zorgverzekering" />
+
+                    <label for="eigen_bijdragen_en_betalingen_zorg">Eigen bijdragen en betalingen zorg</label>
+                    <input type="number" name="eigen_bijdragen_en_betalingen_zorg"
+                        id="eigen_bijdragen_en_betalingen_zorg" />
+                </fieldset>
+                <fieldset>
+                    <legend>Vrijetijdsuitgaven</legend>
+                    <label for="vrijetijdsuitgaven">Vrijetijdsuitgaven</label>
+                    <input type="number" name="vrijetijdsuitgaven" id="vrijetijdsuitgaven" />
+                </fieldset>
+                <p>Totaal Reserveringsuitgaven:</p>
+            </fieldset>
+            <fieldset>
+                <legend>Huishoudelijke uitgaven</legend>
+                <fieldset>
+                    <legend>Voeding</legend>
+                    <label for="voeding">Voeding</label>
+                    <input type="number" name="voeding" id="voeding" />
+                </fieldset>
+                <fieldset>
+                    <legend>Overige huishoudelijke uitgaven</legend>
+                    <label for="was_en_schoonmaakartikelen">Was en schoonmaakartikelen</label>
+                    <input type="number" name="was_en_schoonmaakartikelen" id="was_en_schoonmaakartikelen" />
+
+                    <label for="persoonlijke_verzorging">Persoonlijke verzorging</label>
+                    <input type="number" name="persoonlijke_verzorging" id="persoonlijke_verzorging" />
+
+                    <label for="huishoudelijke_dienstverlening">Huishoudelijke dienstverlening</label>
+                    <input type="number" name="huishoudelijke_dienstverlening" id="huishoudelijke_dienstverlening" />
+
+                    <label for="huisdieren">Huisdieren</label>
+                    <input type="number" name="huisdieren" id="huisdieren" />
+
+                    <label for="roken">Roken</label>
+                    <input type="number" name="roken" id="roken" />
+
+                    <label for="diversen">Diversen</label>
+                    <input type="number" name="diversen" id="diversen" />
+                    <p>Subtotaal Overige huishoudelijke uitgaven:</p>
+                </fieldset>
+                <p>Totaal Huishoudelijke uitgaven:</p>
+            </fieldset>
+        </fieldset>
+    </form>
     <script type="module" src="./script.js"></script>
 </body>
 
