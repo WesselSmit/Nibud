@@ -60,21 +60,21 @@ export function createHousehold(data) {
     let obj
     const arr = []
 
+
     for (let i = 0; i < numberOfHouseHolds; i++) {
         for (let j = 0; j < 24; j++) {
-            console.log(i, j)
 
             obj = {
-                huishoudType: data[j].huishoudType,
-                woonsituatie: data[j].woonsituatie,
-                inkomen: data[j].inkomen
+                huishoudType: data[(i * 24) + j].huishoudType,
+                woonsituatie: data[(i * 24) + j].woonsituatie,
+                inkomen: data[(i * 24) + j].inkomen
                 // ,
                 // totaleUitgaven: ,
                 // uitgavenPosten:
             }
         }
         arr.push(obj)
-        // console.log(arr)
+        console.log(arr)
     }
 
 }
