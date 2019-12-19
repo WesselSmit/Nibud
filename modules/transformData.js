@@ -6,7 +6,7 @@ export function createIndividualObjects(string) {
     const lines = string.split('\n'), //break up the massive string
         delimiter = ';'
     let result = [],
-        headers = lines[0].replace("Percentage inkomen", "PercentageInkomen").split(delimiter) //create object keys
+        headers = lines[0].split(delimiter) //create object keys
 
     for (let i = 1; i < lines.length; i++) {
         const obj = {}
