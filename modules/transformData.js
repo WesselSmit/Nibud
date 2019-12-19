@@ -1,6 +1,6 @@
 export default {
     createIndividualObjects,
-    createArray
+    createHousehold
 }
 
 export function createIndividualObjects(string) {
@@ -38,7 +38,7 @@ export function createIndividualObjects(string) {
 
     // ! Sjors start hier
     /* // TODO - Nice to haves 
-    * Alle strings omzetten naar eerste letter met een hoofdletter en derest klein
+    * Alle strings omzetten naar eerste letter met een hoofdletter en de rest klein
 
     */
     const cleanData = result.map(obj => {
@@ -54,18 +54,31 @@ export function createIndividualObjects(string) {
     return cleanData
 }
 
-// Bepaal hier aan de hand van de ingevulde data in het form in welke categorie de persoon wordt geplaatsts
-// ! andere functienaam
-export function createArray(data) {
-    var array = []
-    data.forEach(row => {
-        if (row.huishoudType == "alleenstaand" && row.woonsituatie == "gemiddelde huur" && row.inkomen == 1) {
-            console.log(row)
+export function createHousehold(data) {
+    let numberOfHouseHolds = data.length / 24
+
+    let obj
+    const arr = []
+
+    for (let i = 0; i < numberOfHouseHolds; i++) {
+        for (let j = 0; j < 24; j++) {
+            console.log(i, j)
+
+            obj = {
+                huishoudType: data[j].huishoudType,
+                woonsituatie: data[j].woonsituatie,
+                inkomen: data[j].inkomen
+                // ,
+                // totaleUitgaven: ,
+                // uitgavenPosten:
+            }
         }
-    })
+        arr.push(obj)
+        // console.log(arr)
+    }
+
 }
 
-// // Function that rewrites every string
 // function niceString(string) {
 //     var stringToLowerCase = string.toLowerCase()
 //     return niceString = stringToLowerCase.charAt(0).toUpperCase() + stringToLowerCase.slice(1)
