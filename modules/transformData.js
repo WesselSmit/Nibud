@@ -1,5 +1,6 @@
 export default {
-    createIndividualObjects
+    createIndividualObjects,
+    createArray
 }
 
 export function createIndividualObjects(string) {
@@ -29,5 +30,28 @@ export function createIndividualObjects(string) {
         }
         result.push(obj) //push all objects to array
     }
+
+    console.log(result[0])
+
+    // console.log(result)
+    const cleanData = result.map(obj => {
+        return {
+            post: obj.Post,
+            huishoudType: obj.Huishouden,
+            woonsituatie: obj.Woonsituatie,
+            inkomen: obj.Inkomen,
+            bedrag: obj.Bedrag
+        }
+    })
+
+    console.log(cleanData)
+
     return result
+}
+
+export function createArray(data) {
+    console.log(data[0].Huishouden)
+
+
+    // return data
 }
