@@ -28,30 +28,51 @@ export function createIndividualObjects(string) {
 
             obj[headers[j]] = currentline[j] //create objects
         }
+
         result.push(obj) //push all objects to array
     }
 
-    console.log(result[0])
+    //TODO:
+    //csv heeft lege waardes niet vervangen, dit resulteert in ;;
+    //inkomen 1 & inkomen 2 fixen
+    //maak JSON objecten per huishouden, stop deze allemaal in een array
 
-    // console.log(result)
+
+    // ! Sjors start hier
+    /* // TODO - Nice to haves 
+    * Alle strings omzetten naar eerste letter met een hoofdletter en derest klein
+
+    */
     const cleanData = result.map(obj => {
         return {
-            post: obj.Post,
-            huishoudType: obj.Huishouden,
-            woonsituatie: obj.Woonsituatie,
+            post: obj.Post.toLowerCase(),
+            huishoudType: obj.Huishouden.toLowerCase(),
+            woonsituatie: obj.Woonsituatie.toLowerCase(),
             inkomen: obj.Inkomen,
             bedrag: obj.Bedrag
         }
     })
 
-    console.log(cleanData)
-
-    return result
+    return cleanData
 }
 
+// Bepaal hier aan de hand van de ingevulde data in het form in welke categorie de persoon wordt geplaatsts
+// ! andere functienaam
 export function createArray(data) {
-    console.log(data[0].Huishouden)
+    let obj = new Object()
 
+    data.forEach(row => {
+        if (row.huishoudType == row.huishoudType && row.woonsituatie == row.woonsituatie && row.inkomen == row.inkomen) {
+            console.log(obj[row])
+            console.log(obj)
+        }
+    })
 
     // return data
 }
+
+// // Function that rewrites every string
+// function niceString(string) {
+//     var stringToLowerCase = string.toLowerCase()
+//     return niceString = stringToLowerCase.charAt(0).toUpperCase() + stringToLowerCase.slice(1)
+// }
