@@ -2,6 +2,28 @@
     font-family: Raleway, Arial, Helvetica, sans-serif;
 }
 
+body {
+    margin: 0px;
+}
+
 form {
-    width: 35%;
+    width: 25vw;
+}
+
+form fieldset {
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 0px;
+    border: 0px;
+}
+
+form fieldset fieldset {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+}
+
+
+input[type="number"] {
+    grid-column: 1 / -1;
+    width: 100%;
 }
