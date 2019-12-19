@@ -31,55 +31,41 @@ export function createIndividualObjects(string) {
 
         result.push(obj) //push all objects to array
     }
-
-    //TODO:
-    //maak JSON objecten per huishouden, stop deze allemaal in een array
-
-
-    // ! Sjors start hier
-    /* // TODO - Nice to haves 
-    * Alle strings omzetten naar eerste letter met een hoofdletter en de rest klein
-
-    */
-    const cleanData = result.map(obj => {
-        return {
-            post: obj.Post.toLowerCase(),
-            huishoudType: obj.Huishouden.toLowerCase(),
-            woonsituatie: obj.Woonsituatie.toLowerCase(),
-            inkomen: obj.Inkomen,
-            bedrag: obj.Bedrag
-        }
-    })
-
-    return cleanData
+    return result
 }
 
 export function createHousehold(data) {
-    let numberOfHouseHolds = data.length / 24
-
     let obj
     const arr = []
 
+    for (let i = 0; i < data.length / 24; i++) { //loop through all row-objects
+        let uitgavenArr = [],
+            totalePostenBedrag = 0
+        for (let j = 0; j < 24; j++) { //loop through all individual key/values-pairs
+            if (j === 0 || j === 1 || j === 23) {
+                //unnecessary grouped values
+            } else if (j === 13 || j === 19 || j === 22) {
+                totalePostenBedrag += data[(i * 24) + j].Bedrag //calc total expenses value
+            } else {
+                obj = { //create expense objects
+                    post: data[(i * 24) + j].Post,
+                    bedrag: data[(i * 24) + j].Bedrag
+                }
+                uitgavenArr.push(obj)
+            }
 
-    for (let i = 0; i < numberOfHouseHolds; i++) {
-        for (let j = 0; j < 24; j++) {
-
-            obj = {
-                huishoudType: data[(i * 24) + j].huishoudType,
-                woonsituatie: data[(i * 24) + j].woonsituatie,
-                inkomen: data[(i * 24) + j].inkomen
-                // ,
-                // totaleUitgaven: ,
-                // uitgavenPosten:
+            obj = { //create household object
+                huishoudType: data[(i * 24) + j].Huishouden,
+                woonsituatie: data[(i * 24) + j].Woonsituatie,
+                inkomen: data[(i * 24) + j].Inkomen,
+                totaleUitgaven: parseInt(totalePostenBedrag),
+                uitgavenPosten: uitgavenArr
             }
         }
+        if (obj.inkomen === 1 || obj.inkomen === 2) {
+            obj.inkomen = obj.totaleUitgaven //fix all 'inkomen' generalizations
+        }
         arr.push(obj)
-        console.log(arr)
     }
-
+    return arr
 }
-
-// function niceString(string) {
-//     var stringToLowerCase = string.toLowerCase()
-//     return niceString = stringToLowerCase.charAt(0).toUpperCase() + stringToLowerCase.slice(1)
-// }
