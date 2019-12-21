@@ -1,3 +1,80 @@
+:root {
+    --main-purple-color: #6C5BFF;
+    --light-gray-color: #EDEFF1;
+    --dark-gray-color: #BDC3C7;
+}
+
+*:not(select) {
+    font-family: lato, arial;
+    font-size: 16px;
+}
+
+*:focus {
+    outline: 2px solid var(--main-purple-color);
+}
+
 body {
     margin: 0px;
+}
+
+#intro,
+#uw_situatie {
+    height: 100vh;
+}
+
+#uw_situatie .progressbar {
+    height: 2vh;
+    width: 25vw;
+    background-color: var(--dark-gray-color);
+}
+
+#uw_situatie .progressbar #progression {
+    background-color: var(--main-purple-color);
+    padding-right: 0.1px;
+    transition: padding-right 0.5s linear;
+}
+
+form {
+    width: calc(25vw - 20px);
+    height: 98vh;
+    background-color: var(--light-gray-color);
+    padding: 10px;
+}
+
+fieldset {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0px 5px 0px;
+}
+
+input[type="number"]:not(#kinderen)::-webkit-outer-spin-button,
+input[type="number"]:not(#kinderen)::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0px;
+}
+
+input[type="number"] {
+    border: 1px solid white;
+    border-radius: 5px;
+    width: calc(100% - 4px);
+}
+
+select,
+select+label,
+input[type="radio"],
+input[type="radio"]+label {
+    cursor: pointer;
+}
+
+
+
+
+section:last-of-type form {
+    background-color: rgba(0, 0, 0, .1);
+    display: none;
 }
