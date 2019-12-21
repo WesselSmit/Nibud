@@ -4,29 +4,29 @@ export default {
 }
 
 export function createIndividualObjects(string) {
-    const lines = string.split('\n'), //break up the massive string
+    const csvRows = string.split('\n'), //break up the massive string
         delimiter = ';'
     let result = [],
-        headers = lines[0].split(delimiter) //create object keys
+        headers = csvRows[0].split(delimiter) //create object keys
 
-    for (let i = 1; i < lines.length; i++) {
+    for (let i = 1; i < csvRows.length; i++) {
         const obj = {}
-        let currentline = lines[i].split(delimiter)
+        let currentRow = csvRows[i].split(delimiter)
 
         for (let j = 0; j < headers.length; j++) {
-            if (currentline[j].includes('.')) {
-                currentline[j] = currentline[j].replace('.', '') //get rid of .
+            if (currentRow[j].includes('.')) {
+                currentRow[j] = currentRow[j].replace('.', '') //get rid of .
             }
 
-            if (currentline[j].charAt(0) === ' ') {
-                currentline[j] = currentline[j].replace(' ', '') //replace unnecessary whitespace 
+            if (currentRow[j].charAt(0) === ' ') {
+                currentRow[j] = currentRow[j].replace(' ', '') //replace unnecessary whitespace 
             }
 
-            if (currentline[j].match(/^\d+$/)) {
-                currentline[j] = parseInt(currentline[j]) //convert string to integer
+            if (currentRow[j].match(/^\d+$/)) {
+                currentRow[j] = parseInt(currentRow[j]) //convert string to integer
             }
 
-            obj[headers[j]] = currentline[j] //create objects
+            obj[headers[j]] = currentRow[j] //create objects
         }
 
         result.push(obj) //push all objects to array
@@ -35,13 +35,14 @@ export function createIndividualObjects(string) {
 }
 
 export function createHousehold(data) {
-    let obj
     const arr = []
 
     for (let i = 0; i < data.length / 24; i++) { //loop through all row-objects
-        let uitgavenArr = [],
+        let obj,
+            uitgavenArr = [],
             totalePostenBedrag = 0
         for (let j = 0; j < 24; j++) { //loop through all individual key/values-pairs
+
             if (j === 0 || j === 1 || j === 23) {
                 //unnecessary grouped values
             } else if (j === 13 || j === 19 || j === 22) {
@@ -55,8 +56,8 @@ export function createHousehold(data) {
             }
 
             obj = { //create household object
-                huishoudType: data[(i * 24) + j].Huishouden,
-                woonsituatie: data[(i * 24) + j].Woonsituatie,
+                huishoudType: data[(i * 24) + j].Huishouden.toLowerCase(),
+                woonsituatie: data[(i * 24) + j].Woonsituatie.toLowerCase(),
                 inkomen: data[(i * 24) + j].Inkomen,
                 totaleUitgaven: parseInt(totalePostenBedrag),
                 uitgavenPosten: uitgavenArr
