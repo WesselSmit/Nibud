@@ -16,14 +16,11 @@ document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(inp
     let inputsWithValue = 0
 
     allInputs.forEach(input => {
-        if (input.tagName === 'SELECT' && input.value != '' || input.type === 'radio' && input.checked === true || input.type !== 'radio' && input.tagName !== 'SELECT' && input.value != '') {
+        if (input.tagName === 'SELECT' && input.value != '' ||
+            input.type === 'radio' && input.checked === true ||
+            input.type !== 'radio' && input.tagName !== 'SELECT' && input.value != '') {
             inputsWithValue++
         }
-        // else if (input.type === 'radio' && input.checked === true) {
-        //     inputsWithValue++
-        // } else if (input.type !== 'radio' && input.tagName !== 'SELECT' && input.value != '') {
-        //     inputsWithValue++
-        // }
     })
     let uniqueInputs = allInputs.length - 3, // '-3' is to prevent the radio buttons of taking up double-spaces
         progression = document.querySelector('#uw_situatie #progression').parentElement.getBoundingClientRect().width / uniqueInputs * inputsWithValue //

@@ -2,6 +2,8 @@
     --main-purple-color: #6C5BFF;
     --light-gray-color: #EDEFF1;
     --dark-gray-color: #BDC3C7;
+    --header-text-color: #34495E;
+    --border-radius: 5px;
 }
 
 *:not(select) {
@@ -26,6 +28,7 @@ body {
     height: 2vh;
     width: 25vw;
     background-color: var(--dark-gray-color);
+    overflow: hidden;
 }
 
 #uw_situatie .progressbar #progression {
@@ -36,15 +39,36 @@ body {
 
 form {
     width: calc(25vw - 20px);
-    height: 98vh;
+    height: 96vh;
     background-color: var(--light-gray-color);
     padding: 10px;
+    overflow-y: scroll;
 }
 
 fieldset {
     border: none;
     margin: 0px;
     padding: 0px;
+}
+
+form>fieldset:first-of-type>legend {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--header-text-color);
+}
+
+.question_category {
+    background-color: white;
+    padding: 20px;
+}
+
+.question_category>legend {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--header-text-color);
 }
 
 form label {
@@ -59,11 +83,71 @@ input[type="number"]:not(#kinderen)::-webkit-inner-spin-button {
 }
 
 input[type="number"] {
-    border: 1px solid white;
-    border-radius: 5px;
-    width: calc(100% - 4px);
+    border: 2px solid var(--dark-gray-color);
+    border-radius: var(--border-radius);
+    width: calc(100% - 15px);
+    /* 5px is to compensate for border */
+    padding: 6px 5px;
 }
 
+input[type="number"]:hover {
+    border-color: var(--main-purple-color);
+}
+
+input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+}
+
+input[type="radio"]+label {
+    padding: 6px 0px;
+    width: calc(25% - 7.5px);
+    /* -7.5px is to compensate for 10px border & gap in vertical-center of form (2x 5px = 10px) */
+    display: inline-block;
+    border: 2px solid var(--dark-gray-color);
+    text-align: center;
+    margin: 0px;
+}
+
+label[for="partner"],
+label[for="kinderen"] {
+    width: calc(50% - 10px);
+    display: inline-block;
+}
+
+label[for="kinderen"] {
+    margin-left: 13px;
+}
+
+#kinderen {
+    width: calc(50% - 23px);
+    display: inline-block;
+}
+
+input[type="radio"]+label:nth-of-type(even),
+#partner+label {
+    border-radius: var(--border-radius) 0px 0px var(--border-radius);
+}
+
+input[type="radio"]+label:nth-of-type(odd),
+#geen-partner+label {
+    border-radius: 0px var(--border-radius) var(--border-radius) 0px;
+    margin-left: -3px;
+    margin-right: 10px;
+}
+
+input[type="radio"]:checked+label {
+    background-color: var(--main-purple-color);
+    border-color: var(--main-purple-color);
+}
+
+input[type="radio"]:focus+label,
+input[type="radio"]:hover+label {
+    border: 2px solid var(--main-purple-color);
+    border-color: var(--main-purple-color);
+}
+
+label,
 select,
 select+label,
 input[type="radio"],
@@ -71,6 +155,27 @@ input[type="radio"]+label {
     cursor: pointer;
 }
 
+p {
+    margin: 0px;
+}
+
+/* TODO:
+de legend elementen van de .question_category moeten in een div komen te staan (net zoals bij soccerassist)
+in deze div kan dan een dropdown-icon komen, een border/span onderaan, een span rechts om progressie aan te geven, maakt het makkelijk voor JS
+*/
+
+
+/* 
+gezin
+- kinderen (dynamisch)
+- inkomen (standaard + mogelijk partner)
+
+huis
+- afhankelijk van huur of koop heb je verschillende vragen
+
+auto
+- meerdere auto's toevoegen
+*/
 
 
 
