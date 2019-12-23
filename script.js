@@ -37,6 +37,7 @@ document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(inp
     // ! deze methode houd geen rekening met de verschillende dynamische inputs
     // ! alle mogelijke inputs binnen de huidige fieldset worden opgehaald
     // ! dit betekent dat alle dynamische inputs (alle inputs die afhangen van de antwoorden van de gebruiker) moeten dynamisch gemaakt worden (d3 of JS)
+    // ! chech hier de HMTL nog ff op, want op dit moment staan alle mogelijkheden in de HTML -> deze moeten dus dynamisch aangemaakt gaan worden
     // ! als deze dynamisch aangemaakt worden dan werkt deze functie, als je dit niet doet dan moet je deze functie herschrijven
     let currentEl = this
     while (currentEl.classList.contains('question_category') != true) {
