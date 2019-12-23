@@ -53,22 +53,60 @@ fieldset {
 
 form>fieldset:first-of-type>legend {
     font-size: 30px;
+    margin: 15px 0px 15px 15px;
     font-weight: 600;
     color: var(--header-text-color);
+    /* ? deze legend sticky/fixed maken om ervoor te zorgen dat dit altijd zichtbaar is? */
 }
 
 .question_category {
     background-color: white;
-    padding: 20px;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 15px;
 }
 
-.question_category>legend {
-    position: relative;
-    top: 20px;
+.question_category {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.question_category:not(.hide) {
+    cursor: default;
+}
+
+.question_category>div:first-of-type {
+    /* TODO: moet een grid krijgen om de legend, img, span te stylen */
+    display: grid;
+    grid-template-columns: 1fr 15px 5px;
+    grid-column-gap: 10px;
+}
+
+.question_category>div:first-of-type legend {
     display: inline-block;
     font-size: 20px;
     font-weight: 600;
     color: var(--header-text-color);
+}
+
+.question_category>div:first-of-type img {
+    align-self: center;
+}
+
+.question_category>div:first-of-type img.activeDropdown {
+    transform: rotate(180deg);
+}
+
+.question_category>div:first-of-type span {
+    position: relative;
+    bottom: 10px;
+    left: 15px;
+    padding: 10px;
+    height: 100%;
+    background-color: var(--dark-gray-color);
+}
+
+.question_category>div:first-of-type span.hasAnswer {
+    background-color: var(--main-purple-color);
 }
 
 form label {
@@ -85,9 +123,9 @@ input[type="number"]:not(#kinderen)::-webkit-inner-spin-button {
 input[type="number"] {
     border: 2px solid var(--dark-gray-color);
     border-radius: var(--border-radius);
-    width: calc(100% - 15px);
+    width: calc(100% - 25px);
     /* 5px is to compensate for border */
-    padding: 6px 5px;
+    padding: 6px 10px;
 }
 
 input[type="number"]:hover {
@@ -120,7 +158,7 @@ label[for="kinderen"] {
 }
 
 #kinderen {
-    width: calc(50% - 23px);
+    width: calc(50% - 33px);
     display: inline-block;
 }
 
@@ -147,6 +185,10 @@ input[type="radio"]:hover+label {
     border-color: var(--main-purple-color);
 }
 
+input[type="radio"]#tweedehands+label {
+    width: calc(25% + 30px);
+}
+
 label,
 select,
 select+label,
@@ -155,8 +197,8 @@ input[type="radio"]+label {
     cursor: pointer;
 }
 
-p {
-    margin: 0px;
+fieldset>p {
+    margin: 15px 0px 0px 0px;
 }
 
 /* TODO:
@@ -177,7 +219,11 @@ auto
 - meerdere auto's toevoegen
 */
 
-
+/* ! #kinderen verdwijnt niet, met de class 'hide' */
+.question_category.hide>*:not(div) {
+    display: none;
+    transition: display 5s linear;
+}
 
 section:last-of-type form {
     background-color: rgba(0, 0, 0, .1);

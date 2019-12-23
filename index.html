@@ -26,7 +26,11 @@
                 <fieldset>
                     <legend>Uw situatie</legend>
                     <fieldset class="question_category">
-                        <legend>Gezin</legend>
+                        <div>
+                            <legend>Gezin</legend>
+                            <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                            <span></span>
+                        </div>
                         <label for="leeftijd">Leeftijd</label>
                         <input type="number" autocomplete="off" placeholder="18" min="18" max="100" maxstep="1"
                             id="leeftijd">
@@ -145,9 +149,12 @@
                     </fieldset>
                 </fieldset>
 
-                <fieldset class="question_category">
-                    <legend>Woning</legend>
-
+                <fieldset class="question_category hide">
+                    <div>
+                        <legend>Woning</legend>
+                        <img src="./media/dropdown.svg" alt="dropwown">
+                        <span></span>
+                    </div>
                     <label for="woning">Woningtype</label>
                     <select>
                         <option value="" disabled selected hidden>Selecteer uw woningtype</option>
@@ -195,9 +202,12 @@
                 </fieldset>
 
 
-                <fieldset class="question_category">
-                    <legend>Auto</legend>
-
+                <fieldset class="question_category hide">
+                    <div>
+                        <legend>Auto</legend>
+                        <img src="./media/dropdown.svg" alt="dropwown">
+                        <span></span>
+                    </div>
                     <label for="autotype">Privé auto</label>
                     <select>
                         <option value="" disabled selected hidden>Selecteer uw privé auto type</option>
@@ -228,6 +238,8 @@
     </section>
 
     <section>
+        <!-- TODO: geef de juiste fieldsets de question_category class -->
+        <!-- TODO: zet de divs (van de question_category classes) in een div -->
         <form>
             <fieldset>
                 <legend>Uitgaven</legend>
