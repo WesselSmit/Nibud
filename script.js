@@ -9,11 +9,29 @@ getData()
 
 
 
-const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._groups[0]
-const allQuestionCategories = d3.selectAll('.question_category')._groups[0]
+
+
+
+
+
+// TODO: (voor het eerste form)
+// GEZIN
+// - kinderen (dynamisch)
+// - inkomen (standaard + mogelijk partner)
+// HUIS
+// - afhankelijk van huur of koop heb je verschillende vragen
+// AUTO
+// - meerdere auto's toevoegen
+
+const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._groups[0],
+    allQuestionCategories = d3.selectAll('.question_category')._groups[0]
 
 document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input => input.addEventListener('input', function () {
-    //progress-bar
+    updateProgressbar() //progress-bar
+    updateProgressIndicators(this) //progress indicator
+}))
+
+function updateProgressbar() {
     let inputsWithValue = 0,
         numberOfTotalRadio = 0
 
@@ -27,19 +45,22 @@ document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(inp
             numberOfTotalRadio++
         }
     })
-    let uniqueInputs = allInputs.length - (numberOfTotalRadio / 2), // '-3' is to prevent the radio buttons of taking up double-spaces
-        progression = document.querySelector('#uw_situatie #progression').parentElement.getBoundingClientRect().width / uniqueInputs * inputsWithValue //
+    let uniqueInputs = allInputs.length - (numberOfTotalRadio / 2),
+        progression = document.querySelector('#uw_situatie #progression').parentElement.getBoundingClientRect().width / uniqueInputs * inputsWithValue
     document.querySelector('#uw_situatie #progression').style.paddingRight = progression + "px"
 
+}
 
-    //answer indicator
+//TODO:
+// * de onderstaande functie herschrijven zodat die hardcoded is om rekening te houden met de radio-buttons & select etc.
+// * dit zou betekenen dat de alle dynamische vragen/inputs in de HTML (hardcoded) gezet kunnen worden en op deze manier hoef je niet te kloten met elementen aanmaken
+function updateProgressIndicators(currentEl) {
     // TODO: let op onderstaande notities:
     // ! deze methode houd geen rekening met de verschillende dynamische inputs
     // ! alle mogelijke inputs binnen de huidige fieldset worden opgehaald
     // ! dit betekent dat alle dynamische inputs (alle inputs die afhangen van de antwoorden van de gebruiker) moeten dynamisch gemaakt worden (d3 of JS)
     // ! chech hier de HMTL nog ff op, want op dit moment staan alle mogelijkheden in de HTML -> deze moeten dus dynamisch aangemaakt gaan worden
     // ! als deze dynamisch aangemaakt worden dan werkt deze functie, als je dit niet doet dan moet je deze functie herschrijven
-    let currentEl = this
     while (currentEl.classList.contains('question_category') != true) {
         currentEl = currentEl.parentElement
     }
@@ -58,11 +79,11 @@ document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(inp
     }
 
     if (answeredQuestions === allCurrentInputs.length - (numberOfRadio / 2)) {
-        currentEl.querySelector('div>span').classList.add('hasAnswer')
+        currentEl.querySelector('div>span:first-of-type').classList.add('hasAnswer')
     } else {
-        currentEl.querySelector('div>span').classList.remove('hasAnswer')
+        currentEl.querySelector('div>span:first-of-type').classList.remove('hasAnswer')
     }
-}))
+}
 
 //progressive disclosure
 allQuestionCategories.forEach(category => {
@@ -72,9 +93,15 @@ allQuestionCategories.forEach(category => {
             question.classList.add('hide')
         }
         this.classList.remove('hide')
+
         for (const category of allQuestionCategories) {
             category.querySelector('div:first-of-type>img').classList.remove('activeDropdown')
         }
         category.querySelector('div:first-of-type>img').classList.add('activeDropdown')
     })
+})
+
+//car dynamic-inputs
+document.getElementById('car').addEventListener('input', function () {
+    document.getElementById('has_a_car').classList.remove('hide')
 })

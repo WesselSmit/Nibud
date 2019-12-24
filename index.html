@@ -11,14 +11,15 @@
 </head>
 
 <body>
+    <!-- * Favicon toevoegen -->
+    <!-- ! de height van het eerste form moet nog iets kleiner, nu worden de borders van alle inputs niet meegenomen (border-box) -->
+    <!-- TODO: voeg tekst (titel, sub-title, scroll uitleg, description) toe aan #intro -->
+    <!-- ? uw uitgaven & saldo moeten verstopt zijn totdat uw sitautie compleet is ingevuld -->
+    <!-- TODO: maxlength property aan number inputs geven -->
+    <!-- ? for bij radio-input label (de label die boven de input staat en als titel functioneert) het 'for' attribuut weghalen? het is verwarrend -->
+    <!-- TODO: select element stylen -->
+    <!-- TODO: voeg aan alle number-inputs een € toe (met een ::before ??) -->
     <section>
-        <!-- * Favicon toevoegen -->
-        <!-- ! de height van het eerste form moet nog iets kleiner, nu worden de borders van alle inputs niet meegenomen (border-box) -->
-        <!-- ? fieldsets staan niet helemaal goed? alle de dingen die moeten kunnen inklappen moeten een fieldset hebben -->
-        <!-- TODO: voeg een titel toe aan uw_situatie form -->
-        <!-- TODO: voeg tekst (titel, sub-title, scroll uitleg, description) toe aan #intro -->
-        <!-- ! uw uitgaven & saldo moeten verstopt zijn totdat uw sitautie compleet is ingevuld -->
-        <!-- TODO: maxlength property aan number inputs geven -->
         <div id="intro"></div>
         <div id="uw_situatie">
             <div class="progressbar"><span id="progression"></span></div>
@@ -26,9 +27,10 @@
                 <fieldset>
                     <legend>Uw situatie</legend>
                     <fieldset class="question_category">
-                        <div>
+                        <div class="progressive_disclosure">
                             <legend>Gezin</legend>
                             <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                            <span></span>
                             <span></span>
                         </div>
                         <label for="leeftijd">Leeftijd</label>
@@ -72,6 +74,7 @@
                             </fieldset>
 
                             <fieldset>
+                                <!-- TODO: moet dynamisch worden -->
                                 <legend>Partners inkomen</legend>
                                 <label for="netto_maandinkomenPartner">Netto maandinkomen</label>
                                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
@@ -150,9 +153,10 @@
                 </fieldset>
 
                 <fieldset class="question_category hide">
-                    <div>
+                    <div class="progressive_disclosure">
                         <legend>Woning</legend>
                         <img src="./media/dropdown.svg" alt="dropwown">
+                        <span></span>
                         <span></span>
                     </div>
                     <label for="woning">Woningtype</label>
@@ -203,13 +207,14 @@
 
 
                 <fieldset class="question_category hide">
-                    <div>
+                    <div class="progressive_disclosure">
                         <legend>Auto</legend>
                         <img src="./media/dropdown.svg" alt="dropwown">
                         <span></span>
+                        <span></span>
                     </div>
                     <label for="autotype">Privé auto</label>
-                    <select>
+                    <select id="car">
                         <option value="" disabled selected hidden>Selecteer uw privé auto type</option>
                         <option value="geen" id="autotype">Geen</option>
                         <option value="klein">Klein</option>
@@ -218,23 +223,26 @@
                         <option value="middenklasse">Middenklasse</option>
                     </select>
 
-                    <label for="kilometers">Kilometers per jaar</label>
-                    <select>
-                        <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
-                        <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
-                        <option value="10.000 - 20.000">10.000 - 20.000</option>
-                        <option value="20.000+">20.000+</option>
-                    </select>
+                    <div id="has_a_car" class="hide">
+                        <!-- TODO: de elementen hierbinnen moeten dynamisch aangemaakt worden ivm progress-indicator JS function -->
+                        <label for="kilometers">Kilometers per jaar</label>
+                        <select>
+                            <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
+                            <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
+                            <option value="10.000 - 20.000">10.000 - 20.000</option>
+                            <option value="20.000+">20.000+</option>
+                        </select>
 
-                    <label for="nieuw">Waarde auto</label>
-                    <input type="radio" name="waardeAuto" value="nieuw" id="nieuw" />
-                    <label for="nieuw">Nieuw</label>
-                    <input type="radio" name="waardeAuto" value="tweedehands" id="tweedehands" />
-                    <label for="tweedehands">Tweedehands</label>
-                    <p id="extraAuto">+Voeg extra auto toe</p>
+                        <label for="nieuw">Waarde auto</label>
+                        <input type="radio" name="waardeAuto" value="nieuw" id="nieuw" />
+                        <label for="nieuw">Nieuw</label>
+                        <input type="radio" name="waardeAuto" value="tweedehands" id="tweedehands" />
+                        <label for="tweedehands">Tweedehands</label>
+                        <p id="extraAuto">+Voeg extra auto toe</p>
+                        <!-- TODO: de extra auto vragen moeten dynamisch aangemaakt worden ivm progress-indicator JS function -->
+                    </div>
                 </fieldset>
             </form>
-        </div>
     </section>
 
     <section>

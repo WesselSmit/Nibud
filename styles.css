@@ -53,7 +53,7 @@ fieldset {
 
 form>fieldset:first-of-type>legend {
     font-size: 30px;
-    margin: 15px 0px 15px 15px;
+    padding: 15px 0px 15px 15px;
     font-weight: 600;
     color: var(--header-text-color);
     /* ? deze legend sticky/fixed maken om ervoor te zorgen dat dit altijd zichtbaar is? */
@@ -62,20 +62,24 @@ form>fieldset:first-of-type>legend {
 .question_category {
     background-color: white;
     padding: 10px 20px 10px 20px;
-    margin-bottom: 15px;
-}
-
-.question_category {
     cursor: pointer;
     overflow: hidden;
+}
+
+.question_category:not(:nth-of-type(3)) {
+    margin-bottom: 15px;
+    /* TODO: hier moet de laatste fieldset (in een .question_category) nog komen te staan, handmatig met de :not(:nth-of-type(x)) selecter doen  */
 }
 
 .question_category:not(.hide) {
     cursor: default;
 }
 
+.question_category>*:nth-child(2) {
+    margin-top: 20px;
+}
+
 .question_category>div:first-of-type {
-    /* TODO: moet een grid krijgen om de legend, img, span te stylen */
     display: grid;
     grid-template-columns: 1fr 15px 5px;
     grid-column-gap: 10px;
@@ -90,23 +94,39 @@ form>fieldset:first-of-type>legend {
 
 .question_category>div:first-of-type img {
     align-self: center;
+    transition: 0.1s linear;
 }
 
 .question_category>div:first-of-type img.activeDropdown {
     transform: rotate(180deg);
 }
 
-.question_category>div:first-of-type span {
+.question_category>div:first-of-type span:first-of-type {
     position: relative;
     bottom: 10px;
     left: 15px;
     padding: 10px;
-    height: 100%;
+    /* 2px to compensate for horizontal span */
+    height: calc(100% + 2px);
     background-color: var(--dark-gray-color);
+    transition: background-color 0.3s linear;
 }
 
-.question_category>div:first-of-type span.hasAnswer {
+.question_category>div:first-of-type span:first-of-type.hasAnswer {
     background-color: var(--main-purple-color);
+}
+
+.question_category>div:first-of-type span:last-of-type {
+    background-color: var(--light-gray-color);
+    width: 100%;
+    padding: 1px 100px 1px 0px;
+    position: relative;
+    right: 20px;
+    top: 10px;
+}
+
+.question_category.hide>div:first-of-type span:last-of-type {
+    display: none;
 }
 
 form label {
@@ -163,15 +183,21 @@ label[for="kinderen"] {
 }
 
 input[type="radio"]+label:nth-of-type(even),
-#partner+label {
+#partner+label,
+#nieuw+label {
     border-radius: var(--border-radius) 0px 0px var(--border-radius);
 }
 
 input[type="radio"]+label:nth-of-type(odd),
-#geen-partner+label {
+#geen-partner+label,
+#tweedehands+label {
     border-radius: 0px var(--border-radius) var(--border-radius) 0px;
     margin-left: -3px;
     margin-right: 10px;
+}
+
+#tweedehands+label {
+    margin-left: -13px;
 }
 
 input[type="radio"]:checked+label {
@@ -201,31 +227,25 @@ fieldset>p {
     margin: 15px 0px 0px 0px;
 }
 
-/* TODO:
-de legend elementen van de .question_category moeten in een div komen te staan (net zoals bij soccerassist)
-in deze div kan dan een dropdown-icon komen, een border/span onderaan, een span rechts om progressie aan te geven, maakt het makkelijk voor JS
-*/
-
-
-/* 
-gezin
-- kinderen (dynamisch)
-- inkomen (standaard + mogelijk partner)
-
-huis
-- afhankelijk van huur of koop heb je verschillende vragen
-
-auto
-- meerdere auto's toevoegen
-*/
-
-/* ! #kinderen verdwijnt niet, met de class 'hide' */
-.question_category.hide>*:not(div) {
-    display: none;
-    transition: display 5s linear;
+#extraAuto {
+    color: var(--main-purple-color);
+    cursor: pointer;
 }
 
+#extraAuto:hover {
+    text-decoration: underline;
+}
+
+#has_a_car.hide {
+    display: none;
+}
+
+.question_category.hide>*:not(.progressive_disclosure),
+.question_category.hide #kinderen {
+    display: none;
+}
+
+
 section:last-of-type form {
-    background-color: rgba(0, 0, 0, .1);
     display: none;
 }
