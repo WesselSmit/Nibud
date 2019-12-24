@@ -273,13 +273,10 @@ section:last-of-type form {
 #tooltip {
     position: absolute;
     background-color: white;
-    font-size: 12px;
     width: 250px;
-}
-
-#tooltip p {
-    margin: 0px;
-    padding: 10px;
+    z-index: 999;
+    border: 2px solid var(--dark-gray-color);
+    border-radius: var(--border-radius);
 }
 
 input[type="number"].invalid,
@@ -293,4 +290,16 @@ input[type="number"].invalid:focus {
 
 #uw_situatie .progressbar #progression.invalidProgress {
     background-color: var(--invalid-color);
+}
+
+#tooltip p {
+    margin: 0px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.tooltip-icon {
+    position: relative;
+    top: 1px;
+    float: right;
 }

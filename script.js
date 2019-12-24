@@ -16,26 +16,36 @@ data.getData()
 
 data.getTooltips()
     .then(data => tooltipData = data)
+    .then(data => selectLabelsforTooltips())
     .catch(err => console.log(err))
+
 
 //tooltip
 // ! tooltip werkt niet volledig met scroll, form half uit viewport
-labels.forEach(label => {
-    label.addEventListener('mouseover', function () {
-        Object.entries(tooltipData).forEach(entry => {
-            if (this.getAttribute('for') == entry[0]) {
-                tooltip.children[0].textContent = entry[1]
-                tooltip.style.display = 'block'
-                tooltip.style.left = (event.clientX + 20 + 'px')
-                tooltip.style.top = (window.innerHeight + event.clientY + -60 + 'px')
+function selectLabelsforTooltips() {
+    Object.entries(tooltipData).forEach(entry => {
+        labels.forEach(label => {
+            if (label.getAttribute('for') == entry[0]) {
+                label.dataset.has_tooltip = true
+
+                let tooltipIcon = new Image
+                tooltipIcon.classList.add('tooltip-icon')
+                tooltipIcon.src = "./media/tooltip-icon.svg"
+                label.append(tooltipIcon)
+
+                tooltipIcon.addEventListener('mouseover', function () {
+                    tooltip.children[0].textContent = entry[1]
+                    tooltip.style.display = 'block'
+                    tooltip.style.left = (event.clientX + 20 + 'px')
+                    tooltip.style.top = (window.innerHeight + event.clientY + -60 + 'px')
+                })
+                tooltipIcon.addEventListener('mouseout', function () {
+                    tooltip.style.display = 'none'
+                })
             }
         })
     })
-    label.addEventListener('mouseout', function () {
-        tooltip.style.display = 'none'
-    })
-})
-
+}
 
 // TODO: (voor het eerste form)
 // GEZIN
