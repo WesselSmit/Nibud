@@ -13,7 +13,7 @@
 
 <body>
     <!-- TODO: voeg tekst (titel, sub-title, scroll uitleg, description) toe aan #intro -->
-    <!-- TODO: uw uitgaven & saldo moeten verstopt zijn totdat uw sitautie compleet is ingevuld -->
+    <!-- TODO: saldo moet verstopt zijn totdat uw sitautie compleet is ingevuld -->
     <!-- TODO: maxlength property aan number inputs geven (moet miss in JS gefixt worden) -->
     <!-- * readme schrijven -->
     <!-- TODO: voeg aan alle number-inputs een € toe (met een ::before ??) -->
@@ -24,7 +24,9 @@
     <!-- TODO: als de gebruiker een waarde invult bij auto en daarna de waarde verandert naar 'geen' dan moeten de extra vragen weer weg -->
     <section>
         <div id="tooltip">
-            <p></p>
+            <p>
+                <!-- word gevtult met de tooltip content wanneer de gebruiker over een ?-icon hovert -->
+            </p>
         </div>
         <div id="intro"></div>
         <div id="uw_situatie">
@@ -263,11 +265,9 @@
             </form>
     </section>
 
-    <!-- TODO: 2e section moet verstopt zijn totdat alle vragen in uw_situatie ingevuld zijn -->
-    <!-- TODO: saldo section/viewport moet verstopt zijn totdat alle uitgaven ingevuld zijn -->
     <section>
         <!-- TODO: geef de juiste fieldsets de question_category class -->
-        <!-- TODO: zet de divs (van de question_category classes) in een div -->
+        <!-- TODO: zet de eerste divs (van de question_category classes) in een div -->
         <form class="hide">
             <fieldset>
                 <legend>Uitgaven</legend>
@@ -619,6 +619,8 @@
             </fieldset>
         </form>
     </section>
+    <!-- TODO: saldo section/viewport moet verstopt zijn totdat alle uitgaven ingevuld zijn -->
+
     <script type="module" src="/script.js"></script>
 </body>
 

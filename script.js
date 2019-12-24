@@ -4,7 +4,8 @@ import transform from './modules/transformData.js'
 const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._groups[0],
     allQuestionCategories = d3.selectAll('.question_category')._groups[0],
     labels = document.querySelectorAll('form label'),
-    tooltip = document.querySelector('#tooltip')
+    tooltip = document.querySelector('#tooltip'),
+    digitRegex = /^\d+$/
 
 let tooltipData
 
@@ -61,7 +62,7 @@ document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(inp
     updateProgressbar() //progress-bar
     updateProgressIndicators(this) //progress indicator
     updateTotalIncome(this) //total income
-    fixSelectFocus(this)
+    fixSelectFocus(this) //fix select focus state
 }))
 
 function checkIfValueIsAllowed(currentEl) {
@@ -69,10 +70,10 @@ function checkIfValueIsAllowed(currentEl) {
         maxIsValid = false
 
     if (currentEl.type === 'number') {
-        if (parseInt(currentEl.value) < parseInt(currentEl.min) === false && /^\d+$/.test(currentEl.value) === true) {
+        if (parseInt(currentEl.value) < parseInt(currentEl.min) === false && digitRegex.test(currentEl.value) === true) {
             minIsValid = true
         }
-        if (parseInt(currentEl.value) > parseInt(currentEl.max) === false && /^\d+$/.test(currentEl.value) === true) {
+        if (parseInt(currentEl.value) > parseInt(currentEl.max) === false && digitRegex.test(currentEl.value) === true) {
             maxIsValid = true
         }
 
@@ -199,6 +200,7 @@ allQuestionCategories.forEach(category => {
             question.classList.add('hide')
         }
         this.classList.remove('hide')
+        this.querySelectorAll('input, select')[0].focus()
 
         for (const category of allQuestionCategories) {
             category.querySelector('div:first-of-type>img').classList.remove('activeDropdown')
