@@ -270,15 +270,6 @@ section:last-of-type form {
     display: none;
 }
 
-#tooltip {
-    position: absolute;
-    background-color: white;
-    width: 250px;
-    z-index: 999;
-    border: 2px solid var(--dark-gray-color);
-    border-radius: var(--border-radius);
-}
-
 input[type="number"].invalid,
 input[type="number"].invalid:hover {
     border-color: var(--invalid-color);
@@ -290,6 +281,15 @@ input[type="number"].invalid:focus {
 
 #uw_situatie .progressbar #progression.invalidProgress {
     background-color: var(--invalid-color);
+}
+
+#tooltip {
+    position: absolute;
+    background-color: white;
+    width: 250px;
+    z-index: 999;
+    border: 2px solid var(--dark-gray-color);
+    border-radius: var(--border-radius);
 }
 
 #tooltip p {
