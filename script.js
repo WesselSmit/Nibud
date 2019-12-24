@@ -11,9 +11,6 @@ getData()
 
 
 
-
-
-
 // TODO: (voor het eerste form)
 // GEZIN
 // - kinderen (dynamisch)
@@ -29,6 +26,7 @@ const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._group
 document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input => input.addEventListener('input', function () {
     updateProgressbar() //progress-bar
     updateProgressIndicators(this) //progress indicator
+    updateTotalIncome(this) //total income
 }))
 
 function updateProgressbar() {
@@ -50,6 +48,17 @@ function updateProgressbar() {
     document.querySelector('#uw_situatie #progression').style.paddingRight = progression + "px"
 
 }
+
+// function updateProgressIndicators(currentEl) {
+//     while (currentEl.classList.contains('question_category') != true) {
+//         currentEl = currentEl.parentElement
+//     }
+//     console.log(currentEl)
+
+
+//     // geef alle verstopte inputs een data-optional-path attr
+//     // updateProgressIndicators() moet dynamisch kunnen kijken of er paths
+// }
 
 //TODO:
 // * de onderstaande functie herschrijven zodat die hardcoded is om rekening te houden met de radio-buttons & select etc.
@@ -80,9 +89,34 @@ function updateProgressIndicators(currentEl) {
 
     if (answeredQuestions === allCurrentInputs.length - (numberOfRadio / 2)) {
         currentEl.querySelector('div>span:first-of-type').classList.add('hasAnswer')
+        currentEl.classList.add('hide')
+
+        const nextEl = document.querySelector("[data-question='" + (parseInt(currentEl.dataset.question) + 1) + "']"),
+            nextElInput = nextEl.querySelectorAll('input, select')[0]
+        nextEl.classList.remove('hide')
+        if (nextElInput.type !== 'radio' && nextElInput.tagName !== 'SELECT') {
+            nextElInput.focus()
+        }
     } else {
         currentEl.querySelector('div>span:first-of-type').classList.remove('hasAnswer')
     }
+}
+
+//total income
+function updateTotalIncome(currentEl) {
+    while (currentEl.classList.contains('question_category') != true) {
+        currentEl = currentEl.parentElement
+    }
+
+    const allCurrentInputs = currentEl.querySelectorAll('input')
+    let totalIncome = 0
+
+    for (const currentInput of allCurrentInputs) {
+        if (currentInput.value != '') {
+            totalIncome = totalIncome + parseInt(currentInput.value)
+        }
+    }
+    document.getElementById('totaleInkomen').textContent = totalIncome + " euro"
 }
 
 //progressive disclosure

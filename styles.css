@@ -129,6 +129,22 @@ form>fieldset:first-of-type>legend {
     display: none;
 }
 
+.question_category>fieldset>legend {
+    color: var(--header-text-color);
+    font-size: 20px;
+    font-weight: 600;
+    width: 100%;
+    padding-top: 25px;
+}
+
+form>fieldset:nth-of-type(2)>fieldset:first-of-type>legend {
+    padding-top: 5px;
+}
+
+.question_category>fieldset>label:first-of-type {
+    margin-top: 10px;
+}
+
 form label {
     display: block;
     margin: 10px 0px 5px 0px;
@@ -244,7 +260,6 @@ fieldset>p {
 .question_category.hide #kinderen {
     display: none;
 }
-
 
 section:last-of-type form {
     display: none;
