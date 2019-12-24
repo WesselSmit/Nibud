@@ -20,6 +20,7 @@
     <!-- ? for bij radio-input label (de label die boven de input staat en als titel functioneert) het 'for' attribuut weghalen? het is verwarrend -->
     <!-- TODO: select element stylen -->
     <!-- TODO: voeg aan alle number-inputs een € toe (met een ::before ??) -->
+    <!-- TODO: verification toevoegen; als je iets invult wat niet kan moet het rood worden -->
     <section>
         <div id="tooltip">
             <p></p>
@@ -30,7 +31,7 @@
             <form>
                 <fieldset>
                     <legend>Uw situatie</legend>
-                    <fieldset class="question_category">
+                    <fieldset class="question_category" data-question="1">
                         <div class="progressive_disclosure">
                             <legend>Gezin</legend>
                             <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
@@ -38,7 +39,7 @@
                             <span></span>
                         </div>
                         <label for="leeftijd">Leeftijd</label>
-                        <input type="number" autocomplete="off" placeholder="18" min="18" max="100" maxstep="1"
+                        <input type="number" autocomplete="off" placeholder="18" min="18" max="100" step="1"
                             id="leeftijd">
 
                         <label for="partner">Partner</label>
@@ -54,7 +55,7 @@
                     </fieldset>
                 </fieldset>
 
-                <fieldset class="question_category hide">
+                <fieldset class="question_category hide" data-question="2">
                     <div class="progressive_disclosure">
                         <legend>Inkomen</legend>
                         <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
@@ -114,24 +115,21 @@
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
                             name="kinderbijslag" id="kinderbijslag" />
 
-                        <fieldset>
-                            <legend>Toeslagen</legend>
-                            <label for="zorgtoeslag">Zorgtoeslag</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                name="zorgtoeslag" id="zorgtoeslag" />
+                        <label for="zorgtoeslag">Zorgtoeslag</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" name="zorgtoeslag"
+                            id="zorgtoeslag" />
 
-                            <label for="kindgebonden_budget">Kindgebonden budget</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                name="kindgebonden_budget" id="kindgebonden_budget" />
+                        <label for="kindgebonden_budget">Kindgebonden budget</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="kindgebonden_budget" id="kindgebonden_budget" />
 
-                            <label for="huurtoeslag">Huurtoeslag</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                name="huurtoeslag" id="huurtoeslag" />
+                        <label for="huurtoeslag">Huurtoeslag</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" name="huurtoeslag"
+                            id="huurtoeslag" />
 
-                            <label for="kinderopvangtoeslag">Kinderopvangtoeslag</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                name="kinderopvangtoeslag" id="kinderopvangtoeslag" />
-                        </fieldset>
+                        <label for="kinderopvangtoeslag">Kinderopvangtoeslag</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="kinderopvangtoeslag" id="kinderopvangtoeslag" />
 
                         <label for="teruggave_belasting">Teruggave belasting</label>
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
@@ -158,10 +156,10 @@
                             name="overige_inkomsten" id="overige_inkomsten" />
                     </fieldset>
 
-                    <p>Totaal:</p>
+                    <p>Totaal: <span id="totaleInkomen"></span></p>
                 </fieldset>
 
-                <fieldset class="question_category hide">
+                <fieldset class="question_category hide" data-question="3">
                     <div class="progressive_disclosure">
                         <legend>Woning</legend>
                         <img src="./media/dropdown.svg" alt="dropwown">
@@ -215,7 +213,7 @@
                 </fieldset>
 
 
-                <fieldset class="question_category hide">
+                <fieldset class="question_category hide" data-question="4">
                     <div class="progressive_disclosure">
                         <legend>Auto</legend>
                         <img src="./media/dropdown.svg" alt="dropwown">
