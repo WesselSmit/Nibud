@@ -114,9 +114,9 @@ function updateTotalIncome(currentEl) {
     for (const currentInput of allCurrentInputs) {
         if (currentInput.value != '') {
             totalIncome = totalIncome + parseInt(currentInput.value)
+            document.getElementById('totaleInkomen').textContent = totalIncome + " euro"
         }
     }
-    document.getElementById('totaleInkomen').textContent = totalIncome + " euro"
 }
 
 //progressive disclosure
