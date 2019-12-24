@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Nibud</title>
-    <link rel="stylesheet" href="./styles.css" type="text/css">
+    <link rel="shortcut icon" type="image/png" href="/media/nibud-logo.png">
+    <link rel="stylesheet" href="/styles.css" type="text/css">
     <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 
@@ -20,6 +21,9 @@
     <!-- TODO: select element stylen -->
     <!-- TODO: voeg aan alle number-inputs een € toe (met een ::before ??) -->
     <section>
+        <div id="tooltip">
+            <p></p>
+        </div>
         <div id="intro"></div>
         <div id="uw_situatie">
             <div class="progressbar"><span id="progression"></span></div>
@@ -604,7 +608,7 @@
             </fieldset>
         </form>
     </section>
-    <script type="module" src="./script.js"></script>
+    <script type="module" src="/script.js"></script>
 </body>
 
 </html>

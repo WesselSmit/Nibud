@@ -1,0 +1,21 @@
+{
+    "tooltips": [
+        {
+            "partner": "Heeft u wel een partner, maar woont u niet samen? Vul dan ‘nee’ in.",
+            "kinderen": "Heeft u kinderen, maar wonen zij op zichzelf? Vul dan ‘0’ in.",
+            "netto_maandinkomen": "Vul uw gemiddelde netto maandinkomen in. U vindt het bedrag bijvoorbeeld op uw loonstrook. Bent u zelfstandige en/of heeft u wisselende inkomsten? Tel de netto inkomsten die u in een jaar ontvangt op en deel dit bedrag door 12. Dan heeft u het bedrag per maand.",
+            "netto_vakantiegeld": "Vul het netto bedrag aan vakantiegeld per jaar in. Weet u het niet precies, neem dan 5% van het netto jaarinkomen.",
+            "zorgtoeslag": "Vul het bedrag in dat u maandelijks van de Belastingdienst ontvangt. Afhankelijk van uw inkomen, heeft u recht op zorgtoeslag.",
+            "huurtoeslag": "Vul het bedrag in dat u maandelijks van de Belastingdienst ontvangt. U ontvangt dit als uw huur hoog is in verhouding tot uw inkomen.",
+            "teruggave_belasting": "Vul de inkomsten in die u maandelijks van de Belastingdienst ontvangt anders dan de eerdergenoemde toeslagen. Dit kan bijvoorbeeld als u de aftrek van de hypotheekrente of de inkomensafhankelijke combinatiekorting maandelijks als 'voorschot' laat uitkeren.",
+            "overige_inkomsten": "Vul hier uw gemiddelde overige inkomsten per maand in. Denk daarbij aan vaste bijverdiensten, reiskostenvergoeding, tegemoetkoming ziektekosten, een tantième, eindejaarsuitkering, alimentatie, gemeentelijke ondersteuning en inkomen uit vermogen of kostgeld inwonende personen.",
+            "netto_maandinkomenPartner": "Vul uw gemiddelde netto maandinkomen in. U vindt het bedrag bijvoorbeeld op uw loonstrook. Bent u zelfstandige en/of heeft u wisselende inkomsten? Tel de netto inkomsten die u in een jaar ontvangt op en deel dit bedrag door 12. Dan heeft u het bedrag per maand.",
+            "netto_vakantiegeldPartner": "Vul het netto bedrag aan vakantiegeld per jaar in. Weet u het niet precies, neem dan 5% van het netto jaarinkomen.",
+            "woning": "Staat uw type woning er niet bij, kies dan het type dat het meest op uw woning lijkt. Bijvoorbeeld: woont u in een galerijflat, kies dan voor appartement. Woont u in een 2-onder-1-kap woning? Kies dan voor hoekwoning.",
+            "huurPerMaand": "Vul het huurbedrag per maand in, exclusief eventuele servicekosten. Deze vult u later in stap 2 ‘Uw uitgaven’ in. Eventuele huurtoeslag vult u in bij ‘inkomsten’.",
+            "hypotheekPerMaand": "Dit zijn de maandelijkse uitgaven aan de huur of hypotheek van uw woning en/of garage. Denk hierbij aan de rente die u betaalt, de aflossing, overlijdensrisicoverzekering en spaarpremies.",
+            "WOZ": "Weet u niet wat de WOZ-waarde is, maak dan schatting van de actuele marktwaarde van uw woning.",
+            "autotype": "Een kleine auto is bijvoorbeeld een Kia Picanto of een Opel Corsa. Denk bij een compacte auto aan een Volkswagen Polo, een Renault Clio of een Ford Fiësta. Een compacte middenklasse kan een Volkswagen Golf,een Peugeot 308 of een Toyota Auris zijn. Een auto in de middenklasse is bijvoorbeeld een Skoda Octavia, een Volvo V60 of een BMW 3-serie."
+        }
+    ]
+}

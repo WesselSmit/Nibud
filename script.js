@@ -1,15 +1,12 @@
-import getData from './modules/loadData.js'
+import data from './modules/loadData.js'
 import transform from './modules/transformData.js'
 
-getData()
+
+data.getData()
     .then(string => transform.createIndividualObjects(string))
     .then(csvRows => transform.createHousehold(csvRows))
     .then(data => console.log(data))
     .catch(err => console.log(err))
-
-
-
-
 
 
 
@@ -104,4 +101,104 @@ allQuestionCategories.forEach(category => {
 //car dynamic-inputs
 document.getElementById('car').addEventListener('input', function () {
     document.getElementById('has_a_car').classList.remove('hide')
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Data ophalen en toewijzen aan een variabele
+let tooltipData
+data.getTooltips()
+    .then(data => tooltipData = data)
+    .catch(err => console.log(err))
+
+
+// kk zooi
+const labels = document.querySelectorAll('form label')
+const tooltip = document.querySelector('#tooltip')
+
+labels.forEach(label => {
+    label.addEventListener('mouseover', function () {
+        Object.entries(tooltipData).forEach(entry => {
+            if (this.getAttribute('for') == entry[0]) {
+                console.log(entry[1])
+                console.log(tooltip.children[0])
+                tooltip.children[0].textContent = entry[1]
+                tooltip.style.display = 'block'
+                tooltip.style.left = (event.clientX + 20 + 'px')
+                tooltip.style.top = (window.innerHeight + event.clientY + -60 + 'px')
+                tooltip.style.backgroundColor = 'white';
+            }
+        })
+    })
+    label.addEventListener('mouseout', function () {
+        tooltip.style.display = 'none'
+    })
 })

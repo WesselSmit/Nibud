@@ -249,3 +249,15 @@ fieldset>p {
 section:last-of-type form {
     display: none;
 }
+
+#tooltip {
+    position: absolute;
+    background-color: white;
+    font-size: 12px;
+    width: 250px;
+}
+
+#tooltip p {
+    margin: 0px;
+    padding: 10px;
+}
