@@ -244,6 +244,38 @@ input[type="radio"] {
     cursor: pointer;
 }
 
+/* Start Select inputs */
+.select-box {
+    overflow: hidden;
+    border: 1px solid #000;
+    position: relative;
+    padding: 5px 0;
+    border: 2px solid var(--dark-gray-color);
+    border-radius: var(--border-radius);
+}
+
+.select-box:after{
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--main-purple-color);
+    position: absolute;
+    top: 40%;
+    right: 5px;
+    content: "";
+    z-index: 98;
+   }
+
+.select-box select{
+    width: 110%;
+    border: 0;
+    position: relative;
+    top: -2px;
+    background: none;
+}
+/* End Select inputs */
+
 fieldset>p {
     margin: 15px 0px 0px 0px;
 }

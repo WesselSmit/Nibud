@@ -171,22 +171,26 @@
                         <span></span>
                     </div>
                     <label for="woning">Woningtype</label>
-                    <select>
-                        <option value="" disabled selected hidden>Selecteer uw woningtype</option>
-                        <option value="Appartement" id="woning">Appartement</option>
-                        <option value="Tussenwoning">Tussenwoning</option>
-                        <option value="Hoekwoning">Hoekwoning</option>
-                        <option value="Vrijstaand">Vrijstaand</option>
-                    </select>
+                    <div class="select-box">
+                        <select>
+                            <option value="" disabled selected hidden>Selecteer uw woningtype</option>
+                            <option value="Appartement" id="woning">Appartement</option>
+                            <option value="Tussenwoning">Tussenwoning</option>
+                            <option value="Hoekwoning">Hoekwoning</option>
+                            <option value="Vrijstaand">Vrijstaand</option>
+                        </select>
+                    </div>
 
                     <label for="bouwjaar">Bouwjaar</label>
-                    <select>
-                        <option value="" disabled selected hidden>Selecteer uw woning bouwjaar</option>
-                        <option value="Voor 1965" id="bouwjaar">Voor 1965</option>
-                        <option value="1966 - 1988">1966 - 1988</option>
-                        <option value="1989 - 2000">1989 - 2000</option>
-                        <option value="Na 2001">Na 2001</option>
-                    </select>
+                    <div class="select-box">
+                        <select>
+                            <option value="" disabled selected hidden>Selecteer uw woning bouwjaar</option>
+                            <option value="Voor 1965" id="bouwjaar">Voor 1965</option>
+                            <option value="1966 - 1988">1966 - 1988</option>
+                            <option value="1989 - 2000">1989 - 2000</option>
+                            <option value="Na 2001">Na 2001</option>
+                        </select>
+                    </div>
 
                     <label>Huur of koop</label>
                     <input type="radio" name="huurOfKoop" value="huur" id="huur" />
@@ -205,13 +209,15 @@
                             id="hypotheekPerMaand">
 
                         <label for="WOZ">WOZ-waarde</label>
-                        <select>
-                            <option value="" disabled selected hidden>Selecteer uw huis WOZ-waarde</option>
-                            <option value="€0 - €150.000" id="WOZ">€0 - €150.000</option>
-                            <option value="€150.000 - €300.000">€150.000 - €300.000</option>
-                            <option value="€300.000 - €450.000">€300.000 - €450.000</option>
-                            <option value="€450.000+">€450.000+</option>
-                        </select>
+                        <div class="select-box">
+                            <select>
+                                <option value="" disabled selected hidden>Selecteer uw huis WOZ-waarde</option>
+                                <option value="€0 - €150.000" id="WOZ">€0 - €150.000</option>
+                                <option value="€150.000 - €300.000">€150.000 - €300.000</option>
+                                <option value="€300.000 - €450.000">€300.000 - €450.000</option>
+                                <option value="€450.000+">€450.000+</option>
+                            </select>
+                        </div>
                     </fieldset>
                     <!-- TODO: getallen moeten een euro teken krijgen (:before is miss een goede oplossing?) -->
                 </fieldset>
@@ -225,24 +231,28 @@
                         <span></span>
                     </div>
                     <label for="autotype">Privé auto</label>
-                    <select id="car">
-                        <option value="" disabled selected hidden>Selecteer uw privé auto type</option>
-                        <option value="geen" id="autotype">Geen</option>
-                        <option value="klein">Klein</option>
-                        <option value="compact">Compact</option>
-                        <option value="compact middenklasse">Compact middenklasse</option>
-                        <option value="middenklasse">Middenklasse</option>
-                    </select>
+                    <div class="select-box">
+                        <select id="car">
+                            <option value="" disabled selected hidden>Selecteer uw privé auto type</option>
+                            <option value="geen" id="autotype">Geen</option>
+                            <option value="klein">Klein</option>
+                            <option value="compact">Compact</option>
+                            <option value="compact middenklasse">Compact middenklasse</option>
+                            <option value="middenklasse">Middenklasse</option>
+                        </select>
+                    </div>
 
                     <div id="has_a_car" class="hide">
                         <!-- TODO: de elementen hierbinnen moeten dynamisch aangemaakt worden ivm progress-indicator JS function -->
                         <label for="kilometers">Kilometers per jaar</label>
-                        <select>
-                            <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
-                            <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
-                            <option value="10.000 - 20.000">10.000 - 20.000</option>
-                            <option value="20.000+">20.000+</option>
-                        </select>
+                        <div class="select-box">
+                            <select>
+                                <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
+                                <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
+                                <option value="10.000 - 20.000">10.000 - 20.000</option>
+                                <option value="20.000+">20.000+</option>
+                            </select>
+                        </div>
 
                         <label>Waarde auto</label>
                         <input type="radio" name="waardeAuto" value="nieuw" id="nieuw" />
