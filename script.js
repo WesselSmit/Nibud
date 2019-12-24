@@ -61,6 +61,7 @@ document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(inp
     updateProgressbar() //progress-bar
     updateProgressIndicators(this) //progress indicator
     updateTotalIncome(this) //total income
+    fixSelectFocus(this)
 }))
 
 function checkIfValueIsAllowed(currentEl) {
@@ -77,10 +78,8 @@ function checkIfValueIsAllowed(currentEl) {
 
         if (maxIsValid && minIsValid) {
             currentEl.classList.remove('invalid')
-            document.getElementById('progression').classList.remove('invalidProgress')
         } else {
             currentEl.classList.add('invalid')
-            document.getElementById('progression').classList.add('invalidProgress')
         }
     }
     // TODO: voeg een invalid-text, met; 'Waardes moeten tussen 'min-value' - 'max-value' zijn & waardes mogen geen interpunctie bevatten'
@@ -115,6 +114,10 @@ function updateProgressbar() {
         document.querySelector('section:nth-of-type(2) form').classList.remove('hide')
     } else {
         document.querySelector('section:nth-of-type(2) form').classList.add('hide')
+        document.getElementById('progression').classList.add('invalidProgress')
+    }
+    if (hasInvalidValue === false) {
+        document.getElementById('progression').classList.remove('invalidProgress')
     }
 }
 
@@ -178,6 +181,13 @@ function updateTotalIncome(currentEl) {
             totalIncome = totalIncome + parseInt(currentInput.value)
             document.getElementById('totaleInkomen').textContent = totalIncome + " euro"
         }
+    }
+}
+
+//fix SELECT El focus
+function fixSelectFocus(currentEl) {
+    if (currentEl.tagName === 'SELECT') {
+        currentEl.parentElement.focus()
     }
 }
 

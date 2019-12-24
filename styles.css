@@ -39,6 +39,10 @@ body {
     transition: background-color 0.3s linear;
 }
 
+#uw_situatie .progressbar #progression.invalidProgress {
+    background-color: var(--invalid-color);
+}
+
 form {
     width: calc(25vw - 20px);
     height: 96vh;
@@ -75,6 +79,7 @@ form>fieldset:first-of-type>legend {
 
 .question_category:not(.hide) {
     cursor: default;
+    padding-bottom: 15px;
 }
 
 .question_category>*:nth-child(2) {
@@ -244,37 +249,34 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-/* Start Select inputs */
 .select-box {
     overflow: hidden;
     border: 1px solid #000;
     position: relative;
-    padding: 5px 0;
+    padding: 5px 0px;
     border: 2px solid var(--dark-gray-color);
     border-radius: var(--border-radius);
 }
 
-.select-box:after{
-    width: 0; 
-    height: 0; 
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid var(--main-purple-color);
-    position: absolute;
-    top: 40%;
-    right: 5px;
-    content: "";
-    z-index: 98;
-   }
-
-.select-box select{
-    width: 110%;
-    border: 0;
-    position: relative;
-    top: -2px;
-    background: none;
+.select-box:focus {
+    border: 2px solid var(--main-purple-color);
+    outline: none;
 }
-/* End Select inputs */
+
+.select-box select {
+    width: 103%;
+    border: 0px;
+    background: none;
+    background-image: url(./media/select-arrows.svg);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1.2em) center;
+    background-size: 0.8em;
+    font-size: 16px;
+}
+
+select:focus {
+    outline: none;
+}
 
 fieldset>p {
     margin: 15px 0px 0px 0px;
@@ -309,10 +311,6 @@ input[type="number"].invalid:hover {
 
 input[type="number"].invalid:focus {
     outline-color: var(--invalid-color);
-}
-
-#uw_situatie .progressbar #progression.invalidProgress {
-    background-color: var(--invalid-color);
 }
 
 #tooltip {

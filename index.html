@@ -15,7 +15,6 @@
     <!-- TODO: voeg tekst (titel, sub-title, scroll uitleg, description) toe aan #intro -->
     <!-- TODO: uw uitgaven & saldo moeten verstopt zijn totdat uw sitautie compleet is ingevuld -->
     <!-- TODO: maxlength property aan number inputs geven (moet miss in JS gefixt worden) -->
-    <!-- TODO: select element stylen -->
     <!-- * readme schrijven -->
     <!-- TODO: voeg aan alle number-inputs een € toe (met een ::before ??) -->
     <!-- TODO: tooltip moet aligned worden met mouse -->
@@ -23,11 +22,6 @@
     <!-- TODO: maak dynamisch een invalid value warning (zie JS todo) -->
     <!-- TODO: check of 'geen' bij auto goed gaat qua progress-bar (het gaat niet goed, als antwoord 'geen' is moet het alsnog op 100% komen) -->
     <!-- TODO: als de gebruiker een waarde invult bij auto en daarna de waarde verandert naar 'geen' dan moeten de extra vragen weer weg -->
-    <!-- TODO: als er een invalid waarde is en je gaat door met vragen beantwoorden dan moet de progressbar rood blijven en niet weer paars worden (wat het nu wel doet) -->
-    <!-- TODO: wanneer de gebruiker alle uw_situatie vragen heeft beantwoord moeten er instructies tevoorschijn komen met dat de gebruiker kan scrollen naar uw_uitgaven -->
-    <!-- TODO: fix de focus state van de select tags -->
-    <!-- TODO: fix het icon van de select tags -->
-    <!-- TODO: maak de select icon klikbaar -->
     <section>
         <div id="tooltip">
             <p></p>
@@ -174,7 +168,7 @@
                         <span></span>
                     </div>
                     <label for="woning">Woningtype</label>
-                    <div class="select-box">
+                    <div class="select-box" tabindex="-1">
                         <select>
                             <option value="" disabled selected hidden>Selecteer uw woningtype</option>
                             <option value="Appartement" id="woning">Appartement</option>
@@ -185,7 +179,7 @@
                     </div>
 
                     <label for="bouwjaar">Bouwjaar</label>
-                    <div class="select-box">
+                    <div class="select-box" tabindex="-1">
                         <select>
                             <option value="" disabled selected hidden>Selecteer uw woning bouwjaar</option>
                             <option value="Voor 1965" id="bouwjaar">Voor 1965</option>
@@ -212,7 +206,7 @@
                             id="hypotheekPerMaand">
 
                         <label for="WOZ">WOZ-waarde</label>
-                        <div class="select-box">
+                        <div class="select-box" tabindex="-1">
                             <select>
                                 <option value="" disabled selected hidden>Selecteer uw huis WOZ-waarde</option>
                                 <option value="€0 - €150.000" id="WOZ">€0 - €150.000</option>
@@ -234,7 +228,7 @@
                         <span></span>
                     </div>
                     <label for="autotype">Privé auto</label>
-                    <div class="select-box">
+                    <div class="select-box" tabindex="-1">
                         <select id="car">
                             <option value="" disabled selected hidden>Selecteer uw privé auto type</option>
                             <option value="geen" id="autotype">Geen</option>
@@ -248,7 +242,7 @@
                     <div id="has_a_car" class="hide">
                         <!-- TODO: de elementen hierbinnen moeten dynamisch aangemaakt worden ivm progress-indicator JS function -->
                         <label for="kilometers">Kilometers per jaar</label>
-                        <div class="select-box">
+                        <div class="select-box" tabindex="-1">
                             <select>
                                 <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
                                 <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
