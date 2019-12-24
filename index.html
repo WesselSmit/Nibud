@@ -47,109 +47,114 @@
 
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="5" step="1" id="kinderen">
                         <!-- TODO: dynamisch kinder-leeftijd aanmaken aan de hand van aantal kinderen -->
+                    </fieldset>
+                </fieldset>
+
+                <fieldset class="question_category hide">
+                    <div class="progressive_disclosure">
+                        <legend>Inkomen</legend>
+                        <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <fieldset>
+                        <legend>Jouw inkomen</legend>
+                        <label for="netto_maandinkomen">Netto maandinkomen</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="netto_maandinkomen" id="netto_maandinkomen" />
+
+                        <label for="netto_vakantiegeld">Netto vakantiegeld</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="netto_vakantiegeld" id="netto_vakantiegeld" />
+
+                        <label for="reiskostenvergoeding">Reiskostenvergoeding</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="reiskostenvergoeding" id="reiskostenvergoeding" />
+
+                        <label for="13e_maand">13e maand/bonus</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" name="13e_maand"
+                            id="13e_maand" />
+
+                        <label for="bijverdiensten">Bijverdiensten</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="bijverdiensten" id="bijverdiensten" />
+                    </fieldset>
+
+                    <fieldset>
+                        <!-- TODO: moet dynamisch worden -->
+                        <legend>Partners inkomen</legend>
+                        <label for="netto_maandinkomenPartner">Netto maandinkomen</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="netto_maandinkomen" id="netto_maandinkomenPartner" />
+
+                        <label for="netto_vakantiegeldPartner">Netto vakantiegeld</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="netto_vakantiegeld" id="netto_vakantiegeldPartner" />
+
+                        <label for="reiskostenvergoedingPartner">Reiskostenvergoeding</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="reiskostenvergoeding" id="reiskostenvergoedingPartner" />
+
+                        <label for="13e_maandPartner">13e maand/bonus</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" name="13e_maand"
+                            id="13e_maandPartner" />
+
+                        <label for="bijverdienstenPartner">Bijverdiensten</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="bijverdiensten" id="bijverdienstenPartner" />
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Huishouden</legend>
+                        <label for="kinderbijslag">Kinderbijslag</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="kinderbijslag" id="kinderbijslag" />
 
                         <fieldset>
-                            <legend>Inkomen</legend>
-                            <fieldset>
-                                <legend>Jouw inkomen</legend>
-                                <label for="netto_maandinkomen">Netto maandinkomen</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="netto_maandinkomen" id="netto_maandinkomen" />
+                            <legend>Toeslagen</legend>
+                            <label for="zorgtoeslag">Zorgtoeslag</label>
+                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                                name="zorgtoeslag" id="zorgtoeslag" />
 
-                                <label for="netto_vakantiegeld">Netto vakantiegeld</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="netto_vakantiegeld" id="netto_vakantiegeld" />
+                            <label for="kindgebonden_budget">Kindgebonden budget</label>
+                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                                name="kindgebonden_budget" id="kindgebonden_budget" />
 
-                                <label for="reiskostenvergoeding">Reiskostenvergoeding</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="reiskostenvergoeding" id="reiskostenvergoeding" />
+                            <label for="huurtoeslag">Huurtoeslag</label>
+                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                                name="huurtoeslag" id="huurtoeslag" />
 
-                                <label for="13e_maand">13e maand/bonus</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="13e_maand" id="13e_maand" />
-
-                                <label for="bijverdiensten">Bijverdiensten</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="bijverdiensten" id="bijverdiensten" />
-                            </fieldset>
-
-                            <fieldset>
-                                <!-- TODO: moet dynamisch worden -->
-                                <legend>Partners inkomen</legend>
-                                <label for="netto_maandinkomenPartner">Netto maandinkomen</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="netto_maandinkomen" id="netto_maandinkomenPartner" />
-
-                                <label for="netto_vakantiegeldPartner">Netto vakantiegeld</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="netto_vakantiegeld" id="netto_vakantiegeldPartner" />
-
-                                <label for="reiskostenvergoedingPartner">Reiskostenvergoeding</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="reiskostenvergoeding" id="reiskostenvergoedingPartner" />
-
-                                <label for="13e_maandPartner">13e maand/bonus</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="13e_maand" id="13e_maandPartner" />
-
-                                <label for="bijverdienstenPartner">Bijverdiensten</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="bijverdiensten" id="bijverdienstenPartner" />
-                            </fieldset>
-
-                            <fieldset>
-                                <legend>Huishouden</legend>
-                                <label for="kinderbijslag">Kinderbijslag</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="kinderbijslag" id="kinderbijslag" />
-
-                                <fieldset>
-                                    <legend>Toeslagen</legend>
-                                    <label for="zorgtoeslag">Zorgtoeslag</label>
-                                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                        name="zorgtoeslag" id="zorgtoeslag" />
-
-                                    <label for="kindgebonden_budget">Kindgebonden budget</label>
-                                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                        name="kindgebonden_budget" id="kindgebonden_budget" />
-
-                                    <label for="huurtoeslag">Huurtoeslag</label>
-                                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                        name="huurtoeslag" id="huurtoeslag" />
-
-                                    <label for="kinderopvangtoeslag">Kinderopvangtoeslag</label>
-                                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                        name="kinderopvangtoeslag" id="kinderopvangtoeslag" />
-                                </fieldset>
-
-                                <label for="teruggave_belasting">Teruggave belasting</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="teruggave_belasting" id="teruggave_belasting" />
-
-                                <label for="alimentatie">Alimentatie</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="alimentatie" id="alimentatie" />
-
-                                <label for="kostgeld_inwonende_personen">Kostgeld inwonende personen</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="kostgeld_inwonende_personen" id="kostgeld_inwonende_personen" />
-
-                                <label for="inkomsten_uit_vermogen">Inkomsten uit vermogen</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="inkomsten_uit_vermogen" id="inkomsten_uit_vermogen" />
-
-                                <label for="gemeentelijke_ondersteuning">Gemeentelijke ondersteuning</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="gemeentelijke_ondersteuning" id="gemeentelijke_ondersteuning" />
-
-                                <label for="overige_inkomsten">Overige inkomsten</label>
-                                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                                    name="overige_inkomsten" id="overige_inkomsten" />
-                            </fieldset>
-
-                            <p>Totaal:</p>
+                            <label for="kinderopvangtoeslag">Kinderopvangtoeslag</label>
+                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                                name="kinderopvangtoeslag" id="kinderopvangtoeslag" />
                         </fieldset>
+
+                        <label for="teruggave_belasting">Teruggave belasting</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="teruggave_belasting" id="teruggave_belasting" />
+
+                        <label for="alimentatie">Alimentatie</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" name="alimentatie"
+                            id="alimentatie" />
+
+                        <label for="kostgeld_inwonende_personen">Kostgeld inwonende personen</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="kostgeld_inwonende_personen" id="kostgeld_inwonende_personen" />
+
+                        <label for="inkomsten_uit_vermogen">Inkomsten uit vermogen</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="inkomsten_uit_vermogen" id="inkomsten_uit_vermogen" />
+
+                        <label for="gemeentelijke_ondersteuning">Gemeentelijke ondersteuning</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="gemeentelijke_ondersteuning" id="gemeentelijke_ondersteuning" />
+
+                        <label for="overige_inkomsten">Overige inkomsten</label>
+                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            name="overige_inkomsten" id="overige_inkomsten" />
                     </fieldset>
+
+                    <p>Totaal:</p>
                 </fieldset>
 
                 <fieldset class="question_category hide">
