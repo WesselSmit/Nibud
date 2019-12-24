@@ -234,8 +234,7 @@ input[type="radio"]#tweedehands+label {
 label,
 select,
 select+label,
-input[type="radio"],
-input[type="radio"]+label {
+input[type="radio"] {
     cursor: pointer;
 }
 
@@ -268,11 +267,20 @@ section:last-of-type form {
 #tooltip {
     position: absolute;
     background-color: white;
-    font-size: 12px;
     width: 250px;
+    z-index: 999;
+    border: 2px solid var(--dark-gray-color);
+    border-radius: var(--border-radius);
 }
 
 #tooltip p {
     margin: 0px;
     padding: 10px;
+    font-size: 12px;
+}
+
+.tooltip-icon {
+    position: relative;
+    top: 1px;
+    float: right;
 }
