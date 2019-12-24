@@ -21,7 +21,7 @@ data.getTooltips()
 
 
 //tooltip
-// ! tooltip werkt niet volledig met scroll, form half uit viewport
+// TODO: tooltip werkt niet volledig met scroll, form half uit viewport
 function selectLabelsforTooltips() {
     Object.entries(tooltipData).forEach(entry => {
         labels.forEach(label => {
@@ -105,18 +105,18 @@ function updateProgressbar() {
         progression = document.querySelector('#uw_situatie #progression').parentElement.getBoundingClientRect().width / uniqueInputs * inputsWithValue
     document.querySelector('#uw_situatie #progression').style.paddingRight = progression + "px"
 
+    let hasInvalidValue = false
+    for (const input of allInputs) {
+        if (input.classList.contains('invalid')) {
+            hasInvalidValue = true
+        }
+    }
+    if (inputsWithValue === uniqueInputs && hasInvalidValue === false) {
+        document.querySelector('section:nth-of-type(2) form').classList.remove('hide')
+    } else {
+        document.querySelector('section:nth-of-type(2) form').classList.add('hide')
+    }
 }
-
-// function updateProgressIndicators(currentEl) {
-//     while (currentEl.classList.contains('question_category') != true) {
-//         currentEl = currentEl.parentElement
-//     }
-//     console.log(currentEl)
-
-
-//     // geef alle verstopte inputs een data-optional-path attr
-//     // updateProgressIndicators() moet dynamisch kunnen kijken of er paths
-// }
 
 //TODO:
 // * de onderstaande functie herschrijven zodat die hardcoded is om rekening te houden met de radio-buttons & select etc.

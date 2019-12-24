@@ -12,15 +12,19 @@
 </head>
 
 <body>
-    <!-- * Favicon toevoegen -->
-    <!-- ! de height van het eerste form moet nog iets kleiner, nu worden de borders van alle inputs niet meegenomen (border-box) -->
     <!-- TODO: voeg tekst (titel, sub-title, scroll uitleg, description) toe aan #intro -->
-    <!-- ? uw uitgaven & saldo moeten verstopt zijn totdat uw sitautie compleet is ingevuld -->
-    <!-- TODO: maxlength property aan number inputs geven -->
-    <!-- ? for bij radio-input label (de label die boven de input staat en als titel functioneert) het 'for' attribuut weghalen? het is verwarrend -->
+    <!-- TODO: uw uitgaven & saldo moeten verstopt zijn totdat uw sitautie compleet is ingevuld -->
+    <!-- TODO: maxlength property aan number inputs geven (moet miss in JS gefixt worden) -->
     <!-- TODO: select element stylen -->
+    <!-- * readme schrijven -->
     <!-- TODO: voeg aan alle number-inputs een € toe (met een ::before ??) -->
-    <!-- TODO: verification toevoegen; als je iets invult wat niet kan moet het rood worden -->
+    <!-- TODO: tooltip moet aligned worden met mouse -->
+    <!-- TODO: tooltip valt soms buiten beeld als form niet volledig in beeld is -->
+    <!-- TODO: maak dynamisch een invalid value warning (zie JS todo) -->
+    <!-- TODO: check of 'geen' bij auto goed gaat qua progress-bar (het gaat niet goed, als antwoord 'geen' is moet het alsnog op 100% komen) -->
+    <!-- TODO: als de gebruiker een waarde invult bij auto en daarna de waarde verandert naar 'geen' dan moeten de extra vragen weer weg -->
+    <!-- TODO: als er een invalid waarde is en je gaat door met vragen beantwoorden dan moet de progressbar rood blijven en niet weer paars worden (wat het nu wel doet) -->
+    <!-- TODO: wanneer de gebruiker alle uw_situatie vragen heeft beantwoord moeten er instructies tevoorschijn komen met dat de gebruiker kan scrollen naar uw_uitgaven -->
     <section>
         <div id="tooltip">
             <p></p>
@@ -252,10 +256,12 @@
             </form>
     </section>
 
+    <!-- TODO: 2e section moet verstopt zijn totdat alle vragen in uw_situatie ingevuld zijn -->
+    <!-- TODO: saldo section/viewport moet verstopt zijn totdat alle uitgaven ingevuld zijn -->
     <section>
         <!-- TODO: geef de juiste fieldsets de question_category class -->
         <!-- TODO: zet de divs (van de question_category classes) in een div -->
-        <form>
+        <form class="hide">
             <fieldset>
                 <legend>Uitgaven</legend>
                 <fieldset>

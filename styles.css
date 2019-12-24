@@ -266,7 +266,7 @@ fieldset>p {
     display: none;
 }
 
-section:last-of-type form {
+section:last-of-type form.hide {
     display: none;
 }
 
