@@ -4,6 +4,7 @@
     --dark-gray-color: #BDC3C7;
     --header-text-color: #34495E;
     --border-radius: 5px;
+    --invalid-color: #E74C3C;
 }
 
 *:not(select) {
@@ -35,6 +36,7 @@ body {
     background-color: var(--main-purple-color);
     padding-right: 0.1px;
     transition: padding-right 0.5s linear;
+    transition: background-color 0.3s linear;
 }
 
 form {
@@ -116,6 +118,10 @@ form>fieldset:first-of-type>legend {
     background-color: var(--main-purple-color);
 }
 
+.question_category>div:first-of-type span:first-of-type.invalidValue {
+    background-color: var(--invalid-color);
+}
+
 .question_category>div:first-of-type span:last-of-type {
     background-color: var(--light-gray-color);
     width: 100%;
@@ -150,8 +156,8 @@ form label {
     margin: 10px 0px 5px 0px;
 }
 
-input[type="number"]:not(#kinderen)::-webkit-outer-spin-button,
-input[type="number"]:not(#kinderen)::-webkit-inner-spin-button {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0px;
 }
@@ -234,8 +240,7 @@ input[type="radio"]#tweedehands+label {
 label,
 select,
 select+label,
-input[type="radio"],
-input[type="radio"]+label {
+input[type="radio"] {
     cursor: pointer;
 }
 
@@ -275,4 +280,17 @@ section:last-of-type form {
 #tooltip p {
     margin: 0px;
     padding: 10px;
+}
+
+input[type="number"].invalid,
+input[type="number"].invalid:hover {
+    border-color: var(--invalid-color);
+}
+
+input[type="number"].invalid:focus {
+    outline-color: var(--invalid-color);
+}
+
+#uw_situatie .progressbar #progression.invalidProgress {
+    background-color: var(--invalid-color);
 }

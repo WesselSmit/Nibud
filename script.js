@@ -19,6 +19,7 @@ data.getTooltips()
     .catch(err => console.log(err))
 
 //tooltip
+// ! tooltip werkt niet volledig met scroll, form half uit viewport
 labels.forEach(label => {
     label.addEventListener('mouseover', function () {
         Object.entries(tooltipData).forEach(entry => {
@@ -46,10 +47,35 @@ labels.forEach(label => {
 // - meerdere auto's toevoegen
 
 document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input => input.addEventListener('input', function () {
+    checkIfValueIsAllowed(this) //value validation
     updateProgressbar() //progress-bar
     updateProgressIndicators(this) //progress indicator
     updateTotalIncome(this) //total income
 }))
+
+function checkIfValueIsAllowed(currentEl) {
+    let minIsValid = false,
+        maxIsValid = false
+
+    if (currentEl.type === 'number') {
+        if (parseInt(currentEl.value) < parseInt(currentEl.min) === false && /^\d+$/.test(currentEl.value) === true) {
+            minIsValid = true
+        }
+        if (parseInt(currentEl.value) > parseInt(currentEl.max) === false && /^\d+$/.test(currentEl.value) === true) {
+            maxIsValid = true
+        }
+
+        if (maxIsValid && minIsValid) {
+            currentEl.classList.remove('invalid')
+            document.getElementById('progression').classList.remove('invalidProgress')
+        } else {
+            currentEl.classList.add('invalid')
+            document.getElementById('progression').classList.add('invalidProgress')
+        }
+    }
+    // TODO: voeg een invalid-text, met; 'Waardes moeten tussen 'min-value' - 'max-value' zijn & waardes mogen geen interpunctie bevatten'
+    // maak dynamisch in JS een div aan die deze instructie bevat (en verwijdert word als die goed ingevuld is)
+}
 
 function updateProgressbar() {
     let inputsWithValue = 0,
@@ -98,7 +124,8 @@ function updateProgressIndicators(currentEl) {
 
     const allCurrentInputs = currentEl.querySelectorAll('input, select')
     let answeredQuestions = 0,
-        numberOfRadio = 0
+        numberOfRadio = 0,
+        hasInvalidValue = false
 
     for (const currentInput of allCurrentInputs) {
         if (currentInput.type === 'radio' && currentInput.checked === true || currentInput.type !== 'radio' && currentInput.value != '') {
@@ -111,16 +138,19 @@ function updateProgressIndicators(currentEl) {
 
     if (answeredQuestions === allCurrentInputs.length - (numberOfRadio / 2)) {
         currentEl.querySelector('div>span:first-of-type').classList.add('hasAnswer')
-        currentEl.classList.add('hide')
-
-        const nextEl = document.querySelector("[data-question='" + (parseInt(currentEl.dataset.question) + 1) + "']"),
-            nextElInput = nextEl.querySelectorAll('input, select')[0]
-        nextEl.classList.remove('hide')
-        if (nextElInput.type !== 'radio' && nextElInput.tagName !== 'SELECT') {
-            nextElInput.focus()
-        }
     } else {
         currentEl.querySelector('div>span:first-of-type').classList.remove('hasAnswer')
+    }
+
+    for (const currentInput of allCurrentInputs) {
+        if (currentInput.classList.contains('invalid')) {
+            hasInvalidValue = true
+        }
+    }
+    if (hasInvalidValue) {
+        currentEl.querySelector('div>span:first-of-type').classList.add('invalidValue')
+    } else {
+        currentEl.querySelector('div>span:first-of-type').classList.remove('invalidValue')
     }
 }
 
