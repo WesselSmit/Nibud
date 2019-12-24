@@ -1,6 +1,12 @@
 import data from './modules/loadData.js'
 import transform from './modules/transformData.js'
 
+const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._groups[0],
+    allQuestionCategories = d3.selectAll('.question_category')._groups[0],
+    labels = document.querySelectorAll('form label'),
+    tooltip = document.querySelector('#tooltip')
+
+let tooltipData
 
 data.getData()
     .then(string => transform.createIndividualObjects(string))
@@ -8,7 +14,26 @@ data.getData()
     .then(data => console.log(data))
     .catch(err => console.log(err))
 
+data.getTooltips()
+    .then(data => tooltipData = data)
+    .catch(err => console.log(err))
 
+//tooltip
+labels.forEach(label => {
+    label.addEventListener('mouseover', function () {
+        Object.entries(tooltipData).forEach(entry => {
+            if (this.getAttribute('for') == entry[0]) {
+                tooltip.children[0].textContent = entry[1]
+                tooltip.style.display = 'block'
+                tooltip.style.left = (event.clientX + 20 + 'px')
+                tooltip.style.top = (window.innerHeight + event.clientY + -60 + 'px')
+            }
+        })
+    })
+    label.addEventListener('mouseout', function () {
+        tooltip.style.display = 'none'
+    })
+})
 
 
 // TODO: (voor het eerste form)
@@ -19,9 +44,6 @@ data.getData()
 // - afhankelijk van huur of koop heb je verschillende vragen
 // AUTO
 // - meerdere auto's toevoegen
-
-const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._groups[0],
-    allQuestionCategories = d3.selectAll('.question_category')._groups[0]
 
 document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input => input.addEventListener('input', function () {
     updateProgressbar() //progress-bar
@@ -138,104 +160,4 @@ allQuestionCategories.forEach(category => {
 //car dynamic-inputs
 document.getElementById('car').addEventListener('input', function () {
     document.getElementById('has_a_car').classList.remove('hide')
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Data ophalen en toewijzen aan een variabele
-let tooltipData
-data.getTooltips()
-    .then(data => tooltipData = data)
-    .catch(err => console.log(err))
-
-
-// kk zooi
-const labels = document.querySelectorAll('form label')
-const tooltip = document.querySelector('#tooltip')
-
-labels.forEach(label => {
-    label.addEventListener('mouseover', function () {
-        Object.entries(tooltipData).forEach(entry => {
-            if (this.getAttribute('for') == entry[0]) {
-                console.log(entry[1])
-                console.log(tooltip.children[0])
-                tooltip.children[0].textContent = entry[1]
-                tooltip.style.display = 'block'
-                tooltip.style.left = (event.clientX + 20 + 'px')
-                tooltip.style.top = (window.innerHeight + event.clientY + -60 + 'px')
-                tooltip.style.backgroundColor = 'white';
-            }
-        })
-    })
-    label.addEventListener('mouseout', function () {
-        tooltip.style.display = 'none'
-    })
 })
