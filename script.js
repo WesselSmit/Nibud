@@ -12,7 +12,6 @@ let tooltipData //receives toolltip-data (async)
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
     .then(csvRows => transform.createHousehold(csvRows))
-    .then(data => console.log(data))
     .catch(err => console.log(err))
 
 data.getTooltips() //fetch tooltip-data
