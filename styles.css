@@ -159,6 +159,17 @@ form>fieldset:nth-of-type(2)>fieldset:first-of-type>legend {
 form label {
     display: block;
     margin: 10px 0px 5px 0px;
+    height: 19px;
+}
+
+[data-currency="true"]::after {
+    content: "€";
+    position: relative;
+    top: 13px;
+    left: 10px;
+    display: block;
+    cursor: text;
+    color: var(--dark-gray-color);
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -167,12 +178,16 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0px;
 }
 
+#leeftijd {
+    width: calc(100% - 25px);
+    padding: 6px 10px;
+}
+
 input[type="number"] {
     border: 2px solid var(--dark-gray-color);
     border-radius: var(--border-radius);
-    width: calc(100% - 25px);
-    /* 5px is to compensate for border */
-    padding: 6px 10px;
+    width: calc(100% - 50px);
+    padding: 6px 25px;
 }
 
 input[type="number"]:hover {
@@ -207,6 +222,7 @@ label[for="kinderen"] {
 #kinderen {
     width: calc(50% - 33px);
     display: inline-block;
+    padding: 6px 10px;
 }
 
 input[type="radio"]+label:nth-of-type(even),
@@ -242,7 +258,7 @@ input[type="radio"]#tweedehands+label {
     width: calc(25% + 30px);
 }
 
-label,
+label:not([for="partner"]):not(#huurOfKoop):not(#waardeAuto),
 select,
 select+label,
 input[type="radio"] {
@@ -291,7 +307,8 @@ fieldset>p {
     text-decoration: underline;
 }
 
-#has_a_car.hide {
+#has_a_car.hide,
+#totalIncome.hide {
     display: none;
 }
 
