@@ -80,14 +80,42 @@ function checkIfValueIsAllowed(currentEl) {
             maxIsValid = true
         }
 
-        if (maxIsValid && minIsValid) { //fix & reset styling according to number of invalid answer
-            currentEl.classList.remove('invalid')
+        if (maxIsValid && minIsValid && currentEl.value !== "" && currentEl.value.includes(',') === false) {
+            currentEl.classList.remove('invalid') //fix & reset styling according to number of invalid answer
+
+            d3.selectAll('.invalid-warning')._groups[0].forEach(warning => {
+                if (warning.previousSibling.classList.contains('invalid') === false) {
+                    warning.remove() //remove all unnecessary/unvalid warnings
+                }
+            })
+
         } else {
             currentEl.classList.add('invalid')
+
+            let invalidTextContent = ""
+            if (currentEl.value === "") { //determine why value is invalid
+                invalidTextContent = "Antwoord mag geen interpunctie bevatten"
+            } else if (minIsValid === false) {
+                invalidTextContent = "Antwoord moet groter zijn dan " + currentEl.min
+            } else if (maxIsValid === false) {
+                invalidTextContent = "Antwoord moet kleiner zijn dan " + currentEl.max
+            }
+
+            if (currentEl.nextSibling.tagName != 'SPAN') { //create warning 
+                const createWarning = document.createElement('span')
+                event.target.parentNode.insertBefore(createWarning, event.target.nextSibling) //insert createWarning as next element on same level in DOM
+                createWarning.classList.add('invalid-warning')
+                createWarning.textContent = invalidTextContent
+                createWarning.style.left = currentEl.getBoundingClientRect().left + -30 + "px"
+
+                if (currentEl === document.querySelector('#kinderen')) {
+                    createWarning.style.width = currentEl.getBoundingClientRect().width + "px"
+                }
+            } else {
+                currentEl.nextSibling.textContent = invalidTextContent //update warning text-content
+            }
         }
     }
-    // TODO: voeg een invalid-text, met; 'Waardes moeten tussen 'min-value' - 'max-value' zijn & waardes mogen geen interpunctie bevatten'
-    // maak dynamisch in JS een div aan die deze instructie bevat (en verwijdert word als die goed ingevuld is)
 }
 
 function updateProgressbar() {
@@ -181,7 +209,7 @@ function updateTotalIncome(currentEl) {
     let totalIncome = 0
 
     for (const currentInput of allCurrentInputs) { //fix the total income
-        if (currentInput.value != '') { // ! telt alle number input values bij elkaar op, ook uit andere queation-categories
+        if (currentInput.value != '') { // ! telt alle number input values bij elkaar op, ook uit andere question-categories
             totalIncome = totalIncome + parseInt(currentInput.value)
             document.getElementById('totaleInkomen').textContent = totalIncome + " euro"
             document.getElementById('totalIncome').classList.remove('hide')

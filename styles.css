@@ -194,6 +194,16 @@ input[type="number"]:hover {
     border-color: var(--main-purple-color);
 }
 
+span.invalid-warning {
+    color: var(--invalid-color);
+    font-style: italic;
+    display: block;
+    width: 100%;
+    position: relative;
+    left: 0px;
+    font-size: 14px;
+}
+
 input[type="radio"] {
     position: absolute;
     left: -9999px;
