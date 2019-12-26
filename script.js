@@ -8,7 +8,7 @@ const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._group
     digitRegex = /^\d+$/
 
 let tooltipData, //receives toolltip-data (async)
-    pressedKey
+    pressedKey //last fired event.key
 
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
