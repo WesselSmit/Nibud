@@ -7,7 +7,8 @@ const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._group
     tooltip = document.querySelector('#tooltip'),
     digitRegex = /^\d+$/
 
-let tooltipData //receives toolltip-data (async)
+let tooltipData, //receives toolltip-data (async)
+    pressedKey
 
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
@@ -51,22 +52,19 @@ function addTooltips() { //fixes tooltip styling, content & tooltip location
     })
 }
 
-// TODO: (voor het eerste form)
-// GEZIN
-// - kinderen (dynamisch)
-// - inkomen (standaard + mogelijk partner)
-// HUIS
-// - afhankelijk van huur of koop heb je verschillende vragen
-// AUTO
-// - meerdere auto's toevoegen
+document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input =>
+    input.addEventListener('input', function () { //call functions on input
+        checkIfValueIsAllowed(this) //value validation
+        updateProgressbar() //progress-bar
+        updateProgressIndicators(this) //progress indicator
+        updateTotalIncome(this) //total income
+        fixSelectFocus(this) //fix select focus state
+    }))
+document.querySelectorAll('input, select').forEach(input =>
+    input.addEventListener('keydown', function (e) {
+        pressedKey = e
+    }))
 
-document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input => input.addEventListener('input', function () { //call functions on input
-    checkIfValueIsAllowed(this) //value validation
-    updateProgressbar() //progress-bar
-    updateProgressIndicators(this) //progress indicator
-    updateTotalIncome(this) //total income
-    fixSelectFocus(this) //fix select focus state
-}))
 
 function checkIfValueIsAllowed(currentEl) {
     let minIsValid = false,
@@ -93,12 +91,15 @@ function checkIfValueIsAllowed(currentEl) {
             currentEl.classList.add('invalid')
 
             let invalidTextContent = ""
-            if (currentEl.value === "") { //determine why value is invalid
-                invalidTextContent = "Antwoord mag geen interpunctie bevatten"
-            } else if (minIsValid === false) {
+            if (currentEl.value === "" && pressedKey.key === 'Backspace') { //value is empty
+                invalidTextContent = "Antwoord moet ingevuld worden"
+            } else if (minIsValid === false) { //value is smaller than min-value
                 invalidTextContent = "Antwoord moet groter zijn dan " + currentEl.min
-            } else if (maxIsValid === false) {
+            } else if (maxIsValid === false) { //value is higher than max-value
                 invalidTextContent = "Antwoord moet kleiner zijn dan " + currentEl.max
+            }
+            if (pressedKey.key == ',' || pressedKey.key == '.' || pressedKey.key == '+' || pressedKey.key == '-') { //value contains disallowed chars 
+                invalidTextContent = "Antwoord mag geen " + pressedKey.key + " bevatten"
             }
 
             if (currentEl.nextSibling.tagName != 'SPAN') { //create warning 
@@ -108,7 +109,7 @@ function checkIfValueIsAllowed(currentEl) {
                 createWarning.textContent = invalidTextContent
                 createWarning.style.left = currentEl.getBoundingClientRect().left + -30 + "px"
 
-                if (currentEl === document.querySelector('#kinderen')) {
+                if (currentEl === document.querySelector('#kinderen')) { //additional position-styling for #kinderen
                     createWarning.style.width = currentEl.getBoundingClientRect().width + "px"
                 }
             } else {
@@ -205,21 +206,26 @@ function updateTotalIncome(currentEl) {
         currentEl = currentEl.parentElement //bubble to the question-category
     }
 
-    const allCurrentInputs = currentEl.querySelectorAll('input')
-    let totalIncome = 0
+    if (currentEl.getAttribute('data_question') === '2') { //prevents multi-question sums
+        const allCurrentInputs = currentEl.querySelectorAll('input')
+        let totalIncome = 0,
+            questionsAnswered = 0
 
-    for (const currentInput of allCurrentInputs) { //fix the total income
-        if (currentInput.value != '') { // ! telt alle number input values bij elkaar op, ook uit andere question-categories
-            totalIncome = totalIncome + parseInt(currentInput.value)
-            document.getElementById('totaleInkomen').textContent = totalIncome + " euro"
-            document.getElementById('totalIncome').classList.remove('hide')
-        } else {
+        for (const currentInput of allCurrentInputs) { //fix the total income
+            if (currentInput.value != '') {
+                totalIncome = totalIncome + parseInt(currentInput.value)
+                document.getElementById('totaleInkomen').textContent = totalIncome + " euro"
+                document.getElementById('totalIncome').classList.remove('hide')
+                questionsAnswered++
+            }
+        }
+        if (questionsAnswered === 0) { //hide totalIncome if no question has been answered
             document.getElementById('totalIncome').classList.add('hide')
         }
     }
 }
 
-//fix SELECT El focus
+//fix SELECT element focus
 function fixSelectFocus(currentEl) {
     if (currentEl.tagName === 'SELECT') {
         currentEl.parentElement.focus() //give focus to select when it's the active element

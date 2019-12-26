@@ -16,6 +16,14 @@
     <!-- TODO: saldo moet verstopt zijn totdat uw sitautie compleet is ingevuld -->
     <!-- * readme schrijven -->
     <!-- TODO: als de gebruiker een waarde invult bij auto en daarna de waarde verandert naar 'geen' dan moeten de extra vragen weer weg -->
+    <!-- TODO (voor het eerste form):
+    GEZIN
+    - kinderen (dynamisch)
+    - inkomen (standaard + mogelijk partner)
+    HUIS
+    - afhankelijk van huur of koop heb je verschillende vragen
+    AUTO
+    - meerdere auto's toevoegen -->
     <section>
         <div id="tooltip">
             <p>
@@ -28,7 +36,7 @@
             <form>
                 <fieldset>
                     <legend>Uw situatie</legend>
-                    <fieldset class="question_category" data-question="1">
+                    <fieldset class="question_category" data_question="1">
                         <div class="progressive_disclosure">
                             <legend>Gezin</legend>
                             <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
@@ -52,7 +60,7 @@
                     </fieldset>
                 </fieldset>
 
-                <fieldset class="question_category hide" data-question="2">
+                <fieldset class="question_category hide" data_question="2">
                     <div class="progressive_disclosure">
                         <legend>Inkomen</legend>
                         <img src="./media/dropdown.svg" alt="dropwown">
@@ -158,7 +166,7 @@
                     <p id="totalIncome" class="hide">Totaal: <span id="totaleInkomen"></span></p>
                 </fieldset>
 
-                <fieldset class="question_category hide" data-question="3">
+                <fieldset class="question_category hide" data_question="3">
                     <div class="progressive_disclosure">
                         <legend>Woning</legend>
                         <img src="./media/dropdown.svg" alt="dropwown">
@@ -215,11 +223,10 @@
                             </select>
                         </div>
                     </fieldset>
-                    <!-- TODO: getallen moeten een euro teken krijgen (:before is miss een goede oplossing?) -->
                 </fieldset>
 
 
-                <fieldset class="question_category hide" data-question="4">
+                <fieldset class="question_category hide" data_question="4">
                     <div class="progressive_disclosure">
                         <legend>Auto</legend>
                         <img src="./media/dropdown.svg" alt="dropwown">

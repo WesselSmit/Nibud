@@ -74,7 +74,7 @@ form>fieldset:first-of-type>legend {
 
 .question_category:not(:nth-of-type(4)) {
     margin-bottom: 15px;
-    /* TODO: hier moet de laatste fieldset (in een .question_category) nog komen te staan, handmatig met de :not(:nth-of-type(x)) selecter doen  */
+    /* TODO: hier moet de laatste fieldset uit 2e section (in een .question_category) nog komen te staan, handmatig met de :not(:nth-of-type(x)) selecter doen */
 }
 
 .question_category:not(.hide) {
