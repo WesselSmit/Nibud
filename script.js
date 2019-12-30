@@ -120,50 +120,45 @@ function checkIfValueIsAllowed(currentEl) {
 }
 
 function checkAdditionalQuestions(currentEl) {
-    if (currentEl === document.getElementById('wel-partner')) {
+    //make inputs valid/invalid for progress
+    if (currentEl === document.getElementById('wel-partner')) { //wel partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', true)
+            document.getElementById('partnersInkomen').classList.remove('hide')
             updateProgressIndicators(document.querySelector('[data_question="2"]'))
         }
-    } else if (currentEl === document.getElementById('geen-partner')) {
+    } else if (currentEl === document.getElementById('geen-partner')) { //geen partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', false)
+            document.getElementById('partnersInkomen').classList.add('hide')
             updateProgressIndicators(document.querySelector('[data_question="2"]'))
         }
-    } else if (currentEl === document.getElementById('kinderen')) {
+    } else if (currentEl === document.getElementById('kinderen')) { //kinderen
         console.log('voeg kinderen toe')
         //todo: voeg kinderen toe 
-    } else if (currentEl === document.getElementById('huur')) {
+    } else if (currentEl === document.getElementById('huur')) { //huur
+        document.getElementById('showHuur').classList.remove('hide')
+        document.getElementById('showKoop').classList.add('hide')
         document.getElementById('huurPerMaand').setAttribute('data_path', true)
         document.getElementById('hypotheekPerMaand').setAttribute('data_path', false)
         document.getElementById('woz').setAttribute('data_path', false)
-    } else if (currentEl === document.getElementById('koop')) {
+    } else if (currentEl === document.getElementById('koop')) { //koop
+        document.getElementById('showHuur').classList.add('hide')
+        document.getElementById('showKoop').classList.remove('hide')
         document.getElementById('huurPerMaand').setAttribute('data_path', false)
         document.getElementById('hypotheekPerMaand').setAttribute('data_path', true)
         document.getElementById('woz').setAttribute('data_path', true)
-    } else if (currentEl === document.getElementById('car')) {
-        console.log('fix meerdere autos')
-        //todo: voeg meerdere auto's toe
+    } else if (currentEl === document.getElementById('car')) { //car
         if (document.getElementById('car').value != 'geen') {
             document.getElementById('kilometers').setAttribute('data_path', true)
             document.getElementById('nieuw').setAttribute('data_path', true)
             document.getElementById('tweedehands').setAttribute('data_path', true)
-        } else {
+        } else { //reset car
             document.getElementById('kilometers').setAttribute('data_path', false)
             document.getElementById('nieuw').setAttribute('data_path', false)
             document.getElementById('tweedehands').setAttribute('data_path', false)
         }
     }
-
-    if (event.target === document.getElementById('extraAuto')) {
-        document.getElementById('car2').setAttribute('data_path', true)
-        document.getElementById('kilometers2').setAttribute('data_path', true)
-        document.getElementById('nieuw2').setAttribute('data_path', true)
-        document.getElementById('tweedehands2').setAttribute('data_path', true)
-    }
-    //TODO: voeg een icon toe om 2e auto weg te halen
-    //TODO: zorg dat de data_path attributen op false gezet worden als de 2e auto weggehaald word
-    //TODO: zorg dat de progressbar & progressindicators goed werken met geen/1/2 auto's
 }
 
 function updateProgressbar() {
@@ -238,7 +233,7 @@ function updateProgressIndicators(currentEl) {
     }
 
     if (secondCar === false && currentEl.getAttribute('data_question') === '4' && document.getElementById('car').value != 'geen' && currentEl.querySelector('div > span:first-of-type').classList.contains('hasAnswer')) {
-        document.getElementById('extraAuto').classList.remove('hide')
+        document.getElementById('extraAuto').classList.remove('hide') //hide extraAuto option
     }
 }
 
@@ -300,34 +295,55 @@ document.getElementById('car').addEventListener('input', function () { //fix car
     }
 })
 document.getElementById('extraAuto').addEventListener('click', function () { //add additional car
+    //fix styling
     document.getElementById('has_a_second_car').classList.remove('hide')
     document.getElementById('extraAuto').classList.add('hide')
     secondCar = true
-    checkAdditionalQuestions()
+
+    //fix progress
+    document.getElementById('car2').setAttribute('data_path', true)
+    updateProgressIndicators(document.querySelector('[data_question="4"]'))
+    updateProgressbar()
+})
+document.getElementById('has_a_second_car').addEventListener('input', function () {
+    const allSecondCarQuestions = document.getElementById('has_a_second_car').querySelectorAll('label[for="autotype2"], label[for="kilometers2"], #has_a_second_car .select-box:nth-of-type(2), #waardeAuto, #nieuw2, label[for="nieuw2"], #tweedehands2, label[for="tweedehands2"]')
+    if (event.target.value != 'geen') {
+        for (const question of allSecondCarQuestions) {
+            question.classList.remove('hide') //show last second-car questions
+        } //fix progress
+        document.getElementById('kilometers2').setAttribute('data_path', true)
+        document.getElementById('nieuw2').setAttribute('data_path', true)
+        document.getElementById('tweedehands2').setAttribute('data_path', true)
+        updateProgressIndicators(document.querySelector('[data_question="4"]'))
+        updateProgressbar()
+    } else {
+        for (const question of allSecondCarQuestions) {
+            question.classList.add('hide') //hide additional questions
+        } //fix progress
+        document.querySelector('label[for="autotype2"]').classList.remove('hide')
+        document.getElementById('kilometers2').setAttribute('data_path', false)
+        document.getElementById('nieuw2').setAttribute('data_path', false)
+        document.getElementById('tweedehands2').setAttribute('data_path', false)
+        updateProgressIndicators(document.querySelector('[data_question="4"]'))
+        updateProgressbar()
+    }
 })
 
-//car dynamic-inputs
-document.getElementById('car').addEventListener('input', function () {
-    document.getElementById('has_a_car').classList.remove('hide') //if user has car -> show additional questions
-})
-
-// Function that gets all the data from the input fields when filled in
+//create household from uw_situatie input
 function getFormData() {
     let personalHousehold = {
-        huishoudType: null,
-        // ! Woonsituatie: gemiddelde of 1,5 keer gemiddel hypotheek? Wat is dat?
-        woonsituatie: null,
-        inkomen: null,
-        totaleUitgaven: null,
-        uitgavenPosten: null
-    }
-    // huishoudType: "Huishoudtype bepalen",
-    // woonsituatie: "Woonsituatie bepalen",
-    // inkomen: "Alle inkomsten opgeteld",
-    // totaleUitgaven: "Alle waarden uit de array opgeteld",
-    // uitgavenPosten: "Array van alle uitgaven"
-    let yourSituation = {}
+            huishoudType: null, //Huishoudtype bepalen
+            //TODO: vul de ontbrekende values van dit obj aan
+            //TODO: fix woonsituatie
+            // ! Woonsituatie: gemiddelde of 1,5 keer gemiddel hypotheek? Wat is dat?
+            woonsituatie: null, //woonsituatie bepalen
+            inkomen: null, //alle inkomsten opgeteld
+            totaleUitgaven: null, //alle waarden uit de array opgeteld
+            uitgavenPosten: null //array van alle uitgaven
+        },
+        yourSituation = {}
 
+    // ? kunnen alle onderstaande if-statements 'if else' statements worden? of switch-cases?
     document.querySelectorAll('#uw_situatie form input[type="number"], #uw_situatie form input:checked, #uw_situatie form select').forEach(input => {
         if (input.type == "number") {
             yourSituation[input.id] = parseInt(input.value)
@@ -380,6 +396,5 @@ function getFormData() {
         income = yourSituation.netto_maandinkomen + yourSituation.netto_vakantiegeld + yourSituation.reiskostenvergoeding + yourSituation.dertiende_maand + yourSituation.bijverdiensten + yourSituation.netto_maandinkomenPartner + yourSituation.netto_vakantiegeldPartner + yourSituation.reiskostenvergoedingPartner + yourSituation.dertiende_maandPartner + yourSituation.bijverdienstenPartner + yourSituation.kinderbijslag + yourSituation.zorgtoeslag + yourSituation.kindgebonden_budget + yourSituation.huurtoeslag + yourSituation.kinderopvangtoeslag + yourSituation.teruggave_belasting + yourSituation.alimentatie + yourSituation.kostgeld_inwonende_personen + yourSituation.inkomsten_uit_vermogen + yourSituation.gemeentelijke_ondersteuning + yourSituation.overige_inkomsten
     }
     personalHousehold.inkomen = income
-
     console.log(personalHousehold)
 }

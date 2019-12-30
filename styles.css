@@ -20,7 +20,6 @@ body {
     margin: 0px;
 }
 
-/* Sticky background start */
 #background {
     height: 200vh;
     position: relative;
@@ -31,12 +30,11 @@ body {
     height: 100.1%;
     width: 100%;
     background-image: url(./media/background-image.jpg);
-    position: absolute;    
+    position: absolute;
     background-attachment: fixed;
     background-size: cover;
     z-index: -1;
 }
-/* Sticky background end */
 
 #sims {
     position: absolute;
@@ -174,6 +172,16 @@ section h2:first-of-type {
     display: none;
 }
 
+span.invalid-warning {
+    color: var(--invalid-color);
+    font-style: italic;
+    display: block;
+    width: 100%;
+    position: relative;
+    left: 0px;
+    font-size: 14px;
+}
+
 .question_category>fieldset>legend {
     color: var(--header-text-color);
     font-size: 18px;
@@ -212,11 +220,6 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0px;
 }
 
-#leeftijd {
-    width: calc(100% - 25px);
-    padding: 6px 10px;
-}
-
 input[type="number"] {
     border: 2px solid var(--dark-gray-color);
     border-radius: var(--border-radius);
@@ -228,14 +231,9 @@ input[type="number"]:hover {
     border-color: var(--main-purple-color);
 }
 
-span.invalid-warning {
-    color: var(--invalid-color);
-    font-style: italic;
-    display: block;
-    width: 100%;
-    position: relative;
-    left: 0px;
-    font-size: 14px;
+#leeftijd {
+    width: calc(100% - 25px);
+    padding: 6px 10px;
 }
 
 input[type="radio"] {
@@ -353,19 +351,25 @@ fieldset>p {
     text-decoration: underline;
 }
 
+section.hide,
+legend.hide,
+#partnersInkomen.hide,
+#showHuur.hide,
+#showKoop.hide,
 #has_a_car.hide,
 #has_a_second_car.hide,
 #extraAuto.hide,
-#totalIncome.hide {
+#totalIncome.hide,
+label.hide,
+div.hide,
+input[type="radio"].hide+label,
+input[type="number"].hide,
+input[type="number"].hide+label {
     display: none;
 }
 
 .question_category.hide>*:not(.progressive_disclosure),
 .question_category.hide #kinderen {
-    display: none;
-}
-
-section.hide {
     display: none;
 }
 
@@ -400,8 +404,11 @@ input[type="number"].invalid:focus {
     float: right;
 }
 
-/* select[data-path="true"],
-input:not([type="radio"])[data_path="true"],
-input[type="radio"][data_path="true"]+label {
+select[data-path="false"],
+input:not([type="radio"])[data_path="false"],
+input:not([type="radio"])[data_path="false"]+label,
+input[type="radio"][data_path="false"],
+input[type="radio"][data_path="false"]+label {
+    /* display: none; */
     background-color: red;
-} */
+}
