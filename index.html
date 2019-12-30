@@ -15,7 +15,13 @@
     <!-- TODO: voeg tekst (titel, sub-title, scroll uitleg, description) toe aan #intro -->
     <!-- TODO: saldo moet verstopt zijn totdat uw sitautie compleet is ingevuld -->
     <!-- * readme schrijven -->
+    <!-- TODO: check of de updateProgressBar() & updateProgressIndicators() functies werken wanneer alle code herschreven is -->
     <!-- TODO: als de gebruiker een waarde invult bij auto en daarna de waarde verandert naar 'geen' dan moeten de extra vragen weer weg -->
+    <!-- TODO: check of het goed gaat als er meerdere auto's zijn bij uitgaven (bij uitgaven moet voor elke auto die je hebt additionele vragen komen) -->
+    <!-- TODO: kinderen, auto -->
+    <!-- TODO: als partners inkomen is ingevuld en hij word verstopt, dan moeten alle waardes gereset worden (anders worden de waardes meetgeteld terwijl ze niet meetellen, schrijf de functie die dit regelt zo dat alleen de data-path=true inputs worden meegenomen) -->
+    <!-- TODO: check welke vragen er tevoorschijn moeten komen als je kinderen hebt, moet kinder-bijslag verstopt worden als je geen kinderen hebt -->
+    <!-- TODO: verstop extraAuto totdat de auto is ingevuld met een antwoord dat niet 'geen' is en de kilomters en woz waarde ingevuld zijn -->
     <!-- TODO (voor het eerste form):
     GEZIN
     - kinderen (dynamisch)
@@ -33,9 +39,11 @@
         <div id="intro"></div>
         <div id="uw_situatie">
             <div class="progressbar"><span id="progression"></span></div>
+            <div class="h2Compensation">
+                <h2>Uw situatie</h2>
+            </div>
             <form>
                 <fieldset>
-                    <legend>Uw situatie</legend>
                     <fieldset class="question_category" data_question="1">
                         <div class="progressive_disclosure">
                             <legend>Gezin</legend>
@@ -44,18 +52,19 @@
                             <span></span>
                         </div>
                         <label for="leeftijd">Leeftijd</label>
-                        <input type="number" autocomplete="off" placeholder="18" min="18" max="100" step="1"
-                            id="leeftijd">
+                        <input data_path="true" type="number" autocomplete="off" placeholder="18" min="18" max="100"
+                            step="1" id="leeftijd">
 
                         <label for="partner">Partner</label>
                         <label for="kinderen">Kinderen</label>
 
-                        <input type="radio" name="partner" value="true" id="wel-partner" />
+                        <input data_path="true" type="radio" name="partner" value="true" id="wel-partner" />
                         <label for="wel-partner">Ja</label>
-                        <input type="radio" name="partner" value="false" id="geen-partner" />
+                        <input data_path="true" type="radio" name="partner" value="false" id="geen-partner" />
                         <label for="geen-partner">Nee</label>
 
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="5" step="1" id="kinderen">
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="5"
+                            step="1" id="kinderen">
                         <!-- TODO: dynamisch kinder-leeftijd aanmaken aan de hand van aantal kinderen -->
                     </fieldset>
                 </fieldset>
@@ -70,97 +79,97 @@
                     <fieldset>
                         <legend>Jouw inkomen</legend>
                         <label data-currency="true" for="netto_maandinkomen">Netto maandinkomen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="netto_maandinkomen" id="netto_maandinkomen" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="netto_maandinkomen" id="netto_maandinkomen" />
 
                         <label data-currency="true" for="netto_vakantiegeld">Netto vakantiegeld</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="netto_vakantiegeld" id="netto_vakantiegeld" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="netto_vakantiegeld" id="netto_vakantiegeld" />
 
                         <label data-currency="true" for="reiskostenvergoeding">Reiskostenvergoeding</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="reiskostenvergoeding" id="reiskostenvergoeding" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="reiskostenvergoeding" id="reiskostenvergoeding" />
 
                         <label data-currency="true" for="13e_maand">13e maand/bonus</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="13e_maand" id="13e_maand" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="13e_maand" id="13e_maand" />
 
                         <label data-currency="true" for="bijverdiensten">Bijverdiensten</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="bijverdiensten" id="bijverdiensten" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="bijverdiensten" id="bijverdiensten" />
                     </fieldset>
 
                     <fieldset>
                         <!-- TODO: moet dynamisch worden -->
                         <legend>Partners inkomen</legend>
                         <label data-currency="true" for="netto_maandinkomenPartner">Netto maandinkomen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="netto_maandinkomen" id="netto_maandinkomenPartner" />
+                        <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="netto_maandinkomen" id="netto_maandinkomenPartner" />
 
                         <label data-currency="true" for="netto_vakantiegeldPartner">Netto vakantiegeld</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="netto_vakantiegeld" id="netto_vakantiegeldPartner" />
+                        <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="netto_vakantiegeld" id="netto_vakantiegeldPartner" />
 
                         <label data-currency="true" for="reiskostenvergoedingPartner">Reiskostenvergoeding</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="reiskostenvergoeding" id="reiskostenvergoedingPartner" />
+                        <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="reiskostenvergoeding" id="reiskostenvergoedingPartner" />
 
                         <label data-currency="true" for="13e_maandPartner">13e maand/bonus</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="13e_maand" id="13e_maandPartner" />
+                        <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="13e_maand" id="13e_maandPartner" />
 
                         <label data-currency="true" for="bijverdienstenPartner">Bijverdiensten</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="bijverdiensten" id="bijverdienstenPartner" />
+                        <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="bijverdiensten" id="bijverdienstenPartner" />
                     </fieldset>
 
                     <fieldset>
                         <legend>Huishouden</legend>
                         <label data-currency="true" for="kinderbijslag">Kinderbijslag</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="kinderbijslag" id="kinderbijslag" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="kinderbijslag" id="kinderbijslag" />
 
                         <label data-currency="true" for="zorgtoeslag">Zorgtoeslag</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="zorgtoeslag" id="zorgtoeslag" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="zorgtoeslag" id="zorgtoeslag" />
 
                         <label data-currency="true" for="kindgebonden_budget">Kindgebonden budget</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="kindgebonden_budget" id="kindgebonden_budget" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="kindgebonden_budget" id="kindgebonden_budget" />
 
                         <label data-currency="true" for="huurtoeslag">Huurtoeslag</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="huurtoeslag" id="huurtoeslag" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="huurtoeslag" id="huurtoeslag" />
 
                         <label data-currency="true" for="kinderopvangtoeslag">Kinderopvangtoeslag</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="kinderopvangtoeslag" id="kinderopvangtoeslag" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="kinderopvangtoeslag" id="kinderopvangtoeslag" />
 
                         <label data-currency="true" for="teruggave_belasting">Teruggave belasting</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="teruggave_belasting" id="teruggave_belasting" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="teruggave_belasting" id="teruggave_belasting" />
 
                         <label data-currency="true" for="alimentatie">Alimentatie</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="alimentatie" id="alimentatie" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="alimentatie" id="alimentatie" />
 
                         <label data-currency="true" for="kostgeld_inwonende_personen">Kostgeld inwonende
                             personen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="kostgeld_inwonende_personen" id="kostgeld_inwonende_personen" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="kostgeld_inwonende_personen" id="kostgeld_inwonende_personen" />
 
                         <label data-currency="true" for="inkomsten_uit_vermogen">Inkomsten uit vermogen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="inkomsten_uit_vermogen" id="inkomsten_uit_vermogen" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="inkomsten_uit_vermogen" id="inkomsten_uit_vermogen" />
 
                         <label data-currency="true" for="gemeentelijke_ondersteuning">Gemeentelijke
                             ondersteuning</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="gemeentelijke_ondersteuning" id="gemeentelijke_ondersteuning" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="gemeentelijke_ondersteuning" id="gemeentelijke_ondersteuning" />
 
                         <label data-currency="true" for="overige_inkomsten">Overige inkomsten</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="overige_inkomsten" id="overige_inkomsten" />
+                        <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" name="overige_inkomsten" id="overige_inkomsten" />
                     </fieldset>
 
                     <p id="totalIncome" class="hide">Totaal: <span id="totaleInkomen"></span></p>
@@ -175,7 +184,7 @@
                     </div>
                     <label for="woning">Woningtype</label>
                     <div class="select-box" tabindex="-1">
-                        <select>
+                        <select data_path="true">
                             <option value="" disabled selected hidden>Selecteer uw woningtype</option>
                             <option value="Appartement" id="woning">Appartement</option>
                             <option value="Tussenwoning">Tussenwoning</option>
@@ -186,7 +195,7 @@
 
                     <label for="bouwjaar">Bouwjaar</label>
                     <div class="select-box" tabindex="-1">
-                        <select>
+                        <select data_path="true">
                             <option value="" disabled selected hidden>Selecteer uw woning bouwjaar</option>
                             <option value="Voor 1965" id="bouwjaar">Voor 1965</option>
                             <option value="1966 - 1988">1966 - 1988</option>
@@ -196,25 +205,26 @@
                     </div>
 
                     <label id="huurOfKoop">Huur of koop</label>
-                    <input type="radio" name="huurOfKoop" value="huur" id="huur" />
+                    <input data_path="true" type="radio" name="huurOfKoop" value="huur" id="huur" />
                     <label for="huur">Huur</label>
-                    <input type="radio" name="huurOfKoop" value="koop" id="koop" />
+                    <input data_path="true" type="radio" name="huurOfKoop" value="koop" id="koop" />
                     <label for="koop">Koop</label>
                     <!-- TODO: aan de hand van huur of koop input moeten additionele vragen tevoorschijn komen -->
                     <fieldset id="showHuur">
                         <label data-currency="true" for="huurPerMaand">Huur per maand</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            id="huurPerMaand">
+                        <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" id="huurPerMaand">
                     </fieldset>
 
                     <fieldset id="showKoop">
                         <label data-currency="true" for="hypotheekPerMaand">Hypotheek per maand</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            id="hypotheekPerMaand">
+                        <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                            step="100" id="hypotheekPerMaand">
 
                         <label for="WOZ">WOZ-waarde</label>
                         <div class="select-box" tabindex="-1">
-                            <select>
+                            <!-- TODO: alleen laten zien als koop is geselecteerd -->
+                            <select id="woz" data_path="false">
                                 <option value="" disabled selected hidden>Selecteer uw huis WOZ-waarde</option>
                                 <option value="€0 - €150.000" id="WOZ">€0 - €150.000</option>
                                 <option value="€150.000 - €300.000">€150.000 - €300.000</option>
@@ -235,7 +245,7 @@
                     </div>
                     <label for="autotype">Privé auto</label>
                     <div class="select-box" tabindex="-1">
-                        <select id="car">
+                        <select data_path="true" id="car">
                             <option value="" disabled selected hidden>Selecteer uw privé auto type</option>
                             <option value="geen" id="autotype">Geen</option>
                             <option value="klein">Klein</option>
@@ -246,10 +256,9 @@
                     </div>
 
                     <div id="has_a_car" class="hide">
-                        <!-- TODO: de elementen hierbinnen moeten dynamisch aangemaakt worden ivm progress-indicator JS function -->
                         <label for="kilometers">Kilometers per jaar</label>
                         <div class="select-box" tabindex="-1">
-                            <select>
+                            <select id="kilometers" data_path="false">
                                 <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
                                 <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
                                 <option value="10.000 - 20.000">10.000 - 20.000</option>
@@ -258,23 +267,55 @@
                         </div>
 
                         <label id="waardeAuto">Waarde auto</label>
-                        <input type="radio" name="waardeAuto" value="nieuw" id="nieuw" />
+                        <input data_path="false" type="radio" name="waardeAuto" value="nieuw" id="nieuw" />
                         <label for="nieuw">Nieuw</label>
-                        <input type="radio" name="waardeAuto" value="tweedehands" id="tweedehands" />
+                        <input data_path="false" type="radio" name="waardeAuto" value="tweedehands" id="tweedehands" />
                         <label for="tweedehands">Tweedehands</label>
-                        <p id="extraAuto">+Voeg extra auto toe</p>
-                        <!-- TODO: de extra auto vragen moeten dynamisch aangemaakt worden ivm progress-indicator JS function -->
                     </div>
+
+                    <div id="has_a_second_car" class="hide">
+                        <label for="autotype2">Tweede Privé auto</label>
+                        <div class="select-box" tabindex="-1">
+                            <select data_path="false" id="car2">
+                                <option value="" disabled selected hidden>Selecteer uw tweede privé auto type</option>
+                                <option value="geen" id="autotype2">Geen</option>
+                                <option value="klein">Klein</option>
+                                <option value="compact">Compact</option>
+                                <option value="compact middenklasse">Compact middenklasse</option>
+                                <option value="middenklasse">Middenklasse</option>
+                            </select>
+                        </div>
+
+                        <label for="kilometers2">Kilometers per jaar</label>
+                        <div class="select-box" tabindex="-1">
+                            <select id="kilometers2" data_path="false">
+                                <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
+                                <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
+                                <option value="10.000 - 20.000">10.000 - 20.000</option>
+                                <option value="20.000+">20.000+</option>
+                            </select>
+                        </div>
+
+                        <label id="waardeAuto">Waarde auto</label>
+                        <input data_path="false" type="radio" name="waardeAuto2" value="nieuw2" id="nieuw2" />
+                        <label for="nieuw2">Nieuw</label>
+                        <input data_path="false" type="radio" name="waardeAuto2" value="tweedehands2"
+                            id="tweedehands2" />
+                        <label for="tweedehands2">Tweedehands</label>
+                    </div>
+                    <p id="extraAuto" class="hide">+Voeg extra auto toe</p>
                 </fieldset>
             </form>
     </section>
 
-    <section>
+    <section class="hide">
         <!-- TODO: geef de juiste fieldsets de question_category class -->
         <!-- TODO: zet de eerste divs (van de question_category classes) in een div -->
-        <form class="hide">
+        <div class="h2Compensation">
+            <h2>Uw uitgaven</h2>
+        </div>
+        <form>
             <fieldset>
-                <legend>Uw uitgaven</legend>
                 <fieldset>
                     <legend>Vaste lasten</legend>
                     <fieldset>

@@ -1,14 +1,14 @@
 import data from './modules/loadData.js'
 import transform from './modules/transformData.js'
 
-const allInputs = d3.selectAll('#uw_situatie input, #uw_situatie select')._groups[0],
-    allQuestionCategories = d3.selectAll('.question_category')._groups[0],
+const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
     labels = document.querySelectorAll('form label'),
     tooltip = document.querySelector('#tooltip'),
     digitRegex = /^\d+$/
 
 let tooltipData, //receives toolltip-data (async)
-    pressedKey //last fired event.key
+    pressedKey, //last fired event.key
+    secondCar = false
 
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
@@ -55,6 +55,7 @@ function addTooltips() { //fixes tooltip styling, content & tooltip location
 document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input =>
     input.addEventListener('input', function () { //call functions on input
         checkIfValueIsAllowed(this) //value validation
+        checkAdditionalQuestions(this) //check for additional questions
         updateProgressbar() //progress-bar
         updateProgressIndicators(this) //progress indicator
         updateTotalIncome(this) //total income
@@ -86,7 +87,6 @@ function checkIfValueIsAllowed(currentEl) {
                     warning.remove() //remove all unnecessary/unvalid warnings
                 }
             })
-
         } else {
             currentEl.classList.add('invalid')
 
@@ -119,9 +119,57 @@ function checkIfValueIsAllowed(currentEl) {
     }
 }
 
+function checkAdditionalQuestions(currentEl) {
+    if (currentEl === document.getElementById('wel-partner')) {
+        for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
+            input.setAttribute('data_path', true)
+            updateProgressIndicators(document.querySelector('[data_question="2"]'))
+        }
+    } else if (currentEl === document.getElementById('geen-partner')) {
+        for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
+            input.setAttribute('data_path', false)
+            updateProgressIndicators(document.querySelector('[data_question="2"]'))
+        }
+    } else if (currentEl === document.getElementById('kinderen')) {
+        console.log('voeg kinderen toe')
+        //todo: voeg kinderen toe 
+    } else if (currentEl === document.getElementById('huur')) {
+        document.getElementById('huurPerMaand').setAttribute('data_path', true)
+        document.getElementById('hypotheekPerMaand').setAttribute('data_path', false)
+        document.getElementById('woz').setAttribute('data_path', false)
+    } else if (currentEl === document.getElementById('koop')) {
+        document.getElementById('huurPerMaand').setAttribute('data_path', false)
+        document.getElementById('hypotheekPerMaand').setAttribute('data_path', true)
+        document.getElementById('woz').setAttribute('data_path', true)
+    } else if (currentEl === document.getElementById('car')) {
+        console.log('fix meerdere autos')
+        //todo: voeg meerdere auto's toe
+        if (document.getElementById('car').value != 'geen') {
+            document.getElementById('kilometers').setAttribute('data_path', true)
+            document.getElementById('nieuw').setAttribute('data_path', true)
+            document.getElementById('tweedehands').setAttribute('data_path', true)
+        } else {
+            document.getElementById('kilometers').setAttribute('data_path', false)
+            document.getElementById('nieuw').setAttribute('data_path', false)
+            document.getElementById('tweedehands').setAttribute('data_path', false)
+        }
+    }
+
+    if (event.target === document.getElementById('extraAuto')) {
+        document.getElementById('car2').setAttribute('data_path', true)
+        document.getElementById('kilometers2').setAttribute('data_path', true)
+        document.getElementById('nieuw2').setAttribute('data_path', true)
+        document.getElementById('tweedehands2').setAttribute('data_path', true)
+    }
+    //TODO: voeg een icon toe om 2e auto weg te halen
+    //TODO: zorg dat de data_path attributen op false gezet worden als de 2e auto weggehaald word
+    //TODO: zorg dat de progressbar & progressindicators goed werken met geen/1/2 auto's
+}
+
 function updateProgressbar() {
     let inputsWithValue = 0,
-        numberOfTotalRadio = 0
+        numberOfTotalRadio = 0,
+        allInputs = d3.selectAll('[data_path="true"]')._groups[0]
 
     allInputs.forEach(input => { //checking all inputs for values & radio inputs
         if (input.tagName === 'SELECT' && input.value != '' ||
@@ -144,9 +192,9 @@ function updateProgressbar() {
         }
     }
     if (inputsWithValue === uniqueInputs && hasInvalidValue === false) { //hide & fixing styling
-        document.querySelector('section:nth-of-type(2) form').classList.remove('hide')
+        document.querySelector('section:nth-of-type(2)').classList.remove('hide')
     } else {
-        document.querySelector('section:nth-of-type(2) form').classList.add('hide')
+        document.querySelector('section:nth-of-type(2)').classList.add('hide')
         document.getElementById('progression').classList.add('invalidProgress')
     }
     if (hasInvalidValue === false) {
@@ -154,49 +202,42 @@ function updateProgressbar() {
     }
 }
 
-//TODO:
-// * de onderstaande functie herschrijven zodat die hardcoded is om rekening te houden met de radio-buttons & select etc.
-// * dit zou betekenen dat de alle dynamische vragen/inputs in de HTML (hardcoded) gezet kunnen worden en op deze manier hoef je niet te kloten met elementen aanmaken
 function updateProgressIndicators(currentEl) {
-    // TODO: let op onderstaande notities:
-    // ! deze methode houd geen rekening met de verschillende dynamische inputs
-    // ! alle mogelijke inputs binnen de huidige fieldset worden opgehaald
-    // ! dit betekent dat alle dynamische inputs (alle inputs die afhangen van de antwoorden van de gebruiker) moeten dynamisch gemaakt worden (d3 of JS)
-    // ! chech hier de HMTL nog ff op, want op dit moment staan alle mogelijkheden in de HTML -> deze moeten dus dynamisch aangemaakt gaan worden
-    // ! als deze dynamisch aangemaakt worden dan werkt deze functie, als je dit niet doet dan moet je deze functie herschrijven
     while (currentEl.classList.contains('question_category') != true) {
         currentEl = currentEl.parentElement //bubble to the question-category
     }
 
-    const allCurrentInputs = currentEl.querySelectorAll('input, select')
-    let answeredQuestions = 0,
-        numberOfRadio = 0,
-        hasInvalidValue = false
+    let allCurrentInputs = currentEl.querySelectorAll('[data_path="true"]'), //all currently [data-path="true"] inputs
+        answeredQuestions = 0,
+        numberOfRadios = 0,
+        hasInvalidValue = 0
 
     for (const currentInput of allCurrentInputs) {
         if (currentInput.type === 'radio' && currentInput.checked === true || currentInput.type !== 'radio' && currentInput.value != '') { //check for answers
             answeredQuestions++
         }
         if (currentInput.type === 'radio') { //check for radio input
-            numberOfRadio++
+            numberOfRadios++
+        }
+        if (currentInput.classList.contains('invalid')) { //check for invalid values
+            hasInvalidValue++
         }
     }
 
-    if (answeredQuestions === allCurrentInputs.length - (numberOfRadio / 2)) { //style progress-indicator color if all questions are answered
+    if (answeredQuestions === allCurrentInputs.length - (numberOfRadios / 2)) { //style progress-indicator color if all questions are answered
         currentEl.querySelector('div>span:first-of-type').classList.add('hasAnswer')
     } else {
         currentEl.querySelector('div>span:first-of-type').classList.remove('hasAnswer')
     }
 
-    for (const currentInput of allCurrentInputs) { //check for invalid values
-        if (currentInput.classList.contains('invalid')) {
-            hasInvalidValue = true
-        }
-    }
     if (hasInvalidValue) { //fix styling for invalid values
         currentEl.querySelector('div>span:first-of-type').classList.add('invalidValue')
     } else {
         currentEl.querySelector('div>span:first-of-type').classList.remove('invalidValue')
+    }
+
+    if (currentEl.getAttribute('data_question') === '4' && document.getElementById('car').value != 'geen' && currentEl.querySelector('div > span:first-of-type').classList.contains('hasAnswer')) {
+        document.getElementById('extraAuto').classList.remove('hide')
     }
 }
 
@@ -249,7 +290,17 @@ allQuestionCategories.forEach(category => {
     }, false)
 })
 
-//car dynamic-inputs
-document.getElementById('car').addEventListener('input', function () {
-    document.getElementById('has_a_car').classList.remove('hide') //if user has car -> show additional questions
+//car styling
+document.getElementById('car').addEventListener('input', function () { //fix car styling
+    if (this.value != 'geen') {
+        document.getElementById('has_a_car').classList.remove('hide') //if user doesn;t have a car -> hide additional questions
+    } else {
+        document.getElementById('has_a_car').classList.add('hide') //if user has a car -> show additional questions
+    }
+})
+document.getElementById('extraAuto').addEventListener('click', function () { //add additional car
+    document.getElementById('has_a_second_car').classList.remove('hide')
+    document.getElementById('extraAuto').classList.toggle('hide')
+    secondCar = true
+    checkAdditionalQuestions()
 })

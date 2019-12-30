@@ -45,7 +45,7 @@ body {
 
 form {
     width: calc(25vw - 20px);
-    height: 96vh;
+    height: 90vh;
     background-color: var(--light-gray-color);
     padding: 10px;
     overflow-y: scroll;
@@ -57,12 +57,22 @@ fieldset {
     padding: 0px;
 }
 
-form>fieldset:first-of-type>legend {
+.h2Compensation {
+    height: 6vh;
+    width: 25vw;
+    margin: 0px;
+    display: inline-block;
+    background-color: var(--light-gray-color);
+}
+
+section h2:first-of-type {
     font-size: 30px;
-    padding: 15px 0px 15px 15px;
+    padding: 1vh 0px 1vh 15px;
+    height: 100%;
+    margin: 0px;
     font-weight: 600;
     color: var(--header-text-color);
-    /* ? deze legend sticky/fixed maken om ervoor te zorgen dat dit altijd zichtbaar is? */
+    background-color: var(--light-gray-color);
 }
 
 .question_category {
@@ -142,7 +152,7 @@ form>fieldset:first-of-type>legend {
 
 .question_category>fieldset>legend {
     color: var(--header-text-color);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     width: 100%;
     padding-top: 25px;
@@ -265,7 +275,8 @@ input[type="radio"]:hover+label {
     border-color: var(--main-purple-color);
 }
 
-input[type="radio"]#tweedehands+label {
+input[type="radio"]#tweedehands+label,
+input[type="radio"]#tweedehands2+label {
     width: calc(25% + 30px);
 }
 
@@ -319,6 +330,8 @@ fieldset>p {
 }
 
 #has_a_car.hide,
+#has_a_second_car.hide,
+#extraAuto.hide,
 #totalIncome.hide {
     display: none;
 }
@@ -328,7 +341,7 @@ fieldset>p {
     display: none;
 }
 
-section:last-of-type form.hide {
+section.hide {
     display: none;
 }
 
@@ -362,3 +375,9 @@ input[type="number"].invalid:focus {
     top: 1px;
     float: right;
 }
+
+/* select[data-path="true"],
+input:not([type="radio"])[data_path="true"],
+input[type="radio"][data_path="true"]+label {
+    background-color: red;
+} */
