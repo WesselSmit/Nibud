@@ -16,8 +16,10 @@
     <!-- TODO: saldo moet verstopt zijn totdat uw sitautie compleet is ingevuld -->
     <!-- * readme schrijven -->
     <!-- TODO: als de gebruiker een waarde invult bij auto en daarna de waarde verandert naar 'geen' dan moeten de extra vragen weer weg -->
-    <!-- TODO (voor het eerste form):
-    GEZIN
+    <!-- TODO: (voor het eerste form):
+    <!-- TODO: Woonsituatie: gemiddelde of 1,5 keer gemiddel hypotheek? Wat is dat? -->
+
+    <!-- GEZIN
     - kinderen (dynamisch)
     - inkomen (standaard + mogelijk partner)
     HUIS
@@ -81,9 +83,9 @@
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                             name="reiskostenvergoeding" id="reiskostenvergoeding" />
 
-                        <label data-currency="true" for="13e_maand">13e maand/bonus</label>
+                        <label data-currency="true" for="dertiende_maand">13e maand/bonus</label>
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="13e_maand" id="13e_maand" />
+                            name="dertiende_maand" id="dertiende_maand" />
 
                         <label data-currency="true" for="bijverdiensten">Bijverdiensten</label>
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
@@ -105,9 +107,9 @@
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                             name="reiskostenvergoeding" id="reiskostenvergoedingPartner" />
 
-                        <label data-currency="true" for="13e_maandPartner">13e maand/bonus</label>
+                        <label data-currency="true" for="dertiende_maandPartner">13e maand/bonus</label>
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="13e_maand" id="13e_maandPartner" />
+                            name="dertiende_maand" id="dertiende_maandPartner" />
 
                         <label data-currency="true" for="bijverdienstenPartner">Bijverdiensten</label>
                         <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
@@ -175,7 +177,7 @@
                     </div>
                     <label for="woning">Woningtype</label>
                     <div class="select-box" tabindex="-1">
-                        <select>
+                        <select id="woningtype">
                             <option value="" disabled selected hidden>Selecteer uw woningtype</option>
                             <option value="Appartement" id="woning">Appartement</option>
                             <option value="Tussenwoning">Tussenwoning</option>
@@ -186,7 +188,7 @@
 
                     <label for="bouwjaar">Bouwjaar</label>
                     <div class="select-box" tabindex="-1">
-                        <select>
+                        <select id="bouwjaar">
                             <option value="" disabled selected hidden>Selecteer uw woning bouwjaar</option>
                             <option value="Voor 1965" id="bouwjaar">Voor 1965</option>
                             <option value="1966 - 1988">1966 - 1988</option>
@@ -214,7 +216,7 @@
 
                         <label for="WOZ">WOZ-waarde</label>
                         <div class="select-box" tabindex="-1">
-                            <select>
+                            <select id="woz">
                                 <option value="" disabled selected hidden>Selecteer uw huis WOZ-waarde</option>
                                 <option value="€0 - €150.000" id="WOZ">€0 - €150.000</option>
                                 <option value="€150.000 - €300.000">€150.000 - €300.000</option>
@@ -249,7 +251,7 @@
                         <!-- TODO: de elementen hierbinnen moeten dynamisch aangemaakt worden ivm progress-indicator JS function -->
                         <label for="kilometers">Kilometers per jaar</label>
                         <div class="select-box" tabindex="-1">
-                            <select>
+                            <select id="kilometers">
                                 <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
                                 <option value="0 - 10.000" id="kilometers">0 - 10.000</option>
                                 <option value="10.000 - 20.000">10.000 - 20.000</option>
