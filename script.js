@@ -33,14 +33,14 @@ function addTooltips() { //fixes tooltip styling, content & tooltip location
                 tooltipIcon.src = "./media/tooltip-icon.svg"
                 label.append(tooltipIcon)
 
-                d3.selectAll('.tooltip-icon').on('mousemove', function (event) { //fix tooltip-styling when user hovers over tooltip-icon
+                label.children[0].addEventListener('mousemove', function () {
                     tooltip.children[0].textContent = entry[1]
                     tooltip.style.display = 'block'
-                    tooltip.style.left = (d3.event.pageX + 20 + 'px')
-                    tooltip.style.top = (d3.event.pageY + 'px')
+                    tooltip.style.left = event.pageX + 20 + 'px'
+                    tooltip.style.top = event.pageY + 'px'
 
-                    if (d3.event.pageY + tooltip.getBoundingClientRect().height > window.innerHeight + window.scrollY) {
-                        tooltip.style.top = (d3.event.pageY - tooltip.getBoundingClientRect().height) + 10 + 'px' //make sure the whole tooltip is in viewport
+                    if (event.pageY + tooltip.getBoundingClientRect().height > window.innerHeight + window.scrollY) {
+                        tooltip.style.top = (event.pageY - tooltip.getBoundingClientRect().height) + 10 + 'px' //make sure the whole tooltip is in viewport
                     }
                 })
 

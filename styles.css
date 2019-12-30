@@ -256,6 +256,7 @@ input[type="radio"]+label:nth-of-type(odd),
 input[type="radio"]:checked+label {
     background-color: var(--main-purple-color);
     border-color: var(--main-purple-color);
+    color: white;
 }
 
 input[type="radio"]:focus+label,
@@ -290,7 +291,7 @@ input[type="radio"] {
 }
 
 .select-box select {
-    width: 103%;
+    width: 104%;
     border: 0px;
     background: none;
     background-image: url(./media/select-arrows.svg);
