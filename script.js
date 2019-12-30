@@ -236,7 +236,7 @@ function updateProgressIndicators(currentEl) {
         currentEl.querySelector('div>span:first-of-type').classList.remove('invalidValue')
     }
 
-    if (currentEl.getAttribute('data_question') === '4' && document.getElementById('car').value != 'geen' && currentEl.querySelector('div > span:first-of-type').classList.contains('hasAnswer')) {
+    if (secondCar === false && currentEl.getAttribute('data_question') === '4' && document.getElementById('car').value != 'geen' && currentEl.querySelector('div > span:first-of-type').classList.contains('hasAnswer')) {
         document.getElementById('extraAuto').classList.remove('hide')
     }
 }
@@ -300,7 +300,7 @@ document.getElementById('car').addEventListener('input', function () { //fix car
 })
 document.getElementById('extraAuto').addEventListener('click', function () { //add additional car
     document.getElementById('has_a_second_car').classList.remove('hide')
-    document.getElementById('extraAuto').classList.toggle('hide')
+    document.getElementById('extraAuto').classList.add('hide')
     secondCar = true
     checkAdditionalQuestions()
 })
@@ -370,14 +370,12 @@ function getFormData() {
         personalHousehold.huishoudType = "paar met 3 kinderen"
     }
 
-    let inkomen
+    let income
     if (uwSituatie.partner == "false") {
-        inkomen = uwSituatie.netto_maandinkomen + uwSituatie.netto_vakantiegeld + uwSituatie.reiskostenvergoeding + uwSituatie.dertiende_maand + uwSituatie.bijverdiensten + uwSituatie.kinderbijslag + uwSituatie.zorgtoeslag + uwSituatie.kindgebonden_budget + uwSituatie.huurtoeslag + uwSituatie.kinderopvangtoeslag + uwSituatie.teruggave_belasting + uwSituatie.alimentatie + uwSituatie.kostgeld_inwonende_personen + uwSituatie.inkomsten_uit_vermogen + uwSituatie.gemeentelijke_ondersteuning + uwSituatie.overige_inkomsten
+        income = uwSituatie.netto_maandinkomen + uwSituatie.netto_vakantiegeld + uwSituatie.reiskostenvergoeding + uwSituatie.dertiende_maand + uwSituatie.bijverdiensten + uwSituatie.kinderbijslag + uwSituatie.zorgtoeslag + uwSituatie.kindgebonden_budget + uwSituatie.huurtoeslag + uwSituatie.kinderopvangtoeslag + uwSituatie.teruggave_belasting + uwSituatie.alimentatie + uwSituatie.kostgeld_inwonende_personen + uwSituatie.inkomsten_uit_vermogen + uwSituatie.gemeentelijke_ondersteuning + uwSituatie.overige_inkomsten
     }
     if (uwSituatie.partner == "true") {
-        inkomen = uwSituatie.netto_maandinkomen + uwSituatie.netto_vakantiegeld + uwSituatie.reiskostenvergoeding + uwSituatie.dertiende_maand + uwSituatie.bijverdiensten + uwSituatie.netto_maandinkomenPartner + uwSituatie.netto_vakantiegeldPartner + uwSituatie.reiskostenvergoedingPartner + uwSituatie.dertiende_maandPartner + uwSituatie.bijverdienstenPartner + uwSituatie.kinderbijslag + uwSituatie.zorgtoeslag + uwSituatie.kindgebonden_budget + uwSituatie.huurtoeslag + uwSituatie.kinderopvangtoeslag + uwSituatie.teruggave_belasting + uwSituatie.alimentatie + uwSituatie.kostgeld_inwonende_personen + uwSituatie.inkomsten_uit_vermogen + uwSituatie.gemeentelijke_ondersteuning + uwSituatie.overige_inkomsten
+        income = uwSituatie.netto_maandinkomen + uwSituatie.netto_vakantiegeld + uwSituatie.reiskostenvergoeding + uwSituatie.dertiende_maand + uwSituatie.bijverdiensten + uwSituatie.netto_maandinkomenPartner + uwSituatie.netto_vakantiegeldPartner + uwSituatie.reiskostenvergoedingPartner + uwSituatie.dertiende_maandPartner + uwSituatie.bijverdienstenPartner + uwSituatie.kinderbijslag + uwSituatie.zorgtoeslag + uwSituatie.kindgebonden_budget + uwSituatie.huurtoeslag + uwSituatie.kinderopvangtoeslag + uwSituatie.teruggave_belasting + uwSituatie.alimentatie + uwSituatie.kostgeld_inwonende_personen + uwSituatie.inkomsten_uit_vermogen + uwSituatie.gemeentelijke_ondersteuning + uwSituatie.overige_inkomsten
     }
-    personalHousehold.inkomen = inkomen
-
-    console.log(personalHousehold)
+    personalHousehold.inkomen = income
 }
