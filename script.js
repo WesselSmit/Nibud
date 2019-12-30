@@ -193,6 +193,7 @@ function updateProgressbar() {
     }
     if (inputsWithValue === uniqueInputs && hasInvalidValue === false) { //hide & fixing styling
         document.querySelector('section:nth-of-type(2)').classList.remove('hide')
+        getFormData()
     } else {
         document.querySelector('section:nth-of-type(2)').classList.add('hide')
         document.getElementById('progression').classList.add('invalidProgress')
@@ -325,57 +326,60 @@ function getFormData() {
     // inkomen: "Alle inkomsten opgeteld",
     // totaleUitgaven: "Alle waarden uit de array opgeteld",
     // uitgavenPosten: "Array van alle uitgaven"
-    let uwSituatie = {}
+    let yourSituation = {}
 
     document.querySelectorAll('#uw_situatie form input[type="number"], #uw_situatie form input:checked, #uw_situatie form select').forEach(input => {
         if (input.type == "number") {
-            uwSituatie[input.id] = parseInt(input.value)
+            yourSituation[input.id] = parseInt(input.value)
         }
         if (input.type == "radio") {
-            uwSituatie[input.name] = input.value
+            yourSituation[input.name] = input.value
         }
         if (input.type == "select-one") {
-            uwSituatie[input.id] = input.value
+            yourSituation[input.id] = input.value
         }
     })
 
-    if (uwSituatie.partner == "false" && uwSituatie.leeftijd < 67 && uwSituatie.kinderen == 0) {
+    if (yourSituation.partner == "false" && yourSituation.leeftijd < 67 && yourSituation.kinderen == 0) {
         personalHousehold.huishoudType = "alleenstaand"
     }
-    if (uwSituatie.partner == "false" && uwSituatie.leeftijd >= 67 && uwSituatie.kinderen == 0) {
+    if (yourSituation.partner == "false" && yourSituation.leeftijd >= 67 && yourSituation.kinderen == 0) {
         personalHousehold.huishoudType = "alleenstaand aow"
     }
-    if (uwSituatie.partner == "false" && uwSituatie.kinderen == 1) {
+    if (yourSituation.partner == "false" && yourSituation.kinderen == 1) {
         personalHousehold.huishoudType = "eenouder met 1 kind"
     }
-    if (uwSituatie.partner == "false" && uwSituatie.kinderen == 2) {
+    if (yourSituation.partner == "false" && yourSituation.kinderen == 2) {
         personalHousehold.huishoudType = "eenouder met 2 kinderen"
     }
-    if (uwSituatie.partner == "false" && uwSituatie.kinderen == 3) {
+    if (yourSituation.partner == "false" && yourSituation.kinderen == 3) {
         personalHousehold.huishoudType = "eenouder met 3 kinderen"
     }
-    if (uwSituatie.partner == "true" && uwSituatie.kinderen == 0) {
+    if (yourSituation.partner == "true" && yourSituation.kinderen == 0) {
         personalHousehold.huishoudType = "paar zonder kinderen"
     }
-    if (uwSituatie.partner == "true" && uwSituatie.leeftijd >= 67) {
+    if (yourSituation.partner == "true" && yourSituation.leeftijd >= 67) {
         personalHousehold.huishoudType = "ouder paar"
     }
-    if (uwSituatie.partner == "true" && uwSituatie.kinderen == 1) {
+    if (yourSituation.partner == "true" && yourSituation.kinderen == 1) {
         personalHousehold.huishoudType = "paar met 1 kind"
     }
-    if (uwSituatie.partner == "true" && uwSituatie.kinderen == 2) {
+    if (yourSituation.partner == "true" && yourSituation.kinderen == 2) {
         personalHousehold.huishoudType = "paar met 2 kinderen"
     }
-    if (uwSituatie.partner == "true" && uwSituatie.kinderen == 3) {
+    if (yourSituation.partner == "true" && yourSituation.kinderen == 3) {
         personalHousehold.huishoudType = "paar met 3 kinderen"
     }
 
     let income
-    if (uwSituatie.partner == "false") {
-        income = uwSituatie.netto_maandinkomen + uwSituatie.netto_vakantiegeld + uwSituatie.reiskostenvergoeding + uwSituatie.dertiende_maand + uwSituatie.bijverdiensten + uwSituatie.kinderbijslag + uwSituatie.zorgtoeslag + uwSituatie.kindgebonden_budget + uwSituatie.huurtoeslag + uwSituatie.kinderopvangtoeslag + uwSituatie.teruggave_belasting + uwSituatie.alimentatie + uwSituatie.kostgeld_inwonende_personen + uwSituatie.inkomsten_uit_vermogen + uwSituatie.gemeentelijke_ondersteuning + uwSituatie.overige_inkomsten
+    // TODO: onderstaande if statements werken niet, wanneer je van wel-partner naar geen-partner switched moeten alle partners-inkomen inputs values gereset worden
+    if (yourSituation.partner == "false") {
+        income = yourSituation.netto_maandinkomen + yourSituation.netto_vakantiegeld + yourSituation.reiskostenvergoeding + yourSituation.dertiende_maand + yourSituation.bijverdiensten + yourSituation.kinderbijslag + yourSituation.zorgtoeslag + yourSituation.kindgebonden_budget + yourSituation.huurtoeslag + yourSituation.kinderopvangtoeslag + yourSituation.teruggave_belasting + yourSituation.alimentatie + yourSituation.kostgeld_inwonende_personen + yourSituation.inkomsten_uit_vermogen + yourSituation.gemeentelijke_ondersteuning + yourSituation.overige_inkomsten
     }
-    if (uwSituatie.partner == "true") {
-        income = uwSituatie.netto_maandinkomen + uwSituatie.netto_vakantiegeld + uwSituatie.reiskostenvergoeding + uwSituatie.dertiende_maand + uwSituatie.bijverdiensten + uwSituatie.netto_maandinkomenPartner + uwSituatie.netto_vakantiegeldPartner + uwSituatie.reiskostenvergoedingPartner + uwSituatie.dertiende_maandPartner + uwSituatie.bijverdienstenPartner + uwSituatie.kinderbijslag + uwSituatie.zorgtoeslag + uwSituatie.kindgebonden_budget + uwSituatie.huurtoeslag + uwSituatie.kinderopvangtoeslag + uwSituatie.teruggave_belasting + uwSituatie.alimentatie + uwSituatie.kostgeld_inwonende_personen + uwSituatie.inkomsten_uit_vermogen + uwSituatie.gemeentelijke_ondersteuning + uwSituatie.overige_inkomsten
+    if (yourSituation.partner == "true") {
+        income = yourSituation.netto_maandinkomen + yourSituation.netto_vakantiegeld + yourSituation.reiskostenvergoeding + yourSituation.dertiende_maand + yourSituation.bijverdiensten + yourSituation.netto_maandinkomenPartner + yourSituation.netto_vakantiegeldPartner + yourSituation.reiskostenvergoedingPartner + yourSituation.dertiende_maandPartner + yourSituation.bijverdienstenPartner + yourSituation.kinderbijslag + yourSituation.zorgtoeslag + yourSituation.kindgebonden_budget + yourSituation.huurtoeslag + yourSituation.kinderopvangtoeslag + yourSituation.teruggave_belasting + yourSituation.alimentatie + yourSituation.kostgeld_inwonende_personen + yourSituation.inkomsten_uit_vermogen + yourSituation.gemeentelijke_ondersteuning + yourSituation.overige_inkomsten
     }
     personalHousehold.inkomen = income
+
+    console.log(personalHousehold)
 }
