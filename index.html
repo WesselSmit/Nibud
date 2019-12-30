@@ -22,21 +22,22 @@
     <!-- TODO: als partners inkomen is ingevuld en hij word verstopt, dan moeten alle waardes gereset worden (anders worden de waardes meetgeteld terwijl ze niet meetellen, schrijf de functie die dit regelt zo dat alleen de data-path=true inputs worden meegenomen) -->
     <!-- TODO: check welke vragen er tevoorschijn moeten komen als je kinderen hebt, moet kinder-bijslag verstopt worden als je geen kinderen hebt -->
     <!-- TODO: verstop extraAuto totdat de auto is ingevuld met een antwoord dat niet 'geen' is en de kilomters en woz waarde ingevuld zijn -->
+    <!-- TODO: Woonsituatie: gemiddelde of 1,5 keer gemiddel hypotheek? Wat is dat? -->
     <!-- TODO (voor het eerste form):
-    GEZIN
+    <!-- GEZIN
     - kinderen (dynamisch)
     - inkomen (standaard + mogelijk partner)
     HUIS
     - afhankelijk van huur of koop heb je verschillende vragen
     AUTO
     - meerdere auto's toevoegen -->
-    <section>
+    <section id="background">
         <div id="tooltip">
             <p>
                 <!-- word gevtult met de tooltip content wanneer de gebruiker over een ?-icon hovert -->
             </p>
         </div>
-        <div id="intro"></div>
+        <div id="sims"></div>
         <div id="uw_situatie">
             <div class="progressbar"><span id="progression"></span></div>
             <div class="h2Compensation">
@@ -90,9 +91,9 @@
                         <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
                             step="100" name="reiskostenvergoeding" id="reiskostenvergoeding" />
 
-                        <label data-currency="true" for="13e_maand">13e maand/bonus</label>
+                        <label data-currency="true" for="dertiende_maand">13e maand/bonus</label>
                         <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                            step="100" name="13e_maand" id="13e_maand" />
+                            step="100" name="dertiende_maand" id="dertiende_maand" />
 
                         <label data-currency="true" for="bijverdiensten">Bijverdiensten</label>
                         <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
@@ -114,9 +115,9 @@
                         <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
                             step="100" name="reiskostenvergoeding" id="reiskostenvergoedingPartner" />
 
-                        <label data-currency="true" for="13e_maandPartner">13e maand/bonus</label>
-                        <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                            step="100" name="13e_maand" id="13e_maandPartner" />
+                        <label data-currency="true" for="dertiende_maandPartner">13e maand/bonus</label>
+                        <input data-currency="true" type="number" autocomplete="off" placeholder="0" min="0"
+                            max="100000" step="100" name="dertiende_maand" id="dertiende_maandPartner" />
 
                         <label data-currency="true" for="bijverdienstenPartner">Bijverdiensten</label>
                         <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
@@ -184,7 +185,7 @@
                     </div>
                     <label for="woning">Woningtype</label>
                     <div class="select-box" tabindex="-1">
-                        <select data_path="true">
+                        <select id="woningtype" data_path="true">
                             <option value="" disabled selected hidden>Selecteer uw woningtype</option>
                             <option value="Appartement" id="woning">Appartement</option>
                             <option value="Tussenwoning">Tussenwoning</option>
@@ -195,7 +196,8 @@
 
                     <label for="bouwjaar">Bouwjaar</label>
                     <div class="select-box" tabindex="-1">
-                        <select data_path="true">
+
+                        <select id="bouwjaar" data_path="true">
                             <option value="" disabled selected hidden>Selecteer uw woning bouwjaar</option>
                             <option value="Voor 1965" id="bouwjaar">Voor 1965</option>
                             <option value="1966 - 1988">1966 - 1988</option>
@@ -223,7 +225,7 @@
 
                         <label for="WOZ">WOZ-waarde</label>
                         <div class="select-box" tabindex="-1">
-                            <!-- TODO: alleen laten zien als koop is geselecteerd -->
+
                             <select id="woz" data_path="false">
                                 <option value="" disabled selected hidden>Selecteer uw huis WOZ-waarde</option>
                                 <option value="€0 - €150.000" id="WOZ">€0 - €150.000</option>
@@ -258,6 +260,7 @@
                     <div id="has_a_car" class="hide">
                         <label for="kilometers">Kilometers per jaar</label>
                         <div class="select-box" tabindex="-1">
+
                             <select id="kilometers" data_path="false">
                                 <option value="" disabled selected hidden>Selecteer aantal kilometers</option>
                                 <option value="0 - 10.000" id="kilometers">0 - 10.000</option>

@@ -12,7 +12,7 @@ let tooltipData, //receives toolltip-data (async)
 
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
-    .then(csvRows => transform.createHousehold(csvRows))
+    .then(csvRows => console.log(transform.createHousehold(csvRows)))
     .catch(err => console.log(err))
 
 data.getTooltips() //fetch tooltip-data
@@ -304,3 +304,80 @@ document.getElementById('extraAuto').addEventListener('click', function () { //a
     secondCar = true
     checkAdditionalQuestions()
 })
+
+//car dynamic-inputs
+document.getElementById('car').addEventListener('input', function () {
+    document.getElementById('has_a_car').classList.remove('hide') //if user has car -> show additional questions
+})
+
+// Function that gets all the data from the input fields when filled in
+function getFormData() {
+    let personalHousehold = {
+        huishoudType: null,
+        // ! Woonsituatie: gemiddelde of 1,5 keer gemiddel hypotheek? Wat is dat?
+        woonsituatie: null,
+        inkomen: null,
+        totaleUitgaven: null,
+        uitgavenPosten: null
+    }
+    // huishoudType: "Huishoudtype bepalen",
+    // woonsituatie: "Woonsituatie bepalen",
+    // inkomen: "Alle inkomsten opgeteld",
+    // totaleUitgaven: "Alle waarden uit de array opgeteld",
+    // uitgavenPosten: "Array van alle uitgaven"
+    let uwSituatie = {}
+
+    document.querySelectorAll('#uw_situatie form input[type="number"], #uw_situatie form input:checked, #uw_situatie form select').forEach(input => {
+        if (input.type == "number") {
+            uwSituatie[input.id] = parseInt(input.value)
+        }
+        if (input.type == "radio") {
+            uwSituatie[input.name] = input.value
+        }
+        if (input.type == "select-one") {
+            uwSituatie[input.id] = input.value
+        }
+    })
+
+    if (uwSituatie.partner == "false" && uwSituatie.leeftijd < 67 && uwSituatie.kinderen == 0) {
+        personalHousehold.huishoudType = "alleenstaand"
+    }
+    if (uwSituatie.partner == "false" && uwSituatie.leeftijd >= 67 && uwSituatie.kinderen == 0) {
+        personalHousehold.huishoudType = "alleenstaand aow"
+    }
+    if (uwSituatie.partner == "false" && uwSituatie.kinderen == 1) {
+        personalHousehold.huishoudType = "eenouder met 1 kind"
+    }
+    if (uwSituatie.partner == "false" && uwSituatie.kinderen == 2) {
+        personalHousehold.huishoudType = "eenouder met 2 kinderen"
+    }
+    if (uwSituatie.partner == "false" && uwSituatie.kinderen == 3) {
+        personalHousehold.huishoudType = "eenouder met 3 kinderen"
+    }
+    if (uwSituatie.partner == "true" && uwSituatie.kinderen == 0) {
+        personalHousehold.huishoudType = "paar zonder kinderen"
+    }
+    if (uwSituatie.partner == "true" && uwSituatie.leeftijd >= 67) {
+        personalHousehold.huishoudType = "ouder paar"
+    }
+    if (uwSituatie.partner == "true" && uwSituatie.kinderen == 1) {
+        personalHousehold.huishoudType = "paar met 1 kind"
+    }
+    if (uwSituatie.partner == "true" && uwSituatie.kinderen == 2) {
+        personalHousehold.huishoudType = "paar met 2 kinderen"
+    }
+    if (uwSituatie.partner == "true" && uwSituatie.kinderen == 3) {
+        personalHousehold.huishoudType = "paar met 3 kinderen"
+    }
+
+    let inkomen
+    if (uwSituatie.partner == "false") {
+        inkomen = uwSituatie.netto_maandinkomen + uwSituatie.netto_vakantiegeld + uwSituatie.reiskostenvergoeding + uwSituatie.dertiende_maand + uwSituatie.bijverdiensten + uwSituatie.kinderbijslag + uwSituatie.zorgtoeslag + uwSituatie.kindgebonden_budget + uwSituatie.huurtoeslag + uwSituatie.kinderopvangtoeslag + uwSituatie.teruggave_belasting + uwSituatie.alimentatie + uwSituatie.kostgeld_inwonende_personen + uwSituatie.inkomsten_uit_vermogen + uwSituatie.gemeentelijke_ondersteuning + uwSituatie.overige_inkomsten
+    }
+    if (uwSituatie.partner == "true") {
+        inkomen = uwSituatie.netto_maandinkomen + uwSituatie.netto_vakantiegeld + uwSituatie.reiskostenvergoeding + uwSituatie.dertiende_maand + uwSituatie.bijverdiensten + uwSituatie.netto_maandinkomenPartner + uwSituatie.netto_vakantiegeldPartner + uwSituatie.reiskostenvergoedingPartner + uwSituatie.dertiende_maandPartner + uwSituatie.bijverdienstenPartner + uwSituatie.kinderbijslag + uwSituatie.zorgtoeslag + uwSituatie.kindgebonden_budget + uwSituatie.huurtoeslag + uwSituatie.kinderopvangtoeslag + uwSituatie.teruggave_belasting + uwSituatie.alimentatie + uwSituatie.kostgeld_inwonende_personen + uwSituatie.inkomsten_uit_vermogen + uwSituatie.gemeentelijke_ondersteuning + uwSituatie.overige_inkomsten
+    }
+    personalHousehold.inkomen = inkomen
+
+    console.log(personalHousehold)
+}
