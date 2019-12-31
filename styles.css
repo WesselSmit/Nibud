@@ -107,7 +107,6 @@ section h2:first-of-type {
 section:first-of-type .question_category:not(:nth-of-type(4)),
 section:nth-of-type(2) .question_category:not(:nth-of-type(12)) {
     margin-bottom: 15px;
-    /* TODO: hier moet de laatste fieldset uit 2e section (in een .question_category) nog komen te staan, handmatig met de :not(:nth-of-type(x)) selecter doen */
 }
 
 .question_category:not(.hide) {
