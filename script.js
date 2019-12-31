@@ -123,15 +123,17 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
     if (currentEl === document.getElementById('wel-partner')) { //wel partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', true)
-            document.getElementById('partnersInkomen').classList.remove('hide')
-            updateProgressIndicators(document.querySelector('[data_question="2"]'))
         }
+        document.getElementById('partnersInkomen').classList.remove('hide')
+        updateProgressIndicators(document.querySelector('[data_question="2"]'))
     } else if (currentEl === document.getElementById('geen-partner')) { //geen partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', false)
-            document.getElementById('partnersInkomen').classList.add('hide')
-            updateProgressIndicators(document.querySelector('[data_question="2"]'))
+            input.value = "" //reset all values 
         }
+        document.getElementById('partnersInkomen').classList.add('hide')
+        updateProgressIndicators(document.querySelector('[data_question="2"]'))
+        updateTotalIncome(document.querySelector('[data_question="2"] input:first-of-type'))
     } else if (currentEl === document.getElementById('kinderen')) { //kinderen
         const allChildren = document.querySelectorAll('[data_question="1"]>div:not(#progressive_disclosure) input, [data_question="1"]>div:not(#progressive_disclosure) label')
         for (const child of allChildren) {

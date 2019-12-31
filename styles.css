@@ -188,6 +188,7 @@ span.invalid-warning {
     font-weight: 600;
     width: 100%;
     padding-top: 25px;
+    padding-left: 0px;
 }
 
 form>fieldset:nth-of-type(2)>fieldset:first-of-type>legend {
