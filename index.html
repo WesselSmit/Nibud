@@ -319,6 +319,8 @@
     <section class="hide">
         <!-- TODO: geef de juiste fieldsets de question_category class -->
         <!-- TODO: zet de eerste divs (van de question_category classes) in een div -->
+        <!-- TODO: totalIncome functie herschrijven zodat die dynamisch is en werkt voor alle (sub)totalen -->
+        <!-- TODO: afhankelijk van het antwoord bij huur/koop moeten de huur/koop uitgaven tevoorschijn komen -->
         <!-- TODO: als de gebruiker kinderen heeft moeten de volgende uitgaven bij uw_uitgaven tevoorschijn komen (afhankelijk van de leeftijd van de kinderen): 
             - schoolkosten kinderen
             - kinderopvang
@@ -535,7 +537,7 @@
                     <fieldset>
                         <legend>Vervoer</legend>
                         <fieldset>
-                            <legend>Auto, motor, scooter 1</legend>
+                            <legend>Auto, motor, scooter</legend>
                             <label data-currency="true" for="afschrijving">Afschrijving</label>
                             <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                                 name="afschrijving" id="afschrijving" />
