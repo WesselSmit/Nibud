@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <!-- TODO: voeg tekst (titel, sub-title, scroll uitleg, description) toe aan #intro -->
+    <!-- TODO: voeg tekst (titel, sub-title, scroll uitleg, description) toe aan de intro -->
     <!-- * readme schrijven -->
     <!-- ? Woonsituatie; gemiddelde of 1,5 keer gemiddel hypotheek? Wat is dat? -->
     <section id="background">
@@ -316,9 +316,11 @@
             </form>
     </section>
 
-    <section class="hide">
+    <!-- TODO: de section hieronder moet de class "hide" hebben (deze was uitgezet voor test pogingen) -->
+    <section class="TODO:zethierhideneer">
         <!-- TODO: geef de juiste fieldsets de question_category class -->
         <!-- TODO: zet de eerste divs (van de question_category classes) in een div -->
+        <!-- TODO: herscrijf de prgressie functies zo dat voor beide forms werken (gebruik data_path="true"????) -->
         <!-- TODO: totalIncome functie herschrijven zodat die dynamisch is en werkt voor alle (sub)totalen -->
         <!-- TODO: afhankelijk van het antwoord bij huur/koop moeten de huur/koop uitgaven tevoorschijn komen -->
         <!-- TODO: als de gebruiker kinderen heeft moeten de volgende uitgaven bij uw_uitgaven tevoorschijn komen (afhankelijk van de leeftijd van de kinderen): 
@@ -331,361 +333,420 @@
             <h2>Uw uitgaven</h2>
         </div>
         <form>
-            <fieldset>
+            <fieldset class="question_category" data_question="5">
+                <div class="progressive_disclosure">
+                    <legend>Woonkosten</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
                 <fieldset>
-                    <legend>Vaste lasten</legend>
-                    <fieldset>
-                        <legend>Huur</legend>
-                        <label data-currency="true" for="huurVasteLasten">Huur</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="huur" id="huurVasteLasten" />
+                    <legend>Huur</legend>
 
-                        <label data-currency="true" for="servicekosten">Servicekosten</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="servicekosten" id="servicekosten" />
-                        <p>Subtotaal Huur:</p>
-                    </fieldset>
+                    <label data-currency="true" for="huurVasteLasten">Huur</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="huur"
+                        id="huurVasteLasten" />
 
-                    <fieldset>
-                        <legend>Hypotheek</legend>
-                        <label data-currency="true" for="rente_a">Rente</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="rente" id="rente_a" />
-
-                        <label data-currency="true" for="aflossing_a">Aflossing</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="aflossing" id="aflossing_a" />
-
-                        <label data-currency="true" for="spaarpremies">Spaarpremies</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="spaarpremies" id="spaarpremies" />
-
-                        <label data-currency="true"
-                            for="overlijdensrisicoverzekering">Overlijdensrisicoverzekering</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="overlijdensrisicoverzekering" id="overlijdensrisicoverzekering" />
-
-                        <label data-currency="true" for="erfpacht">Erfpacht</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="erfpacht" id="erfpacht" />
-                        <p>Subtotaal Hypotheek:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Energie</legend>
-                        <label data-currency="true" for="gas">Gas</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="gas" id="gas" />
-
-                        <label data-currency="true" for="elektriciteit">Elektriciteit</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="elektriciteit" id="elektriciteit" />
-
-                        <label data-currency="true" for="water">Water</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="water" id="water" />
-                        <p>Subtotaal Energie:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Lokale lasten</legend>
-                        <label data-currency="true" for="onroerendezaakbelasting">Onroerendezaakbelasting</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="onroerendezaakbelasting" id="onroerendezaakbelasting" />
-
-                        <label data-currency="true" for="reinigingsheffing">Reinigingsheffing</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="reinigingsheffing" id="reinigingsheffing" />
-
-                        <label data-currency="true" for="rioolheffing">Rioolheffing</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="rioolheffing" id="rioolheffing" />
-
-                        <label data-currency="true" for="ingezetenenheffing">Ingezetenenheffing</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="ingezetenenheffing" id="ingezetenenheffing" />
-
-                        <label data-currency="true" for="zuiveringsheffing">Zuiveringsheffing</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="zuiveringsheffing" id="zuiveringsheffing" />
-
-                        <label data-currency="true" for="heffing_gebouwd">Heffing gebouwd</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="heffing_gebouwd" id="heffing_gebouwd" />
-
-                        <label data-currency="true" for="overige_lokale_lasten">Overige lokale lasten</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="overige_lokale_lasten" id="overige_lokale_lasten" />
-                        <p>Subtotaal Lokale lasten:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Telefoon, televisie en internet</legend>
-                        <label data-currency="true" for="combinatie_pakket">Alles-in-één/combinatie pakket</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="combinatie_pakket" id="combinatie_pakket" />
-
-                        <label data-currency="true" for="vaste_telefoon">Vaste telefoon</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="vaste_telefoon" id="vaste_telefoon" />
-
-                        <label data-currency="true" for="mobiele_telefoon">Mobiele telefoon</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="mobiele_telefoon" id="mobiele_telefoon" />
-
-                        <label data-currency="true" for="televisie">Televisie</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="televisie" id="televisie" />
-
-                        <label data-currency="true" for="internet">Internet</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="internet" id="internet" />
-
-                        <label data-currency="true" for="overige_telefoon">Overige</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="overige_telefoon" id="overige_telefoon" />
-                        <p>Subtotaal Telefoon/televisie/internet:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Verzekeringen</legend>
-                        <label data-currency="true" for="zorgverzekering_basis">Zorgverzekering: basis</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="zorgverzekering_basis" id="zorgverzekering_basis" />
-
-                        <label data-currency="true" for="zorgverzekering_aanvullend">Zorgverzekering: aanvullend</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="zorgverzekering_aanvullend" id="zorgverzekering_aanvullend" />
-
-                        <label data-currency="true"
-                            for="aansprakelijkheidsverzekering">Aansprakelijkheidsverzekering</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="aansprakelijkheidsverzekering" id="aansprakelijkheidsverzekering" />
-
-                        <label data-currency="true" for="inboedelverzekering">Inboedelverzekering</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="inboedelverzekering" id="inboedelverzekering" />
-
-                        <label data-currency="true" for="opstalverzekering">Opstalverzekering</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="opstalverzekering" id="opstalverzekering" />
-
-                        <label data-currency="true" for="uitvaartverzekering">Uitvaartverzekering</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="uitvaartverzekering" id="uitvaartverzekering" />
-
-                        <label data-currency="true" for="pensioenverzekering">Pensioenverzekering/pensioensparen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="pensioenverzekering" id="pensioenverzekering" />
-
-                        <label data-currency="true" for="verzekering_inkomensaanvulling">Verzekering
-                            inkomensaanvulling</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="verzekering_inkomensaanvulling" id="verzekering_inkomensaanvulling" />
-
-                        <label data-currency="true" for="overige_verzekeringen">Overige verzekeringen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="overige_verzekeringen" id="overige_verzekeringen" />
-                        <p>Subtotaal Verzekeringen:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Onderwijs</legend>
-                        <label data-currency="true" for="schookosten_kinderen">Schoolkosten kinderen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="schookosten_kinderen" id="schookosten_kinderen" />
-
-                        <label data-currency="true" for="studiekosten_volwassenen">Studiekosten volwassenen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="studiekosten_volwassenen" id="studiekosten_volwassenen" />
-                        <p>Subtotaal Onderwijs:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Kinderopvang</legend>
-                        <label data-currency="true" for="kinderopvang">Kinderopvang</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="kinderopvang" id="kinderopvang" />
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Contributies en abonnementen</legend>
-                        <label data-currency="true" for="contributies_sport_en_cultuur">Contributies sport en
-                            cultuur</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="contributies_sport_en_cultuur" id="contributies_sport_en_cultuur" />
-
-                        <label data-currency="true" for="abonnementen">Abonnementen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="abonnementen" id="abonnementen" />
-
-                        <label data-currency="true" for="bankkosten_en_financieel_advies">Bankkosten en financieel
-                            advies</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="bankkosten_en_financieel_advies" id="bankkosten_en_financieel_advies" />
-
-                        <label data-currency="true" for="loterijen">Loterijen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="loterijen" id="loterijen" />
-
-                        <label data-currency="true" for="overige_contributies">Overige contributies</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="overige_contributies" id="overige_contributies" />
-                        <p>Subtotaal Contributies en abonnementen:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Vervoer</legend>
-                        <fieldset>
-                            <legend>Auto, motor, scooter</legend>
-                            <label data-currency="true" for="afschrijving">Afschrijving</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                                name="afschrijving" id="afschrijving" />
-
-                            <label data-currency="true" for="motorrijtuigenbelasting">Motorrijtuigenbelasting</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                                name="motorrijtuigenbelasting" id="motorrijtuigenbelasting" />
-
-                            <label data-currency="true" for="onderhoud">Onderhoud</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                                name="onderhoud" id="onderhoud" />
-
-                            <label data-currency="true" for="verzekering">Verzekering</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                                name="verzekering" id="verzekering" />
-
-                            <label data-currency="true" for="brandstof">Brandstof</label>
-                            <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                                name="brandstof" id="brandstof" />
-                        </fieldset>
-
-                        <label data-currency="true" for="openbaar_vervoer">Openbaar vervoer</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="openbaar_vervoer" id="openbaar_vervoer" />
-
-                        <label data-currency="true" for="fiets">Fiets</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="fiets" id="fiets" />
-
-                        <label data-currency="true" for="overige_vervoerskosten">Overige vervoerskosten</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="overige_vervoerskosten" id="overige_vervoerskosten" />
-                        <p>Subtotaal Vervoer:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Levensonderhoud anderen</legend>
-                        <label data-currency="true" for="partneralimentatie">Partneralimentatie</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="partneralimentatie" id="partneralimentatie" />
-
-                        <label data-currency="true" for="kinderalimentatie">Kinderalimentatie</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="kinderalimentatie" id="kinderalimentatie" />
-
-                        <label data-currency="true" for="bijdrage_studerende_kinderen">Bijdrage studerende
-                            kinderen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="bijdrage_studerende_kinderen" id="bijdrage_studerende_kinderen" />
-                        <p>Subtotaal Levensonderhoud anderen:</p>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Afbetalingen</legend>
-                        <label data-currency="true" for="rente_b">Rente</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="rente" id="rente_b" />
-
-                        <label data-currency="true" for="aflossing_b">Aflossing</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="aflossing" id="aflossing_b" />
-                        <p>Subtotaal Afbetalingen:</p>
-                    </fieldset>
-                    <p>Totaal Vaste lasten:</p>
+                    <label data-currency="true" for="servicekosten">Servicekosten</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="servicekosten" id="servicekosten" />
+                    <p>Subtotaal Huur:</p>
                 </fieldset>
 
                 <fieldset>
+                    <legend>Hypotheek</legend>
+
+                    <label data-currency="true" for="rente_a">Rente</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="rente"
+                        id="rente_a" />
+
+                    <label data-currency="true" for="aflossing_a">Aflossing</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="aflossing" id="aflossing_a" />
+
+                    <label data-currency="true" for="spaarpremies">Spaarpremies</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="spaarpremies" id="spaarpremies" />
+
+                    <label data-currency="true" for="overlijdensrisicoverzekering">Overlijdensrisicoverzekering</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="overlijdensrisicoverzekering" id="overlijdensrisicoverzekering" />
+
+                    <label data-currency="true" for="erfpacht">Erfpacht</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="erfpacht" id="erfpacht" />
+                    <p>Subtotaal Hypotheek:</p>
+                </fieldset>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="6">
+                <div class="progressive_disclosure">
+                    <legend>Energie</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Energie</legend>
+
+                <label data-currency="true" for="gas">Gas</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="gas"
+                    id="gas" />
+
+                <label data-currency="true" for="elektriciteit">Elektriciteit</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="elektriciteit" id="elektriciteit" />
+
+                <label data-currency="true" for="water">Water</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="water"
+                    id="water" />
+                <p>Subtotaal Energie:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="7">
+                <div class="progressive_disclosure">
+                    <legend>Lokale Lasten</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Lokale lasten</legend>
+
+                <label data-currency="true" for="onroerendezaakbelasting">Onroerendezaakbelasting</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="onroerendezaakbelasting" id="onroerendezaakbelasting" />
+
+                <label data-currency="true" for="reinigingsheffing">Reinigingsheffing</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="reinigingsheffing" id="reinigingsheffing" />
+
+                <label data-currency="true" for="rioolheffing">Rioolheffing</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="rioolheffing" id="rioolheffing" />
+
+                <label data-currency="true" for="ingezetenenheffing">Ingezetenenheffing</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="ingezetenenheffing" id="ingezetenenheffing" />
+
+                <label data-currency="true" for="zuiveringsheffing">Zuiveringsheffing</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="zuiveringsheffing" id="zuiveringsheffing" />
+
+                <label data-currency="true" for="heffing_gebouwd">Heffing gebouwd</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="heffing_gebouwd" id="heffing_gebouwd" />
+
+                <label data-currency="true" for="overige_lokale_lasten">Overige lokale lasten</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="overige_lokale_lasten" id="overige_lokale_lasten" />
+                <p>Subtotaal Lokale lasten:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="8">
+                <div class="progressive_disclosure">
+                    <legend>Telefoon, televisie en internet</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Telefoon, televisie en internet</legend>
+
+                <label data-currency="true" for="combinatie_pakket">Alles-in-één/combinatie pakket</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="combinatie_pakket" id="combinatie_pakket" />
+
+                <label data-currency="true" for="vaste_telefoon">Vaste telefoon</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="vaste_telefoon" id="vaste_telefoon" />
+
+                <label data-currency="true" for="mobiele_telefoon">Mobiele telefoon</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="mobiele_telefoon" id="mobiele_telefoon" />
+
+                <label data-currency="true" for="televisie">Televisie</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="televisie"
+                    id="televisie" />
+
+                <label data-currency="true" for="internet">Internet</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="internet"
+                    id="internet" />
+
+                <label data-currency="true" for="overige_telefoon">Overige</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="overige_telefoon" id="overige_telefoon" />
+                <p>Subtotaal Telefoon/televisie/internet:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="9">
+                <div class="progressive_disclosure">
+                    <legend>Verzekeringen</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Verzekeringen</legend>
+
+                <label data-currency="true" for="zorgverzekering_basis">Zorgverzekering: basis</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="zorgverzekering_basis" id="zorgverzekering_basis" />
+
+                <label data-currency="true" for="zorgverzekering_aanvullend">Zorgverzekering: aanvullend</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="zorgverzekering_aanvullend" id="zorgverzekering_aanvullend" />
+
+                <label data-currency="true" for="aansprakelijkheidsverzekering">Aansprakelijkheidsverzekering</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="aansprakelijkheidsverzekering" id="aansprakelijkheidsverzekering" />
+
+                <label data-currency="true" for="inboedelverzekering">Inboedelverzekering</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="inboedelverzekering" id="inboedelverzekering" />
+
+                <label data-currency="true" for="opstalverzekering">Opstalverzekering</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="opstalverzekering" id="opstalverzekering" />
+
+                <label data-currency="true" for="uitvaartverzekering">Uitvaartverzekering</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="uitvaartverzekering" id="uitvaartverzekering" />
+
+                <label data-currency="true" for="pensioenverzekering">Pensioenverzekering/pensioensparen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="pensioenverzekering" id="pensioenverzekering" />
+
+                <label data-currency="true" for="verzekering_inkomensaanvulling">Verzekering
+                    inkomensaanvulling</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="verzekering_inkomensaanvulling" id="verzekering_inkomensaanvulling" />
+
+                <label data-currency="true" for="overige_verzekeringen">Overige verzekeringen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="overige_verzekeringen" id="overige_verzekeringen" />
+                <p>Subtotaal Verzekeringen:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="10">
+                <div class="progressive_disclosure">
+                    <legend>Onderwijs</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Onderwijs</legend>
+                <label data-currency="true" for="schookosten_kinderen">Schoolkosten kinderen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="schookosten_kinderen" id="schookosten_kinderen" />
+
+                <label data-currency="true" for="studiekosten_volwassenen">Studiekosten volwassenen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="studiekosten_volwassenen" id="studiekosten_volwassenen" />
+
+                <legend>Kinderopvang</legend>
+                <label data-currency="true" for="kinderopvang">Kinderopvang</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="kinderopvang" id="kinderopvang" />
+                <p>Subtotaal Onderwijs:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="11">
+                <div class="progressive_disclosure">
+                    <legend>Contributies en abonnementen</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Contributies en abonnementen</legend>
+                <label data-currency="true" for="contributies_sport_en_cultuur">Contributies sport en
+                    cultuur</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="contributies_sport_en_cultuur" id="contributies_sport_en_cultuur" />
+
+                <label data-currency="true" for="abonnementen">Abonnementen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="abonnementen" id="abonnementen" />
+
+                <label data-currency="true" for="bankkosten_en_financieel_advies">Bankkosten en financieel
+                    advies</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="bankkosten_en_financieel_advies" id="bankkosten_en_financieel_advies" />
+
+                <label data-currency="true" for="loterijen">Loterijen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="loterijen"
+                    id="loterijen" />
+
+                <label data-currency="true" for="overige_contributies">Overige contributies</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="overige_contributies" id="overige_contributies" />
+                <p>Subtotaal Contributies en abonnementen:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="12">
+                <div class="progressive_disclosure">
+                    <legend>Vervoer</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Vervoer</legend>
+                <fieldset>
+                    <legend>Auto, motor, scooter</legend>
+                    <label data-currency="true" for="afschrijving">Afschrijving</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="afschrijving" id="afschrijving" />
+
+                    <label data-currency="true" for="motorrijtuigenbelasting">Motorrijtuigenbelasting</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="motorrijtuigenbelasting" id="motorrijtuigenbelasting" />
+
+                    <label data-currency="true" for="onderhoud">Onderhoud</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="onderhoud" id="onderhoud" />
+
+                    <label data-currency="true" for="verzekering">Verzekering</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="verzekering" id="verzekering" />
+
+                    <label data-currency="true" for="brandstof">Brandstof</label>
+                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                        name="brandstof" id="brandstof" />
+                </fieldset>
+
+                <label data-currency="true" for="openbaar_vervoer">Openbaar vervoer</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="openbaar_vervoer" id="openbaar_vervoer" />
+
+                <label data-currency="true" for="fiets">Fiets</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="fiets"
+                    id="fiets" />
+
+                <label data-currency="true" for="overige_vervoerskosten">Overige vervoerskosten</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="overige_vervoerskosten" id="overige_vervoerskosten" />
+                <p>Subtotaal Vervoer:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="13">
+                <div class="progressive_disclosure">
+                    <legend>Levensonderhoud anderen</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Levensonderhoud anderen</legend>
+
+                <label data-currency="true" for="partneralimentatie">Partneralimentatie</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="partneralimentatie" id="partneralimentatie" />
+
+                <label data-currency="true" for="kinderalimentatie">Kinderalimentatie</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="kinderalimentatie" id="kinderalimentatie" />
+
+                <label data-currency="true" for="bijdrage_studerende_kinderen">Bijdrage studerende
+                    kinderen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="bijdrage_studerende_kinderen" id="bijdrage_studerende_kinderen" />
+                <p>Subtotaal Levensonderhoud anderen:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="14">
+                <div class="progressive_disclosure">
+                    <legend>Afbetalingen</legend>
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Afbetalingen</legend>
+
+                <label data-currency="true" for="rente_b">Rente</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="rente"
+                    id="rente_b" />
+
+                <label data-currency="true" for="aflossing_b">Aflossing</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="aflossing"
+                    id="aflossing_b" />
+                <p>Subtotaal Afbetalingen:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="15">
+                <div class="progressive_disclosure">
                     <legend>Reserveringsuitgaven</legend>
-                    <fieldset>
-                        <legend>Kleding en schoenen</legend>
-                        <label data-currency="true" for="kleding_en_schoenen">Kleding en schoenen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="kleding_en_schoenen" id="kleding_en_schoenen" />
-                    </fieldset>
-                    <fieldset>
-                        <legend>Inventaris</legend>
-                        <label data-currency="true" for="inventaris">Inventaris</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="inventaris" id="inventaris" />
-                    </fieldset>
-                    <fieldset>
-                        <legend>Onderhoud huis en tuin</legend>
-                        <label data-currency="true" for="onderhoud_huis_en_tuin">Onderhoud huis en tuin</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="onderhoud_huis_en_tuin" id="onderhoud_huis_en_tuin" />
-                    </fieldset>
-                    <fieldset>
-                        <legend>Niet-vergoede ziektekosten</legend>
-                        <label data-currency="true" for="zelfzorgmiddelen">Zelfzorgmiddelen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="zelfzorgmiddelen" id="zelfzorgmiddelen" />
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Reserveringsuitgaven</legend>
 
-                        <label data-currency="true" for="eigen_risico_zorgverzekering">Eigen risico
-                            zorgverzekering</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="eigen_risico_zorgverzekering" id="eigen_risico_zorgverzekering" />
+                <label data-currency="true" for="kleding_en_schoenen">Kleding en schoenen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="kleding_en_schoenen" id="kleding_en_schoenen" />
 
-                        <label data-currency="true" for="eigen_bijdragen_en_betalingen_zorg">Eigen bijdragen en
-                            betalingen zorg</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="eigen_bijdragen_en_betalingen_zorg" id="eigen_bijdragen_en_betalingen_zorg" />
-                    </fieldset>
-                    <fieldset>
-                        <legend>Vrijetijdsuitgaven</legend>
-                        <label data-currency="true" for="vrijetijdsuitgaven">Vrijetijdsuitgaven</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="vrijetijdsuitgaven" id="vrijetijdsuitgaven" />
-                    </fieldset>
-                    <p>Totaal Reserveringsuitgaven:</p>
-                </fieldset>
-                <fieldset>
+                <label data-currency="true" for="inventaris">Inventaris</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="inventaris" id="inventaris" />
+
+                <label data-currency="true" for="onderhoud_huis_en_tuin">Onderhoud huis en tuin</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="onderhoud_huis_en_tuin" id="onderhoud_huis_en_tuin" />
+
+                <label data-currency="true" for="zelfzorgmiddelen">Zelfzorgmiddelen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="zelfzorgmiddelen" id="zelfzorgmiddelen" />
+
+                <label data-currency="true" for="eigen_risico_zorgverzekering">Eigen risico
+                    zorgverzekering</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="eigen_risico_zorgverzekering" id="eigen_risico_zorgverzekering" />
+
+                <label data-currency="true" for="eigen_bijdragen_en_betalingen_zorg">Eigen bijdragen en
+                    betalingen zorg</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="eigen_bijdragen_en_betalingen_zorg" id="eigen_bijdragen_en_betalingen_zorg" />
+
+                <label data-currency="true" for="vrijetijdsuitgaven">Vrijetijdsuitgaven</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="vrijetijdsuitgaven" id="vrijetijdsuitgaven" />
+                <p>Subtotaal Reserveringsuitgaven:</p>
+            </fieldset>
+
+            <fieldset class="question_category hide" data_question="16">
+                <div class="progressive_disclosure">
                     <legend>Huishoudelijke uitgaven</legend>
-                    <fieldset>
-                        <legend>Voeding</legend>
-                        <label data-currency="true" for="voeding">Voeding</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="voeding" id="voeding" />
-                    </fieldset>
-                    <fieldset>
-                        <legend>Overige huishoudelijke uitgaven</legend>
-                        <label data-currency="true" for="was_en_schoonmaakartikelen">Was en schoonmaakartikelen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="was_en_schoonmaakartikelen" id="was_en_schoonmaakartikelen" />
+                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <span></span>
+                    <span></span>
+                </div>
+                <legend>Huishoudelijke uitgaven</legend>
 
-                        <label data-currency="true" for="persoonlijke_verzorging">Persoonlijke verzorging</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="persoonlijke_verzorging" id="persoonlijke_verzorging" />
+                <label data-currency="true" for="voeding">Voeding</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="voeding"
+                    id="voeding" />
 
-                        <label data-currency="true" for="huishoudelijke_dienstverlening">Huishoudelijke
-                            dienstverlening</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="huishoudelijke_dienstverlening" id="huishoudelijke_dienstverlening" />
+                <label data-currency="true" for="was_en_schoonmaakartikelen">Was en schoonmaakartikelen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="was_en_schoonmaakartikelen" id="was_en_schoonmaakartikelen" />
 
-                        <label data-currency="true" for="huisdieren">Huisdieren</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="huisdieren" id="huisdieren" />
+                <label data-currency="true" for="persoonlijke_verzorging">Persoonlijke verzorging</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="persoonlijke_verzorging" id="persoonlijke_verzorging" />
 
-                        <label data-currency="true" for="roken">Roken</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="roken" id="roken" />
+                <label data-currency="true" for="huishoudelijke_dienstverlening">Huishoudelijke
+                    dienstverlening</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="huishoudelijke_dienstverlening" id="huishoudelijke_dienstverlening" />
 
-                        <label data-currency="true" for="diversen">Diversen</label>
-                        <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                            name="diversen" id="diversen" />
-                        <p>Subtotaal Overige huishoudelijke uitgaven:</p>
-                    </fieldset>
-                    <p>Totaal Huishoudelijke uitgaven:</p>
-                </fieldset>
+                <label data-currency="true" for="huisdieren">Huisdieren</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="huisdieren" id="huisdieren" />
+
+                <label data-currency="true" for="roken">Roken</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="roken"
+                    id="roken" />
+
+                <label data-currency="true" for="diversen">Diversen</label>
+                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="diversen"
+                    id="diversen" />
+
+                <p>Subtotaal Huishoudelijke uitgaven:</p>
             </fieldset>
         </form>
     </section>
