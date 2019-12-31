@@ -119,8 +119,7 @@ function checkIfValueIsAllowed(currentEl) {
     }
 }
 
-function checkAdditionalQuestions(currentEl) {
-    //make inputs valid/invalid for progress
+function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for progress
     if (currentEl === document.getElementById('wel-partner')) { //wel partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', true)
@@ -134,8 +133,18 @@ function checkAdditionalQuestions(currentEl) {
             updateProgressIndicators(document.querySelector('[data_question="2"]'))
         }
     } else if (currentEl === document.getElementById('kinderen')) { //kinderen
-        console.log('voeg kinderen toe')
-        //todo: voeg kinderen toe 
+        const allChildren = document.querySelectorAll('[data_question="1"]>div:not(#progressive_disclosure) input, [data_question="1"]>div:not(#progressive_disclosure) label')
+        for (const child of allChildren) {
+            child.classList.add('hide')
+            if (child.tagName === 'INPUT') {
+                child.setAttribute('data_path', false)
+            }
+        }
+        for (let i = 1; i < parseInt(currentEl.value) + 1; i++) {
+            document.querySelector('#kind' + i).classList.remove('hide')
+            document.querySelector('#kind' + i).setAttribute('data_path', true)
+            document.querySelector('[for="kind' + i + '"]').classList.remove('hide')
+        }
     } else if (currentEl === document.getElementById('huur')) { //huur
         document.getElementById('showHuur').classList.remove('hide')
         document.getElementById('showKoop').classList.add('hide')

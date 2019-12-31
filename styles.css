@@ -267,10 +267,19 @@ label[for="kinderen"] {
     padding: 6px 10px;
 }
 
+[data_question="1"]>div:not(#progressive_disclosure) input {
+    padding-left: 10px;
+    padding-right: 35px;
+}
+
 input[type="radio"]+label:nth-of-type(even),
 #partner+label,
 #nieuw+label {
     border-radius: var(--border-radius) 0px 0px var(--border-radius);
+}
+
+#nieuw+label {
+    margin-left: 1px;
 }
 
 input[type="radio"]+label:nth-of-type(odd),
@@ -402,13 +411,4 @@ input[type="number"].invalid:focus {
     position: relative;
     top: 1px;
     float: right;
-}
-
-select[data-path="false"],
-input:not([type="radio"])[data_path="false"],
-input:not([type="radio"])[data_path="false"]+label,
-input[type="radio"][data_path="false"],
-input[type="radio"][data_path="false"]+label {
-    /* display: none; */
-    background-color: red;
 }
