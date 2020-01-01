@@ -1,6 +1,7 @@
 import data from './modules/loadData.js'
 import transform from './modules/transformData.js'
 
+
 const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
     labels = document.querySelectorAll('form label'),
     tooltip = document.querySelector('#tooltip'),
@@ -9,6 +10,8 @@ const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
 let tooltipData, //receives toolltip-data (async)
     pressedKey, //last fired event.key
     secondCar = false
+
+
 
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
@@ -19,6 +22,7 @@ data.getTooltips() //fetch tooltip-data
     .then(data => tooltipData = data)
     .then(data => addTooltips())
     .catch(err => console.log(err))
+
 
 
 //tooltip
@@ -52,6 +56,11 @@ function addTooltips() { //fixes tooltip styling, content & tooltip location
     })
 }
 
+
+
+
+
+
 document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input =>
     input.addEventListener('input', function () { //call functions on input
         checkIfValueIsAllowed(this) //value validation
@@ -65,6 +74,8 @@ document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('keydown', function (e) {
         pressedKey = e
     }))
+
+
 
 
 function checkIfValueIsAllowed(currentEl) {
@@ -119,6 +130,10 @@ function checkIfValueIsAllowed(currentEl) {
     }
 }
 
+
+
+
+
 function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for progress
     if (currentEl === document.getElementById('wel-partner')) { //wel partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
@@ -172,6 +187,10 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
     }
 }
 
+
+
+
+
 function updateProgressbar() {
     let inputsWithValue = 0,
         numberOfTotalRadio = 0,
@@ -208,6 +227,10 @@ function updateProgressbar() {
         document.getElementById('progression').classList.remove('invalidProgress') //reset styling if all invalid values have been corrected
     }
 }
+
+
+
+
 
 function updateProgressIndicators(currentEl) {
     while (currentEl.classList.contains('question_category') != true) {
@@ -248,6 +271,9 @@ function updateProgressIndicators(currentEl) {
     }
 }
 
+
+
+
 //total income
 function updateTotalIncome(currentEl) {
     while (currentEl.classList.contains('question_category') != true) {
@@ -273,12 +299,19 @@ function updateTotalIncome(currentEl) {
     }
 }
 
+
+
+
+
 //fix SELECT element focus
 function fixSelectFocus(currentEl) {
     if (currentEl.tagName === 'SELECT') {
         currentEl.parentElement.focus() //give focus to select when it's the active element
     }
 }
+
+
+
 
 //progressive disclosure
 allQuestionCategories.forEach(category => {
@@ -296,6 +329,10 @@ allQuestionCategories.forEach(category => {
         }
     }, false)
 })
+
+
+
+
 
 //car styling
 document.getElementById('car').addEventListener('input', function () { //fix car styling
@@ -339,6 +376,11 @@ document.getElementById('has_a_second_car').addEventListener('input', function (
         updateProgressbar()
     }
 })
+
+
+
+
+
 
 //create household from uw_situatie input
 function getFormData() {

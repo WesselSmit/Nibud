@@ -317,9 +317,7 @@
     </section>
 
     <!-- TODO: de section hieronder moet de class "hide" hebben (deze was uitgezet voor test pogingen) -->
-    <section class="TODO:zethierhideneer">
-        <!-- TODO: geef de juiste fieldsets de question_category class -->
-        <!-- TODO: zet de eerste divs (van de question_category classes) in een div -->
+    <section class="TODO:zethier'hide'neer">
         <!-- TODO: herscrijf de prgressie functies zo dat voor beide forms werken (kijk in welk form de input is en pas van dit form de progressbar aan [vergelijkbaar trucje als met currentEl], gebruik data_path="true" in het form) -->
         <!-- TODO: totalIncome functie herschrijven zodat die dynamisch is en werkt voor alle (sub)totalen -->
         <!-- TODO: afhankelijk van het antwoord bij huur/koop moeten de huur/koop uitgaven tevoorschijn komen -->
@@ -336,7 +334,7 @@
             <fieldset class="question_category" data_question="5">
                 <div class="progressive_disclosure">
                     <legend>Woonkosten</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -382,7 +380,7 @@
             <fieldset class="question_category hide" data_question="6">
                 <div class="progressive_disclosure">
                     <legend>Energie</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -404,7 +402,7 @@
             <fieldset class="question_category hide" data_question="7">
                 <div class="progressive_disclosure">
                     <legend>Lokale Lasten</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -442,7 +440,7 @@
             <fieldset class="question_category hide" data_question="8">
                 <div class="progressive_disclosure">
                     <legend>Telefoon, televisie en internet</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -476,7 +474,7 @@
             <fieldset class="question_category hide" data_question="9">
                 <div class="progressive_disclosure">
                     <legend>Verzekeringen</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -523,7 +521,7 @@
             <fieldset class="question_category hide" data_question="10">
                 <div class="progressive_disclosure">
                     <legend>Onderwijs</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -545,7 +543,7 @@
             <fieldset class="question_category hide" data_question="11">
                 <div class="progressive_disclosure">
                     <legend>Contributies en abonnementen</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -577,14 +575,13 @@
             <fieldset class="question_category hide" data_question="12">
                 <div class="progressive_disclosure">
                     <legend>Vervoer</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
 
-                <fieldset>
+                <div>
                     <!-- TODO: de inhoud van deze fieldset moet verstopt zijn als je geen auto hebt -->
-                    <legend>Auto, motor, scooter</legend>
                     <label data-currency="true" for="afschrijving">Afschrijving</label>
                     <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                         name="afschrijving" id="afschrijving" />
@@ -604,7 +601,7 @@
                     <label data-currency="true" for="brandstof">Brandstof</label>
                     <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                         name="brandstof" id="brandstof" />
-                </fieldset>
+                </div>
 
                 <label data-currency="true" for="openbaar_vervoer">Openbaar vervoer</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
@@ -623,7 +620,7 @@
             <fieldset class="question_category hide" data_question="13">
                 <div class="progressive_disclosure">
                     <legend>Levensonderhoud anderen</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -646,7 +643,7 @@
             <fieldset class="question_category hide" data_question="14">
                 <div class="progressive_disclosure">
                     <legend>Afbetalingen</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -664,7 +661,7 @@
             <fieldset class="question_category hide" data_question="15">
                 <div class="progressive_disclosure">
                     <legend>Reserveringsuitgaven</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
@@ -704,7 +701,7 @@
             <fieldset class="question_category hide" data_question="16">
                 <div class="progressive_disclosure">
                     <legend>Huishoudelijke uitgaven</legend>
-                    <img src="./media/dropdown.svg" alt="dropwown" class="activeDropdown">
+                    <img src="./media/dropdown.svg" alt="dropwown">
                     <span></span>
                     <span></span>
                 </div>
