@@ -61,7 +61,7 @@ function addTooltips() { //fixes tooltip styling, content & tooltip location
 
 
 
-document.querySelectorAll('#uw_situatie input, #uw_situatie select').forEach(input =>
+document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('input', function () { //call functions on input
         checkIfValueIsAllowed(this) //value validation
         checkAdditionalQuestions(this) //check for additional questions
@@ -142,6 +142,7 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
         document.getElementById('partnersInkomen').classList.remove('hide')
         updateProgressIndicators(document.querySelector('[data_question="2"]'))
     } else if (currentEl === document.getElementById('geen-partner')) { //geen partner
+        // TODO: test of de for loop & updateTotalIncome() wegkunnen nu (deze resetten de value als je van wel naar geen partner gaat, maar sinds de totalIncome functie herschreven is kan deze miss weg??)
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', false)
             input.value = "" //reset all values 
@@ -218,9 +219,10 @@ function updateProgressbar() {
     }
     if (inputsWithValue === uniqueInputs && hasInvalidValue === false) { //hide & fixing styling
         document.querySelector('section:nth-of-type(2)').classList.remove('hide')
-        getFormData()
+        createYourHousehold() //when all uw_situatie questions are answered -> create a personal household object
     } else {
-        document.querySelector('section:nth-of-type(2)').classList.add('hide')
+        // TODO: onderstaande regel moet uncommented worden, is alleen gedaan ivm testen
+        // document.querySelector('section:nth-of-type(2)').classList.add('hide')
         document.getElementById('progression').classList.add('invalidProgress')
     }
     if (hasInvalidValue === false) {
@@ -237,6 +239,7 @@ function updateProgressIndicators(currentEl) {
         currentEl = currentEl.parentElement //bubble to the question-category
     }
 
+    // TODO: functie moet herschreven worden en werken voor beide forms, miss een kewstie van de selectors in de functie herschrijven?
     let allCurrentInputs = currentEl.querySelectorAll('[data_path="true"]'), //all currently [data-path="true"] inputs
         answeredQuestions = 0,
         numberOfRadios = 0,
@@ -279,22 +282,26 @@ function updateTotalIncome(currentEl) {
     while (currentEl.classList.contains('question_category') != true) {
         currentEl = currentEl.parentElement //bubble to the question-category
     }
+    const allCurrentInputs = currentEl.querySelectorAll('input[data_path="true"]')
+    let totalSum = 0,
+        questionsAnswered = 0
 
-    if (currentEl.getAttribute('data_question') === '2') { //prevents multi-question sums
-        const allCurrentInputs = currentEl.querySelectorAll('input')
-        let totalIncome = 0,
-            questionsAnswered = 0
+    if (currentEl.contains(document.querySelector('.sub_total'))) { //check if current category has a sub-total display
+        const totalDisplay = currentEl.querySelector('.sub_total')
 
         for (const currentInput of allCurrentInputs) { //fix the total income
             if (currentInput.value != '') {
-                totalIncome = totalIncome + parseInt(currentInput.value)
-                document.getElementById('totaleInkomen').textContent = totalIncome + " euro"
-                document.getElementById('totalIncome').classList.remove('hide')
+                const subTotalText = totalDisplay.textContent.split(':')[0] //get category-specific text
+                totalSum = totalSum + parseInt(currentInput.value) //add newly added input
+
+                totalDisplay.textContent = subTotalText + ": " + totalSum + " euro"
+                totalDisplay.classList.remove('hide')
                 questionsAnswered++
             }
         }
-        if (questionsAnswered === 0) { //hide totalIncome if no question has been answered
-            document.getElementById('totalIncome').classList.add('hide')
+
+        if (questionsAnswered === 0) { //hide sub_total if no question has been answered
+            totalDisplay.classList.add('hide')
         }
     }
 }
@@ -383,7 +390,7 @@ document.getElementById('has_a_second_car').addEventListener('input', function (
 
 
 //create household from uw_situatie input
-function getFormData() {
+function createYourHousehold() {
     let personalHousehold = {
             huishoudType: null, //Huishoudtype bepalen
             //TODO: vul de ontbrekende values van dit obj aan
@@ -441,7 +448,6 @@ function getFormData() {
     }
 
     let income
-    // TODO: onderstaande if statements werken niet, wanneer je van wel-partner naar geen-partner switched moeten alle partners-inkomen inputs values gereset worden
     if (yourSituation.partner == "false") {
         income = yourSituation.netto_maandinkomen + yourSituation.netto_vakantiegeld + yourSituation.reiskostenvergoeding + yourSituation.dertiende_maand + yourSituation.bijverdiensten + yourSituation.kinderbijslag + yourSituation.zorgtoeslag + yourSituation.kindgebonden_budget + yourSituation.huurtoeslag + yourSituation.kinderopvangtoeslag + yourSituation.teruggave_belasting + yourSituation.alimentatie + yourSituation.kostgeld_inwonende_personen + yourSituation.inkomsten_uit_vermogen + yourSituation.gemeentelijke_ondersteuning + yourSituation.overige_inkomsten
     }

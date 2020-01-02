@@ -177,7 +177,7 @@
                             step="100" name="overige_inkomsten" id="overige_inkomsten" />
                     </fieldset>
 
-                    <p id="totalIncome" class="hide">Totaal: <span id="totaleInkomen"></span></p>
+                    <p class="sub_total hide">Totaal Inkomen: </p>
                 </fieldset>
 
                 <fieldset class="question_category hide" data_question="3">
@@ -318,8 +318,10 @@
 
     <!-- TODO: de section hieronder moet de class "hide" hebben (deze was uitgezet voor test pogingen) -->
     <section class="TODO:zethier'hide'neer">
+        <!-- TODO: voeg data_path="true" toe aan alle vragen die standaard geshowed moeten worden -->
+        <!-- TODO: voeg een progressbar toe en herschrijf de progressbar functie zodat deze dynamisch is voor beide form's/progressbars -->
+        <!-- TODO: check of de totalIncome functie werkt voor alle verschillende caegoreis werkt als de data_path="true" zijn toegevoegd -->
         <!-- TODO: herscrijf de prgressie functies zo dat voor beide forms werken (kijk in welk form de input is en pas van dit form de progressbar aan [vergelijkbaar trucje als met currentEl], gebruik data_path="true" in het form) -->
-        <!-- TODO: totalIncome functie herschrijven zodat die dynamisch is en werkt voor alle (sub)totalen -->
         <!-- TODO: afhankelijk van het antwoord bij huur/koop moeten de huur/koop uitgaven tevoorschijn komen -->
         <!-- TODO: als de gebruiker kinderen heeft moeten de volgende uitgaven bij uw_uitgaven tevoorschijn komen (afhankelijk van de leeftijd van de kinderen): 
             - schoolkosten kinderen
@@ -348,7 +350,7 @@
                     <label data-currency="true" for="servicekosten">Servicekosten</label>
                     <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                         name="servicekosten" id="servicekosten" />
-                    <p>Subtotaal Huur:</p>
+                    <p class="sub_total hide">Subtotaal Huur:</p>
                 </fieldset>
 
                 <fieldset>
@@ -373,7 +375,7 @@
                     <label data-currency="true" for="erfpacht">Erfpacht</label>
                     <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                         name="erfpacht" id="erfpacht" />
-                    <p>Subtotaal Hypotheek:</p>
+                    <p class="sub_total hide">Subtotaal Hypotheek:</p>
                 </fieldset>
             </fieldset>
 
@@ -396,7 +398,7 @@
                 <label data-currency="true" for="water">Water</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="water"
                     id="water" />
-                <p>Subtotaal Energie:</p>
+                <p class="sub_total hide">Subtotaal Energie:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="7">
@@ -434,7 +436,7 @@
                 <label data-currency="true" for="overige_lokale_lasten">Overige lokale lasten</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_lokale_lasten" id="overige_lokale_lasten" />
-                <p>Subtotaal Lokale lasten:</p>
+                <p class="sub_total hide">Subtotaal Lokale lasten:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="8">
@@ -468,7 +470,7 @@
                 <label data-currency="true" for="overige_telefoon">Overige</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_telefoon" id="overige_telefoon" />
-                <p>Subtotaal Telefoon/televisie/internet:</p>
+                <p class="sub_total hide">Subtotaal Telefoon/televisie/internet:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="9">
@@ -515,7 +517,7 @@
                 <label data-currency="true" for="overige_verzekeringen">Overige verzekeringen</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_verzekeringen" id="overige_verzekeringen" />
-                <p>Subtotaal Verzekeringen:</p>
+                <p class="sub_total hide">Subtotaal Verzekeringen:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="10">
@@ -537,7 +539,7 @@
                 <label data-currency="true" for="kinderopvang">Kinderopvang</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="kinderopvang" id="kinderopvang" />
-                <p>Subtotaal Onderwijs:</p>
+                <p class="sub_total hide">Subtotaal Onderwijs:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="11">
@@ -569,7 +571,7 @@
                 <label data-currency="true" for="overige_contributies">Overige contributies</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_contributies" id="overige_contributies" />
-                <p>Subtotaal Contributies en abonnementen:</p>
+                <p class="sub_total hide">Subtotaal Contributies en abonnementen:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="12">
@@ -614,7 +616,7 @@
                 <label data-currency="true" for="overige_vervoerskosten">Overige vervoerskosten</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_vervoerskosten" id="overige_vervoerskosten" />
-                <p>Subtotaal Vervoer:</p>
+                <p class="sub_total hide">Subtotaal Vervoer:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="13">
@@ -637,7 +639,7 @@
                     kinderen</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="bijdrage_studerende_kinderen" id="bijdrage_studerende_kinderen" />
-                <p>Subtotaal Levensonderhoud anderen:</p>
+                <p class="sub_total hide">Subtotaal Levensonderhoud anderen:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="14">
@@ -655,7 +657,7 @@
                 <label data-currency="true" for="aflossing_b">Aflossing</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="aflossing"
                     id="aflossing_b" />
-                <p>Subtotaal Afbetalingen:</p>
+                <p class="sub_total hide">Subtotaal Afbetalingen:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="15">
@@ -695,7 +697,7 @@
                 <label data-currency="true" for="vrijetijdsuitgaven">Vrijetijdsuitgaven</label>
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="vrijetijdsuitgaven" id="vrijetijdsuitgaven" />
-                <p>Subtotaal Reserveringsuitgaven:</p>
+                <p class="sub_total hide">Subtotaal Reserveringsuitgaven:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="16">
@@ -735,7 +737,7 @@
                 <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="diversen"
                     id="diversen" />
 
-                <p>Subtotaal Huishoudelijke uitgaven:</p>
+                <p class="sub_total hide">Subtotaal Huishoudelijke uitgaven:</p>
             </fieldset>
         </form>
     </section>
