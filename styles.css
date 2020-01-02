@@ -127,7 +127,7 @@ section:nth-of-type(2) .question_category:not(:nth-of-type(12)) {
     margin-bottom: 15px;
 }
 
-.question_category:not(.hide):not([data_question="5"]) {
+.question_category:not(.hide) {
     cursor: default;
     padding-bottom: 15px;
 }
@@ -443,8 +443,4 @@ input[type="number"].invalid:focus {
 
 .question_category>fieldset>label:first-of-type[for="huurVasteLasten"] {
     margin-top: 0px;
-}
-
-.question_category[data_question="5"] {
-    padding-bottom: 15px;
 }

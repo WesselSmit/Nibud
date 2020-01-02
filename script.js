@@ -385,7 +385,7 @@ document.getElementById('extraAuto').addEventListener('click', function () { //a
     //fix progress
     document.getElementById('car2').setAttribute('data_path', true)
     updateProgressIndicators(document.querySelector('[data_question="4"]'))
-    updateProgressbar()
+    updateProgressbar(this)
 })
 document.getElementById('has_a_second_car').addEventListener('input', function () {
     const allSecondCarQuestions = document.getElementById('has_a_second_car').querySelectorAll('label[for="autotype2"], label[for="kilometers2"], #has_a_second_car .select-box:nth-of-type(2), #waardeAuto, #nieuw2, label[for="nieuw2"], #tweedehands2, label[for="tweedehands2"]')
@@ -397,7 +397,7 @@ document.getElementById('has_a_second_car').addEventListener('input', function (
         document.getElementById('nieuw2').setAttribute('data_path', true)
         document.getElementById('tweedehands2').setAttribute('data_path', true)
         updateProgressIndicators(document.querySelector('[data_question="4"]'))
-        updateProgressbar()
+        updateProgressbar(this)
     } else {
         for (const question of allSecondCarQuestions) {
             question.classList.add('hide') //hide additional questions
@@ -407,7 +407,7 @@ document.getElementById('has_a_second_car').addEventListener('input', function (
         document.getElementById('nieuw2').setAttribute('data_path', false)
         document.getElementById('tweedehands2').setAttribute('data_path', false)
         updateProgressIndicators(document.querySelector('[data_question="4"]'))
-        updateProgressbar()
+        updateProgressbar(this)
     }
 })
 
