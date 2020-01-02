@@ -444,3 +444,7 @@ input[type="number"].invalid:focus {
 .question_category>fieldset>label:first-of-type[for="huurVasteLasten"] {
     margin-top: 0px;
 }
+
+label.fixOpenbaarVervoer {
+    padding-top: 10px;
+}

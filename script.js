@@ -211,6 +211,7 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
             }
             updateProgressIndicators(document.querySelector('[data_question="12"]'))
             updateProgressbar(document.querySelector('[data_question="12"]'))
+            document.querySelector('[for="openbaar_vervoer"]').classList.remove('fixOpenbaarVervoer')
         } else { //reset & hide car
             document.getElementById('kilometers').setAttribute('data_path', false)
             document.getElementById('nieuw').setAttribute('data_path', false)
@@ -222,6 +223,7 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
             }
             updateProgressIndicators(document.querySelector('[data_question="12"]'))
             updateProgressbar(document.querySelector('[data_question="12"]'))
+            document.querySelector('[for="openbaar_vervoer"]').classList.add('fixOpenbaarVervoer')
         }
     }
 }
