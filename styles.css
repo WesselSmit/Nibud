@@ -445,6 +445,6 @@ input[type="number"].invalid:focus {
     margin-top: 0px;
 }
 
-label.fixOpenbaarVervoer {
+label.fixWithHide {
     padding-top: 10px;
 }

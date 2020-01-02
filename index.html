@@ -319,6 +319,7 @@
     <!-- TODO: de section hieronder moet de class "hide" hebben (deze was uitgezet voor test pogingen), in JS staat er ook een TODO waar de regel daaronder uncommented moet worden (ook ivm met test pogingen) -->
     <section class="TODO:zethier'hide'neer">
         <!-- TODO: maak de code die kijkt welke vragen aan/uit moeten compacter (gebruik for...of loops) -> moet gebeuren bij car-code & checkAdditionalQuestions() -->
+        <!-- TODO: bij woonkosten update de totalIncome niet wanneer je switched van huur naar koop of vica versa -->
         <!-- TODO: ga na welke vragen bij uw_uitgaven er allemaal af moeten hangen van de antwoorden bij uw_situatie -> maak deze vervolgens dynamisch -->
         <!-- TODO: als de gebruiker kinderen heeft moeten de volgende uitgaven bij uw_uitgaven tevoorschijn komen (afhankelijk van de leeftijd van de kinderen): 
             - schoolkosten kinderen
@@ -346,7 +347,6 @@
                     <label data-currency="true" for="servicekosten">Servicekosten</label>
                     <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
                         step="100" name="servicekosten" id="servicekosten" />
-                    <p class="sub_total hide">Subtotaal Huur:</p>
                 </fieldset>
 
                 <fieldset class="hide">
@@ -369,8 +369,8 @@
                     <label data-currency="true" for="erfpacht">Erfpacht</label>
                     <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
                         step="100" name="erfpacht" id="erfpacht" />
-                    <p class="sub_total hide">Subtotaal Hypotheek:</p>
                 </fieldset>
+                <p class="sub_total hide">Subtotaal Woonkosten:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="6">

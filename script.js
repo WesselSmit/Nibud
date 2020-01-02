@@ -67,7 +67,7 @@ document.querySelectorAll('input, select').forEach(input =>
         checkAdditionalQuestions(this) //check for additional questions
         updateProgressbar(this) //progress-bar
         updateProgressIndicators(this) //progress indicator
-        updateTotalIncome(this) //total income
+        updateTotalSum(this) //total income
         fixSelectFocus(this) //fix select focus state
     }))
 document.querySelectorAll('input, select').forEach(input =>
@@ -141,15 +141,12 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
             input.setAttribute('data_path', true)
         }
         document.getElementById('partnersInkomen').classList.remove('hide')
-        updateProgressIndicators(document.querySelector('[data_question="2"]'))
     } else if (currentEl === document.getElementById('geen-partner')) { //geen partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', false)
             input.value = "" //reset all values 
         }
         document.getElementById('partnersInkomen').classList.add('hide')
-        updateProgressIndicators(document.querySelector('[data_question="2"]'))
-        updateTotalIncome(document.querySelector('[data_question="2"] input:first-of-type'))
     } else if (currentEl === document.getElementById('kinderen')) { //kinderen
         const allChildren = document.querySelectorAll('[data_question="1"]>div:not(#progressive_disclosure) input, [data_question="1"]>div:not(#progressive_disclosure) label')
         for (const child of allChildren) {
@@ -179,8 +176,6 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
         for (const item of uw_uitgaven_koop) {
             item.setAttribute('data_path', false)
         }
-        updateProgressIndicators(document.querySelector('[data_question="5"]'))
-        updateProgressbar(document.querySelector('[data_question="5"]'))
     } else if (currentEl === document.getElementById('koop')) { //koop
         document.getElementById('showHuur').classList.add('hide')
         document.getElementById('showKoop').classList.remove('hide')
@@ -195,10 +190,8 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
         document.querySelector('[data_question="5"] fieldset:first-of-type').classList.add('hide')
         const uw_uitgaven_huur = document.querySelectorAll('[data_question="5"] fieldset:first-of-type input')
         for (const item of uw_uitgaven_huur) {
-            item.setAttribute('data_path', true)
+            item.setAttribute('data_path', false)
         }
-        updateProgressIndicators(document.querySelector('[data_question="5"]'))
-        updateProgressbar(document.querySelector('[data_question="5"]'))
     } else if (currentEl === document.getElementById('car')) { //car (excluding second car)
         if (document.getElementById('car').value != 'geen') { //show car
             document.getElementById('kilometers').setAttribute('data_path', true)
@@ -209,9 +202,7 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
             for (const item of uw_uitgaven_car) {
                 item.setAttribute('data_path', true)
             }
-            updateProgressIndicators(document.querySelector('[data_question="12"]'))
-            updateProgressbar(document.querySelector('[data_question="12"]'))
-            document.querySelector('[for="openbaar_vervoer"]').classList.remove('fixOpenbaarVervoer')
+            document.querySelector('[for="openbaar_vervoer"]').classList.remove('fixWithHide')
         } else { //reset & hide car
             document.getElementById('kilometers').setAttribute('data_path', false)
             document.getElementById('nieuw').setAttribute('data_path', false)
@@ -221,10 +212,16 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
             for (const item of uw_uitgaven_car1) {
                 item.setAttribute('data_path', false)
             }
-            updateProgressIndicators(document.querySelector('[data_question="12"]'))
-            updateProgressbar(document.querySelector('[data_question="12"]'))
-            document.querySelector('[for="openbaar_vervoer"]').classList.add('fixOpenbaarVervoer')
+            document.querySelector('[for="openbaar_vervoer"]').classList.add('fixWithHide')
         }
+    }
+
+    //update all progress & subtotal values
+    updateProgressbar(document.querySelector('section:first-of-type input:first-of-type'))
+    updateProgressbar(document.querySelector('section:nth-of-type(2) input:first-of-type'))
+    for (const question of document.querySelectorAll('[data_question]')) {
+        updateProgressIndicators(question)
+        updateTotalSum(question)
     }
 }
 
@@ -236,6 +233,7 @@ function updateProgressbar(currentForm) {
     while (currentForm.tagName != 'SECTION') {
         currentForm = currentForm.parentElement //bubble to the current form
     }
+    console.log(currentForm)
 
     let inputsWithValue = 0,
         numberOfTotalRadio = 0,
@@ -321,7 +319,7 @@ function updateProgressIndicators(currentEl) {
 
 
 //total income
-function updateTotalIncome(currentEl) {
+function updateTotalSum(currentEl) {
     while (currentEl.classList.contains('question_category') != true) {
         currentEl = currentEl.parentElement //bubble to the question-category
     }
