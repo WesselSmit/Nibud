@@ -65,7 +65,7 @@ document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('input', function () { //call functions on input
         checkIfValueIsAllowed(this) //value validation
         checkAdditionalQuestions(this) //check for additional questions
-        updateProgressbar() //progress-bar
+        updateProgressbar(this) //progress-bar
         updateProgressIndicators(this) //progress indicator
         updateTotalIncome(this) //total income
         fixSelectFocus(this) //fix select focus state
@@ -79,7 +79,6 @@ document.querySelectorAll('input, select').forEach(input =>
 
 
 function checkIfValueIsAllowed(currentEl) {
-    // TODO: moet herschreven worden; werkt momenteel alleen voor uw_situatie (o.a invalidValue class toevoegen)
     let minIsValid = false,
         maxIsValid = false
 
@@ -193,11 +192,14 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
 
 
 
-function updateProgressbar() {
-    // TODO: moet herschreven worden; de selectoren werken niet & uw_uitgaven moet ook een progressbar krijgen
+function updateProgressbar(currentForm) {
+    while (currentForm.tagName != 'SECTION') {
+        currentForm = currentForm.parentElement //bubble to the current form
+    }
+
     let inputsWithValue = 0,
         numberOfTotalRadio = 0,
-        allInputs = d3.selectAll('[data_path="true"]')._groups[0]
+        allInputs = currentForm.querySelectorAll('[data_path="true"]') //get all valid inputs of current form
 
     allInputs.forEach(input => { //checking all inputs for values & radio inputs
         if (input.tagName === 'SELECT' && input.value != '' ||
@@ -210,8 +212,8 @@ function updateProgressbar() {
         }
     })
     let uniqueInputs = allInputs.length - (numberOfTotalRadio / 2),
-        progression = document.querySelector('#uw_situatie #progression').parentElement.getBoundingClientRect().width / uniqueInputs * inputsWithValue
-    document.querySelector('#uw_situatie #progression').style.paddingRight = progression + "px" //calculating progress & updating in DOM/styling
+        progression = currentForm.querySelector('.progression').parentElement.getBoundingClientRect().width / uniqueInputs * inputsWithValue
+    currentForm.querySelector('.progression').style.paddingRight = progression + "px" //calculating progress & updating in DOM/styling
 
     let hasInvalidValue = false
     for (const input of allInputs) {
@@ -225,10 +227,10 @@ function updateProgressbar() {
     } else {
         // TODO: onderstaande regel moet uncommented worden, is alleen gedaan ivm testen
         // document.querySelector('section:nth-of-type(2)').classList.add('hide')
-        document.getElementById('progression').classList.add('invalidProgress')
+        currentForm.querySelector('.progression').classList.add('invalidProgress')
     }
     if (hasInvalidValue === false) {
-        document.getElementById('progression').classList.remove('invalidProgress') //reset styling if all invalid values have been corrected
+        currentForm.querySelector('.progression').classList.remove('invalidProgress') //reset styling if all invalid values have been corrected
     }
 }
 
@@ -237,7 +239,6 @@ function updateProgressbar() {
 
 
 function updateProgressIndicators(currentEl) {
-    // TODO: code werkt in deze functie werkt voor beide forms, alleen bij uw_uitgaven worden de indicators niet rood, dit komt doordat ze niet de 'invalidValue' class krijgen (deze class hoort het te krijgen bij de checkAllowedValues() functie; dit hoeft due niet hier aangepast te worden)
     while (currentEl.classList.contains('question_category') != true) {
         currentEl = currentEl.parentElement //bubble to the question-category
     }

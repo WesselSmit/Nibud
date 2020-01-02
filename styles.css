@@ -47,21 +47,21 @@ body {
     position: absolute;
 }
 
-#uw_situatie .progressbar {
+.progressbar {
     height: 2vh;
     width: 25vw;
     background-color: var(--dark-gray-color);
     overflow: hidden;
 }
 
-#uw_situatie .progressbar #progression {
+.progressbar .progression {
     background-color: var(--main-purple-color);
     padding-right: 0.1px;
     transition: padding-right 0.5s linear;
     transition: background-color 0.3s linear;
 }
 
-#uw_situatie .progressbar #progression.invalidProgress {
+.progressbar .progression.invalidProgress {
     background-color: var(--invalid-color);
 }
 
