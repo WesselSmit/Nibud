@@ -136,6 +136,9 @@ function checkIfValueIsAllowed(currentEl) {
 
 function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for progress
     // TODO: moet uitgebreid worden, werkt nu alleen voor uw_situatie maar moet ook gaan werken voor uw_uitgaven 
+    const uw_uitgaven_koop = document.querySelectorAll('[data_question="5"] fieldset:last-of-type input, #hypotheekPerMaand, #woz'),
+        uw_uitgaven_huur = document.querySelectorAll('[data_question="5"] fieldset:first-of-type input, #huurPerMaand')
+
     if (currentEl === document.getElementById('wel-partner')) { //wel partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', true)
@@ -163,56 +166,40 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
     } else if (currentEl === document.getElementById('huur')) { //huur
         document.getElementById('showHuur').classList.remove('hide')
         document.getElementById('showKoop').classList.add('hide')
-        document.getElementById('huurPerMaand').setAttribute('data_path', true)
-        document.getElementById('hypotheekPerMaand').setAttribute('data_path', false)
-        document.getElementById('woz').setAttribute('data_path', false)
         document.querySelector('[data_question="5"] fieldset:first-of-type').classList.remove('hide')
-        const uw_uitgaven_huur = document.querySelectorAll('[data_question="5"] fieldset:first-of-type input')
         for (const item of uw_uitgaven_huur) {
             item.setAttribute('data_path', true)
         }
         document.querySelector('[data_question="5"] fieldset:last-of-type').classList.add('hide')
-        const uw_uitgaven_koop = document.querySelectorAll('[data_question="5"] fieldset:last-of-type input')
         for (const item of uw_uitgaven_koop) {
             item.setAttribute('data_path', false)
         }
     } else if (currentEl === document.getElementById('koop')) { //koop
         document.getElementById('showHuur').classList.add('hide')
         document.getElementById('showKoop').classList.remove('hide')
-        document.getElementById('huurPerMaand').setAttribute('data_path', false)
-        document.getElementById('hypotheekPerMaand').setAttribute('data_path', true)
-        document.getElementById('woz').setAttribute('data_path', true)
         document.querySelector('[data_question="5"] fieldset:last-of-type').classList.remove('hide')
-        const uw_uitgaven_koop = document.querySelectorAll('[data_question="5"] fieldset:last-of-type input')
         for (const item of uw_uitgaven_koop) {
             item.setAttribute('data_path', true)
         }
         document.querySelector('[data_question="5"] fieldset:first-of-type').classList.add('hide')
-        const uw_uitgaven_huur = document.querySelectorAll('[data_question="5"] fieldset:first-of-type input')
         for (const item of uw_uitgaven_huur) {
             item.setAttribute('data_path', false)
         }
     } else if (currentEl === document.getElementById('car')) { //car (excluding second car)
         if (document.getElementById('car').value != 'geen') { //show car
-            document.getElementById('kilometers').setAttribute('data_path', true)
-            document.getElementById('nieuw').setAttribute('data_path', true)
-            document.getElementById('tweedehands').setAttribute('data_path', true)
             document.querySelector('[data_question="12"] > div:last-of-type').classList.remove('hide')
-            const uw_uitgaven_car = document.querySelectorAll('[data_question="12"] > div:last-of-type input')
+            document.querySelector('[for="openbaar_vervoer"]').classList.remove('fixWithHide')
+            const uw_uitgaven_car = document.querySelectorAll('[data_question="12"] > div:last-of-type input, #kilometers, #nieuw, #tweedehands')
             for (const item of uw_uitgaven_car) {
                 item.setAttribute('data_path', true)
             }
-            document.querySelector('[for="openbaar_vervoer"]').classList.remove('fixWithHide')
         } else { //reset & hide car
-            document.getElementById('kilometers').setAttribute('data_path', false)
-            document.getElementById('nieuw').setAttribute('data_path', false)
-            document.getElementById('tweedehands').setAttribute('data_path', false)
             document.querySelector('[data_question="12"] > div:last-of-type').classList.add('hide')
-            const uw_uitgaven_car1 = document.querySelectorAll('[data_question="12"] > div:last-of-type input')
+            document.querySelector('[for="openbaar_vervoer"]').classList.add('fixWithHide')
+            const uw_uitgaven_car1 = document.querySelectorAll('[data_question="12"] > div:last-of-type input, #kilometers, #nieuw, #tweedehands')
             for (const item of uw_uitgaven_car1) {
                 item.setAttribute('data_path', false)
             }
-            document.querySelector('[for="openbaar_vervoer"]').classList.add('fixWithHide')
         }
     }
 
