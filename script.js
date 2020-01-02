@@ -79,6 +79,7 @@ document.querySelectorAll('input, select').forEach(input =>
 
 
 function checkIfValueIsAllowed(currentEl) {
+    // TODO: moet herschreven worden; werkt momenteel alleen voor uw_situatie (o.a invalidValue class toevoegen)
     let minIsValid = false,
         maxIsValid = false
 
@@ -135,6 +136,7 @@ function checkIfValueIsAllowed(currentEl) {
 
 
 function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for progress
+    // TODO: moet uitgebreid worden, werkt nu alleen voor uw_situatie maar moet ook gaan werken voor uw_uitgaven 
     if (currentEl === document.getElementById('wel-partner')) { //wel partner
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', true)
@@ -142,7 +144,6 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
         document.getElementById('partnersInkomen').classList.remove('hide')
         updateProgressIndicators(document.querySelector('[data_question="2"]'))
     } else if (currentEl === document.getElementById('geen-partner')) { //geen partner
-        // TODO: test of de for loop & updateTotalIncome() wegkunnen nu (deze resetten de value als je van wel naar geen partner gaat, maar sinds de totalIncome functie herschreven is kan deze miss weg??)
         for (const input of document.querySelectorAll('[data_question="2"] > fieldset:nth-of-type(2) input')) {
             input.setAttribute('data_path', false)
             input.value = "" //reset all values 
@@ -193,6 +194,7 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
 
 
 function updateProgressbar() {
+    // TODO: moet herschreven worden; de selectoren werken niet & uw_uitgaven moet ook een progressbar krijgen
     let inputsWithValue = 0,
         numberOfTotalRadio = 0,
         allInputs = d3.selectAll('[data_path="true"]')._groups[0]
@@ -235,11 +237,11 @@ function updateProgressbar() {
 
 
 function updateProgressIndicators(currentEl) {
+    // TODO: code werkt in deze functie werkt voor beide forms, alleen bij uw_uitgaven worden de indicators niet rood, dit komt doordat ze niet de 'invalidValue' class krijgen (deze class hoort het te krijgen bij de checkAllowedValues() functie; dit hoeft due niet hier aangepast te worden)
     while (currentEl.classList.contains('question_category') != true) {
         currentEl = currentEl.parentElement //bubble to the question-category
     }
 
-    // TODO: functie moet herschreven worden en werken voor beide forms, miss een kewstie van de selectors in de functie herschrijven?
     let allCurrentInputs = currentEl.querySelectorAll('[data_path="true"]'), //all currently [data-path="true"] inputs
         answeredQuestions = 0,
         numberOfRadios = 0,
@@ -286,7 +288,7 @@ function updateTotalIncome(currentEl) {
     let totalSum = 0,
         questionsAnswered = 0
 
-    if (currentEl.contains(document.querySelector('.sub_total'))) { //check if current category has a sub-total display
+    if (currentEl.contains(currentEl.querySelector('.sub_total'))) { //check if current category has a sub-total display
         const totalDisplay = currentEl.querySelector('.sub_total')
 
         for (const currentInput of allCurrentInputs) { //fix the total income
