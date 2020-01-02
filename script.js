@@ -169,12 +169,36 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
         document.getElementById('huurPerMaand').setAttribute('data_path', true)
         document.getElementById('hypotheekPerMaand').setAttribute('data_path', false)
         document.getElementById('woz').setAttribute('data_path', false)
+        document.querySelector('[data_question="5"] fieldset:first-of-type').classList.remove('hide')
+        const uw_uitgaven_huur = document.querySelectorAll('[data_question="5"] fieldset:first-of-type input')
+        for (const item of uw_uitgaven_huur) {
+            item.setAttribute('data_path', true)
+        }
+        document.querySelector('[data_question="5"] fieldset:last-of-type').classList.add('hide')
+        const uw_uitgaven_koop = document.querySelectorAll('[data_question="5"] fieldset:last-of-type input')
+        for (const item of uw_uitgaven_koop) {
+            item.setAttribute('data_path', false)
+        }
+        updateProgressIndicators(document.querySelector('[data_question="5"]'))
+        updateProgressbar(document.querySelector('[data_question="5"]'))
     } else if (currentEl === document.getElementById('koop')) { //koop
         document.getElementById('showHuur').classList.add('hide')
         document.getElementById('showKoop').classList.remove('hide')
         document.getElementById('huurPerMaand').setAttribute('data_path', false)
         document.getElementById('hypotheekPerMaand').setAttribute('data_path', true)
         document.getElementById('woz').setAttribute('data_path', true)
+        document.querySelector('[data_question="5"] fieldset:last-of-type').classList.remove('hide')
+        const uw_uitgaven_koop = document.querySelectorAll('[data_question="5"] fieldset:last-of-type input')
+        for (const item of uw_uitgaven_koop) {
+            item.setAttribute('data_path', true)
+        }
+        document.querySelector('[data_question="5"] fieldset:first-of-type').classList.add('hide')
+        const uw_uitgaven_huur = document.querySelectorAll('[data_question="5"] fieldset:first-of-type input')
+        for (const item of uw_uitgaven_huur) {
+            item.setAttribute('data_path', true)
+        }
+        updateProgressIndicators(document.querySelector('[data_question="5"]'))
+        updateProgressbar(document.querySelector('[data_question="5"]'))
     } else if (currentEl === document.getElementById('car')) { //car
         if (document.getElementById('car').value != 'geen') {
             document.getElementById('kilometers').setAttribute('data_path', true)
