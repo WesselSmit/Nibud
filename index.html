@@ -318,9 +318,9 @@
 
     <!-- TODO: de section hieronder moet de class "hide" hebben (deze was uitgezet voor test pogingen) -->
     <section class="TODO:zethier'hide'neer">
-        <!-- TODO: voeg data_path="true" toe aan alle vragen die standaard geshowed moeten worden -->
+        <!-- TODO: progress-functies werken nu niet meer goed omdat ze hardcoded waren voor uw_situatie, moeten herschreven worden -->
         <!-- TODO: voeg een progressbar toe en herschrijf de progressbar functie zodat deze dynamisch is voor beide form's/progressbars -->
-        <!-- TODO: check of de totalIncome functie werkt voor alle verschillende caegoreis werkt als de data_path="true" zijn toegevoegd -->
+        <!-- TODO: check of de totalIncome functie werkt voor alle verschillende caegories werkt als de data_path="true" zijn toegevoegd -->
         <!-- TODO: herscrijf de prgressie functies zo dat voor beide forms werken (kijk in welk form de input is en pas van dit form de progressbar aan [vergelijkbaar trucje als met currentEl], gebruik data_path="true" in het form) -->
         <!-- TODO: afhankelijk van het antwoord bij huur/koop moeten de huur/koop uitgaven tevoorschijn komen -->
         <!-- TODO: als de gebruiker kinderen heeft moeten de volgende uitgaven bij uw_uitgaven tevoorschijn komen (afhankelijk van de leeftijd van de kinderen): 
@@ -341,40 +341,42 @@
                     <span></span>
                 </div>
                 <fieldset>
+                    <!-- TODO: deze fieldset dynamisch maken -->
                     <legend>Huur</legend>
 
                     <label data-currency="true" for="huurVasteLasten">Huur</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="huur"
-                        id="huurVasteLasten" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="huur" id="huurVasteLasten" />
 
                     <label data-currency="true" for="servicekosten">Servicekosten</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="servicekosten" id="servicekosten" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="servicekosten" id="servicekosten" />
                     <p class="sub_total hide">Subtotaal Huur:</p>
                 </fieldset>
 
                 <fieldset>
+                    <!-- TODO: deze fieldset dynamisch maken -->
                     <legend>Hypotheek</legend>
 
                     <label data-currency="true" for="rente_a">Rente</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="rente"
-                        id="rente_a" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="rente" id="rente_a" />
 
                     <label data-currency="true" for="aflossing_a">Aflossing</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="aflossing" id="aflossing_a" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="aflossing" id="aflossing_a" />
 
                     <label data-currency="true" for="spaarpremies">Spaarpremies</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="spaarpremies" id="spaarpremies" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="spaarpremies" id="spaarpremies" />
 
                     <label data-currency="true" for="overlijdensrisicoverzekering">Overlijdensrisicoverzekering</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="overlijdensrisicoverzekering" id="overlijdensrisicoverzekering" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="overlijdensrisicoverzekering" id="overlijdensrisicoverzekering" />
 
                     <label data-currency="true" for="erfpacht">Erfpacht</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="erfpacht" id="erfpacht" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="erfpacht" id="erfpacht" />
                     <p class="sub_total hide">Subtotaal Hypotheek:</p>
                 </fieldset>
             </fieldset>
@@ -388,16 +390,16 @@
                 </div>
 
                 <label data-currency="true" for="gas">Gas</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="gas"
-                    id="gas" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="gas" id="gas" />
 
                 <label data-currency="true" for="elektriciteit">Elektriciteit</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="elektriciteit" id="elektriciteit" />
 
                 <label data-currency="true" for="water">Water</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="water"
-                    id="water" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="water" id="water" />
                 <p class="sub_total hide">Subtotaal Energie:</p>
             </fieldset>
 
@@ -410,31 +412,31 @@
                 </div>
 
                 <label data-currency="true" for="onroerendezaakbelasting">Onroerendezaakbelasting</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="onroerendezaakbelasting" id="onroerendezaakbelasting" />
 
                 <label data-currency="true" for="reinigingsheffing">Reinigingsheffing</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="reinigingsheffing" id="reinigingsheffing" />
 
                 <label data-currency="true" for="rioolheffing">Rioolheffing</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="rioolheffing" id="rioolheffing" />
 
                 <label data-currency="true" for="ingezetenenheffing">Ingezetenenheffing</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="ingezetenenheffing" id="ingezetenenheffing" />
 
                 <label data-currency="true" for="zuiveringsheffing">Zuiveringsheffing</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="zuiveringsheffing" id="zuiveringsheffing" />
 
                 <label data-currency="true" for="heffing_gebouwd">Heffing gebouwd</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="heffing_gebouwd" id="heffing_gebouwd" />
 
                 <label data-currency="true" for="overige_lokale_lasten">Overige lokale lasten</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_lokale_lasten" id="overige_lokale_lasten" />
                 <p class="sub_total hide">Subtotaal Lokale lasten:</p>
             </fieldset>
@@ -448,27 +450,27 @@
                 </div>
 
                 <label data-currency="true" for="combinatie_pakket">Alles-in-één/combinatie pakket</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="combinatie_pakket" id="combinatie_pakket" />
 
                 <label data-currency="true" for="vaste_telefoon">Vaste telefoon</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="vaste_telefoon" id="vaste_telefoon" />
 
                 <label data-currency="true" for="mobiele_telefoon">Mobiele telefoon</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="mobiele_telefoon" id="mobiele_telefoon" />
 
                 <label data-currency="true" for="televisie">Televisie</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="televisie"
-                    id="televisie" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="televisie" id="televisie" />
 
                 <label data-currency="true" for="internet">Internet</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="internet"
-                    id="internet" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="internet" id="internet" />
 
                 <label data-currency="true" for="overige_telefoon">Overige</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_telefoon" id="overige_telefoon" />
                 <p class="sub_total hide">Subtotaal Telefoon/televisie/internet:</p>
             </fieldset>
@@ -482,40 +484,40 @@
                 </div>
 
                 <label data-currency="true" for="zorgverzekering_basis">Zorgverzekering: basis</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="zorgverzekering_basis" id="zorgverzekering_basis" />
 
                 <label data-currency="true" for="zorgverzekering_aanvullend">Zorgverzekering: aanvullend</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="zorgverzekering_aanvullend" id="zorgverzekering_aanvullend" />
 
                 <label data-currency="true" for="aansprakelijkheidsverzekering">Aansprakelijkheidsverzekering</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="aansprakelijkheidsverzekering" id="aansprakelijkheidsverzekering" />
 
                 <label data-currency="true" for="inboedelverzekering">Inboedelverzekering</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="inboedelverzekering" id="inboedelverzekering" />
 
                 <label data-currency="true" for="opstalverzekering">Opstalverzekering</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="opstalverzekering" id="opstalverzekering" />
 
                 <label data-currency="true" for="uitvaartverzekering">Uitvaartverzekering</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="uitvaartverzekering" id="uitvaartverzekering" />
 
                 <label data-currency="true" for="pensioenverzekering">Pensioenverzekering/pensioensparen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="pensioenverzekering" id="pensioenverzekering" />
 
                 <label data-currency="true" for="verzekering_inkomensaanvulling">Verzekering
                     inkomensaanvulling</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="verzekering_inkomensaanvulling" id="verzekering_inkomensaanvulling" />
 
                 <label data-currency="true" for="overige_verzekeringen">Overige verzekeringen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_verzekeringen" id="overige_verzekeringen" />
                 <p class="sub_total hide">Subtotaal Verzekeringen:</p>
             </fieldset>
@@ -529,16 +531,18 @@
                 </div>
 
                 <label data-currency="true" for="schookosten_kinderen">Schoolkosten kinderen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                    name="schookosten_kinderen" id="schookosten_kinderen" />
+                <!-- TODO: dynamisch maken -->
+                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                    step="100" name="schookosten_kinderen" id="schookosten_kinderen" />
 
                 <label data-currency="true" for="studiekosten_volwassenen">Studiekosten volwassenen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="studiekosten_volwassenen" id="studiekosten_volwassenen" />
 
                 <label data-currency="true" for="kinderopvang">Kinderopvang</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                    name="kinderopvang" id="kinderopvang" />
+                <!-- TODO: dynamisch maken -->
+                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                    step="100" name="kinderopvang" id="kinderopvang" />
                 <p class="sub_total hide">Subtotaal Onderwijs:</p>
             </fieldset>
 
@@ -552,24 +556,24 @@
 
                 <label data-currency="true" for="contributies_sport_en_cultuur">Contributies sport en
                     cultuur</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="contributies_sport_en_cultuur" id="contributies_sport_en_cultuur" />
 
                 <label data-currency="true" for="abonnementen">Abonnementen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="abonnementen" id="abonnementen" />
 
                 <label data-currency="true" for="bankkosten_en_financieel_advies">Bankkosten en financieel
                     advies</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="bankkosten_en_financieel_advies" id="bankkosten_en_financieel_advies" />
 
                 <label data-currency="true" for="loterijen">Loterijen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="loterijen"
-                    id="loterijen" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="loterijen" id="loterijen" />
 
                 <label data-currency="true" for="overige_contributies">Overige contributies</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_contributies" id="overige_contributies" />
                 <p class="sub_total hide">Subtotaal Contributies en abonnementen:</p>
             </fieldset>
@@ -584,42 +588,44 @@
 
                 <div>
                     <!-- TODO: de inhoud van deze fieldset moet verstopt zijn als je geen auto hebt -->
+                    <!-- TODO: deze gehele fieldset dynamisch maken -->
                     <label data-currency="true" for="afschrijving">Afschrijving</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="afschrijving" id="afschrijving" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="afschrijving" id="afschrijving" />
 
                     <label data-currency="true" for="motorrijtuigenbelasting">Motorrijtuigenbelasting</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="motorrijtuigenbelasting" id="motorrijtuigenbelasting" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="motorrijtuigenbelasting" id="motorrijtuigenbelasting" />
 
                     <label data-currency="true" for="onderhoud">Onderhoud</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="onderhoud" id="onderhoud" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="onderhoud" id="onderhoud" />
 
                     <label data-currency="true" for="verzekering">Verzekering</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="verzekering" id="verzekering" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="verzekering" id="verzekering" />
 
                     <label data-currency="true" for="brandstof">Brandstof</label>
-                    <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                        name="brandstof" id="brandstof" />
+                    <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                        step="100" name="brandstof" id="brandstof" />
                 </div>
 
                 <label data-currency="true" for="openbaar_vervoer">Openbaar vervoer</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="openbaar_vervoer" id="openbaar_vervoer" />
 
                 <label data-currency="true" for="fiets">Fiets</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="fiets"
-                    id="fiets" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="fiets" id="fiets" />
 
                 <label data-currency="true" for="overige_vervoerskosten">Overige vervoerskosten</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="overige_vervoerskosten" id="overige_vervoerskosten" />
                 <p class="sub_total hide">Subtotaal Vervoer:</p>
             </fieldset>
 
             <fieldset class="question_category hide" data_question="13">
+                <!-- TODO: als je geen kinderen en geen partner hebt moet deze hele category verstopt worden (mogelijk ook data_question="13" weghalen omdat het anders in JS ergens kapot gaat) -->
                 <div class="progressive_disclosure">
                     <legend>Levensonderhoud anderen</legend>
                     <img src="./media/dropdown.svg" alt="dropwown">
@@ -628,17 +634,20 @@
                 </div>
 
                 <label data-currency="true" for="partneralimentatie">Partneralimentatie</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                    name="partneralimentatie" id="partneralimentatie" />
+                <!-- TODO: dynamisch maken -->
+                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                    step="100" name="partneralimentatie" id="partneralimentatie" />
 
                 <label data-currency="true" for="kinderalimentatie">Kinderalimentatie</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                    name="kinderalimentatie" id="kinderalimentatie" />
+                <!-- TODO: dynamisch maken -->
+                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                    step="100" name="kinderalimentatie" id="kinderalimentatie" />
 
                 <label data-currency="true" for="bijdrage_studerende_kinderen">Bijdrage studerende
                     kinderen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
-                    name="bijdrage_studerende_kinderen" id="bijdrage_studerende_kinderen" />
+                <!-- TODO: dynamisch maken -->
+                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
+                    step="100" name="bijdrage_studerende_kinderen" id="bijdrage_studerende_kinderen" />
                 <p class="sub_total hide">Subtotaal Levensonderhoud anderen:</p>
             </fieldset>
 
@@ -651,12 +660,13 @@
                 </div>
 
                 <label data-currency="true" for="rente_b">Rente</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="rente"
-                    id="rente_b" />
+                <!-- TODO: check of rente afhnagt van huur/koop -->
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="rente" id="rente_b" />
 
                 <label data-currency="true" for="aflossing_b">Aflossing</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="aflossing"
-                    id="aflossing_b" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="aflossing" id="aflossing_b" />
                 <p class="sub_total hide">Subtotaal Afbetalingen:</p>
             </fieldset>
 
@@ -669,33 +679,33 @@
                 </div>
 
                 <label data-currency="true" for="kleding_en_schoenen">Kleding en schoenen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="kleding_en_schoenen" id="kleding_en_schoenen" />
 
                 <label data-currency="true" for="inventaris">Inventaris</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="inventaris" id="inventaris" />
 
                 <label data-currency="true" for="onderhoud_huis_en_tuin">Onderhoud huis en tuin</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="onderhoud_huis_en_tuin" id="onderhoud_huis_en_tuin" />
 
                 <label data-currency="true" for="zelfzorgmiddelen">Zelfzorgmiddelen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="zelfzorgmiddelen" id="zelfzorgmiddelen" />
 
                 <label data-currency="true" for="eigen_risico_zorgverzekering">Eigen risico
                     zorgverzekering</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="eigen_risico_zorgverzekering" id="eigen_risico_zorgverzekering" />
 
                 <label data-currency="true" for="eigen_bijdragen_en_betalingen_zorg">Eigen bijdragen en
                     betalingen zorg</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="eigen_bijdragen_en_betalingen_zorg" id="eigen_bijdragen_en_betalingen_zorg" />
 
                 <label data-currency="true" for="vrijetijdsuitgaven">Vrijetijdsuitgaven</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="vrijetijdsuitgaven" id="vrijetijdsuitgaven" />
                 <p class="sub_total hide">Subtotaal Reserveringsuitgaven:</p>
             </fieldset>
@@ -709,33 +719,33 @@
                 </div>
 
                 <label data-currency="true" for="voeding">Voeding</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="voeding"
-                    id="voeding" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="voeding" id="voeding" />
 
                 <label data-currency="true" for="was_en_schoonmaakartikelen">Was en schoonmaakartikelen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="was_en_schoonmaakartikelen" id="was_en_schoonmaakartikelen" />
 
                 <label data-currency="true" for="persoonlijke_verzorging">Persoonlijke verzorging</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="persoonlijke_verzorging" id="persoonlijke_verzorging" />
 
                 <label data-currency="true" for="huishoudelijke_dienstverlening">Huishoudelijke
                     dienstverlening</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="huishoudelijke_dienstverlening" id="huishoudelijke_dienstverlening" />
 
                 <label data-currency="true" for="huisdieren">Huisdieren</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="huisdieren" id="huisdieren" />
 
                 <label data-currency="true" for="roken">Roken</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="roken"
-                    id="roken" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="roken" id="roken" />
 
                 <label data-currency="true" for="diversen">Diversen</label>
-                <input type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100" name="diversen"
-                    id="diversen" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="diversen" id="diversen" />
 
                 <p class="sub_total hide">Subtotaal Huishoudelijke uitgaven:</p>
             </fieldset>
