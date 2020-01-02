@@ -199,15 +199,29 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
         }
         updateProgressIndicators(document.querySelector('[data_question="5"]'))
         updateProgressbar(document.querySelector('[data_question="5"]'))
-    } else if (currentEl === document.getElementById('car')) { //car
-        if (document.getElementById('car').value != 'geen') {
+    } else if (currentEl === document.getElementById('car')) { //car (excluding second car)
+        if (document.getElementById('car').value != 'geen') { //show car
             document.getElementById('kilometers').setAttribute('data_path', true)
             document.getElementById('nieuw').setAttribute('data_path', true)
             document.getElementById('tweedehands').setAttribute('data_path', true)
-        } else { //reset car
+            document.querySelector('[data_question="12"] > div:last-of-type').classList.remove('hide')
+            const uw_uitgaven_car = document.querySelectorAll('[data_question="12"] > div:last-of-type input')
+            for (const item of uw_uitgaven_car) {
+                item.setAttribute('data_path', true)
+            }
+            updateProgressIndicators(document.querySelector('[data_question="12"]'))
+            updateProgressbar(document.querySelector('[data_question="12"]'))
+        } else { //reset & hide car
             document.getElementById('kilometers').setAttribute('data_path', false)
             document.getElementById('nieuw').setAttribute('data_path', false)
             document.getElementById('tweedehands').setAttribute('data_path', false)
+            document.querySelector('[data_question="12"] > div:last-of-type').classList.add('hide')
+            const uw_uitgaven_car1 = document.querySelectorAll('[data_question="12"] > div:last-of-type input')
+            for (const item of uw_uitgaven_car1) {
+                item.setAttribute('data_path', false)
+            }
+            updateProgressIndicators(document.querySelector('[data_question="12"]'))
+            updateProgressbar(document.querySelector('[data_question="12"]'))
         }
     }
 }
