@@ -9,7 +9,8 @@ const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
 
 let tooltipData, //receives toolltip-data (async)
     pressedKey, //last fired event.key
-    secondCar = false
+    secondCar = false,
+    a
 
 
 
@@ -63,6 +64,7 @@ function addTooltips() { //fixes tooltip styling, content & tooltip location
 
 document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('input', function () { //call functions on input
+        a = 0
         checkIfValueIsAllowed(this) //value validation
         checkAdditionalQuestions(this) //check for additional questions
         updateProgressbar(this) //progress-bar
@@ -220,7 +222,6 @@ function updateProgressbar(currentForm) {
     while (currentForm.tagName != 'SECTION') {
         currentForm = currentForm.parentElement //bubble to the current form
     }
-    console.log(currentForm)
 
     let inputsWithValue = 0,
         numberOfTotalRadio = 0,
@@ -247,8 +248,18 @@ function updateProgressbar(currentForm) {
         }
     }
     if (inputsWithValue === uniqueInputs && hasInvalidValue === false) { //hide & fixing styling
-        document.querySelector('section:nth-of-type(2)').classList.remove('hide')
-        createYourHousehold() //when all uw_situatie questions are answered -> create a personal household object
+        let currentEl = event.target
+
+        if (currentForm === document.querySelector('section:first-of-type') && currentForm.contains(currentEl) && a === 0) {
+            document.querySelector('section:nth-of-type(2)').classList.remove('hide')
+            createYourHousehold() //when all uw_situatie questions are answered -> create a personal household object
+            console.log('alle uw_situatie vragen zijn goed beantwoord')
+            a++
+        } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl) && a === 0) {
+            // TODO: laat hier de 'saldo' viewport tevoorschijn komen
+            console.log('alle uw_uitgaven vragen zijn goed beantwoord')
+            a++
+        }
     } else {
         // TODO: onderstaande regel moet uncommented worden, is alleen gedaan ivm testen
         // document.querySelector('section:nth-of-type(2)').classList.add('hide')
