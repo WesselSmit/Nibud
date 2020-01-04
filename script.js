@@ -249,20 +249,23 @@ function updateProgressbar(currentForm) {
     if (inputsWithValue === uniqueInputs && hasInvalidValue === false) { //hide & fixing styling
         let currentEl = event.target
 
-        if (currentForm === document.querySelector('section:first-of-type') && currentForm.contains(currentEl) && a === 0) {
+        if (currentForm === document.querySelector('section:first-of-type') && currentForm.contains(currentEl)) {
             document.querySelector('section:nth-of-type(2)').classList.remove('hide')
-            createYourHousehold() //when all uw_situatie questions are answered -> create a personal household object
-            console.log('alle uw_situatie vragen zijn goed beantwoord')
-            a++
-        } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl) && a === 0) {
+            if (a === 0) {
+                createYourHousehold() //when all uw_situatie questions are answered -> create a personal household object
+                console.log('alle uw_situatie vragen zijn goed beantwoord')
+                a++
+            }
+        } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
             // TODO: laat hier de 'saldo' viewport tevoorschijn komen
             console.log('alle uw_uitgaven vragen zijn goed beantwoord')
-            a++
         }
     } else {
-        // TODO: onderstaande regel moet uncommented worden, is alleen gedaan ivm testen
-        // document.querySelector('section:nth-of-type(2)').classList.add('hide')
         currentForm.querySelector('.progression').classList.add('invalidProgress')
+    }
+    if (currentForm === document.querySelector('section:first-of-type') && hasInvalidValue === true ||
+        currentForm === document.querySelector('section:first-of-type') && inputsWithValue != uniqueInputs) {
+        document.querySelector('section:nth-of-type(2)').classList.add('hide') //comment deze regel om uw_uitgaven makkelijker te kunnen testen (moet er ook een in HTML commenten)
     }
     if (hasInvalidValue === false) {
         currentForm.querySelector('.progression').classList.remove('invalidProgress') //reset styling if all invalid values have been corrected
