@@ -520,19 +520,17 @@
                     <span></span>
                 </div>
 
-                <label data-currency="true" for="schookosten_kinderen">Schoolkosten kinderen</label>
-                <!-- TODO: dynamisch maken -->
-                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                    step="100" name="schookosten_kinderen" id="schookosten_kinderen" />
+                <label data-currency="true" for="schoolkosten_kinderen">Schoolkosten kinderen</label>
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="schoolkosten_kinderen" id="schoolkosten_kinderen" />
 
                 <label data-currency="true" for="studiekosten_volwassenen">Studiekosten volwassenen</label>
                 <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
                     name="studiekosten_volwassenen" id="studiekosten_volwassenen" />
 
                 <label data-currency="true" for="kinderopvang">Kinderopvang</label>
-                <!-- TODO: dynamisch maken -->
-                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                    step="100" name="kinderopvang" id="kinderopvang" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="kinderopvang" id="kinderopvang" />
                 <p class="sub_total hide">Subtotaal Onderwijs:</p>
             </fieldset>
 
@@ -613,7 +611,6 @@
             </fieldset>
 
             <fieldset class="question_category hide" data_question="13">
-                <!-- TODO: als je geen kinderen en geen partner hebt moet deze hele category verstopt worden (mogelijk ook data_question="13" weghalen omdat het anders in JS ergens kapot gaat) -->
                 <div class="progressive_disclosure">
                     <legend>Levensonderhoud anderen</legend>
                     <img src="./media/dropdown.svg" alt="dropwown">
@@ -626,15 +623,13 @@
                     name="partneralimentatie" id="partneralimentatie" />
 
                 <label data-currency="true" for="kinderalimentatie">Kinderalimentatie</label>
-                <!-- TODO: dynamisch maken -->
-                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                    step="100" name="kinderalimentatie" id="kinderalimentatie" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="kinderalimentatie" id="kinderalimentatie" />
 
                 <label data-currency="true" for="bijdrage_studerende_kinderen">Bijdrage studerende
                     kinderen</label>
-                <!-- TODO: dynamisch maken -->
-                <input data_path="false" type="number" autocomplete="off" placeholder="0" min="0" max="100000"
-                    step="100" name="bijdrage_studerende_kinderen" id="bijdrage_studerende_kinderen" />
+                <input data_path="true" type="number" autocomplete="off" placeholder="0" min="0" max="100000" step="100"
+                    name="bijdrage_studerende_kinderen" id="bijdrage_studerende_kinderen" />
                 <p class="sub_total hide">Subtotaal Levensonderhoud anderen:</p>
             </fieldset>
 

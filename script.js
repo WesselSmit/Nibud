@@ -10,14 +10,7 @@ const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
 let tooltipData, //receives toolltip-data (async)
     pressedKey, //last fired event.key
     secondCar = false,
-    a,
-    childrenObj = {
-        numberOfChildren: 0,
-        ageZeroToThree: 0,
-        ageFourToTwelve: 0,
-        ageThirteenToSeventeen: 0,
-        ageEighteenPlus: 0
-    }
+    a
 
 
 
@@ -144,7 +137,6 @@ function checkIfValueIsAllowed(currentEl) {
 
 
 function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for progress
-    // TODO: moet uitgebreid worden, werkt nu alleen voor uw_situatie maar moet ook gaan werken voor uw_uitgaven 
     const uw_uitgaven_koop = document.querySelectorAll('[data_question="5"] fieldset:last-of-type input, #hypotheekPerMaand, #woz'),
         uw_uitgaven_huur = document.querySelectorAll('[data_question="5"] fieldset:first-of-type input, #huurPerMaand')
 
@@ -172,30 +164,6 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
             document.querySelector('#kind' + i).setAttribute('data_path', true)
             document.querySelector('[for="kind' + i + '"]').classList.remove('hide')
         }
-    } else if (currentEl.classList.contains('child')) { //get individual 'kinderen' data
-        childrenObj = { //reset all children
-            numberOfChildren: 0,
-            ageZeroToThree: 0,
-            ageFourToTwelve: 0,
-            ageThirteenToSeventeen: 0,
-            ageEighteenPlus: 0
-        }
-        childrenObj.numberOfChildren = document.querySelectorAll('[data_question="1"] > div:last-of-type > input[data_path="true"]').length
-        for (let i = 1; i < document.querySelectorAll('[data_path="true"].child').length + 1; i++) { //get children data
-            let currentChild = document.querySelector('#kind' + i)
-            if (currentChild.value != "") {
-                if (currentChild.value > -1 && currentChild.value < 4) {
-                    childrenObj.ageZeroToThree++
-                } else if (currentChild.value > 3 && currentChild.value < 13) {
-                    childrenObj.ageFourToTwelve++
-                } else if (currentChild.value > 12 && currentChild.value < 18) {
-                    childrenObj.ageThirteenToSeventeen++
-                } else if (currentChild.value > 17 && currentChild.value < 31) {
-                    childrenObj.ageEighteenPlus++
-                }
-            }
-        }
-        console.log(childrenObj)
     } else if (currentEl === document.getElementById('huur')) { //huur
         document.getElementById('showHuur').classList.remove('hide')
         document.getElementById('showKoop').classList.add('hide')
