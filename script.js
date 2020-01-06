@@ -252,7 +252,7 @@ function updateProgressbar(currentForm) {
         if (currentForm === document.querySelector('section:first-of-type') && currentForm.contains(currentEl)) {
             document.querySelector('section:nth-of-type(2)').classList.remove('hide')
             if (a === 0) {
-                determainYourSituation() //when all uw_situatie questions are answered -> create a personal household object
+                determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
                 // console.log('alle uw_situatie vragen zijn goed beantwoord')
                 a++
             }
@@ -438,7 +438,7 @@ let personalHousehold = {
     uitgavenPosten: null
 }
 
-function determainYourSituation() {
+function determineYourSituation() {
     let yourSituation = {}
 
     // ? kunnen alle onderstaande if-statements 'if else' statements worden? of switch-cases?
