@@ -253,14 +253,14 @@ function updateProgressbar(currentForm) {
             document.querySelector('section:nth-of-type(2)').classList.remove('hide')
             if (a === 0) {
                 determainYourSituation() //when all uw_situatie questions are answered -> create a personal household object
-                console.log('alle uw_situatie vragen zijn goed beantwoord')
+                // console.log('alle uw_situatie vragen zijn goed beantwoord')
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
             // TODO: laat hier de 'saldo' viewport tevoorschijn komen
             // ! Console.logt alles twee keer
             sumExpenses()
-            console.log('alle uw_uitgaven vragen zijn goed beantwoord')
+            // console.log('alle uw_uitgaven vragen zijn goed beantwoord')
         }
     } else {
         currentForm.querySelector('.progression').classList.add('invalidProgress')
@@ -497,13 +497,87 @@ function determainYourSituation() {
 }
 
 function sumExpenses() {
-    let yourExpenses = {}
+    let yourExpenses = {},
+        expenseArray
 
-    document.querySelectorAll('#uw_uitgaven input').forEach(input => {
-        if (input.value != "") {
-            yourExpenses[input.id] = parseInt(input.value)
-        }
+    document.querySelectorAll('#uw_uitgaven [data_path="true"]').forEach(input => {
+        yourExpenses[input.id] = parseInt(input.value)
+
+        expenseArray = [
+            {
+                post: "huur/hypotheek",
+                bedrag: "bedrag"
+            },
+            {
+                post: "gas",
+                bedrag: "bedrag"
+            },
+            {
+                post: "elektriciteit",
+                bedrag: "bedrag"
+            },
+            {
+                post: "water",
+                bedrag: "bedrag"
+            },
+            {
+                post: "lokale lasten",
+                bedrag: "bedrag"
+            },
+            {
+                post: "telefoon, televisie, internet",
+                bedrag: "bedrag"
+            },
+            {
+                post: "verzekeringen",
+                bedrag: "bedrag"
+            },
+            {
+                post: "onderwijs",
+                bedrag: "bedrag"
+            },
+            {
+                post: "kinderopvang",
+                bedrag: "bedrag"
+            },
+            {
+                post: "contributies en abonnementen",
+                bedrag: "bedrag"
+            },
+            {
+                post: "vervoer",
+                bedrag: "bedrag"
+            },
+            {
+                post: "kleding en schoenen",
+                bedrag: "bedrag"
+            },
+            {
+                post: "inventaris",
+                bedrag: "bedrag"
+            },
+            {
+                post: "onderhoud huis en tuin",
+                bedrag: "bedrag"
+            },
+            {
+                post: "niet-vergoede ziektekosten",
+                bedrag: "bedrag"
+            },
+            {
+                post: "vrijetijdsuitgaven",
+                bedrag: "bedrag"
+            },
+            {
+                post: "voeding",
+                bedrag: "bedrag"
+            },
+            {
+                post: "overige huishoudelijke uitgaven",
+                bedrag: "bedrag"
+            }
+        ]
     })
-
     console.log(yourExpenses)
+    console.log(expenseArray)
 }
