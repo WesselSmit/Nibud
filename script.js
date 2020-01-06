@@ -252,12 +252,14 @@ function updateProgressbar(currentForm) {
         if (currentForm === document.querySelector('section:first-of-type') && currentForm.contains(currentEl)) {
             document.querySelector('section:nth-of-type(2)').classList.remove('hide')
             if (a === 0) {
-                createYourHousehold() //when all uw_situatie questions are answered -> create a personal household object
+                determainYourSituation() //when all uw_situatie questions are answered -> create a personal household object
                 console.log('alle uw_situatie vragen zijn goed beantwoord')
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
             // TODO: laat hier de 'saldo' viewport tevoorschijn komen
+            // ! Console.logt alles twee keer
+            sumExpenses()
             console.log('alle uw_uitgaven vragen zijn goed beantwoord')
         }
     } else {
@@ -428,21 +430,16 @@ document.getElementById('has_a_second_car').addEventListener('input', function (
 
 
 
+let personalHousehold = {
+    huishoudType: null,
+    woonsituatie: null,
+    inkomen: null,
+    totaleUitgaven: null,
+    uitgavenPosten: null
+}
 
-
-//create household from uw_situatie input
-function createYourHousehold() {
-    let personalHousehold = {
-            huishoudType: null, //Huishoudtype bepalen
-            //TODO: vul de ontbrekende values van dit obj aan
-            //TODO: fix woonsituatie
-            // ! Woonsituatie: gemiddelde of 1,5 keer gemiddel hypotheek? Wat is dat?
-            woonsituatie: null, //woonsituatie bepalen
-            inkomen: null, //alle inkomsten opgeteld
-            totaleUitgaven: null, //alle waarden uit de array opgeteld
-            uitgavenPosten: null //array van alle uitgaven
-        },
-        yourSituation = {}
+function determainYourSituation() {
+    let yourSituation = {}
 
     // ? kunnen alle onderstaande if-statements 'if else' statements worden? of switch-cases?
     document.querySelectorAll('#uw_situatie form input[type="number"], #uw_situatie form input:checked, #uw_situatie form select').forEach(input => {
@@ -497,4 +494,16 @@ function createYourHousehold() {
     }
     personalHousehold.inkomen = income
     console.log(personalHousehold)
+}
+
+function sumExpenses() {
+    let yourExpenses = {}
+
+    document.querySelectorAll('#uw_uitgaven input').forEach(input => {
+        if (input.value != "") {
+            yourExpenses[input.id] = parseInt(input.value)
+        }
+    })
+
+    console.log(yourExpenses)
 }
