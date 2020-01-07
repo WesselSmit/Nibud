@@ -267,7 +267,7 @@ function updateProgressbar(currentForm) {
     }
     if (currentForm === document.querySelector('section:first-of-type') && hasInvalidValue === true ||
         currentForm === document.querySelector('section:first-of-type') && inputsWithValue != uniqueInputs) {
-        document.querySelector('section:nth-of-type(2)').classList.add('hide') //comment deze regel om uw_uitgaven makkelijker te kunnen testen (moet er ook een in HTML commenten)
+        // document.querySelector('section:nth-of-type(2)').classList.add('hide') //comment deze regel om uw_uitgaven makkelijker te kunnen testen (moet er ook een in HTML commenten)
     }
     if (hasInvalidValue === false) {
         currentForm.querySelector('.progression').classList.remove('invalidProgress') //reset styling if all invalid values have been corrected
@@ -498,7 +498,13 @@ function determineYourSituation() {
 
 function sumExpenses() {
     let yourExpenses = {},
-        expenseArray
+        expenseArray,
+        houseCost = 0
+
+    // Calculate the house cost depending on huur / koop
+    document.querySelectorAll('[data_question="5"] [data_path="true"]').forEach(input => {
+        houseCost = houseCost + parseInt(input.value)
+    })
 
     document.querySelectorAll('#uw_uitgaven [data_path="true"]').forEach(input => {
         yourExpenses[input.id] = parseInt(input.value)
@@ -506,7 +512,7 @@ function sumExpenses() {
         expenseArray = [
             {
                 post: "huur/hypotheek",
-                bedrag: "bedrag"
+                bedrag: houseCost
             },
             {
                 post: "gas",
