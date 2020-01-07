@@ -633,7 +633,8 @@ function findMatchingHousehold() {
     matches.sort((highest, lowest) => highest.difference - lowest.difference)
     matchingHouseHold = matches[0]
 
-    console.log('you: ', personalHousehold, 'match: ', matchingHouseHold)
+    console.log('you: ', personalHousehold)
+    console.log('match: ', matchingHouseHold)
 }
 
 
