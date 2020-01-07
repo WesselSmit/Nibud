@@ -503,7 +503,13 @@ function determineYourSituation() {
 
 function sumExpenses() {
     let yourExpenses = {},
-        expenseArray
+        expenseArray,
+        houseCost = 0
+
+    // Calculate the house cost depending on huur / koop
+    document.querySelectorAll('[data_question="5"] [data_path="true"]').forEach(input => {
+        houseCost = houseCost + parseInt(input.value)
+    })
 
     document.querySelectorAll('#uw_uitgaven [data_path="true"]').forEach(input => {
         yourExpenses[input.id] = parseInt(input.value)
@@ -512,7 +518,7 @@ function sumExpenses() {
 
         expenseArray = [{
                 post: "huur/hypotheek",
-                bedrag: "bedrag"
+                bedrag: houseCost
             },
             {
                 post: "gas",
