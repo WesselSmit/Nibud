@@ -57,7 +57,6 @@ export function createHousehold(data) {
 
             obj = { //create household object
                 huishoudType: data[(i * 24) + j].Huishouden.toLowerCase(),
-                woonsituatie: data[(i * 24) + j].Woonsituatie.toLowerCase(),
                 inkomen: data[(i * 24) + j].Inkomen,
                 totaleUitgaven: parseInt(totalePostenBedrag),
                 uitgavenPosten: uitgavenArr

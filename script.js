@@ -437,7 +437,6 @@ document.getElementById('has_a_second_car').addEventListener('input', function (
 
 let personalHousehold = {
     huishoudType: null,
-    woonsituatie: null,
     inkomen: null,
     totaleUitgaven: null,
     uitgavenPosten: null
@@ -498,101 +497,107 @@ function determineYourSituation() {
         income = yourSituation.netto_maandinkomen + yourSituation.netto_vakantiegeld + yourSituation.reiskostenvergoeding + yourSituation.dertiende_maand + yourSituation.bijverdiensten + yourSituation.netto_maandinkomenPartner + yourSituation.netto_vakantiegeldPartner + yourSituation.reiskostenvergoedingPartner + yourSituation.dertiende_maandPartner + yourSituation.bijverdienstenPartner + yourSituation.kinderbijslag + yourSituation.zorgtoeslag + yourSituation.kindgebonden_budget + yourSituation.huurtoeslag + yourSituation.kinderopvangtoeslag + yourSituation.teruggave_belasting + yourSituation.alimentatie + yourSituation.kostgeld_inwonende_personen + yourSituation.inkomsten_uit_vermogen + yourSituation.gemeentelijke_ondersteuning + yourSituation.overige_inkomsten
     }
     personalHousehold.inkomen = income
-    console.log(personalHousehold)
 }
 
 function sumExpenses() {
     let yourExpenses = {},
         expenseArray,
-        houseCost = 0
-
-    // Calculate the house cost depending on huur / koop
-    document.querySelectorAll('[data_question="5"] [data_path="true"]').forEach(input => {
-        houseCost = houseCost + parseInt(input.value)
-    })
+        cost = 0
 
     document.querySelectorAll('#uw_uitgaven [data_path="true"]').forEach(input => {
         yourExpenses[input.id] = parseInt(input.value)
 
-
-
         expenseArray = [{
             post: "huur/hypotheek",
-            bedrag: houseCost
+            bedrag: calculateCategoryCost(5, cost)
         },
         {
             post: "gas",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.gas
         },
         {
             post: "elektriciteit",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.elektriciteit
         },
         {
             post: "water",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.water
         },
         {
             post: "lokale lasten",
-            bedrag: "bedrag"
+            bedrag: calculateCategoryCost(7, cost)
         },
         {
             post: "telefoon, televisie, internet",
-            bedrag: "bedrag"
+            bedrag: calculateCategoryCost(8, cost)
         },
         {
             post: "verzekeringen",
-            bedrag: "bedrag"
+            bedrag: calculateCategoryCost(9, cost)
         },
         {
             post: "onderwijs",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
         },
         {
             post: "kinderopvang",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.kinderopvang
         },
         {
             post: "contributies en abonnementen",
-            bedrag: "bedrag"
+            bedrag: calculateCategoryCost(11, cost)
         },
         {
             post: "vervoer",
-            bedrag: "bedrag"
+            bedrag: calculateCategoryCost(12, cost)
         },
         {
             post: "kleding en schoenen",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.kleding_en_schoenen
         },
         {
             post: "inventaris",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.inventaris
         },
         {
             post: "onderhoud huis en tuin",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.onderhoud_huis_en_tuin
         },
         {
             post: "niet-vergoede ziektekosten",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
         },
         {
             post: "vrijetijdsuitgaven",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.vrijetijdsuitgaven
         },
         {
             post: "voeding",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.voeding
         },
         {
             post: "overige huishoudelijke uitgaven",
-            bedrag: "bedrag"
+            bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
         }
         ]
     })
-    console.log(yourExpenses)
-    console.log(expenseArray)
+    personalHousehold.uitgavenPosten = expenseArray
+    for (const expense of personalHousehold.uitgavenPosten) {
+        personalHousehold.totaleUitgaven = personalHousehold.totaleUitgaven + expense.bedrag
+    }
+    console.log(personalHousehold)
 }
+
+function calculateCategoryCost(category, cost) {
+    cost = 0
+
+    document.querySelectorAll('[data_question="' + category + '"] [data_path="true"]').forEach(input => {
+        cost = cost + parseInt(input.value)
+    })
+    return cost
+}
+
+
 
 //dit is een demo
 document.getElementById('vulIn').addEventListener('click', function () {
