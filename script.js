@@ -508,77 +508,77 @@ function sumExpenses() {
         yourExpenses[input.id] = parseInt(input.value)
 
         expenseArray = [{
-            post: "huur/hypotheek",
-            bedrag: calculateCategoryCost(5, cost)
-        },
-        {
-            post: "gas",
-            bedrag: yourExpenses.gas
-        },
-        {
-            post: "elektriciteit",
-            bedrag: yourExpenses.elektriciteit
-        },
-        {
-            post: "water",
-            bedrag: yourExpenses.water
-        },
-        {
-            post: "lokale lasten",
-            bedrag: calculateCategoryCost(7, cost)
-        },
-        {
-            post: "telefoon, televisie, internet",
-            bedrag: calculateCategoryCost(8, cost)
-        },
-        {
-            post: "verzekeringen",
-            bedrag: calculateCategoryCost(9, cost)
-        },
-        {
-            post: "onderwijs",
-            bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
-        },
-        {
-            post: "kinderopvang",
-            bedrag: yourExpenses.kinderopvang
-        },
-        {
-            post: "contributies en abonnementen",
-            bedrag: calculateCategoryCost(11, cost)
-        },
-        {
-            post: "vervoer",
-            bedrag: calculateCategoryCost(12, cost)
-        },
-        {
-            post: "kleding en schoenen",
-            bedrag: yourExpenses.kleding_en_schoenen
-        },
-        {
-            post: "inventaris",
-            bedrag: yourExpenses.inventaris
-        },
-        {
-            post: "onderhoud huis en tuin",
-            bedrag: yourExpenses.onderhoud_huis_en_tuin
-        },
-        {
-            post: "niet-vergoede ziektekosten",
-            bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
-        },
-        {
-            post: "vrijetijdsuitgaven",
-            bedrag: yourExpenses.vrijetijdsuitgaven
-        },
-        {
-            post: "voeding",
-            bedrag: yourExpenses.voeding
-        },
-        {
-            post: "overige huishoudelijke uitgaven",
-            bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
-        }
+                post: "huur/hypotheek",
+                bedrag: calculateCategoryCost(5, cost)
+            },
+            {
+                post: "gas",
+                bedrag: yourExpenses.gas
+            },
+            {
+                post: "elektriciteit",
+                bedrag: yourExpenses.elektriciteit
+            },
+            {
+                post: "water",
+                bedrag: yourExpenses.water
+            },
+            {
+                post: "lokale lasten",
+                bedrag: calculateCategoryCost(7, cost)
+            },
+            {
+                post: "telefoon, televisie, internet",
+                bedrag: calculateCategoryCost(8, cost)
+            },
+            {
+                post: "verzekeringen",
+                bedrag: calculateCategoryCost(9, cost)
+            },
+            {
+                post: "onderwijs",
+                bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
+            },
+            {
+                post: "kinderopvang",
+                bedrag: yourExpenses.kinderopvang
+            },
+            {
+                post: "contributies en abonnementen",
+                bedrag: calculateCategoryCost(11, cost)
+            },
+            {
+                post: "vervoer",
+                bedrag: calculateCategoryCost(12, cost)
+            },
+            {
+                post: "kleding en schoenen",
+                bedrag: yourExpenses.kleding_en_schoenen
+            },
+            {
+                post: "inventaris",
+                bedrag: yourExpenses.inventaris
+            },
+            {
+                post: "onderhoud huis en tuin",
+                bedrag: yourExpenses.onderhoud_huis_en_tuin
+            },
+            {
+                post: "niet-vergoede ziektekosten",
+                bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
+            },
+            {
+                post: "vrijetijdsuitgaven",
+                bedrag: yourExpenses.vrijetijdsuitgaven
+            },
+            {
+                post: "voeding",
+                bedrag: yourExpenses.voeding
+            },
+            {
+                post: "overige huishoudelijke uitgaven",
+                bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
+            }
         ]
     })
     personalHousehold.uitgavenPosten = expenseArray
@@ -600,8 +600,6 @@ function calculateCategoryCost(category, cost) {
 
 
 function findMatchingHousehold() {
-    console.log(personalHousehold, allDataHouseHolds)
-
     let matchingHouseHoldType = allDataHouseHolds.filter(data => data.huishoudType === personalHousehold.huishoudType),
         smallestDifference = 1000000
 
@@ -622,8 +620,20 @@ function findMatchingHousehold() {
         }
     })
 
-    console.log(matches)
+    for (const match of matches) {
+        let difference
+        if (personalHousehold.uitgavenPosten[0].bedrag >= match.uitgavenPosten[0].bedrag) {
+            difference = personalHousehold.uitgavenPosten[0].bedrag - match.uitgavenPosten[0].bedrag
+        } else if (personalHousehold.uitgavenPosten[0].bedrag <= match.uitgavenPosten[0].bedrag) {
+            difference = Math.abs(personalHousehold.uitgavenPosten[0].bedrag - match.uitgavenPosten[0].bedrag)
+        }
+        match["difference"] = difference
+    }
 
+    matches.sort((highest, lowest) => highest.difference - lowest.difference)
+    matchingHouseHold = matches[0]
+
+    console.log('you: ', personalHousehold, 'match: ', matchingHouseHold)
 }
 
 
