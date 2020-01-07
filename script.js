@@ -76,6 +76,7 @@ document.querySelectorAll('input, select').forEach(input =>
         updateProgressIndicators(this) //progress indicator
         updateTotalSum(this) //total income
         fixSelectFocus(this) //fix select focus state
+        calculateSaldo()
     }))
 document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('keydown', function (e) {
@@ -431,6 +432,29 @@ document.getElementById('has_a_second_car').addEventListener('input', function (
         updateProgressbar(this)
     }
 })
+
+
+
+
+function calculateSaldo() {
+    const yourIncomeInputs = document.querySelectorAll('[data_question="2"] input[type="number"][data_path="true"]'),
+        yourExpensesInputs = document.querySelectorAll('section:nth-of-type(2) form input[type="number"][data_path="true"]')
+
+    let yourIncomeSaldo = 0,
+        yourExpensesSaldo = 0
+
+    for (const input of yourIncomeInputs) {
+        yourIncomeSaldo = yourIncomeSaldo + parseInt(input.value)
+    }
+    document.getElementById('totaleInkomen').textContent = "€ " + yourIncomeSaldo
+
+    for (const input of yourExpensesInputs) {
+        yourExpensesSaldo = yourExpensesSaldo + parseInt(input.value)
+    }
+    document.getElementById('totaleUitgaven').textContent = "€ " + yourExpensesSaldo
+
+    document.getElementById('saldo').textContent = "€ " + (yourIncomeSaldo - yourExpensesSaldo)
+}
 
 
 

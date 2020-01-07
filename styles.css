@@ -34,7 +34,7 @@ body {
     margin-bottom: 0;
 }
 
-#background>div p {
+#background>div:first-of-type p {
     margin-top: 8px;
     font-size: 36px;
 }
@@ -44,7 +44,8 @@ body {
     position: relative;
 }
 
-#background::after {
+#background::after,
+#uw_resultaat::after {
     content: '';
     height: 200vh;
     width: 100vw;
@@ -53,6 +54,10 @@ body {
     background-attachment: fixed;
     background-size: cover;
     z-index: -1;
+}
+
+#uw_resultaat::after {
+    height: 100vh;
 }
 
 #sims {
@@ -478,11 +483,12 @@ label.fixWithHide {
 }
 
 #uw_resultaat>div {
-    width: 40vw;
+    width: 35vw;
     position: absolute;
     top: 350vh;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: white;
 }
 
 #uw_resultaat>div>div {
@@ -512,7 +518,7 @@ label.fixWithHide {
     font-size: 30px;
     position: relative;
     top: -32px;
-    left: 39vw;
+    left: 34vw;
     margin: 0px;
     width: 10px;
 }
