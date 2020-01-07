@@ -517,77 +517,77 @@ function sumExpenses() {
 
 
         expenseArray = [{
-                post: "huur/hypotheek",
-                bedrag: houseCost
-            },
-            {
-                post: "gas",
-                bedrag: "bedrag"
-            },
-            {
-                post: "elektriciteit",
-                bedrag: "bedrag"
-            },
-            {
-                post: "water",
-                bedrag: "bedrag"
-            },
-            {
-                post: "lokale lasten",
-                bedrag: "bedrag"
-            },
-            {
-                post: "telefoon, televisie, internet",
-                bedrag: "bedrag"
-            },
-            {
-                post: "verzekeringen",
-                bedrag: "bedrag"
-            },
-            {
-                post: "onderwijs",
-                bedrag: "bedrag"
-            },
-            {
-                post: "kinderopvang",
-                bedrag: "bedrag"
-            },
-            {
-                post: "contributies en abonnementen",
-                bedrag: "bedrag"
-            },
-            {
-                post: "vervoer",
-                bedrag: "bedrag"
-            },
-            {
-                post: "kleding en schoenen",
-                bedrag: "bedrag"
-            },
-            {
-                post: "inventaris",
-                bedrag: "bedrag"
-            },
-            {
-                post: "onderhoud huis en tuin",
-                bedrag: "bedrag"
-            },
-            {
-                post: "niet-vergoede ziektekosten",
-                bedrag: "bedrag"
-            },
-            {
-                post: "vrijetijdsuitgaven",
-                bedrag: "bedrag"
-            },
-            {
-                post: "voeding",
-                bedrag: "bedrag"
-            },
-            {
-                post: "overige huishoudelijke uitgaven",
-                bedrag: "bedrag"
-            }
+            post: "huur/hypotheek",
+            bedrag: houseCost
+        },
+        {
+            post: "gas",
+            bedrag: "bedrag"
+        },
+        {
+            post: "elektriciteit",
+            bedrag: "bedrag"
+        },
+        {
+            post: "water",
+            bedrag: "bedrag"
+        },
+        {
+            post: "lokale lasten",
+            bedrag: "bedrag"
+        },
+        {
+            post: "telefoon, televisie, internet",
+            bedrag: "bedrag"
+        },
+        {
+            post: "verzekeringen",
+            bedrag: "bedrag"
+        },
+        {
+            post: "onderwijs",
+            bedrag: "bedrag"
+        },
+        {
+            post: "kinderopvang",
+            bedrag: "bedrag"
+        },
+        {
+            post: "contributies en abonnementen",
+            bedrag: "bedrag"
+        },
+        {
+            post: "vervoer",
+            bedrag: "bedrag"
+        },
+        {
+            post: "kleding en schoenen",
+            bedrag: "bedrag"
+        },
+        {
+            post: "inventaris",
+            bedrag: "bedrag"
+        },
+        {
+            post: "onderhoud huis en tuin",
+            bedrag: "bedrag"
+        },
+        {
+            post: "niet-vergoede ziektekosten",
+            bedrag: "bedrag"
+        },
+        {
+            post: "vrijetijdsuitgaven",
+            bedrag: "bedrag"
+        },
+        {
+            post: "voeding",
+            bedrag: "bedrag"
+        },
+        {
+            post: "overige huishoudelijke uitgaven",
+            bedrag: "bedrag"
+        }
         ]
     })
     console.log(yourExpenses)
