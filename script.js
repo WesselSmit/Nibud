@@ -593,3 +593,17 @@ function sumExpenses() {
     console.log(yourExpenses)
     console.log(expenseArray)
 }
+
+//dit is een demo
+document.getElementById('vulIn').addEventListener('click', function () {
+    for (const item of document.querySelectorAll('[data_path="true"]')) {
+        if (item.type == "number") {
+            item.value = 20
+        } else if (item.tagName != 'INPUT') {
+            item.value = item.querySelector('option:nth-of-type(2)').value
+        } else {
+            item.checked = true
+        }
+        document.querySelector('#kinderen').value = 0
+    }
+})
