@@ -7,17 +7,20 @@ const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
     tooltip = document.querySelector('#tooltip'),
     digitRegex = /^\d+$/
 
+
 let tooltipData, //receives toolltip-data (async)
     pressedKey, //last fired event.key
     secondCar = false,
     a,
-    b
+    b,
+    allDataHouseHolds,
+    matchingHouseHold
 
 
 
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
-    .then(csvRows => console.log(transform.createHousehold(csvRows)))
+    .then(csvRows => allDataHouseHolds = transform.createHousehold(csvRows))
     .catch(err => console.log(err))
 
 data.getTooltips() //fetch tooltip-data
@@ -255,15 +258,12 @@ function updateProgressbar(currentForm) {
             document.querySelector('section:nth-of-type(2)').classList.remove('hide')
             if (a === 0) {
                 determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
-                // console.log('alle uw_situatie vragen zijn goed beantwoord')
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
             if (b === 0) {
                 // TODO: laat hier de 'saldo' viewport tevoorschijn komen
-                // ! Console.logt alles twee keer
                 sumExpenses()
-                // console.log('alle uw_uitgaven vragen zijn goed beantwoord')
                 b++
             }
         }
@@ -586,7 +586,7 @@ function sumExpenses() {
     for (const expense of personalHousehold.uitgavenPosten) {
         personalHousehold.totaleUitgaven = personalHousehold.totaleUitgaven + expense.bedrag
     }
-    console.log(personalHousehold)
+    findMatchingHousehold()
 }
 
 function calculateCategoryCost(category, cost) {
@@ -596,6 +596,24 @@ function calculateCategoryCost(category, cost) {
         cost = cost + parseInt(input.value)
     })
     return cost
+}
+
+
+function findMatchingHousehold() {
+    console.log(personalHousehold, allDataHouseHolds)
+
+    let matchingHouseHoldType = allDataHouseHolds.filter(data => data.huishoudType === personalHousehold.huishoudType)
+
+    let difference,
+        matchIndex
+
+    for (const houseHold of matchingHouseHoldType) {
+        console.log(personalHousehold.inkomen, houseHold.inkomen)
+
+
+    }
+
+    console.log(matchingHouseHoldType)
 }
 
 
