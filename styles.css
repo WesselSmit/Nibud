@@ -20,6 +20,25 @@ body {
     margin: 0px;
 }
 
+#background>div:first-of-type {
+    text-align: right;
+    position: absolute;
+    top: 30vh;
+    right: 15vw;
+    color: var(--header-text-color);
+}
+
+#background>div h1 {
+    font-size: 52px;
+    font-weight: 800;
+    margin-bottom: 0;
+}
+
+#background>div p {
+    margin-top: 8px;
+    font-size: 36px;
+}
+
 #background {
     height: 200vh;
     position: relative;
@@ -29,7 +48,7 @@ body {
     content: '';
     height: 200vh;
     width: 100vw;
-    background-image: url(./media/background-image.jpg);
+    background-image: url(./media/background-image.png);
     position: absolute;
     background-attachment: fixed;
     background-size: cover;
