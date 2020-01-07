@@ -10,7 +10,8 @@ const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
 let tooltipData, //receives toolltip-data (async)
     pressedKey, //last fired event.key
     secondCar = false,
-    a
+    a,
+    b
 
 
 
@@ -65,6 +66,7 @@ function addTooltips() { //fixes tooltip styling, content & tooltip location
 document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('input', function () { //call functions on input
         a = 0
+        b = 0
         checkIfValueIsAllowed(this) //value validation
         checkAdditionalQuestions(this) //check for additional questions
         updateProgressbar(this) //progress-bar
@@ -257,17 +259,20 @@ function updateProgressbar(currentForm) {
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
-            // TODO: laat hier de 'saldo' viewport tevoorschijn komen
-            // ! Console.logt alles twee keer
-            sumExpenses()
-            // console.log('alle uw_uitgaven vragen zijn goed beantwoord')
+            if (b === 0) {
+                // TODO: laat hier de 'saldo' viewport tevoorschijn komen
+                // ! Console.logt alles twee keer
+                sumExpenses()
+                // console.log('alle uw_uitgaven vragen zijn goed beantwoord')
+                b++
+            }
         }
     } else {
         currentForm.querySelector('.progression').classList.add('invalidProgress')
     }
     if (currentForm === document.querySelector('section:first-of-type') && hasInvalidValue === true ||
         currentForm === document.querySelector('section:first-of-type') && inputsWithValue != uniqueInputs) {
-        document.querySelector('section:nth-of-type(2)').classList.add('hide') //comment deze regel om uw_uitgaven makkelijker te kunnen testen (moet er ook een in HTML commenten)
+        // document.querySelector('section:nth-of-type(2)').classList.add('hide') //comment deze regel om uw_uitgaven makkelijker te kunnen testen (moet er ook een in HTML commenten)
     }
     if (hasInvalidValue === false) {
         currentForm.querySelector('.progression').classList.remove('invalidProgress') //reset styling if all invalid values have been corrected
@@ -375,7 +380,7 @@ allQuestionCategories.forEach(category => {
         this.classList.remove('hide') //show questions of current category
 
         if (event.target.tagName != 'LABEL' && event.target.tagName != 'INPUT' && event.target.tagName != 'SELECT') {
-            this.querySelectorAll('input, select')[0].focus() //when opening a new question-category -> give first input focus
+            this.querySelectorAll('input[data_path="true"], select')[0].focus() //when opening a new question-category -> give first input focus
         }
     }, false)
 })
@@ -503,8 +508,9 @@ function sumExpenses() {
     document.querySelectorAll('#uw_uitgaven [data_path="true"]').forEach(input => {
         yourExpenses[input.id] = parseInt(input.value)
 
-        expenseArray = [
-            {
+
+
+        expenseArray = [{
                 post: "huur/hypotheek",
                 bedrag: "bedrag"
             },
