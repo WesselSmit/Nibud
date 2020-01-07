@@ -602,18 +602,28 @@ function calculateCategoryCost(category, cost) {
 function findMatchingHousehold() {
     console.log(personalHousehold, allDataHouseHolds)
 
-    let matchingHouseHoldType = allDataHouseHolds.filter(data => data.huishoudType === personalHousehold.huishoudType)
-
-    let difference,
-        matchIndex
+    let matchingHouseHoldType = allDataHouseHolds.filter(data => data.huishoudType === personalHousehold.huishoudType),
+        smallestDifference = 1000000
 
     for (const houseHold of matchingHouseHoldType) {
-        console.log(personalHousehold.inkomen, houseHold.inkomen)
+        let arr = [personalHousehold, houseHold].sort((lowest, highest) => highest.inkomen - lowest.inkomen)
+        let difference = arr[0].inkomen - arr[1].inkomen
 
-
+        if (difference <= smallestDifference) {
+            smallestDifference = difference
+        }
     }
 
-    console.log(matchingHouseHoldType)
+    let matches = matchingHouseHoldType.filter(data => {
+        if (data.inkomen === personalHousehold.inkomen + smallestDifference || data.inkomen === personalHousehold.inkomen - smallestDifference) {
+            return true
+        } else {
+            return false
+        }
+    })
+
+    console.log(matches)
+
 }
 
 
