@@ -677,12 +677,24 @@ function findMatchingHousehold() {
 
 
 
-let partnerInputs = [document.querySelector('#wel-partner'), document.querySelector('#geen-partner')]
+const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
 
-partnerInputs.forEach(input => {
-    input.addEventListener('click', function () {
+simsInputs.forEach(input => {
+    input.addEventListener('input', function () {
         if (input.id == "wel-partner") {
-            console.log("Hij heeft een hoertje")
+            console.log(input.value)
+        }
+        if (input.id == "geen-partner") {
+            console.log(input.value)
+        }
+        if (input.id == "kinderen" && input.className != "invalid") {
+            console.log(input.value)
+        }
+        if (input.id == "woningtype") {
+            console.log(input.value)
+        }
+        if (input.id == "car") {
+            console.log(input.value)
         }
     })
 })
