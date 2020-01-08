@@ -54,7 +54,7 @@ body {
     position: absolute;
     background-attachment: fixed;
     background-size: cover;
-    z-index: -1;
+    z-index: -2;
 }
 
 #uw_resultaat::after {
@@ -62,10 +62,15 @@ body {
 }
 
 #sims {
-    position: absolute;
+    position: fixed;
     right: 0;
-    width: 75%;
-    height: 100%;
+    width: 75vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+section:nth-last-of-type(2) {
+    background-color: white;
 }
 
 .animation_target {
@@ -596,4 +601,8 @@ label.fixWithHide {
 
 #saldo.negative {
     color: var(--invalid-color);
+}
+
+#sims img {
+    height: 200px;
 }
