@@ -677,6 +677,15 @@ function findMatchingHousehold() {
 
 
 
+let partnerInputs = [document.querySelector('#wel-partner'), document.querySelector('#geen-partner')]
+
+partnerInputs.forEach(input => {
+    input.addEventListener('click', function () {
+        if (input.id == "wel-partner") {
+            console.log("Hij heeft een hoertje")
+        }
+    })
+})
 
 
 
