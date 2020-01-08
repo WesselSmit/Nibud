@@ -444,7 +444,7 @@ input[type="number"].invalid:focus {
     position: absolute;
     left: -9999px;
     background-color: white;
-    width: 250px;
+    max-width: 250px;
     z-index: 999;
     border: 2px solid var(--dark-gray-color);
     border-radius: var(--border-radius);
