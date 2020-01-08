@@ -263,7 +263,6 @@ function updateProgressbar(currentForm) {
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
             if (b === 0) {
-                // TODO: laat hier de 'saldo' viewport tevoorschijn komen
                 sumExpenses()
                 b++
             }
@@ -273,10 +272,19 @@ function updateProgressbar(currentForm) {
     }
     if (currentForm === document.querySelector('section:first-of-type') && hasInvalidValue === true ||
         currentForm === document.querySelector('section:first-of-type') && inputsWithValue != uniqueInputs) {
-        // document.querySelector('section:nth-of-type(2)').classList.add('hide') //comment deze regel om uw_uitgaven makkelijker te kunnen testen (moet er ook een in HTML commenten)
+        document.querySelector('section:nth-of-type(2)').classList.add('hide') //comment deze regel om uw_uitgaven makkelijker te kunnen testen (moet er ook een in HTML commenten)
     }
     if (hasInvalidValue === false) {
         currentForm.querySelector('.progression').classList.remove('invalidProgress') //reset styling if all invalid values have been corrected
+    }
+
+    if (currentForm === document.querySelector('section:nth-of-type(2)') && uniqueInputs === inputsWithValue && hasInvalidValue === false) {
+        document.getElementById('uw_resultaat').classList.remove('hide')
+    } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(event.target) && uniqueInputs != inputsWithValue ||
+        currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(event.target) && hasInvalidValue === true ||
+        currentForm === document.querySelector('section:first-of-type') && currentForm.contains(event.target) && uniqueInputs != inputsWithValue ||
+        currentForm === document.querySelector('section:first-of-type') && currentForm.contains(event.target) && hasInvalidValue === true) {
+        document.getElementById('uw_resultaat').classList.add('hide')
     }
 }
 
@@ -454,6 +462,11 @@ function calculateSaldo() {
     document.getElementById('totaleUitgaven').textContent = "€ " + yourExpensesSaldo
 
     document.getElementById('saldo').textContent = "€ " + (yourIncomeSaldo - yourExpensesSaldo)
+    if (yourIncomeSaldo - yourExpensesSaldo > -1) {
+        document.getElementById('saldo').classList.remove('negative')
+    } else {
+        document.getElementById('saldo').classList.add('negative')
+    }
 }
 
 

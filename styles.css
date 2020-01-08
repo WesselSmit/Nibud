@@ -5,6 +5,7 @@
     --header-text-color: #34495E;
     --border-radius: 5px;
     --invalid-color: #E74C3C;
+    --valid-color: #58DE63;
 }
 
 *:not(select) {
@@ -488,7 +489,6 @@ label.fixWithHide {
     top: 350vh;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
 }
 
 #uw_resultaat>div>div {
@@ -533,4 +533,12 @@ label.fixWithHide {
 #uw_resultaat>div>div p:last-of-type,
 #saldo {
     grid-row-start: 4;
+}
+
+#saldo {
+    color: var(--valid-color);
+}
+
+#saldo.negative {
+    color: var(--invalid-color);
 }
