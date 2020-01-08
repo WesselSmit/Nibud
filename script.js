@@ -725,7 +725,6 @@ simsInputs.forEach(input => {
 
 
 
-//dit is een demo
 document.getElementById('demo').addEventListener('click', function () {
     for (const item of document.querySelectorAll('[data_path="true"]')) {
         if (item.type == "number") {
@@ -736,5 +735,22 @@ document.getElementById('demo').addEventListener('click', function () {
             item.checked = true
         }
         document.querySelector('#kinderen').value = 0
+    }
+    document.getElementById('cheatPopUp').classList.remove('invisible')
+    setTimeout(function () {
+        document.getElementById('cheatPopUp').classList.add('invisible')
+    }, 3000);
+})
+
+document.addEventListener('scroll', function () {
+    const demoButton = document.getElementById('demo'),
+        secondSection = document.querySelector('section:nth-of-type(2)')
+
+    if (secondSection.classList.contains('hide') === false && window.scrollY + secondSection.getBoundingClientRect().top < window.scrollY + demoButton.getBoundingClientRect().top + demoButton.getBoundingClientRect().height) {
+        demoButton.classList.add('invisible')
+    }
+    if (window.scrollY + secondSection.getBoundingClientRect().top > window.scrollY + demoButton.getBoundingClientRect().top + demoButton.getBoundingClientRect().height ||
+        window.scrollY + secondSection.getBoundingClientRect().bottom < window.scrollY + demoButton.getBoundingClientRect().top) {
+        demoButton.classList.remove('invisible')
     }
 })
