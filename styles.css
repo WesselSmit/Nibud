@@ -77,6 +77,7 @@ body {
     width: 25vw;
     background-color: var(--dark-gray-color);
     overflow: hidden;
+    position: relative;
 }
 
 .progressbar .progression {
@@ -84,6 +85,8 @@ body {
     padding-right: 0.1px;
     transition: padding-right 0.5s linear;
     transition: background-color 0.3s linear;
+    height: 2vh;
+    position: absolute;
 }
 
 .progressbar .progression.invalidProgress {
