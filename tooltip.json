@@ -15,7 +15,17 @@
             "huurPerMaand": "Vul het huurbedrag per maand in, exclusief eventuele servicekosten. Deze vult u later in stap 2 ‘Uw uitgaven’ in. Eventuele huurtoeslag vult u in bij ‘inkomsten’.",
             "hypotheekPerMaand": "Dit zijn de maandelijkse uitgaven aan de huur of hypotheek van uw woning en/of garage. Denk hierbij aan de rente die u betaalt, de aflossing, overlijdensrisicoverzekering en spaarpremies.",
             "WOZ": "Weet u niet wat de WOZ-waarde is, maak dan schatting van de actuele marktwaarde van uw woning.",
-            "autotype": "Een kleine auto is bijvoorbeeld een Kia Picanto of een Opel Corsa. Denk bij een compacte auto aan een Volkswagen Polo, een Renault Clio of een Ford Fiësta. Een compacte middenklasse kan een Volkswagen Golf,een Peugeot 308 of een Toyota Auris zijn. Een auto in de middenklasse is bijvoorbeeld een Skoda Octavia, een Volvo V60 of een BMW 3-serie."
+            "autotype": "Een kleine auto is bijvoorbeeld een Kia Picanto of een Opel Corsa. Denk bij een compacte auto aan een Volkswagen Polo, een Renault Clio of een Ford Fiësta. Een compacte middenklasse kan een Volkswagen Golf,een Peugeot 308 of een Toyota Auris zijn. Een auto in de middenklasse is bijvoorbeeld een Skoda Octavia, een Volvo V60 of een BMW 3-serie.",
+            "overige_telefoon": "Belgeld kinderen",
+            "overige_verzekeringen": "Reis, rechtsbijstand",
+            "kleding_en_schoenen": "Aanschaf en onderhoud, kleedgeld",
+            "inventaris": "Aanschaf en onderhoud meubels, apparatuur, stoffering",
+            "onderhoud_huis_en_tuin": "Vereniging van Eigenaren, onderhoudsdiensten, materialen, gereedschap",
+            "vrijetijdsuitgaven": "Hobby, cultuur, recreatie, vakantie, weekendjes weg",
+            "persoonlijke_verzorging": "Toiletartikelen, kapper",
+            "huishoudelijke_dienstverlening": "Hulp, glazenwasser",
+            "huisdieren": "Voeding, dierenarts, hondenbelasting",
+            "diversen": "Postdiensten, losse tijdschriften, paspoort, rijbewijs, identiteitskaart, zakgeld"
         }
     ]
 }
