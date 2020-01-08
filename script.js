@@ -691,7 +691,7 @@ simsInputs.forEach(input => {
                 document.querySelector('#simsKind' + i).src = ""
 
                 if (i < parseInt(input.value) + 1) {
-                    document.querySelector('#simsKind' + i).src = "media/sims/kind" + i
+                    document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
                 }
             }
         }
@@ -726,7 +726,7 @@ simsInputs.forEach(input => {
 
 
 //dit is een demo
-document.getElementById('vulIn').addEventListener('click', function () {
+document.getElementById('demo').addEventListener('click', function () {
     for (const item of document.querySelectorAll('[data_path="true"]')) {
         if (item.type == "number") {
             item.value = 20
