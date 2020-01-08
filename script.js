@@ -678,23 +678,46 @@ function findMatchingHousehold() {
 
 
 const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
-
 simsInputs.forEach(input => {
     input.addEventListener('input', function () {
         if (input.id == "wel-partner") {
-            console.log(input.value)
+            document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
         }
         if (input.id == "geen-partner") {
-            console.log(input.value)
+            document.getElementById('simsVrouw').src = ""
         }
         if (input.id == "kinderen" && input.className != "invalid") {
-            console.log(input.value)
+            for (let i = 1; i < document.querySelectorAll('#simsKind1, #simsKind2, #simsKind3, #simsKind4, #simsKind5').length + 1; i++) {
+                document.querySelector('#simsKind' + i).src = ""
+
+                if (i < parseInt(input.value) + 1) {
+                    document.querySelector('#simsKind' + i).src = "media/sims/kind" + i
+                }
+            }
         }
         if (input.id == "woningtype") {
-            console.log(input.value)
+            if (input.value === 'appartement') {
+                document.getElementById('simsHuis').src = "media/sims/appartement_huis.svg"
+            } else if (input.value === 'tussenwoning') {
+                document.getElementById('simsHuis').src = "media/sims/tussenwoning_huis.svg"
+            } else if (input.value === 'hoekwoning') {
+                document.getElementById('simsHuis').src = "media/sims/hoekwoning_huis.svg"
+            } else if (input.value === 'vrijstaand') {
+                document.getElementById('simsHuis').src = "media/sims/vrijstaand_huis.svg"
+            }
         }
         if (input.id == "car") {
-            console.log(input.value)
+            if (input.value === 'geen') {
+                document.getElementById('simsAuto').src = ""
+            } else if (input.value === 'klein') {
+                document.getElementById('simsAuto').src = "media/sims/kleine_auto.svg"
+            } else if (input.value === 'compact') {
+                document.getElementById('simsAuto').src = "media/sims/compacte_auto.svg"
+            } else if (input.value === 'compact_middenklasse') {
+                document.getElementById('simsAuto').src = "media/sims/compacte_middenklasse_auto.svg"
+            } else if (input.value === 'middenklasse') {
+                document.getElementById('simsAuto').src = "media/sims/middenklasse_auto.svg"
+            }
         }
     })
 })

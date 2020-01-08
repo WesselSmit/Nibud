@@ -28,7 +28,17 @@
                 <!-- word gevtult met de tooltip content wanneer de gebruiker over een ?-icon hovert -->
             </p>
         </div>
-        <div id="sims"></div>
+        <div id="sims">
+            <img id="simsMan" src="media/sims/Man.svg">
+            <img id="simsVrouw" src="">
+            <img id="simsKind1" src="">
+            <img id="simsKind2" src="">
+            <img id="simsKind3" src="">
+            <img id="simsKind4" src="">
+            <img id="simsKind5" src="">
+            <img id="simsHuis" src="">
+            <img id="simsAuto" src="">
+        </div>
         <div id="uw_situatie">
             <div class="progressbar"><span class="progression"></span></div>
             <div class="h2Compensation">
@@ -198,10 +208,10 @@
                     <div class="select-box" tabindex="-1">
                         <select id="woningtype" data_path="true">
                             <option value="" disabled selected hidden>Selecteer uw woningtype</option>
-                            <option value="Appartement" id="woning">Appartement</option>
-                            <option value="Tussenwoning">Tussenwoning</option>
-                            <option value="Hoekwoning">Hoekwoning</option>
-                            <option value="Vrijstaand">Vrijstaand</option>
+                            <option value="appartement" id="woning">Appartement</option>
+                            <option value="tussenwoning">Tussenwoning</option>
+                            <option value="hoekwoning">Hoekwoning</option>
+                            <option value="vrijstaand">Vrijstaand</option>
                         </select>
                     </div>
 
@@ -210,10 +220,10 @@
 
                         <select id="bouwjaar" data_path="true">
                             <option value="" disabled selected hidden>Selecteer uw woning bouwjaar</option>
-                            <option value="Voor 1965" id="bouwjaar">Voor 1965</option>
+                            <option value="voor 1965" id="bouwjaar">Voor 1965</option>
                             <option value="1966 - 1988">1966 - 1988</option>
                             <option value="1989 - 2000">1989 - 2000</option>
-                            <option value="Na 2001">Na 2001</option>
+                            <option value="na 2001">Na 2001</option>
                         </select>
                     </div>
 
@@ -263,7 +273,7 @@
                             <option value="geen" id="autotype">Geen</option>
                             <option value="klein">Klein</option>
                             <option value="compact">Compact</option>
-                            <option value="compact middenklasse">Compact middenklasse</option>
+                            <option value="compact_middenklasse">Compact middenklasse</option>
                             <option value="middenklasse">Middenklasse</option>
                         </select>
                     </div>
