@@ -73,6 +73,57 @@ section:nth-last-of-type(2) {
     background-color: white;
 }
 
+.animation_target {
+    animation: simsPop 3000ms linear 1;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: 500px;
+    left: 600px;
+}
+
+@keyframes simsPop {
+    0% {
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+
+    3.2% {
+        transform: matrix3d(1.972, 0, 0, 0, 0, 1.972, 0, 0, 0, 0, 1, 0, 0, -8.22, 0, 1);
+    }
+
+    6.31% {
+        transform: matrix3d(2.615, 0, 0, 0, 0, 2.615, 0, 0, 0, 0, 1, 0, 0, -17.131, 0, 1);
+    }
+
+    9.41% {
+        transform: matrix3d(3.057, 0, 0, 0, 0, 3.057, 0, 0, 0, 0, 1, 0, 0, -24.345, 0, 1);
+    }
+
+    12.51% {
+        transform: matrix3d(3.359, 0, 0, 0, 0, 3.359, 0, 0, 0, 0, 1, 0, 0, -29.565, 0, 1);
+    }
+
+    18.82% {
+        transform: matrix3d(3.71, 0, 0, 0, 0, 3.71, 0, 0, 0, 0, 1, 0, 0, -35.597, 0, 1);
+    }
+
+    25.03% {
+        transform: matrix3d(3.869, 0, 0, 0, 0, 3.869, 0, 0, 0, 0, 1, 0, 0, -38.151, 0, 1);
+    }
+
+    37.54% {
+        transform: matrix3d(3.974, 0, 0, 0, 0, 3.974, 0, 0, 0, 0, 1, 0, 0, -39.682, 0, 1);
+    }
+
+    50.05% {
+        transform: matrix3d(3.995, 0, 0, 0, 0, 3.995, 0, 0, 0, 0, 1, 0, 0, -39.946, 0, 1);
+    }
+
+    100% {
+        transform: matrix3d(4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 0, -40, 0, 1);
+    }
+}
+
 #uw_situatie {
     top: 100vh;
     position: absolute;
