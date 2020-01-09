@@ -762,6 +762,12 @@ document.addEventListener('scroll', function () {
     if (window.scrollY + document.querySelector('#scroll_indicator').getBoundingClientRect().height > window.scrollY + document.querySelector('#scroll_indicator').getBoundingClientRect().top + document.querySelector('#scroll_indicator').getBoundingClientRect().height + 45) {
         document.querySelector('#scroll_indicator').classList.add('inactive')
     }
+    if (window.scrollY + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().height > window.scrollY + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().top + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().height + 45) {
+        document.querySelector('#scroll_indicator_uw_situatie').classList.add('inactive')
+    }
+    if (window.scrollY + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().height > window.scrollY + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().top + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().height + 45) {
+        document.querySelector('#scroll_indicator_uw_uitgaven').classList.add('inactive')
+    }
 
     if (secondSection.classList.contains('hide') === false && window.scrollY + secondSection.getBoundingClientRect().top < window.scrollY + demoButton.getBoundingClientRect().top + demoButton.getBoundingClientRect().height) {
         demoButton.classList.add('invisible')
