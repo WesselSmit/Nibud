@@ -42,7 +42,7 @@ function addTooltips() { //fixes tooltip styling, content & tooltip location
                 tooltipIcon.src = "./media/tooltip-icon.svg"
                 label.append(tooltipIcon)
 
-                label.children[0].addEventListener('mousemove', function () {
+                label.children[0].addEventListener('mousemove', function () { //dynamic styling
                     tooltip.children[0].textContent = entry[1]
                     tooltip.style.display = 'block'
                     tooltip.style.left = event.pageX + 20 + 'px'
@@ -76,11 +76,11 @@ document.querySelectorAll('input, select').forEach(input =>
         updateProgressIndicators(this) //progress indicator
         updateTotalSum(this) //total income
         fixSelectFocus(this) //fix select focus state
-        calculateSaldo()
+        calculateSaldo() //calculate saldo
     }))
 document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('keydown', function (e) {
-        pressedKey = e
+        pressedKey = e //keep track of last pressed key (needed for form-verification)
     }))
 
 
@@ -165,7 +165,7 @@ function checkAdditionalQuestions(currentEl) { //make inputs valid/invalid for p
                 child.setAttribute('data_path', false)
             }
         }
-        for (let i = 1; i < parseInt(currentEl.value) + 1; i++) {
+        for (let i = 1; i < parseInt(currentEl.value) + 1; i++) { //toggle children data & styling
             document.querySelector('#kind' + i).classList.remove('hide')
             document.querySelector('#kind' + i).setAttribute('data_path', true)
             document.querySelector('[for="kind' + i + '"]').classList.remove('hide')
@@ -242,7 +242,7 @@ function updateProgressbar(currentForm) {
             numberOfTotalRadio++
         }
     })
-    let uniqueInputs = allInputs.length - (numberOfTotalRadio / 2),
+    let uniqueInputs = allInputs.length - (numberOfTotalRadio / 2), //compensate for the radio buttons (double input tags in HTML)
         progression = currentForm.querySelector('.progression').parentElement.getBoundingClientRect().width / uniqueInputs * inputsWithValue
     currentForm.querySelector('.progression').style.paddingRight = progression + "px" //calculating progress & updating in DOM/styling
 
@@ -280,6 +280,7 @@ function updateProgressbar(currentForm) {
         currentForm.querySelector('.progression').classList.remove('invalidProgress') //reset styling if all invalid values have been corrected
     }
 
+    //determine show/hide state of uw_resultaat (saldo)
     if (currentForm === document.querySelector('section:nth-of-type(2)') && uniqueInputs === inputsWithValue && hasInvalidValue === false) {
         document.getElementById('uw_resultaat').classList.remove('hide')
     } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(event.target) && uniqueInputs != inputsWithValue ||
@@ -446,7 +447,7 @@ document.getElementById('has_a_second_car').addEventListener('input', function (
 
 
 
-function calculateSaldo() {
+function calculateSaldo() { //calculate the saldo 'overview'
     const yourIncomeInputs = document.querySelectorAll('[data_question="2"] input[type="number"][data_path="true"]'),
         yourExpensesInputs = document.querySelectorAll('section:nth-of-type(2) form input[type="number"][data_path="true"]')
 
@@ -463,7 +464,7 @@ function calculateSaldo() {
     }
     document.getElementById('totaleUitgaven').textContent = "€ " + yourExpensesSaldo
 
-    document.getElementById('saldo').textContent = "€ " + (yourIncomeSaldo - yourExpensesSaldo)
+    document.getElementById('saldo').textContent = "€ " + (yourIncomeSaldo - yourExpensesSaldo) //fix color 
     if (yourIncomeSaldo - yourExpensesSaldo > -1) {
         document.getElementById('saldo').classList.remove('negative')
     } else {
@@ -474,17 +475,16 @@ function calculateSaldo() {
 
 
 
-let personalHousehold = {
+let personalHousehold = { //keep track of personal household 
     huishoudType: null,
     inkomen: null,
     totaleUitgaven: null,
     uitgavenPosten: null
 }
 
-function determineYourSituation() {
+function determineYourSituation() { //create personal houseHold Object with uw_sitautie data/input
     let yourSituation = {}
 
-    // ? kunnen alle onderstaande if-statements 'if else' statements worden? of switch-cases?
     document.querySelectorAll('#uw_situatie form input[type="number"], #uw_situatie form input:checked, #uw_situatie form select').forEach(input => {
         if (input.type == "number") {
             yourSituation[input.id] = parseInt(input.value)
@@ -497,6 +497,7 @@ function determineYourSituation() {
         }
     })
 
+    //all possibilities
     if (yourSituation.partner == "false" && yourSituation.leeftijd < 67 && yourSituation.kinderen == 0) {
         personalHousehold.huishoudType = "alleenstaand"
     }
@@ -528,7 +529,7 @@ function determineYourSituation() {
         personalHousehold.huishoudType = "paar met 3 kinderen"
     }
 
-    let income
+    let income //calc personal income
     if (yourSituation.partner == "false") {
         income = yourSituation.netto_maandinkomen + yourSituation.netto_vakantiegeld + yourSituation.reiskostenvergoeding + yourSituation.dertiende_maand + yourSituation.bijverdiensten + yourSituation.kinderbijslag + yourSituation.zorgtoeslag + yourSituation.kindgebonden_budget + yourSituation.huurtoeslag + yourSituation.kinderopvangtoeslag + yourSituation.teruggave_belasting + yourSituation.alimentatie + yourSituation.kostgeld_inwonende_personen + yourSituation.inkomsten_uit_vermogen + yourSituation.gemeentelijke_ondersteuning + yourSituation.overige_inkomsten
     }
@@ -538,7 +539,7 @@ function determineYourSituation() {
     personalHousehold.inkomen = income
 }
 
-function sumExpenses() {
+function sumExpenses() { //calc epxenses
     let yourExpenses = {},
         expenseArray,
         cost = 0
@@ -546,7 +547,7 @@ function sumExpenses() {
     document.querySelectorAll('#uw_uitgaven [data_path="true"]').forEach(input => {
         yourExpenses[input.id] = parseInt(input.value)
 
-        expenseArray = [{
+        expenseArray = [{ //all possibilities
                 post: "huur/hypotheek",
                 bedrag: calculateCategoryCost(5, cost)
             },
@@ -625,10 +626,10 @@ function sumExpenses() {
     for (const expense of personalHousehold.uitgavenPosten) {
         personalHousehold.totaleUitgaven = personalHousehold.totaleUitgaven + expense.bedrag
     }
-    findMatchingHousehold()
+    findMatchingHousehold() //match your personal household with a household form the database
 }
 
-function calculateCategoryCost(category, cost) {
+function calculateCategoryCost(category, cost) { //calc the cost of all inputs in the passed category
     cost = 0
 
     document.querySelectorAll('[data_question="' + category + '"] [data_path="true"]').forEach(input => {
@@ -638,20 +639,20 @@ function calculateCategoryCost(category, cost) {
 }
 
 
-function findMatchingHousehold() {
-    let matchingHouseHoldType = allDataHouseHolds.filter(data => data.huishoudType === personalHousehold.huishoudType),
-        smallestDifference = 1000000
+function findMatchingHousehold() { //find a matching household -> most similar to personal household
+    let matchingHouseHoldType = allDataHouseHolds.filter(data => data.huishoudType === personalHousehold.huishoudType), //filter on houseHoldType
+        smallestDifference = 1000000 //good default is so big it'll definitely be overwritten
 
-    for (const houseHold of matchingHouseHoldType) {
+    for (const houseHold of matchingHouseHoldType) { //check how big the income difference is
         let arr = [personalHousehold, houseHold].sort((lowest, highest) => highest.inkomen - lowest.inkomen)
         let difference = arr[0].inkomen - arr[1].inkomen
 
         if (difference <= smallestDifference) {
-            smallestDifference = difference
+            smallestDifference = difference //update smallesDifference
         }
     }
 
-    let matches = matchingHouseHoldType.filter(data => {
+    let matches = matchingHouseHoldType.filter(data => { //filter out all mismatches depending on income (using smallesDifference)
         if (data.inkomen === personalHousehold.inkomen + smallestDifference || data.inkomen === personalHousehold.inkomen - smallestDifference) {
             return true
         } else {
@@ -659,7 +660,7 @@ function findMatchingHousehold() {
         }
     })
 
-    for (const match of matches) {
+    for (const match of matches) { //calc the difference for each match (best match has smallest difference)
         let difference
         if (personalHousehold.uitgavenPosten[0].bedrag >= match.uitgavenPosten[0].bedrag) {
             difference = personalHousehold.uitgavenPosten[0].bedrag - match.uitgavenPosten[0].bedrag
@@ -669,7 +670,7 @@ function findMatchingHousehold() {
         match["difference"] = difference
     }
 
-    matches.sort((highest, lowest) => highest.difference - lowest.difference)
+    matches.sort((highest, lowest) => highest.difference - lowest.difference) //sort matches from best - worst
     matchingHouseHold = matches[0]
 
     // console.log('you: ', personalHousehold)
@@ -680,20 +681,20 @@ function findMatchingHousehold() {
 
 
 const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
-simsInputs.forEach(input => {
+simsInputs.forEach(input => { //determine what sims image should be shown
     input.addEventListener('input', function () {
         // for (const input of simsInputs) {
         //     input.classList.remove('animation_target')
         // }
 
-        if (input.id == "wel-partner") {
+        if (input.id == "wel-partner") { //partner
             document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
             document.getElementById('simsVrouw').classList.add('animation_target')
         }
         if (input.id == "geen-partner") {
             document.getElementById('simsVrouw').src = ""
         }
-        if (input.id == "kinderen" && input.className != "invalid") {
+        if (input.id == "kinderen" && input.className != "invalid") { //children
             for (let i = 1; i < document.querySelectorAll('#simsKind1, #simsKind2, #simsKind3, #simsKind4, #simsKind5').length + 1; i++) {
                 document.querySelector('#simsKind' + i).src = ""
 
@@ -703,7 +704,7 @@ simsInputs.forEach(input => {
                 }
             }
         }
-        if (input.id == "woningtype") {
+        if (input.id == "woningtype") { //house
             if (input.value === 'appartement') {
                 document.getElementById('simsHuis').src = "media/sims/appartement_huis.svg"
                 document.getElementById('simsHuis').classList.add('animation_target')
@@ -718,7 +719,7 @@ simsInputs.forEach(input => {
                 document.getElementById('simsHuis').classList.add('animation_target')
             }
         }
-        if (input.id == "car") {
+        if (input.id == "car") { //car
             if (input.value === 'geen') {
                 document.getElementById('simsAuto').src = ""
             } else if (input.value === 'klein') {
@@ -741,7 +742,7 @@ simsInputs.forEach(input => {
 
 
 
-document.getElementById('demo').addEventListener('click', function () {
+document.getElementById('demo').addEventListener('click', function () { //super secret demo function (fills in all inputs for easy testing)
     for (const item of document.querySelectorAll('[data_path="true"]')) {
         if (item.type == "number") {
             item.value = 20
@@ -754,12 +755,12 @@ document.getElementById('demo').addEventListener('click', function () {
     }
 
     document.getElementById('cheatPopUp').classList.remove('invisible')
-    setTimeout(function () {
+    setTimeout(function () { //show cheat mode popup animation
         document.getElementById('cheatPopUp').classList.add('invisible')
     }, 3000);
 })
 
-document.addEventListener('scroll', function () {
+document.addEventListener('scroll', function () { //hide demo button on scroll in barchart viewport + fix scroll indicators visibilities
     const demoButton = document.getElementById('demo'),
         secondSection = document.querySelector('section:nth-of-type(2)')
 
@@ -783,25 +784,25 @@ document.addEventListener('scroll', function () {
     }
 })
 
-document.querySelector('#scroll_indicator').addEventListener('click', function () {
+document.querySelector('#scroll_indicator').addEventListener('click', function () { //auto scroll
     document.getElementById('uw_situatie').scrollIntoView({
         behavior: "smooth",
         block: "end"
     })
 })
-document.querySelector('#scroll_indicator_uw_situatie').addEventListener('click', function () {
+document.querySelector('#scroll_indicator_uw_situatie').addEventListener('click', function () { //auto scroll
     document.querySelector('section:nth-of-type(2)').scrollIntoView({
         behavior: "smooth",
         block: "end"
     })
 })
-document.querySelector('#scroll_indicator_uw_uitgaven').addEventListener('click', function () {
+document.querySelector('#scroll_indicator_uw_uitgaven').addEventListener('click', function () { //auto scroll
     document.getElementById('uw_resultaat').scrollIntoView({
         behavior: "smooth",
         block: "end"
     })
 })
-for (const indicator of document.querySelectorAll('.scrollIndicator')) {
+for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide scroll indicators when they're clicked
     indicator.addEventListener('click', function () {
         let currentIndicator = event.target
         while (currentIndicator.tagName != 'DIV') {
