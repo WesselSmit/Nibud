@@ -143,7 +143,66 @@ body {
     z-index: -1;
 }
 
-section:nth-last-of-type(2) {
+#sims img {
+    width: auto;
+    position: fixed;
+}
+
+#simsMan, #simsVrouw {
+    height: 300px;
+}
+
+#simsMan {
+    bottom: 8vh;
+    right: 19vw;
+}
+
+#simsVrouw {
+    bottom: 8vh;
+    right: 24vw;
+}
+
+#simsKind1,#simsKind2, #simsKind3, #simsKind4, #simsKind5 {
+    height: 200px;
+    bottom: 8vh;
+}
+
+#simsKind1 {
+    right: 14.3vw;
+}
+
+#simsKind2 {
+    right: 29.3vw;
+}
+
+#simsKind3 {
+    right: 34.3vw;
+}
+
+/* Zittend kind */
+#simsKind4 {
+    right: 26.3vw;
+}
+
+/* Zittend kind */
+#simsKind5 {
+    right: 21.3vw;
+}
+
+#simsHuis {
+    height: 550px;
+    bottom: 35.4vh;
+    left: 28vw;
+}
+
+img#simsAuto {
+    width: 500px;
+    height: auto;  
+    bottom: 9vh;
+    left: 17vw;  
+}
+
+section:nth-of-type(2) {
     background-color: white;
 }
 
@@ -675,8 +734,4 @@ label.fixWithHide {
 
 #saldo.negative {
     color: var(--invalid-color);
-}
-
-#sims img {
-    height: 200px;
 }
