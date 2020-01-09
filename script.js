@@ -762,15 +762,17 @@ document.getElementById('demo').addEventListener('click', function () {
 
     document.getElementById('netto_maandinkomen').value = 1700
 
-
     a = 0
     b = 0
-    checkIfValueIsAllowed(document.querySelector('[data_question="3"] input:first-of-type')) //value validation
-    checkAdditionalQuestions(document.querySelector('[data_question="3"] input:first-of-type')) //check for additional questions
-    updateProgressbar(document.querySelector('[data_question="3"] input:first-of-type')) //progress-bar
-    updateProgressIndicators(document.querySelector('[data_question="3"] input:first-of-type')) //progress indicator
-    updateTotalSum(document.querySelector('[data_question="3"] input:first-of-type')) //total income
+    checkIfValueIsAllowed(document.querySelector('[data_question="10"] input:first-of-type')) //value validation
+    checkAdditionalQuestions(document.querySelector('[data_question="10"] input:first-of-type')) //check for additional questions
+    updateProgressbar(document.querySelector('[data_question="10"] input:first-of-type')) //progress-bar
+    updateProgressbar(document.querySelector('[data_question="5"] input:first-of-type')) //progress-bar
+    updateProgressIndicators(document.querySelector('[data_question="10"] input:first-of-type')) //progress indicator
+    updateTotalSum(document.querySelector('[data_question="10"] input:first-of-type')) //total income
     calculateSaldo()
+    sumExpenses()
+
 
 
 
