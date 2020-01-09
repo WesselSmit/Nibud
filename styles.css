@@ -8,6 +8,10 @@
     --valid-color: #45B44E;
 }
 
+html {
+    scroll-behavior: smooth;
+}   
+
 *:not(select) {
     font-family: lato, arial;
     font-size: 16px;
@@ -650,6 +654,29 @@ input[type="number"].invalid:focus {
     position: relative;
     top: 1px;
     float: right;
+}
+
+#scroll_indicator {
+    position: absolute;
+    top: 90vh;
+    left: 50vw;
+    transform: translate(-50%);
+    padding: 10px;
+    cursor: pointer;
+}
+
+#scroll_indicator p {
+    margin: 0px 0px 10px 0px;
+    font-size: 14px;
+}
+
+#scroll_indicator img:first-of-type {
+    opacity: 70%;
+}
+
+#scroll_indicator img {
+    display: block;
+    margin: auto;
 }
 
 .question_category>fieldset>label:first-of-type[for="rente_a"] {
