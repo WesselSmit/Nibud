@@ -257,11 +257,13 @@ function updateProgressbar(currentForm) {
 
         if (currentForm === document.querySelector('section:first-of-type') && currentForm.contains(currentEl)) {
             document.querySelector('section:nth-of-type(2)').classList.remove('hide')
+            document.getElementById('scroll_indicator_uw_situatie').classList.remove('inactive')
             if (a === 0) {
                 determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
+            document.getElementById('scroll_indicator_uw_uitgaven').classList.remove('inactive')
             if (b === 0) {
                 sumExpenses()
                 b++
@@ -545,77 +547,77 @@ function sumExpenses() {
         yourExpenses[input.id] = parseInt(input.value)
 
         expenseArray = [{
-            post: "huur/hypotheek",
-            bedrag: calculateCategoryCost(5, cost)
-        },
-        {
-            post: "gas",
-            bedrag: yourExpenses.gas
-        },
-        {
-            post: "elektriciteit",
-            bedrag: yourExpenses.elektriciteit
-        },
-        {
-            post: "water",
-            bedrag: yourExpenses.water
-        },
-        {
-            post: "lokale lasten",
-            bedrag: calculateCategoryCost(7, cost)
-        },
-        {
-            post: "telefoon, televisie, internet",
-            bedrag: calculateCategoryCost(8, cost)
-        },
-        {
-            post: "verzekeringen",
-            bedrag: calculateCategoryCost(9, cost)
-        },
-        {
-            post: "onderwijs",
-            bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
-        },
-        {
-            post: "kinderopvang",
-            bedrag: yourExpenses.kinderopvang
-        },
-        {
-            post: "contributies en abonnementen",
-            bedrag: calculateCategoryCost(11, cost)
-        },
-        {
-            post: "vervoer",
-            bedrag: calculateCategoryCost(12, cost)
-        },
-        {
-            post: "kleding en schoenen",
-            bedrag: yourExpenses.kleding_en_schoenen
-        },
-        {
-            post: "inventaris",
-            bedrag: yourExpenses.inventaris
-        },
-        {
-            post: "onderhoud huis en tuin",
-            bedrag: yourExpenses.onderhoud_huis_en_tuin
-        },
-        {
-            post: "niet-vergoede ziektekosten",
-            bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
-        },
-        {
-            post: "vrijetijdsuitgaven",
-            bedrag: yourExpenses.vrijetijdsuitgaven
-        },
-        {
-            post: "voeding",
-            bedrag: yourExpenses.voeding
-        },
-        {
-            post: "overige huishoudelijke uitgaven",
-            bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
-        }
+                post: "huur/hypotheek",
+                bedrag: calculateCategoryCost(5, cost)
+            },
+            {
+                post: "gas",
+                bedrag: yourExpenses.gas
+            },
+            {
+                post: "elektriciteit",
+                bedrag: yourExpenses.elektriciteit
+            },
+            {
+                post: "water",
+                bedrag: yourExpenses.water
+            },
+            {
+                post: "lokale lasten",
+                bedrag: calculateCategoryCost(7, cost)
+            },
+            {
+                post: "telefoon, televisie, internet",
+                bedrag: calculateCategoryCost(8, cost)
+            },
+            {
+                post: "verzekeringen",
+                bedrag: calculateCategoryCost(9, cost)
+            },
+            {
+                post: "onderwijs",
+                bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
+            },
+            {
+                post: "kinderopvang",
+                bedrag: yourExpenses.kinderopvang
+            },
+            {
+                post: "contributies en abonnementen",
+                bedrag: calculateCategoryCost(11, cost)
+            },
+            {
+                post: "vervoer",
+                bedrag: calculateCategoryCost(12, cost)
+            },
+            {
+                post: "kleding en schoenen",
+                bedrag: yourExpenses.kleding_en_schoenen
+            },
+            {
+                post: "inventaris",
+                bedrag: yourExpenses.inventaris
+            },
+            {
+                post: "onderhoud huis en tuin",
+                bedrag: yourExpenses.onderhoud_huis_en_tuin
+            },
+            {
+                post: "niet-vergoede ziektekosten",
+                bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
+            },
+            {
+                post: "vrijetijdsuitgaven",
+                bedrag: yourExpenses.vrijetijdsuitgaven
+            },
+            {
+                post: "voeding",
+                bedrag: yourExpenses.voeding
+            },
+            {
+                post: "overige huishoudelijke uitgaven",
+                bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
+            }
         ]
     })
     personalHousehold.uitgavenPosten = expenseArray
@@ -766,11 +768,34 @@ document.addEventListener('scroll', function () {
     }
 })
 
-document.querySelector('#scroll_indicator').addEventListener('click', function () {
-    window.scrollTo(0, window.innerHeight * 2)
 
-    console.log(allDataHouseHolds, personalHousehold)
+document.querySelector('#scroll_indicator').addEventListener('click', function () {
+    document.getElementById('uw_situatie').scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+    })
 })
+document.querySelector('#scroll_indicator_uw_situatie').addEventListener('click', function () {
+    document.querySelector('section:nth-of-type(2)').scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+    })
+})
+document.querySelector('#scroll_indicator_uw_uitgaven').addEventListener('click', function () {
+    document.getElementById('uw_resultaat').scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+    })
+})
+for (const indicator of document.querySelectorAll('.scrollIndicator')) {
+    indicator.addEventListener('click', function () {
+        let currentIndicator = event.target
+        while (currentIndicator.tagName != 'DIV') {
+            currentIndicator = currentIndicator.parentElement
+        }
+        currentIndicator.classList.add('inactive')
+    })
+}
 
 
 
@@ -784,4 +809,4 @@ document.querySelector('#scroll_indicator').addEventListener('click', function (
 
 
 // D3
-function renderBarchart(allDataHouseHolds, personalHousehold) { }
+function renderBarchart(allDataHouseHolds, personalHousehold) {}

@@ -10,7 +10,7 @@
 
 html {
     scroll-behavior: smooth;
-}   
+}
 
 *:not(select) {
     font-family: lato, arial;
@@ -656,7 +656,7 @@ input[type="number"].invalid:focus {
     float: right;
 }
 
-#scroll_indicator {
+.scrollIndicator {
     position: absolute;
     top: 90vh;
     left: 50vw;
@@ -665,18 +665,31 @@ input[type="number"].invalid:focus {
     cursor: pointer;
 }
 
-#scroll_indicator p {
+.scrollIndicator.inactive {
+    left: -9999px;
+}
+
+.scrollIndicator p,
+.scrollIndicator span {
     margin: 0px 0px 10px 0px;
     font-size: 14px;
 }
 
-#scroll_indicator img:first-of-type {
+.scrollIndicator img:first-of-type {
     opacity: 70%;
 }
 
-#scroll_indicator img {
+.scrollIndicator img {
     display: block;
     margin: auto;
+}
+
+#scroll_indicator_uw_situatie {
+    top: 190vh;
+}
+
+#scroll_indicator_uw_uitgaven {
+    top: 290vh;
 }
 
 .question_category>fieldset>label:first-of-type[for="rente_a"] {
