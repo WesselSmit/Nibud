@@ -174,27 +174,31 @@ body {
 #simsKind4,
 #simsKind5 {
     height: 200px;
-    bottom: 8vh;
 }
 
 #simsKind1 {
     right: 14.3vw;
+    bottom: 7vh;
 }
 
 #simsKind2 {
     right: 29.3vw;
+    bottom: 8.3vh;
 }
 
 #simsKind3 {
     right: 34.3vw;
+    bottom: 6.2vh;
 }
 
 #simsKind4 {
     right: 26.3vw;
+    bottom: 4.5vh;
 }
 
 #simsKind5 {
     right: 21.3vw;
+    bottom: 5vh;
 }
 
 #simsHuis {
@@ -220,38 +224,17 @@ section:nth-of-type(2) {
 
 @keyframes yourAnimation {
     0% {
-        transform: rotate(0deg) scale(0.1);
+        transform: scale(0.1);
         transform-origin: center bottom;
     }
 
     80% {
-        transform: rotate(0deg) scale(1.2);
+        transform: scale(1.2);
         transform-origin: center bottom;
     }
 
     100% {
-        transform: rotate(0deg) scale(1);
-        transform-origin: center bottom;
-    }
-}
-
-.blank_animation_target {
-    animation: yourBlankAnimation 0.8s 1 0s ease-in-out;
-}
-
-@keyframes yourBlankAnimation {
-    0% {
-        transform: rotate(0deg) scale(1);
-        transform-origin: center bottom;
-    }
-
-    20% {
-        transform: rotate(0deg) scale(1.2);
-        transform-origin: center bottom;
-    }
-
-    100% {
-        transform: rotate(0deg) scale(0.1);
+        transform: scale(1);
         transform-origin: center bottom;
     }
 }

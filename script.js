@@ -682,9 +682,9 @@ function findMatchingHousehold() {
 const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
 simsInputs.forEach(input => {
     input.addEventListener('input', function () {
-        for (const input of simsInputs) {
-            input.classList.remove('animation_target')
-        }
+        // for (const input of simsInputs) {
+        //     input.classList.remove('animation_target')
+        // }
 
         if (input.id == "wel-partner") {
             document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
@@ -692,12 +692,10 @@ simsInputs.forEach(input => {
         }
         if (input.id == "geen-partner") {
             document.getElementById('simsVrouw').src = ""
-            document.getElementById('simsVrouw').classList.add('blank_animation_target')
         }
         if (input.id == "kinderen" && input.className != "invalid") {
             for (let i = 1; i < document.querySelectorAll('#simsKind1, #simsKind2, #simsKind3, #simsKind4, #simsKind5').length + 1; i++) {
                 document.querySelector('#simsKind' + i).src = ""
-                document.getElementById('simsKind' + i).classList.add('blank_animation_target')
 
                 if (i < parseInt(input.value) + 1) {
                     document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
@@ -706,30 +704,35 @@ simsInputs.forEach(input => {
             }
         }
         if (input.id == "woningtype") {
-            document.getElementById('simsHuis').classList.add('animation_target')
             if (input.value === 'appartement') {
                 document.getElementById('simsHuis').src = "media/sims/appartement_huis.svg"
+                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'tussenwoning') {
                 document.getElementById('simsHuis').src = "media/sims/tussenwoning_huis.svg"
+                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'hoekwoning') {
                 document.getElementById('simsHuis').src = "media/sims/hoekwoning_huis.svg"
+                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'vrijstaand') {
                 document.getElementById('simsHuis').src = "media/sims/vrijstaand_huis.svg"
+                document.getElementById('simsHuis').classList.add('animation_target')
             }
         }
         if (input.id == "car") {
-            document.getElementById('simsAuto').classList.add('animation_target')
             if (input.value === 'geen') {
                 document.getElementById('simsAuto').src = ""
-                document.getElementById('simsAuto').classList.add('blank_animation_target')
             } else if (input.value === 'klein') {
                 document.getElementById('simsAuto').src = "media/sims/kleine_auto.svg"
+                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'compact') {
                 document.getElementById('simsAuto').src = "media/sims/compacte_auto.svg"
+                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'compact_middenklasse') {
                 document.getElementById('simsAuto').src = "media/sims/compacte_middenklasse_auto.svg"
+                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'middenklasse') {
                 document.getElementById('simsAuto').src = "media/sims/middenklasse_auto.svg"
+                document.getElementById('simsAuto').classList.add('animation_target')
             }
         }
     })
