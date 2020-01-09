@@ -5,7 +5,7 @@
     --header-text-color: #34495E;
     --border-radius: 5px;
     --invalid-color: #E74C3C;
-    --valid-color: #58DE63;
+    --valid-color: #45B44E;
 }
 
 *:not(select) {
@@ -69,6 +69,7 @@ body {
     animation-fill-mode: forwards;
     animation-play-state: running;
     animation-timing-function: linear;
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: url(media/cheatTextBackground.png);
