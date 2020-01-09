@@ -185,12 +185,12 @@ body {
     right: 34.3vw;
 }
 
-/* Zittend kind */
+/* TODO: Zittend kind */
 #simsKind4 {
     right: 26.3vw;
 }
 
-/* Zittend kind */
+/* TODO: Zittend kind */
 #simsKind5 {
     right: 21.3vw;
 }
@@ -229,6 +229,27 @@ section:nth-of-type(2) {
 
     100% {
         transform: rotate(0deg) scale(1);
+        transform-origin: center bottom;
+    }
+}
+
+.blank_animation_target {
+    animation: yourBlankAnimation 0.8s 1 0s ease-in-out;
+}
+
+@keyframes yourBlankAnimation {
+    0% {
+        transform: rotate(0deg) scale(1);
+        transform-origin: center bottom;
+    }
+
+    20% {
+        transform: rotate(0deg) scale(1.2);
+        transform-origin: center bottom;
+    }
+
+    100% {
+        transform: rotate(0deg) scale(0.1);
         transform-origin: center bottom;
     }
 }

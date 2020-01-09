@@ -690,10 +690,12 @@ simsInputs.forEach(input => {
         }
         if (input.id == "geen-partner") {
             document.getElementById('simsVrouw').src = ""
+            document.getElementById('simsVrouw').classList.add('blank_animation_target')
         }
         if (input.id == "kinderen" && input.className != "invalid") {
             for (let i = 1; i < document.querySelectorAll('#simsKind1, #simsKind2, #simsKind3, #simsKind4, #simsKind5').length + 1; i++) {
                 document.querySelector('#simsKind' + i).src = ""
+                document.getElementById('simsKind' + i).classList.add('blank_animation_target')
 
                 if (i < parseInt(input.value) + 1) {
                     document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
@@ -717,6 +719,7 @@ simsInputs.forEach(input => {
             document.getElementById('simsAuto').classList.add('animation_target')
             if (input.value === 'geen') {
                 document.getElementById('simsAuto').src = ""
+                document.getElementById('simsAuto').classList.add('blank_animation_target')
             } else if (input.value === 'klein') {
                 document.getElementById('simsAuto').src = "media/sims/kleine_auto.svg"
             } else if (input.value === 'compact') {
