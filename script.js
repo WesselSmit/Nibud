@@ -841,14 +841,13 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) {
 
 
 
-// D3
-document.querySelector('#d3-start').addEventListener('click', renderBarchart)
 
+
+
+// D3
 function renderBarchart() {
     const vergelijkbaarHuishouden = morphDataObjects(matchingHouseHold)
     const persoonlijkHuishouden = morphDataObjects(personalHousehold)
-    console.log(vergelijkbaarHuishouden)
-    console.log(persoonlijkHuishouden)
 }
 
 // Morphs the dataset structure to our own structure which is determined by the form
