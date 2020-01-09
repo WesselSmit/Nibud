@@ -257,11 +257,13 @@ function updateProgressbar(currentForm) {
 
         if (currentForm === document.querySelector('section:first-of-type') && currentForm.contains(currentEl)) {
             document.querySelector('section:nth-of-type(2)').classList.remove('hide')
+            document.getElementById('scroll_indicator_uw_situatie').classList.remove('inactive')
             if (a === 0) {
                 determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
+            document.getElementById('scroll_indicator_uw_uitgaven').classList.remove('inactive')
             if (b === 0) {
                 sumExpenses()
                 b++
@@ -774,7 +776,33 @@ document.querySelector('#scroll_indicator').addEventListener('click', function (
     // console.log("Jouw huishouden", personalHousehold)
 })
 
-
+document.querySelector('#scroll_indicator').addEventListener('click', function () {
+    document.getElementById('uw_situatie').scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+    })
+})
+document.querySelector('#scroll_indicator_uw_situatie').addEventListener('click', function () {
+    document.querySelector('section:nth-of-type(2)').scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+    })
+})
+document.querySelector('#scroll_indicator_uw_uitgaven').addEventListener('click', function () {
+    document.getElementById('uw_resultaat').scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+    })
+})
+for (const indicator of document.querySelectorAll('.scrollIndicator')) {
+    indicator.addEventListener('click', function () {
+        let currentIndicator = event.target
+        while (currentIndicator.tagName != 'DIV') {
+            currentIndicator = currentIndicator.parentElement
+        }
+        currentIndicator.classList.add('inactive')
+    })
+}
 
 
 
