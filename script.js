@@ -769,14 +769,6 @@ document.addEventListener('scroll', function () {
 })
 
 document.querySelector('#scroll_indicator').addEventListener('click', function () {
-    window.scrollTo(0, window.innerHeight * 2)
-
-    renderBarchart()
-    // console.log("Data huishouden", matchingHouseHold)
-    // console.log("Jouw huishouden", personalHousehold)
-})
-
-document.querySelector('#scroll_indicator').addEventListener('click', function () {
     document.getElementById('uw_situatie').scrollIntoView({
         behavior: "smooth",
         block: "end"
@@ -810,13 +802,14 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) {
 
 
 
-
-
-
 // D3
+document.querySelector('#d3-start').addEventListener('click', renderBarchart)
+
 function renderBarchart() {
     const vergelijkbaarHuishouden = morphDataObjects(matchingHouseHold)
     const persoonlijkHuishouden = morphDataObjects(personalHousehold)
+    console.log(vergelijkbaarHuishouden)
+    console.log(persoonlijkHuishouden)
 }
 
 // Morphs the dataset structure to our own structure which is determined by the form
