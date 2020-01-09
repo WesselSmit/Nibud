@@ -670,8 +670,8 @@ function findMatchingHousehold() {
     matches.sort((highest, lowest) => highest.difference - lowest.difference)
     matchingHouseHold = matches[0]
 
-    console.log('you: ', personalHousehold)
-    console.log('match: ', matchingHouseHold)
+    // console.log('you: ', personalHousehold)
+    // console.log('match: ', matchingHouseHold)
 }
 
 
@@ -769,7 +769,9 @@ document.addEventListener('scroll', function () {
 document.querySelector('#scroll_indicator').addEventListener('click', function () {
     window.scrollTo(0, window.innerHeight * 2)
 
-    console.log(allDataHouseHolds, personalHousehold)
+    renderBarchart()
+    // console.log("Data huishouden", matchingHouseHold)
+    // console.log("Jouw huishouden", personalHousehold)
 })
 
 
@@ -784,4 +786,54 @@ document.querySelector('#scroll_indicator').addEventListener('click', function (
 
 
 // D3
-function renderBarchart(allDataHouseHolds, personalHousehold) { }
+function renderBarchart() {
+    const vergelijkbaarHuishouden = morphDataObjects(matchingHouseHold)
+    const persoonlijkHuishouden = morphDataObjects(personalHousehold)
+}
+
+// Morphs the dataset structure to our own structure which is determined by the form
+function morphDataObjects(object) {
+    let objectStructure = [{
+        post: "woning",
+        bedrag: object.uitgavenPosten[0].bedrag
+    },
+    {
+        post: "energie",
+        bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
+    },
+    {
+        post: "lokale lasten",
+        bedrag: object.uitgavenPosten[4].bedrag
+    },
+    {
+        post: "telefoon, televisie, internet",
+        bedrag: object.uitgavenPosten[5].bedrag
+    },
+    {
+        post: "verzekeringen",
+        bedrag: object.uitgavenPosten[6].bedrag
+    },
+    {
+        post: "onderwijs",
+        bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
+    },
+    {
+        post: "contributies en abonnementen",
+        bedrag: object.uitgavenPosten[9].bedrag
+    },
+    {
+        post: "vervoer",
+        bedrag: object.uitgavenPosten[10].bedrag
+    },
+    {
+        post: "reserveringsuitgaven",
+        bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
+    },
+    {
+        post: "huishoudelijke uitgaven",
+        bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
+    }
+    ]
+
+    return objectStructure
+}
