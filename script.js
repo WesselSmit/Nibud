@@ -821,8 +821,8 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) {
 function renderBarchart() {
     const matchedHousehold = mergeDataObjects(matchingHouseHold)
     const yourHouseHold = mergeDataObjects(personalHousehold)
-    console.log('jij: ', matchedHousehold)
-    console.log('match: ', yourHouseHold)
+    console.log('match: ', matchedHousehold)
+    console.log('jij: ', yourHouseHold)
 }
 
 // Morphs the dataset structure to our own structure which is determined by the form
