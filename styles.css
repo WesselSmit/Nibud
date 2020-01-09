@@ -148,7 +148,8 @@ body {
     position: fixed;
 }
 
-#simsMan, #simsVrouw {
+#simsMan,
+#simsVrouw {
     height: 300px;
 }
 
@@ -162,7 +163,11 @@ body {
     right: 24vw;
 }
 
-#simsKind1,#simsKind2, #simsKind3, #simsKind4, #simsKind5 {
+#simsKind1,
+#simsKind2,
+#simsKind3,
+#simsKind4,
+#simsKind5 {
     height: 200px;
     bottom: 8vh;
 }
@@ -192,14 +197,14 @@ body {
 #simsHuis {
     height: 550px;
     bottom: 35.4vh;
-    left: 28vw;
+    left: 29vw;
 }
 
 img#simsAuto {
     width: 500px;
-    height: auto;  
+    height: auto;
     bottom: 9vh;
-    left: 17vw;  
+    left: 17vw;
 }
 
 section:nth-of-type(2) {
@@ -207,53 +212,23 @@ section:nth-of-type(2) {
 }
 
 .animation_target {
-    animation: simsPop 3000ms linear 1;
-    height: 100px;
-    width: 100px;
-    position: absolute;
-    top: 500px;
-    left: 600px;
+    animation: yourAnimation 0.8s 1 0s ease-in-out;
 }
 
-@keyframes simsPop {
+@keyframes yourAnimation {
     0% {
-        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: rotate(0deg) scale(0.1);
+        transform-origin: center bottom;
     }
 
-    3.2% {
-        transform: matrix3d(1.972, 0, 0, 0, 0, 1.972, 0, 0, 0, 0, 1, 0, 0, -8.22, 0, 1);
-    }
-
-    6.31% {
-        transform: matrix3d(2.615, 0, 0, 0, 0, 2.615, 0, 0, 0, 0, 1, 0, 0, -17.131, 0, 1);
-    }
-
-    9.41% {
-        transform: matrix3d(3.057, 0, 0, 0, 0, 3.057, 0, 0, 0, 0, 1, 0, 0, -24.345, 0, 1);
-    }
-
-    12.51% {
-        transform: matrix3d(3.359, 0, 0, 0, 0, 3.359, 0, 0, 0, 0, 1, 0, 0, -29.565, 0, 1);
-    }
-
-    18.82% {
-        transform: matrix3d(3.71, 0, 0, 0, 0, 3.71, 0, 0, 0, 0, 1, 0, 0, -35.597, 0, 1);
-    }
-
-    25.03% {
-        transform: matrix3d(3.869, 0, 0, 0, 0, 3.869, 0, 0, 0, 0, 1, 0, 0, -38.151, 0, 1);
-    }
-
-    37.54% {
-        transform: matrix3d(3.974, 0, 0, 0, 0, 3.974, 0, 0, 0, 0, 1, 0, 0, -39.682, 0, 1);
-    }
-
-    50.05% {
-        transform: matrix3d(3.995, 0, 0, 0, 0, 3.995, 0, 0, 0, 0, 1, 0, 0, -39.946, 0, 1);
+    80% {
+        transform: rotate(0deg) scale(1.2);
+        transform-origin: center bottom;
     }
 
     100% {
-        transform: matrix3d(4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 0, -40, 0, 1);
+        transform: rotate(0deg) scale(1);
+        transform-origin: center bottom;
     }
 }
 
@@ -680,8 +655,10 @@ label.fixWithHide {
     width: 35vw;
     position: absolute;
     top: 350vh;
-    left: 50%;
+    left: calc(50% - 12.5px);
     transform: translate(-50%, -50%);
+    border-right: 25px solid white;
+    background-color: white;
 }
 
 #uw_resultaat>div>div {
