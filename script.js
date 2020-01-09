@@ -680,8 +680,13 @@ function findMatchingHousehold() {
 const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
 simsInputs.forEach(input => {
     input.addEventListener('input', function () {
+        for (const input of simsInputs) {
+            input.classList.remove('animation_target')
+        }
+
         if (input.id == "wel-partner") {
             document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
+            document.getElementById('simsVrouw').classList.add('animation_target')
         }
         if (input.id == "geen-partner") {
             document.getElementById('simsVrouw').src = ""
@@ -692,10 +697,12 @@ simsInputs.forEach(input => {
 
                 if (i < parseInt(input.value) + 1) {
                     document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
+                    document.querySelector('#simsKind' + i).classList.add('animation_target')
                 }
             }
         }
         if (input.id == "woningtype") {
+            document.getElementById('simsHuis').classList.add('animation_target')
             if (input.value === 'appartement') {
                 document.getElementById('simsHuis').src = "media/sims/appartement_huis.svg"
             } else if (input.value === 'tussenwoning') {
@@ -707,6 +714,7 @@ simsInputs.forEach(input => {
             }
         }
         if (input.id == "car") {
+            document.getElementById('simsAuto').classList.add('animation_target')
             if (input.value === 'geen') {
                 document.getElementById('simsAuto').src = ""
             } else if (input.value === 'klein') {
