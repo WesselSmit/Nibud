@@ -673,7 +673,7 @@ function findMatchingHousehold() {
     matchingHouseHold = matches[0]
 
     // console.log('you: ', personalHousehold)
-    console.log('match: ', matchingHouseHold)
+    // console.log('match: ', matchingHouseHold)
 }
 
 
@@ -750,33 +750,6 @@ document.getElementById('demo').addEventListener('click', function () {
         document.querySelector('#kinderen').value = 0
     }
 
-    checkAdditionalQuestions(document.querySelector('[data_question="3"] input:first-of-type')) //check for additional questions
-    document.getElementById("huur").click()
-    document.querySelector('section:nth-of-type(2)').classList.remove('hide')
-
-    for (const item of document.querySelectorAll('[data_path="true"]')) {
-        if (item.type == "number") {
-            item.value = 20
-        }
-    }
-
-    document.getElementById('netto_maandinkomen').value = 1700
-
-    a = 0
-    b = 0
-    checkIfValueIsAllowed(document.querySelector('[data_question="10"] input:first-of-type')) //value validation
-    checkAdditionalQuestions(document.querySelector('[data_question="10"] input:first-of-type')) //check for additional questions
-    updateProgressbar(document.querySelector('[data_question="10"] input:first-of-type')) //progress-bar
-    updateProgressbar(document.querySelector('[data_question="5"] input:first-of-type')) //progress-bar
-    updateProgressIndicators(document.querySelector('[data_question="10"] input:first-of-type')) //progress indicator
-    updateTotalSum(document.querySelector('[data_question="10"] input:first-of-type')) //total income
-    calculateSaldo()
-    sumExpenses()
-
-
-
-
-
     document.getElementById('cheatPopUp').classList.remove('invisible')
     setTimeout(function () {
         document.getElementById('cheatPopUp').classList.add('invisible')
@@ -792,6 +765,7 @@ document.addEventListener('scroll', function () {
     }
     if (window.scrollY + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().height > window.scrollY + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().top + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().height + 45) {
         document.querySelector('#scroll_indicator_uw_situatie').classList.add('inactive')
+        renderBarchart()
     }
     if (window.scrollY + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().height > window.scrollY + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().top + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().height + 45) {
         document.querySelector('#scroll_indicator_uw_uitgaven').classList.add('inactive')
@@ -811,7 +785,6 @@ document.querySelector('#scroll_indicator').addEventListener('click', function (
         behavior: "smooth",
         block: "end"
     })
-    renderBarchart()
 })
 document.querySelector('#scroll_indicator_uw_situatie').addEventListener('click', function () {
     document.querySelector('section:nth-of-type(2)').scrollIntoView({
@@ -846,12 +819,14 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) {
 
 // D3
 function renderBarchart() {
-    const vergelijkbaarHuishouden = morphDataObjects(matchingHouseHold)
-    const persoonlijkHuishouden = morphDataObjects(personalHousehold)
+    const matchedHousehold = mergeDataObjects(matchingHouseHold)
+    const yourHouseHold = mergeDataObjects(personalHousehold)
+    console.log('jij: ', matchedHousehold)
+    console.log('match: ', yourHouseHold)
 }
 
 // Morphs the dataset structure to our own structure which is determined by the form
-function morphDataObjects(object) {
+function mergeDataObjects(object) {
     let objectStructure = [{
             post: "woning",
             bedrag: object.uitgavenPosten[0].bedrag
