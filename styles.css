@@ -778,3 +778,11 @@ label.fixWithHide {
     right: 0;
     top: 200vh;
 }
+
+.chart {
+    position: absolute;
+    width: 94%;
+    height: 94%;
+    top: 3%;
+    left: 3%;
+}

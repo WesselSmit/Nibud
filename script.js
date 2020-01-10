@@ -673,9 +673,6 @@ function findMatchingHousehold() { //find a matching household -> most similar t
 
     matches.sort((highest, lowest) => highest.difference - lowest.difference) //sort matches from best - worst
     matchingHouseHold = matches[0]
-
-    // console.log('you: ', personalHousehold)
-    // console.log('match: ', matchingHouseHold)
 }
 
 
@@ -822,9 +819,140 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 
 // D3
-// document.querySelector('#d3-start').addEventListener('click', renderBarchart)
-function renderBarchart() {
+document.querySelector('#d3-start').addEventListener('click', createBarchart)
 
+function createBarchart() {
+    // function variables
+    let data = transformDataForD3()
+
+    console.log(data)
+
+    let width = document.querySelector('.chart').getBoundingClientRect().width,
+        height = document.querySelector('.chart').getBoundingClientRect().height
+
+    var chartWidth = 300,
+        barHeight = 20,
+        groupHeight = barHeight * data.bars.length,
+        gapBetweenGroups = 10,
+        spaceForLabels = 150,
+        spaceForLegend = 150;
+
+    // Zip the series data together (first values, second values, etc.)
+    var zippedData = [];
+    for (var i = 0; i < data.labels.length; i++) {
+        for (var j = 0; j < data.bars.length; j++) {
+            zippedData.push(data.bars[j].values[i]);
+        }
+    }
+
+    console.log(zippedData);
+    // Color scale
+    var color = d3.scaleOrdinal()
+        .range(["#16A085", "#33435C"]);
+    var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+
+    var x = d3.scaleLinear()
+        .domain([0, d3.max(zippedData)])
+        .range([0, width]);
+
+    var y = d3.scaleLinear()
+        .range([chartHeight + gapBetweenGroups, 0]);
+
+    var yAxis = d3.axisLeft()
+        .scale(y)
+        .tickFormat('')
+        .tickSize(0);
+
+    var xAxis = d3.axisBottom(x).tickFormat(function (d) {
+        return d;
+    });
+
+    // Specify the chart area and dimensions
+    var chart = d3.select(".chart")
+        .attr("width", spaceForLabels + width + spaceForLegend)
+        .attr("height", chartHeight + 30);
+
+    // console.log(chartHeight);
+
+    // Create bars
+    var bar = chart.selectAll("g")
+        .data(zippedData)
+        .enter().append("g")
+        .attr("transform", function (d, i) {
+            return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ")";
+        });
+
+    // Create rectangles of the correct width
+    bar.append("rect")
+        .attr("fill", function (d, i) {
+            return color(i % data.bars.length);
+        })
+        .attr("class", "bar")
+        .attr("width", x)
+        .attr("height", barHeight - 1);
+
+    // Draw labels
+    bar.append("text")
+        .attr("class", "label")
+        .attr("x", function (d) {
+            return -10;
+        })
+        .attr("y", groupHeight / 2)
+        .attr("dy", ".35em")
+        .text(function (d, i) {
+            if (i % data.bars.length === 0)
+                return data.labels[Math.floor(i / data.bars.length)];
+            else
+                return ""
+        });
+
+    chart.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups / 2 + ")")
+        .call(yAxis);
+
+    chart.append("g") // Add the X Axis
+        .attr("class", "x axis")
+        .attr("transform", "translate(" + spaceForLabels + "," + chartHeight + ")")
+        .call(xAxis);
+
+
+
+
+
+
+    // // d3 variables
+    // let width = document.querySelector('#bar-charts').getBoundingClientRect().width,
+    //     height = document.querySelector('#bar-charts').getBoundingClientRect().height,
+    //     svg = d3.select('#bar-charts'),
+    //     groupGaps = 10,
+    //     spaceForLabels = 150,
+    //     barHeight = 20
+
+    // var x = d3.scaleLinear()
+    //     .domain([0, 100])
+    //     .range([0, width])
+
+    // var y = d3.scaleLinear()
+    //     .range([height + groupGaps, 0]);
+
+    // var yAxis = d3.axisLeft()
+    //     .scale(y)
+    //     .tickFormat('')
+    //     .tickSize(0)
+
+    // var bar = svg.selectAll("g")
+    //     .data(valuesArray)
+    //     .enter().append("g")
+    //     .attr("transform", function (d, i) {
+    //         return "translate(" + spaceForLabels + "," + (i * barHeight + groupGaps * (0.5 + Math.floor(i / data.length))) + ")";
+    //     })
+
+    // bar.append("rect")
+    //     .attr("fill", "black")
+    //     .attr("class", "bar")
+    //     .attr("width", x)
+    //     .attr("height", barHeight - 1);
 }
 
 // Merges the dataset structure to our own structure which is determined by the form
@@ -875,21 +1003,38 @@ function mergeDataObjects(object) {
 }
 
 document.querySelector('#d3-start').addEventListener('click', transformDataForD3)
-
+// Creates 1 object with keys and values of both household for the same category
 function transformDataForD3() {
-    const matchedHousehold = mergeDataObjects(matchingHouseHold)
     const yourHouseHold = mergeDataObjects(personalHousehold)
+    const matchedHousehold = mergeDataObjects(matchingHouseHold)
 
-    console.log('match: ', matchedHousehold)
-    console.log('jij: ', yourHouseHold)
+    const categories = []
+    const averageValues = []
+    matchedHousehold.forEach(category => {
+        categories.push(category.post)
+        averageValues.push(category.bedrag)
+    })
 
-    let data = [{
-        "post": matchedHousehold[0].post
-    }]
+    const personalValues = []
+    yourHouseHold.forEach(category => {
+        personalValues.push(category.bedrag)
+    })
 
-    console.log(data)
+    const data = {
+        labels: categories,
+        bars: [{
+                label: 'personal_values',
+                values: personalValues
+            },
+            {
+                label: 'average_values',
+                values: averageValues
+            }
+        ]
+    }
+
+    return data
 }
-
 
 function calcMoneyPile() {
     const moneyPile = document.getElementById('moneyPile')
