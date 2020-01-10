@@ -216,7 +216,7 @@ img#simsAuto {
 
 #money {
     position: fixed;
-    right: 8vw;
+    right: 6vw;
     top: 30vh;
     height: 550px;
     width: 79px;
@@ -227,6 +227,7 @@ img#simsAuto {
 
 #moneyPile {
     margin-top: 0px;
+    transition: margin-top 0.3s linear;
 }
 
 section:nth-of-type(2) {
