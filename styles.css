@@ -787,3 +787,7 @@ label.fixWithHide {
     top: 7%;
     left: 3%;
 }
+
+.label {
+    text-anchor: end;
+}

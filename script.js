@@ -820,20 +820,9 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 // D3
 document.querySelector('#d3-start').addEventListener('click', createBarchart)
-
 function createBarchart() {
     // function variables
     let data = transformDataForD3()
-
-    console.log(data)
-
-    let width = document.querySelector('.chart').getBoundingClientRect().width,
-        height = document.querySelector('.chart').getBoundingClientRect().height
-
-    var barHeight = 35,
-        groupHeight = barHeight * data.bars.length,
-        gapBetweenGroups = 10,
-        spaceForLabels = 150
 
     var zippedData = []
     for (var i = 0; i < data.labels.length; i++) {
@@ -842,23 +831,21 @@ function createBarchart() {
         }
     }
 
+    // D3 variables
+    let width = document.querySelector('.chart').getBoundingClientRect().width,
+        chart = d3.select(".chart"),
+        barHeight = 35,
+        groupHeight = barHeight * data.bars.length,
+        gapBetweenGroups = 10,
+        spaceForLabels = 150
+
     // Color scale
     var color = d3.scaleOrdinal()
         .range(["#16A085", "#33435C"])
-    var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
 
     var x = d3.scaleLinear()
         .domain([0, d3.max(zippedData)])
         .range([0, width])
-
-    var y = d3.scaleLinear()
-        .range([chartHeight + gapBetweenGroups, 0])
-
-    var xAxis = d3.axisBottom(x).tickFormat(function (d) {
-        return d
-    })
-
-    var chart = d3.select(".chart")
 
     // Create bars
     var bar = chart.selectAll("g")
@@ -868,18 +855,15 @@ function createBarchart() {
             return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ")";
         })
 
-    // Create rectangles of the correct width
     bar.append("rect")
         .attr("fill", function (d, i) {
             return color(i % data.bars.length)
         })
-        .attr("class", "bar")
         .attr("width", x)
         .attr("height", barHeight - 1)
 
     // Draw labels
     bar.append("text")
-        .attr("class", "label")
         .attr("x", function (d, i) {
             return -10
         })
@@ -891,47 +875,7 @@ function createBarchart() {
             else
                 return ""
         })
-        .attr('text-anchor', 'end')
-
-
-
-
-
-
-
-
-    // // d3 variables
-    // let width = document.querySelector('#bar-charts').getBoundingClientRect().width,
-    //     height = document.querySelector('#bar-charts').getBoundingClientRect().height,
-    //     svg = d3.select('#bar-charts'),
-    //     groupGaps = 10,
-    //     spaceForLabels = 150,
-    //     barHeight = 20
-
-    // var x = d3.scaleLinear()
-    //     .domain([0, 100])
-    //     .range([0, width])
-
-    // var y = d3.scaleLinear()
-    //     .range([height + groupGaps, 0]);
-
-    // var yAxis = d3.axisLeft()
-    //     .scale(y)
-    //     .tickFormat('')
-    //     .tickSize(0)
-
-    // var bar = svg.selectAll("g")
-    //     .data(valuesArray)
-    //     .enter().append("g")
-    //     .attr("transform", function (d, i) {
-    //         return "translate(" + spaceForLabels + "," + (i * barHeight + groupGaps * (0.5 + Math.floor(i / data.length))) + ")";
-    //     })
-
-    // bar.append("rect")
-    //     .attr("fill", "black")
-    //     .attr("class", "bar")
-    //     .attr("width", x)
-    //     .attr("height", barHeight - 1);
+        .attr('class', 'label')
 }
 
 // Merges the dataset structure to our own structure which is determined by the form
@@ -981,11 +925,13 @@ function mergeDataObjects(object) {
     return objectStructure
 }
 
-document.querySelector('#d3-start').addEventListener('click', transformDataForD3)
 // Creates 1 object with keys and values of both household for the same category
 function transformDataForD3() {
     const yourHouseHold = mergeDataObjects(personalHousehold)
     const matchedHousehold = mergeDataObjects(matchingHouseHold)
+
+    console.log(yourHouseHold)
+    console.log(matchedHousehold)
 
     const categories = [],
         averageValues = []
@@ -1011,7 +957,6 @@ function transformDataForD3() {
         }
         ]
     }
-
     return data
 }
 
@@ -1030,7 +975,7 @@ function calcMoneyPile() {
         }
     }
 
-    console.log(yourIncomeMoney, yourExpensesMoney)
+    // console.log(yourIncomeMoney, yourExpensesMoney)
 
     if ((yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height >= 550) {
         moneyPile.style.marginTop = "550px"
