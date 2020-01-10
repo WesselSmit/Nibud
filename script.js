@@ -830,7 +830,7 @@ function createBarchart() {
     let width = document.querySelector('.chart').getBoundingClientRect().width,
         height = document.querySelector('.chart').getBoundingClientRect().height
 
-    var barHeight = 20,
+    var barHeight = 35,
         groupHeight = barHeight * data.bars.length,
         gapBetweenGroups = 10,
         spaceForLabels = 150
@@ -871,41 +871,40 @@ function createBarchart() {
         .enter().append("g")
         .attr("transform", function (d, i) {
             return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ")";
-        });
+        })
 
     // Create rectangles of the correct width
     bar.append("rect")
         .attr("fill", function (d, i) {
-            return color(i % data.bars.length);
+            return color(i % data.bars.length)
         })
         .attr("class", "bar")
         .attr("width", x)
-        .attr("height", barHeight - 1);
+        .attr("height", barHeight - 1)
 
     // Draw labels
     bar.append("text")
         .attr("class", "label")
-        .attr("x", function (d) {
-            return -10;
+        .attr("x", function (i) {
+            console.log(document.querySelector('svg g:nth-of-type(' + i + ') text'))
+            console.log(document.querySelector('svg g:nth-of-type(' + i + 1 + ') text'))
+            // console.log(document.querySelector('svg g:nth-of-type(' + i + 1 + ') text').getBoundingClientRect())
+            // console.log(document.querySelector('svg g:nth-of-type(' + i + 1 + ') text').getBoundingClientRect().width)
+            return -70
         })
         .attr("y", groupHeight / 2)
-        .attr("dy", ".35em")
         .text(function (d, i) {
             if (i % data.bars.length === 0)
-                return data.labels[Math.floor(i / data.bars.length)];
+                return data.labels[Math.floor(i / data.bars.length)]
             else
                 return ""
-        });
+        })
 
     chart.append("g")
         .attr("class", "y axis")
         .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups / 2 + ")")
-        .call(yAxis);
+        .call(yAxis)
 
-    chart.append("g") // Add the X Axis
-        .attr("class", "x axis")
-        .attr("transform", "translate(" + spaceForLabels + "," + chartHeight + ")")
-        .call(xAxis);
 
 
 

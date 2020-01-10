@@ -216,8 +216,8 @@ img#simsAuto {
 
 #money {
     position: fixed;
-    right: 6vw;
-    top: 30vh;
+    right: 4vw;
+    top: 31vh;
     height: 550px;
     width: 79px;
     background-image: url('./media/sims/money_opacity.svg');
@@ -784,6 +784,6 @@ label.fixWithHide {
     position: absolute;
     width: 80%;
     height: 94%;
-    top: 3%;
+    top: 7%;
     left: 3%;
 }
