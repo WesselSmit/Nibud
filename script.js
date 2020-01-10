@@ -1037,8 +1037,16 @@ function calcMoneyPile() {
         yourIncomeMoney = yourIncomeMoney + parseInt(money.value)
     }
     for (const money of document.querySelectorAll('section:nth-of-type(2) input[type="number"][data_path="true"]')) {
-        yourExpensesMoney = yourExpensesMoney + parseInt(money.value)
+        if (parseInt(money.value) >= 0) {
+            yourExpensesMoney = yourExpensesMoney + parseInt(money.value)
+        }
     }
 
-    moneyPile.style.marginTop = (yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height + "px"
+    console.log(yourIncomeMoney, yourExpensesMoney)
+
+    if ((yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height >= 550) {
+        moneyPile.style.marginTop = "550px"
+    } else {
+        moneyPile.style.marginTop = (yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height + "px"
+    }
 }
