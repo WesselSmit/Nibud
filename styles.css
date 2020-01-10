@@ -764,10 +764,10 @@ label.fixWithHide {
     top: 200vh;
 }
 
-#bar-charts {
+.chart {
     position: absolute;
-    width: 60%;
+    width: 94%;
     height: 94%;
     top: 3%;
-    left: 20%;
+    left: 3%;
 }
