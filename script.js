@@ -1002,8 +1002,8 @@ function transformDataForD3() {
     const yourHouseHold = mergeDataObjects(personalHousehold)
     const matchedHousehold = mergeDataObjects(matchingHouseHold)
 
-    const categories = []
-    const averageValues = []
+    const categories = [],
+        averageValues = []
     matchedHousehold.forEach(category => {
         categories.push(category.post)
         averageValues.push(category.bedrag)
