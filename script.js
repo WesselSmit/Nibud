@@ -881,7 +881,7 @@ function createBarchart() {
     bar.append("text")
         .attr("class", "label")
         .attr("x", function (d, i) {
-            return -70
+            return -10
         })
         .attr("y", groupHeight / 2)
         .text(function (d, i) {
@@ -891,6 +891,7 @@ function createBarchart() {
                 return ""
             }
         })
+        .attr('text-anchor', 'end')
 
 
 
@@ -1028,6 +1029,8 @@ function calcMoneyPile() {
             yourExpensesMoney = yourExpensesMoney + parseInt(money.value)
         }
     }
+
+    console.log(yourIncomeMoney, yourExpensesMoney)
 
     if ((yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height >= 550) {
         moneyPile.style.marginTop = "550px"
