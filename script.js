@@ -821,71 +821,164 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 
 // D3
-// document.querySelector('#d3-start').addEventListener('click', renderBarchart)
+document.querySelector('#d3-start').addEventListener('click', renderBarchart)
 function renderBarchart() {
+    // function variables
+    let data = transformDataForD3(),
+        categories = [],
+        expenses = []
 
+    data.forEach(category => {
+        categories.push(category.post)
+        expenses.push(category.average_household, category.personal_household)
+    })
+
+    console.log(expenses)
+
+    // d3 variables
+    let width = document.querySelector('#bar-charts').getBoundingClientRect().width,
+        height = document.querySelector('#bar-charts').getBoundingClientRect().height,
+        svg = d3.select('#bar-charts')
+
+    var barHeight = 20,
+        groupHeight = barHeight * expenses.length,
+        gapBetweenGroups = 10,
+        spaceForLabels = 150,
+        spaceForLegend = 150;
+
+    var color = d3.schemeCategory20
+
+    var x = d3.scaleLinear()
+        .domain([0, d3.max(expenses)])
+        .range([0, width])
+
+    var y = d3.scaleLinear()
+        .range([height + gapBetweenGroups, 0]);
+
+    var yAxis = d3.axisLeft()
+        .scale(y)
+        .tickFormat('')
+        .tickSize(0)
+
+    var bar = svg.selectAll("g")
+        .data(expenses)
+        .enter().append("g")
+        .attr("transform", function (d, i) {
+            return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups) + ")"
+        })
+
+    bar.append("rect")
+        .attr("fill", function (d, i) { return color })
+        .attr("class", "bar")
+        .attr("width", x)
+        .attr("height", barHeight - 1);
 }
 
 // Merges the dataset structure to our own structure which is determined by the form
 function mergeDataObjects(object) {
-    let objectStructure = [{
-        post: "woning",
-        bedrag: object.uitgavenPosten[0].bedrag
-    },
-    {
-        post: "energie",
-        bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
-    },
-    {
-        post: "lokale lasten",
-        bedrag: object.uitgavenPosten[4].bedrag
-    },
-    {
-        post: "telefoon, televisie, internet",
-        bedrag: object.uitgavenPosten[5].bedrag
-    },
-    {
-        post: "verzekeringen",
-        bedrag: object.uitgavenPosten[6].bedrag
-    },
-    {
-        post: "onderwijs",
-        bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
-    },
-    {
-        post: "contributies en abonnementen",
-        bedrag: object.uitgavenPosten[9].bedrag
-    },
-    {
-        post: "vervoer",
-        bedrag: object.uitgavenPosten[10].bedrag
-    },
-    {
-        post: "reserveringsuitgaven",
-        bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
-    },
-    {
-        post: "huishoudelijke uitgaven",
-        bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
-    }
+    let objectStructure = [
+        {
+            post: "woning",
+            bedrag: object.uitgavenPosten[0].bedrag
+        },
+        {
+            post: "energie",
+            bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
+        },
+        {
+            post: "lokale lasten",
+            bedrag: object.uitgavenPosten[4].bedrag
+        },
+        {
+            post: "telefoon, televisie, internet",
+            bedrag: object.uitgavenPosten[5].bedrag
+        },
+        {
+            post: "verzekeringen",
+            bedrag: object.uitgavenPosten[6].bedrag
+        },
+        {
+            post: "onderwijs",
+            bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
+        },
+        {
+            post: "contributies en abonnementen",
+            bedrag: object.uitgavenPosten[9].bedrag
+        },
+        {
+            post: "vervoer",
+            bedrag: object.uitgavenPosten[10].bedrag
+        },
+        {
+            post: "reserveringsuitgaven",
+            bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
+        },
+        {
+            post: "huishoudelijke uitgaven",
+            bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
+        }
     ]
 
     return objectStructure
 }
 
-document.querySelector('#d3-start').addEventListener('click', transformDataForD3)
+// Creates 1 object with keys and values of both household for the same category
 function transformDataForD3() {
     const matchedHousehold = mergeDataObjects(matchingHouseHold)
     const yourHouseHold = mergeDataObjects(personalHousehold)
 
-    console.log('match: ', matchedHousehold)
-    console.log('jij: ', yourHouseHold)
-
     let data = [
         {
-            "post": matchedHousehold[0].post
+            "post": matchedHousehold[0].post,
+            "average_household": matchedHousehold[0].bedrag,
+            "personal_household": yourHouseHold[0].bedrag
+        },
+        {
+            "post": matchedHousehold[1].post,
+            "average_household": matchedHousehold[1].bedrag,
+            "personal_household": yourHouseHold[1].bedrag
+        },
+        {
+            "post": matchedHousehold[2].post,
+            "average_household": matchedHousehold[2].bedrag,
+            "personal_household": yourHouseHold[2].bedrag
+        },
+        {
+            "post": matchedHousehold[3].post,
+            "average_household": matchedHousehold[3].bedrag,
+            "personal_household": yourHouseHold[3].bedrag
+        },
+        {
+            "post": matchedHousehold[4].post,
+            "average_household": matchedHousehold[4].bedrag,
+            "personal_household": yourHouseHold[4].bedrag
+        },
+        {
+            "post": matchedHousehold[5].post,
+            "average_household": matchedHousehold[5].bedrag,
+            "personal_household": yourHouseHold[5].bedrag
+        },
+        {
+            "post": matchedHousehold[6].post,
+            "average_household": matchedHousehold[6].bedrag,
+            "personal_household": yourHouseHold[6].bedrag
+        },
+        {
+            "post": matchedHousehold[7].post,
+            "average_household": matchedHousehold[7].bedrag,
+            "personal_household": yourHouseHold[7].bedrag
+        },
+        {
+            "post": matchedHousehold[8].post,
+            "average_household": matchedHousehold[8].bedrag,
+            "personal_household": yourHouseHold[8].bedrag
+        },
+        {
+            "post": matchedHousehold[9].post,
+            "average_household": matchedHousehold[9].bedrag,
+            "personal_household": yourHouseHold[9].bedrag
         }
     ]
 
-    console.log(data)
+    return data
 }
