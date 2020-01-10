@@ -77,6 +77,7 @@ document.querySelectorAll('input, select').forEach(input =>
         updateTotalSum(this) //total income
         fixSelectFocus(this) //fix select focus state
         calculateSaldo() //calculate saldo
+        calcMoneyPile()
     }))
 document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('keydown', function (e) {
@@ -548,77 +549,77 @@ function sumExpenses() { //calc epxenses
         yourExpenses[input.id] = parseInt(input.value)
 
         expenseArray = [{ //all possibilities
-            post: "huur/hypotheek",
-            bedrag: calculateCategoryCost(5, cost)
-        },
-        {
-            post: "gas",
-            bedrag: yourExpenses.gas
-        },
-        {
-            post: "elektriciteit",
-            bedrag: yourExpenses.elektriciteit
-        },
-        {
-            post: "water",
-            bedrag: yourExpenses.water
-        },
-        {
-            post: "lokale lasten",
-            bedrag: calculateCategoryCost(7, cost)
-        },
-        {
-            post: "telefoon, televisie, internet",
-            bedrag: calculateCategoryCost(8, cost)
-        },
-        {
-            post: "verzekeringen",
-            bedrag: calculateCategoryCost(9, cost)
-        },
-        {
-            post: "onderwijs",
-            bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
-        },
-        {
-            post: "kinderopvang",
-            bedrag: yourExpenses.kinderopvang
-        },
-        {
-            post: "contributies en abonnementen",
-            bedrag: calculateCategoryCost(11, cost)
-        },
-        {
-            post: "vervoer",
-            bedrag: calculateCategoryCost(12, cost)
-        },
-        {
-            post: "kleding en schoenen",
-            bedrag: yourExpenses.kleding_en_schoenen
-        },
-        {
-            post: "inventaris",
-            bedrag: yourExpenses.inventaris
-        },
-        {
-            post: "onderhoud huis en tuin",
-            bedrag: yourExpenses.onderhoud_huis_en_tuin
-        },
-        {
-            post: "niet-vergoede ziektekosten",
-            bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
-        },
-        {
-            post: "vrijetijdsuitgaven",
-            bedrag: yourExpenses.vrijetijdsuitgaven
-        },
-        {
-            post: "voeding",
-            bedrag: yourExpenses.voeding
-        },
-        {
-            post: "overige huishoudelijke uitgaven",
-            bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
-        }
+                post: "huur/hypotheek",
+                bedrag: calculateCategoryCost(5, cost)
+            },
+            {
+                post: "gas",
+                bedrag: yourExpenses.gas
+            },
+            {
+                post: "elektriciteit",
+                bedrag: yourExpenses.elektriciteit
+            },
+            {
+                post: "water",
+                bedrag: yourExpenses.water
+            },
+            {
+                post: "lokale lasten",
+                bedrag: calculateCategoryCost(7, cost)
+            },
+            {
+                post: "telefoon, televisie, internet",
+                bedrag: calculateCategoryCost(8, cost)
+            },
+            {
+                post: "verzekeringen",
+                bedrag: calculateCategoryCost(9, cost)
+            },
+            {
+                post: "onderwijs",
+                bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
+            },
+            {
+                post: "kinderopvang",
+                bedrag: yourExpenses.kinderopvang
+            },
+            {
+                post: "contributies en abonnementen",
+                bedrag: calculateCategoryCost(11, cost)
+            },
+            {
+                post: "vervoer",
+                bedrag: calculateCategoryCost(12, cost)
+            },
+            {
+                post: "kleding en schoenen",
+                bedrag: yourExpenses.kleding_en_schoenen
+            },
+            {
+                post: "inventaris",
+                bedrag: yourExpenses.inventaris
+            },
+            {
+                post: "onderhoud huis en tuin",
+                bedrag: yourExpenses.onderhoud_huis_en_tuin
+            },
+            {
+                post: "niet-vergoede ziektekosten",
+                bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
+            },
+            {
+                post: "vrijetijdsuitgaven",
+                bedrag: yourExpenses.vrijetijdsuitgaven
+            },
+            {
+                post: "voeding",
+                bedrag: yourExpenses.voeding
+            },
+            {
+                post: "overige huishoudelijke uitgaven",
+                bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
+            }
         ]
     })
     personalHousehold.uitgavenPosten = expenseArray
@@ -819,6 +820,7 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 // D3
 document.querySelector('#d3-start').addEventListener('click', createBarchart)
+
 function createBarchart() {
     // function variables
     let data = transformDataForD3()
@@ -882,7 +884,9 @@ function createBarchart() {
 
     // Create rectangles of the correct width
     bar.append("rect")
-        .attr("fill", function (d, i) { return color(i % data.bars.length); })
+        .attr("fill", function (d, i) {
+            return color(i % data.bars.length);
+        })
         .attr("class", "bar")
         .attr("width", x)
         .attr("height", barHeight - 1);
@@ -890,7 +894,9 @@ function createBarchart() {
     // Draw labels
     bar.append("text")
         .attr("class", "label")
-        .attr("x", function (d) { return - 10; })
+        .attr("x", function (d) {
+            return -10;
+        })
         .attr("y", groupHeight / 2)
         .attr("dy", ".35em")
         .text(function (d, i) {
@@ -905,7 +911,7 @@ function createBarchart() {
         .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups / 2 + ")")
         .call(yAxis);
 
-    chart.append("g")         // Add the X Axis
+    chart.append("g") // Add the X Axis
         .attr("class", "x axis")
         .attr("transform", "translate(" + spaceForLabels + "," + chartHeight + ")")
         .call(xAxis);
@@ -951,8 +957,7 @@ function createBarchart() {
 
 // Merges the dataset structure to our own structure which is determined by the form
 function mergeDataObjects(object) {
-    let objectStructure = [
-        {
+    let objectStructure = [{
             post: "woning",
             bedrag: object.uitgavenPosten[0].bedrag
         },
@@ -997,6 +1002,7 @@ function mergeDataObjects(object) {
     return objectStructure
 }
 
+document.querySelector('#d3-start').addEventListener('click', transformDataForD3)
 // Creates 1 object with keys and values of both household for the same category
 function transformDataForD3() {
     const yourHouseHold = mergeDataObjects(personalHousehold)
@@ -1016,8 +1022,7 @@ function transformDataForD3() {
 
     const data = {
         labels: categories,
-        bars: [
-            {
+        bars: [{
                 label: 'personal_values',
                 values: personalValues
             },
@@ -1029,4 +1034,20 @@ function transformDataForD3() {
     }
 
     return data
+}
+
+function calcMoneyPile() {
+    const moneyPile = document.getElementById('moneyPile')
+
+    let yourIncomeMoney = 0,
+        yourExpensesMoney = 0
+
+    for (const money of document.querySelectorAll('[data_question="2"] input[type="number"][data_path="true"]')) {
+        yourIncomeMoney = yourIncomeMoney + parseInt(money.value)
+    }
+    for (const money of document.querySelectorAll('section:nth-of-type(2) input[type="number"][data_path="true"]')) {
+        yourExpensesMoney = yourExpensesMoney + parseInt(money.value)
+    }
+
+    moneyPile.style.marginTop = (yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height + "px"
 }

@@ -214,6 +214,21 @@ img#simsAuto {
     left: 17vw;
 }
 
+#money {
+    position: fixed;
+    right: 8vw;
+    top: 30vh;
+    height: 550px;
+    width: 79px;
+    background-image: url('./media/sims/money_opacity.svg');
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#moneyPile {
+    margin-top: 0px;
+}
+
 section:nth-of-type(2) {
     background-color: white;
 }
