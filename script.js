@@ -854,11 +854,6 @@ function createBarchart() {
     var y = d3.scaleLinear()
         .range([chartHeight + gapBetweenGroups, 0])
 
-    var yAxis = d3.axisLeft()
-        .scale(y)
-        .tickFormat('')
-        .tickSize(0)
-
     var xAxis = d3.axisBottom(x).tickFormat(function (d) {
         return d
     })
@@ -885,25 +880,18 @@ function createBarchart() {
     // Draw labels
     bar.append("text")
         .attr("class", "label")
-        .attr("x", function (i) {
-            console.log(document.querySelector('svg g:nth-of-type(' + i + ') text'))
-            console.log(document.querySelector('svg g:nth-of-type(' + i + 1 + ') text'))
-            // console.log(document.querySelector('svg g:nth-of-type(' + i + 1 + ') text').getBoundingClientRect())
-            // console.log(document.querySelector('svg g:nth-of-type(' + i + 1 + ') text').getBoundingClientRect().width)
+        .attr("x", function (d, i) {
             return -70
         })
         .attr("y", groupHeight / 2)
         .text(function (d, i) {
-            if (i % data.bars.length === 0)
+            if (i % data.bars.length === 0) {
                 return data.labels[Math.floor(i / data.bars.length)]
-            else
+            } else {
                 return ""
+            }
         })
 
-    chart.append("g")
-        .attr("class", "y axis")
-        .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups / 2 + ")")
-        .call(yAxis)
 
 
 
