@@ -819,8 +819,6 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 
 
-
-
 document.querySelector('#d3-start').addEventListener('click', createBarchart)
 
 function createBarchart() {
@@ -839,11 +837,13 @@ function createBarchart() {
         barHeight = 35,
         groupHeight = barHeight * data.bars.length,
         gapBetweenGroups = 10,
-        spaceForLabels = 150
+        spaceForLabels = 150,
+        matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color')
+
 
     // Color scale
     let color = d3.scaleOrdinal()
-        .range(["#16A085", "#33435C"])
+        .range(["#33435C", matchedHouseholdColor])
 
     let x = d3.scaleLinear()
         .domain([0, d3.max(zippedData)])
@@ -853,22 +853,16 @@ function createBarchart() {
     let bar = chart.selectAll('g')
         .data(zippedData)
         .enter().append('g')
-        .attr('transform', function (d, i) {
-            return 'translate(' + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ')';
-        })
+        .attr('transform', (d, i) => 'translate(' + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ')')
 
     bar.append('rect')
-        .attr('fill', function (d, i) {
-            return color(i % data.bars.length)
-        })
+        .attr('fill', (d, i) => color(i % data.bars.length))
         .attr('width', x)
         .attr('height', barHeight - 1)
 
     // Draw labels
     bar.append('text')
-        .attr('x', function (d, i) {
-            return -10
-        })
+        .attr('x', (d, i) => -10)
         .attr('y', groupHeight / 2)
         .text(function (d, i) {
             if (i % data.bars.length === 0) {
