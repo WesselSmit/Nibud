@@ -31,8 +31,8 @@ body {
     padding-bottom: 70px;
     padding-left: 50px;
     position: fixed;
-    top: 28vh;
-    left: 93vw;
+    top: 25.5vh;
+    left: 95.5vw;
     z-index: 1;
     cursor: help;
 }
@@ -654,12 +654,13 @@ input[type="number"].invalid:focus {
 }
 
 .scrollIndicator {
-    position: absolute;
+    position: fixed;
     top: 90vh;
     left: 50vw;
     transform: translate(-50%);
     padding: 10px;
     cursor: pointer;
+    z-index: 10000;
 }
 
 .scrollIndicator.inactive {
@@ -679,14 +680,6 @@ input[type="number"].invalid:focus {
 .scrollIndicator img {
     display: block;
     margin: auto;
-}
-
-#scroll_indicator_uw_situatie {
-    top: 190vh;
-}
-
-#scroll_indicator_uw_uitgaven {
-    top: 290vh;
 }
 
 .question_category>fieldset>label:first-of-type[for="rente_a"] {

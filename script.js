@@ -258,12 +258,14 @@ function updateProgressbar(currentForm) {
 
         if (currentForm === document.querySelector('section:first-of-type') && currentForm.contains(currentEl)) {
             document.querySelector('section:nth-of-type(2)').classList.remove('hide')
+            document.getElementById('scroll_indicator').classList.add('inactive')
             document.getElementById('scroll_indicator_uw_situatie').classList.remove('inactive')
             if (a === 0) {
                 determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
+            document.getElementById('scroll_indicator_uw_situatie').classList.add('inactive')
             document.getElementById('scroll_indicator_uw_uitgaven').classList.remove('inactive')
             if (b === 0) {
                 sumExpenses()
@@ -762,16 +764,18 @@ document.addEventListener('scroll', function () { //hide demo button on scroll i
     const demoButton = document.getElementById('demo'),
         secondSection = document.querySelector('section:nth-of-type(2)')
 
-    if (window.scrollY + document.querySelector('#scroll_indicator').getBoundingClientRect().height > window.scrollY + document.querySelector('#scroll_indicator').getBoundingClientRect().top + document.querySelector('#scroll_indicator').getBoundingClientRect().height + 45) {
+    //hide scroll Indicators on specific scroll positions
+    if (document.getElementById('uw_situatie').getBoundingClientRect().top < 30) {
         document.querySelector('#scroll_indicator').classList.add('inactive')
     }
-    if (window.scrollY + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().height > window.scrollY + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().top + document.querySelector('#scroll_indicator_uw_situatie').getBoundingClientRect().height + 45) {
+    if (document.querySelector('section:nth-of-type(2)').getBoundingClientRect().top < 30) {
         document.querySelector('#scroll_indicator_uw_situatie').classList.add('inactive')
     }
-    if (window.scrollY + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().height > window.scrollY + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().top + document.querySelector('#scroll_indicator_uw_uitgaven').getBoundingClientRect().height + 45) {
+    if (document.querySelector('#uw_resultaat').getBoundingClientRect().top < 30) {
         document.querySelector('#scroll_indicator_uw_uitgaven').classList.add('inactive')
     }
 
+    //hide the demo button in the uw_uitgaven viewport
     if (secondSection.classList.contains('hide') === false && window.scrollY + secondSection.getBoundingClientRect().top < window.scrollY + demoButton.getBoundingClientRect().top + demoButton.getBoundingClientRect().height) {
         demoButton.classList.add('invisible')
     }
@@ -817,21 +821,19 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 
 
-
-// D3
 document.querySelector('#d3-start').addEventListener('click', createBarchart)
+
 function createBarchart() {
-    // function variables
     let data = transformDataForD3()
 
-    var zippedData = []
-    for (var i = 0; i < data.labels.length; i++) {
-        for (var j = 0; j < data.bars.length; j++) {
+    let zippedData = []
+    for (let i = 0; i < data.labels.length; i++) {
+        for (let j = 0; j < data.bars.length; j++) {
             zippedData.push(data.bars[j].values[i])
         }
     }
 
-    // D3 variables
+    // D3 letiables
     let width = document.querySelector('.chart').getBoundingClientRect().width,
         chart = d3.select(".chart"),
         barHeight = 35,
@@ -840,15 +842,15 @@ function createBarchart() {
         spaceForLabels = 150
 
     // Color scale
-    var color = d3.scaleOrdinal()
+    let color = d3.scaleOrdinal()
         .range(["#16A085", "#33435C"])
 
-    var x = d3.scaleLinear()
+    let x = d3.scaleLinear()
         .domain([0, d3.max(zippedData)])
         .range([0, width])
 
     // Create bars
-    var bar = chart.selectAll("g")
+    let bar = chart.selectAll("g")
         .data(zippedData)
         .enter().append("g")
         .attr("transform", function (d, i) {
