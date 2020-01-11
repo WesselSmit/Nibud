@@ -819,7 +819,7 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 
 
-document.querySelector('#d3-start').addEventListener('click', createBarchart)
+// document.querySelector('#d3-start').addEventListener('click', createBarchart)
 
 function createBarchart() {
     let data = transformDataForD3()
@@ -858,7 +858,7 @@ function createBarchart() {
     bar.append('rect')
         .attr('fill', (d, i) => color(i % data.bars.length))
         .attr('width', x)
-        .attr('height', barHeight - 1)
+        .attr('height', barHeight)
 
     // Draw labels
     bar.append('text')
@@ -923,8 +923,8 @@ function mergeDataObjects(object) {
 
 // Creates 1 object with keys and values of both household for the same category
 function transformDataForD3() {
-    const yourHouseHold = mergeDataObjects(personalHousehold)
-    const matchedHousehold = mergeDataObjects(matchingHouseHold)
+    const yourHouseHold = mergeDataObjects(personalHousehold),
+        matchedHousehold = mergeDataObjects(matchingHouseHold)
 
     console.log(yourHouseHold)
     console.log(matchedHousehold)
