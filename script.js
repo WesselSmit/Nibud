@@ -835,7 +835,7 @@ function createBarchart() {
 
     // D3 letiables
     let width = document.querySelector('.chart').getBoundingClientRect().width,
-        chart = d3.select(".chart"),
+        chart = d3.select('.chart'),
         barHeight = 35,
         groupHeight = barHeight * data.bars.length,
         gapBetweenGroups = 10,
@@ -850,26 +850,26 @@ function createBarchart() {
         .range([0, width])
 
     // Create bars
-    let bar = chart.selectAll("g")
+    let bar = chart.selectAll('g')
         .data(zippedData)
-        .enter().append("g")
-        .attr("transform", function (d, i) {
-            return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ")";
+        .enter().append('g')
+        .attr('transform', function (d, i) {
+            return 'translate(' + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ')';
         })
 
-    bar.append("rect")
-        .attr("fill", function (d, i) {
+    bar.append('rect')
+        .attr('fill', function (d, i) {
             return color(i % data.bars.length)
         })
-        .attr("width", x)
-        .attr("height", barHeight - 1)
+        .attr('width', x)
+        .attr('height', barHeight - 1)
 
     // Draw labels
-    bar.append("text")
-        .attr("x", function (d, i) {
+    bar.append('text')
+        .attr('x', function (d, i) {
             return -10
         })
-        .attr("y", groupHeight / 2)
+        .attr('y', groupHeight / 2)
         .text(function (d, i) {
             if (i % data.bars.length === 0) {
                 return data.labels[Math.floor(i / data.bars.length)]
@@ -976,8 +976,6 @@ function calcMoneyPile() {
             yourExpensesMoney = yourExpensesMoney + parseInt(money.value)
         }
     }
-
-    // console.log(yourIncomeMoney, yourExpensesMoney)
 
     if ((yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height >= 550) {
         moneyPile.style.marginTop = "550px"
