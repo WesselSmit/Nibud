@@ -833,7 +833,7 @@ function createBarchart() {
         }
     }
 
-    // D3 letiables
+    // D3 variables
     let width = document.querySelector('.chart').getBoundingClientRect().width,
         chart = d3.select('.chart'),
         barHeight = 35,
