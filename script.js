@@ -902,12 +902,46 @@ function createBarchart(data) {
         .attr('y', groupHeight / 2)
         .text(function (d, i) {
             if (i % data.bars.length === 0) {
-                this.classList.add('label')
-                return data.labels[Math.floor(i / data.bars.length)]
+                return data.labels[Math.floor(i / data.bars.length)].charAt(0).toUpperCase() + data.labels[Math.floor(i / data.bars.length)].slice(1)
             } else {
                 return ""
             }
         })
+        .attr('class', 'label')
+        .call(wrap, 140)
+}
+
+// Creates a span when the text has a width larger then pixels
+function wrap(text, width) {
+    text.each(function () {
+        var text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineHeight = 1.1,
+            x = text.attr('x'),
+            y = text.attr('y'),
+            dy = 0,
+            tspan = text.text(null)
+            .append('tspan')
+            .attr('x', x)
+            .attr('y', y)
+            .attr('dy', dy + 'em')
+        while (word = words.pop()) {
+            line.push(word)
+            tspan.text(line.join(' '))
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop()
+                tspan.text(line.join(' '))
+                line = [word]
+                tspan = text.append('tspan')
+                    .attr('x', x)
+                    .attr('y', y)
+                    .attr('dy', lineHeight + dy + 'em')
+                    .text(word)
+            }
+        }
+    })
 }
 
 // Merges the dataset structure to our own structure which is determined by the form
@@ -945,7 +979,7 @@ function mergeDataObjects(object) {
             bedrag: object.uitgavenPosten[10].bedrag
         },
         {
-            post: "reserveringsuitgaven",
+            post: "reserverings uitgaven",
             bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
         },
         {
@@ -1044,7 +1078,7 @@ let personalHouseHoldZeroState = [{
         bedrag: 0
     },
     {
-        post: "reserveringsuitgaven",
+        post: "reserverings uitgaven",
         bedrag: 0
     },
     {
@@ -1086,7 +1120,7 @@ let averageHouseholdZeroState = [{
         bedrag: 0
     },
     {
-        post: "reserveringsuitgaven",
+        post: "reserverings uitgaven",
         bedrag: 0
     },
     {
