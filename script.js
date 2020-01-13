@@ -922,13 +922,11 @@ function mergeDataObjects(object) {
     return objectStructure
 }
 
+// Prepares the data for D3
 // Creates 1 object with keys and values of both household for the same category
 function transformDataForD3() {
     const yourHouseHold = mergeDataObjects(personalHousehold),
         matchedHousehold = mergeDataObjects(matchingHouseHold)
-
-    console.log(yourHouseHold)
-    console.log(matchedHousehold)
 
     const categories = [],
         averageValues = []
@@ -982,5 +980,88 @@ function calcMoneyPile() {
 
 
 
+let personalHouseHoldZeroState = [{
+    post: "woning",
+    bedrag: 0
+},
+{
+    post: "energie",
+    bedrag: 0
+},
+{
+    post: "lokale lasten",
+    bedrag: 0
+},
+{
+    post: "telefoon, televisie, internet",
+    bedrag: 0
+},
+{
+    post: "verzekeringen",
+    bedrag: 0
+},
+{
+    post: "onderwijs",
+    bedrag: 0
+},
+{
+    post: "contributies en abonnementen",
+    bedrag: 0
+},
+{
+    post: "vervoer",
+    bedrag: 0
+},
+{
+    post: "reserveringsuitgaven",
+    bedrag: 0
+},
+{
+    post: "huishoudelijke uitgaven",
+    bedrag: 0
+}
+]
 
+let averageHouseholdZeroState = [{
+    post: "woning",
+    bedrag: 0
+},
+{
+    post: "energie",
+    bedrag: 0
+},
+{
+    post: "lokale lasten",
+    bedrag: 0
+},
+{
+    post: "telefoon, televisie, internet",
+    bedrag: 0
+},
+{
+    post: "verzekeringen",
+    bedrag: 0
+},
+{
+    post: "onderwijs",
+    bedrag: 0
+},
+{
+    post: "contributies en abonnementen",
+    bedrag: 0
+},
+{
+    post: "vervoer",
+    bedrag: 0
+},
+{
+    post: "reserveringsuitgaven",
+    bedrag: 0
+},
+{
+    post: "huishoudelijke uitgaven",
+    bedrag: 0
+}
+]
 
+console.log(personalHouseHoldZeroState, averageHouseholdZeroState)
