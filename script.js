@@ -739,6 +739,8 @@ simsInputs.forEach(input => { //determine what sims image should be shown
         }
         if (input.id == "kinderen" && input.className != "invalid") { //children
             for (let i = 1; i < document.querySelectorAll('#simsKind1, #simsKind2, #simsKind3, #simsKind4, #simsKind5').length + 1; i++) {
+                document.querySelector('#simsKind' + i).src = ""
+
                 if (i < parseInt(input.value) + 1) {
                     document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
                     document.querySelector('#simsKind' + i).classList.add('animation_target')
@@ -765,34 +767,18 @@ simsInputs.forEach(input => { //determine what sims image should be shown
                 }, 500)
             } else if (input.value === 'klein') {
                 document.getElementById('simsAuto').src = "media/sims/kleine_auto.svg"
-                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'compact') {
                 document.getElementById('simsAuto').src = "media/sims/compacte_auto.svg"
-                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'compact_middenklasse') {
                 document.getElementById('simsAuto').src = "media/sims/compacte_middenklasse_auto.svg"
-                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'middenklasse') {
                 document.getElementById('simsAuto').src = "media/sims/middenklasse_auto.svg"
-                document.getElementById('simsAuto').classList.add('animation_target')
             }
+            document.getElementById('simsAuto').classList.add('animation_target')
         }
     })
 })
 
-
-
-setTimeout(function test() {
-    console.log('ja')
-}, 5000)
-
-setTimeout(function test() {
-    console.log('misschien')
-}, 5000)
-
-setTimeout(function test() {
-    console.log('nee')
-}, 5000)
 
 
 document.getElementById('demo').addEventListener('click', function () { //super secret demo function (fills in all inputs for easy testing)

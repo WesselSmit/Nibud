@@ -21,8 +21,9 @@ html {
     font-size: 16px;
 }
 
-*:focus {
-    outline: 2px solid var(--main-purple-color);
+input[type="number"]:focus {
+    outline: none;
+    border: 2px solid var(--main-purple-color);
 }
 
 body {
