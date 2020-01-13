@@ -19,6 +19,7 @@ let tooltipData, //receives toolltip-data (async)
 
 
 
+
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
     .then(csvRows => allDataHouseHolds = transform.createHousehold(csvRows))
@@ -722,23 +723,18 @@ function findMatchingHousehold() { //find a matching household -> most similar t
 const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
 simsInputs.forEach(input => { //determine what sims image should be shown
     input.addEventListener('input', function () {
-        document.querySelectorAll('#sims img').forEach(img => {
-            img.classList.remove('animation_target')
-            img.classList.remove('animation_target_reset')
-        })
 
         if (input.id == "wel-partner") { //partner
             document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
             document.getElementById('simsVrouw').classList.add('animation_target')
         }
         if (input.id == "geen-partner") {
-            document.getElementById('simsVrouw').classList.add('animation_target_reset')
-            setTimeout(function resetSRC() {
-                document.getElementById('simsVrouw').src = ""
-            }, 500)
+            document.getElementById('simsVrouw').src = ""
         }
         if (input.id == "kinderen" && input.className != "invalid") { //children
             for (let i = 1; i < document.querySelectorAll('#simsKind1, #simsKind2, #simsKind3, #simsKind4, #simsKind5').length + 1; i++) {
+                document.querySelector('#simsKind' + i).src = ""
+
                 if (i < parseInt(input.value) + 1) {
                     document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
                     document.querySelector('#simsKind' + i).classList.add('animation_target')
@@ -748,21 +744,21 @@ simsInputs.forEach(input => { //determine what sims image should be shown
         if (input.id == "woningtype") { //house
             if (input.value === 'appartement') {
                 document.getElementById('simsHuis').src = "media/sims/appartement_huis.svg"
+                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'tussenwoning') {
                 document.getElementById('simsHuis').src = "media/sims/tussenwoning_huis.svg"
+                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'hoekwoning') {
                 document.getElementById('simsHuis').src = "media/sims/hoekwoning_huis.svg"
+                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'vrijstaand') {
                 document.getElementById('simsHuis').src = "media/sims/vrijstaand_huis.svg"
+                document.getElementById('simsHuis').classList.add('animation_target')
             }
-            document.getElementById('simsHuis').classList.add('animation_target')
         }
         if (input.id == "car") { //car
             if (input.value === 'geen') {
-                document.getElementById('simsAuto').classList.add('animation_target_reset')
-                setTimeout(function resetSRC() {
-                    document.getElementById('simsAuto').src = ""
-                }, 500)
+                document.getElementById('simsAuto').src = ""
             } else if (input.value === 'klein') {
                 document.getElementById('simsAuto').src = "media/sims/kleine_auto.svg"
                 document.getElementById('simsAuto').classList.add('animation_target')
@@ -781,18 +777,6 @@ simsInputs.forEach(input => { //determine what sims image should be shown
 })
 
 
-
-setTimeout(function test() {
-    console.log('ja')
-}, 5000)
-
-setTimeout(function test() {
-    console.log('misschien')
-}, 5000)
-
-setTimeout(function test() {
-    console.log('nee')
-}, 5000)
 
 
 document.getElementById('demo').addEventListener('click', function () { //super secret demo function (fills in all inputs for easy testing)
@@ -844,21 +828,18 @@ document.querySelector('#scroll_indicator').addEventListener('click', function (
         block: "end"
     })
 })
-
 document.querySelector('#scroll_indicator_uw_situatie').addEventListener('click', function () { //auto scroll
     document.querySelector('section:nth-of-type(2)').scrollIntoView({
         behavior: "smooth",
         block: "end"
     })
 })
-
 document.querySelector('#scroll_indicator_uw_uitgaven').addEventListener('click', function () { //auto scroll
     document.getElementById('uw_resultaat').scrollIntoView({
         behavior: "smooth",
         block: "end"
     })
 })
-
 for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide scroll indicators when they're clicked
     indicator.addEventListener('click', function () {
         let currentIndicator = event.target
@@ -1010,7 +991,8 @@ function mergeDataObjects(object) {
     return objectStructure
 }
 
-// Prepares the data for D3 -> creates 1 object with keys and values of both household for the same category
+// Prepares the data for D3
+// Creates 1 object with keys and values of both household for the same category
 function transformDataForD3(personal_household, average_household) {
     const categories = [],
         averageValues = []

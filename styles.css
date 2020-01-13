@@ -239,10 +239,10 @@ section:nth-of-type(2) {
 }
 
 .animation_target {
-    animation: simsPop 0.5s 1 0s ease-in-out;
+    animation: yourAnimation 0.5s 1 0s ease-in-out;
 }
 
-@keyframes simsPop {
+@keyframes yourAnimation {
     0% {
         transform: scale(0.1);
         transform-origin: center bottom;
@@ -256,28 +256,6 @@ section:nth-of-type(2) {
     100% {
         transform: scale(1);
         transform-origin: center bottom;
-    }
-}
-
-.animation_target_reset {
-    animation: simsPopReverse 0.5s 1 0s ease-in-out;
-}
-
-@keyframes simsPopReverse {
-    0% {
-        transform: scale(1);
-        transform-origin: center bottom;
-    }
-
-    20% {
-        transform: scale(1.2);
-        transform-origin: center bottom;
-    }
-
-    100% {
-        transform: scale(0.1);
-        transform-origin: center bottom;
-        display: none;
     }
 }
 
