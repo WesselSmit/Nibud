@@ -19,6 +19,7 @@ let tooltipData, //receives toolltip-data (async)
 
 
 
+
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
     .then(csvRows => allDataHouseHolds = transform.createHousehold(csvRows))
@@ -343,9 +344,34 @@ function updateProgressIndicators(currentEl) {
     if (c === 0) {
         if (currentEl.classList.contains('hide') === false && currentEl.getAttribute('data_question') > 4) {
             c++
+            let numberOfQuestions = 0,
+                currentAnsweredQuestions = 0
             for (const input of currentEl.querySelectorAll('[data_path="true"]')) {
-                console.log(input)
-                //call the d3 update functie
+                numberOfQuestions++
+                if (input.value != "") {
+                    currentAnsweredQuestions++
+                }
+            }
+
+            if (numberOfQuestions === currentAnsweredQuestions) {
+                let expensesFieldset = currentEl.querySelectorAll('[data_path="true"]'),
+                    expenseFieldsetTotal = 0
+
+                expensesFieldset.forEach(expense => {
+                    expenseFieldsetTotal = expenseFieldsetTotal + parseInt(expense.value)
+                })
+
+                personalHouseHoldZeroState.forEach(post => {
+                    if (currentEl.querySelector('legend').textContent.toLowerCase() == post.post)
+                        post.bedrag = expenseFieldsetTotal
+                })
+
+                let averageHousehold = mergeDataObjects(matchingHouseHold),
+                    arrayIndex = parseInt(currentEl.getAttribute('data_question')) - 5
+
+                averageHouseholdZeroState[arrayIndex].bedrag = averageHousehold[arrayIndex].bedrag
+
+                createBarchart(transformDataForD3(personalHouseHoldZeroState, averageHouseholdZeroState))
             }
         }
     }
@@ -830,10 +856,7 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 
 
-document.querySelector('#d3-start').addEventListener('click', createBarchart)
-
-function createBarchart() {
-    let data = transformDataForD3()
+function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
 
     let zippedData = []
@@ -870,9 +893,10 @@ function createBarchart() {
         .attr('transform', (d, i) => 'translate(' + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ')')
 
     bar.append('rect')
-        .attr('fill', (d, i) => color(i % data.bars.length))
-        .attr('width', x)
         .attr('height', barHeight)
+        .attr('fill', (d, i) => color(i % data.bars.length))
+        .transition().duration(1000)
+        .attr('width', x)
 
     // Draw labels
     bar.append('text')
@@ -937,19 +961,16 @@ function mergeDataObjects(object) {
 
 // Prepares the data for D3
 // Creates 1 object with keys and values of both household for the same category
-function transformDataForD3() {
-    const yourHouseHold = mergeDataObjects(personalHousehold),
-        matchedHousehold = mergeDataObjects(matchingHouseHold)
-
+function transformDataForD3(personal_household, average_household) {
     const categories = [],
         averageValues = []
-    matchedHousehold.forEach(category => {
+    average_household.forEach(category => {
         categories.push(category.post)
         averageValues.push(category.bedrag)
     })
 
     const personalValues = []
-    yourHouseHold.forEach(category => {
+    personal_household.forEach(category => {
         personalValues.push(category.bedrag)
     })
 
@@ -965,7 +986,6 @@ function transformDataForD3() {
         }
         ]
     }
-    console.log(data)
     return data
 }
 
@@ -1076,5 +1096,3 @@ let averageHouseholdZeroState = [{
     bedrag: 0
 }
 ]
-
-console.log(personalHouseHoldZeroState, averageHouseholdZeroState)
