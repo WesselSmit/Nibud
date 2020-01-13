@@ -785,6 +785,7 @@ label.fixWithHide {
     padding-top: 20px;
     display: flex;
     justify-content: center;
+    margin-left: -55px;
 }
 
 #legenda span {
