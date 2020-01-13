@@ -15,7 +15,8 @@ let tooltipData, //receives toolltip-data (async)
     b,
     c,
     allDataHouseHolds,
-    matchingHouseHold
+    matchingHouseHold,
+    childrenArr = []
 
 
 
@@ -722,10 +723,16 @@ function findMatchingHousehold() { //find a matching household -> most similar t
 const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
 simsInputs.forEach(input => { //determine what sims image should be shown
     input.addEventListener('input', function () {
-        document.querySelectorAll('#sims img').forEach(img => {
-            img.classList.remove('animation_target')
+        let numberOfKinderen = 0
+        document.querySelectorAll('#sims img').forEach((img, i) => {
+            if (i > 3 && img.classList.contains('animation_target')) {
+                numberOfKinderen++
+            }
             img.classList.remove('animation_target_reset')
         })
+        childrenArr.push(numberOfKinderen)
+        childrenArr = childrenArr.filter(num => num > 0) //filter out the 0's (results of backspace events)
+        console.log(childrenArr)
 
         if (input.id == "wel-partner") { //partner
             document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
@@ -738,6 +745,9 @@ simsInputs.forEach(input => { //determine what sims image should be shown
             }, 500)
         }
         if (input.id == "kinderen" && input.className != "invalid") { //children
+
+            // console.log(childrenArr[childrenArr.length - 1], numberOfKinderen)
+
             for (let i = 1; i < document.querySelectorAll('#simsKind1, #simsKind2, #simsKind3, #simsKind4, #simsKind5').length + 1; i++) {
                 if (i < parseInt(input.value) + 1) {
                     document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
@@ -756,6 +766,7 @@ simsInputs.forEach(input => { //determine what sims image should be shown
                 document.getElementById('simsHuis').src = "media/sims/vrijstaand_huis.svg"
             }
             document.getElementById('simsHuis').classList.add('animation_target')
+
         }
         if (input.id == "car") { //car
             if (input.value === 'geen') {
@@ -782,17 +793,7 @@ simsInputs.forEach(input => { //determine what sims image should be shown
 
 
 
-setTimeout(function test() {
-    console.log('ja')
-}, 5000)
 
-setTimeout(function test() {
-    console.log('misschien')
-}, 5000)
-
-setTimeout(function test() {
-    console.log('nee')
-}, 5000)
 
 
 document.getElementById('demo').addEventListener('click', function () { //super secret demo function (fills in all inputs for easy testing)
