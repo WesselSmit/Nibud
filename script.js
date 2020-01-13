@@ -683,9 +683,6 @@ function findMatchingHousehold() { //find a matching household -> most similar t
 const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
 simsInputs.forEach(input => { //determine what sims image should be shown
     input.addEventListener('input', function () {
-        // for (const input of simsInputs) {
-        //     input.classList.remove('animation_target')
-        // }
 
         if (input.id == "wel-partner") { //partner
             document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
