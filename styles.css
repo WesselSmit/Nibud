@@ -239,7 +239,7 @@ section:nth-of-type(2) {
 }
 
 .animation_target {
-    animation: yourAnimation 0.8s 1 0s ease-in-out;
+    animation: yourAnimation 0.5s 1 0s ease-in-out;
 }
 
 @keyframes yourAnimation {
