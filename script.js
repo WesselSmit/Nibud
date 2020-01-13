@@ -13,6 +13,7 @@ let tooltipData, //receives toolltip-data (async)
     secondCar = false,
     a,
     b,
+    c,
     allDataHouseHolds,
     matchingHouseHold
 
@@ -70,6 +71,7 @@ document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('input', function () { //call functions on input
         a = 0
         b = 0
+        c = 0
         checkIfValueIsAllowed(this) //value validation
         checkAdditionalQuestions(this) //check for additional questions
         updateProgressbar(this) //progress-bar
@@ -336,6 +338,16 @@ function updateProgressIndicators(currentEl) {
 
     if (secondCar === false && currentEl.getAttribute('data_question') === '4' && document.getElementById('car').value != 'geen' && currentEl.querySelector('div > span:first-of-type').classList.contains('hasAnswer')) {
         document.getElementById('extraAuto').classList.remove('hide') //hide extraAuto option
+    }
+
+    if (c === 0) {
+        if (currentEl.classList.contains('hide') === false && currentEl.getAttribute('data_question') > 4) {
+            c++
+            for (const input of currentEl.querySelectorAll('[data_path="true"]')) {
+                console.log(input)
+                //call the d3 update functie
+            }
+        }
     }
 }
 
@@ -822,6 +834,7 @@ document.querySelector('#d3-start').addEventListener('click', createBarchart)
 
 function createBarchart() {
     let data = transformDataForD3()
+    document.getElementById('legenda').classList.remove('hide')
 
     let zippedData = []
     for (let i = 0; i < data.labels.length; i++) {
