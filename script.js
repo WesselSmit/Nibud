@@ -19,7 +19,6 @@ let tooltipData, //receives toolltip-data (async)
 
 
 
-
 data.getData() //fetch dataset-data
     .then(string => transform.createIndividualObjects(string))
     .then(csvRows => allDataHouseHolds = transform.createHousehold(csvRows))
@@ -726,13 +725,20 @@ function findMatchingHousehold() { //find a matching household -> most similar t
 const simsInputs = document.querySelectorAll('#wel-partner, #geen-partner, #kinderen, #woningtype, #car')
 simsInputs.forEach(input => { //determine what sims image should be shown
     input.addEventListener('input', function () {
+        document.querySelectorAll('#sims img').forEach(img => {
+            img.classList.remove('animation_target')
+            img.classList.remove('animation_target_reset')
+        })
 
         if (input.id == "wel-partner") { //partner
             document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
             document.getElementById('simsVrouw').classList.add('animation_target')
         }
         if (input.id == "geen-partner") {
-            document.getElementById('simsVrouw').src = ""
+            document.getElementById('simsVrouw').classList.add('animation_target_reset')
+            setTimeout(function resetSRC() {
+                document.getElementById('simsVrouw').src = ""
+            }, 500)
         }
         if (input.id == "kinderen" && input.className != "invalid") { //children
             for (let i = 1; i < document.querySelectorAll('#simsKind1, #simsKind2, #simsKind3, #simsKind4, #simsKind5').length + 1; i++) {
@@ -747,38 +753,34 @@ simsInputs.forEach(input => { //determine what sims image should be shown
         if (input.id == "woningtype") { //house
             if (input.value === 'appartement') {
                 document.getElementById('simsHuis').src = "media/sims/appartement_huis.svg"
-                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'tussenwoning') {
                 document.getElementById('simsHuis').src = "media/sims/tussenwoning_huis.svg"
-                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'hoekwoning') {
                 document.getElementById('simsHuis').src = "media/sims/hoekwoning_huis.svg"
-                document.getElementById('simsHuis').classList.add('animation_target')
             } else if (input.value === 'vrijstaand') {
                 document.getElementById('simsHuis').src = "media/sims/vrijstaand_huis.svg"
-                document.getElementById('simsHuis').classList.add('animation_target')
             }
+            document.getElementById('simsHuis').classList.add('animation_target')
         }
         if (input.id == "car") { //car
             if (input.value === 'geen') {
-                document.getElementById('simsAuto').src = ""
+                document.getElementById('simsAuto').classList.add('animation_target_reset')
+                setTimeout(function resetSRC() {
+                    document.getElementById('simsAuto').src = ""
+                }, 500)
             } else if (input.value === 'klein') {
                 document.getElementById('simsAuto').src = "media/sims/kleine_auto.svg"
-                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'compact') {
                 document.getElementById('simsAuto').src = "media/sims/compacte_auto.svg"
-                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'compact_middenklasse') {
                 document.getElementById('simsAuto').src = "media/sims/compacte_middenklasse_auto.svg"
-                document.getElementById('simsAuto').classList.add('animation_target')
             } else if (input.value === 'middenklasse') {
                 document.getElementById('simsAuto').src = "media/sims/middenklasse_auto.svg"
-                document.getElementById('simsAuto').classList.add('animation_target')
             }
+            document.getElementById('simsAuto').classList.add('animation_target')
         }
     })
 })
-
 
 
 
@@ -831,18 +833,21 @@ document.querySelector('#scroll_indicator').addEventListener('click', function (
         block: "end"
     })
 })
+
 document.querySelector('#scroll_indicator_uw_situatie').addEventListener('click', function () { //auto scroll
     document.querySelector('section:nth-of-type(2)').scrollIntoView({
         behavior: "smooth",
         block: "end"
     })
 })
+
 document.querySelector('#scroll_indicator_uw_uitgaven').addEventListener('click', function () { //auto scroll
     document.getElementById('uw_resultaat').scrollIntoView({
         behavior: "smooth",
         block: "end"
     })
 })
+
 for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide scroll indicators when they're clicked
     indicator.addEventListener('click', function () {
         let currentIndicator = event.target
@@ -928,7 +933,6 @@ function createBarchart(data) {
         .attr("width", (d => width - x(d.bedrag)))
 }
 
-
 // Merges the dataset structure to our own structure which is determined by the form
 function mergeDataObjects(object) {
     let objectStructure = [{
@@ -997,7 +1001,6 @@ function calcMoneyPile() {
         moneyPile.style.marginTop = (yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height + "px"
     }
 }
-
 
 let householdZerostate = [
     {
