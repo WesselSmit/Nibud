@@ -340,40 +340,43 @@ function updateProgressIndicators(currentEl) {
         document.getElementById('extraAuto').classList.remove('hide') //hide extraAuto option
     }
 
-    // if (c === 0) {
-    //     if (currentEl.classList.contains('hide') === false && currentEl.getAttribute('data_question') > 4) {
-    //         c++
-    //         let numberOfQuestions = 0,
-    //             currentAnsweredQuestions = 0
-    //         for (const input of currentEl.querySelectorAll('[data_path="true"]')) {
-    //             numberOfQuestions++
-    //             if (input.value != "") {
-    //                 currentAnsweredQuestions++
-    //             }
-    //         }
+    if (c === 0) {
+        if (currentEl.classList.contains('hide') === false && currentEl.getAttribute('data_question') > 4) {
+            c++
+            let numberOfQuestions = 0,
+                currentAnsweredQuestions = 0
+            for (const input of currentEl.querySelectorAll('[data_path="true"]')) {
+                numberOfQuestions++
+                if (input.value != "") {
+                    currentAnsweredQuestions++
+                }
+            }
 
-    //         if (numberOfQuestions === currentAnsweredQuestions) {
-    //             let expensesFieldset = currentEl.querySelectorAll('[data_path="true"]'),
-    //                 expenseFieldsetTotal = 0
+            if (numberOfQuestions === currentAnsweredQuestions) {
+                let expensesFieldset = currentEl.querySelectorAll('[data_path="true"]'),
+                    expenseFieldsetTotal = 0
 
-    //             expensesFieldset.forEach(expense => {
-    //                 expenseFieldsetTotal = expenseFieldsetTotal + parseInt(expense.value)
-    //             })
+                expensesFieldset.forEach(expense => {
+                    expenseFieldsetTotal = expenseFieldsetTotal + parseInt(expense.value)
+                })
 
-    //             personalHouseHoldZeroState.forEach(post => {
-    //                 if (currentEl.querySelector('legend').textContent.toLowerCase() == post.post)
-    //                     post.bedrag = expenseFieldsetTotal
-    //             })
+                // console.log(householdZerostate)
 
-    //             let averageHousehold = mergeDataObjects(matchingHouseHold),
-    //                 arrayIndex = parseInt(currentEl.getAttribute('data_question')) - 5
+                householdZerostate.forEach(post => {
+                    if (currentEl.querySelector('legend').textContent.toLowerCase() == post.post) {
+                        post.bedragen[0].bedrag = expenseFieldsetTotal
+                    }
+                })
 
-    //             averageHouseholdZeroState[arrayIndex].bedrag = averageHousehold[arrayIndex].bedrag
+                let averageHousehold = mergeDataObjects(matchingHouseHold),
+                    arrayIndex = parseInt(currentEl.getAttribute('data_question')) - 5
 
-    //             createBarchart(transformDataForD3(personalHouseHoldZeroState, averageHouseholdZeroState))
-    //         }
-    //     }
-    // }
+                householdZerostate[arrayIndex].bedragen[1].bedrag = averageHousehold[arrayIndex].bedrag
+
+                createBarchart(householdZerostate)
+            }
+        }
+    }
 }
 
 
@@ -926,93 +929,74 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 
 
-
+// https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
 function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
 
-    let zippedData = []
-    for (let i = 0; i < data.labels.length; i++) {
-        for (let j = 0; j < data.bars.length; j++) {
-            zippedData.push(data.bars[j].values[i])
-        }
-    }
-
     // D3 variables
     let width = document.querySelector('.chart').getBoundingClientRect().width,
-        chart = d3.select('.chart'),
-        barHeight = 35,
-        groupHeight = barHeight * data.bars.length,
-        gapBetweenGroups = 10,
-        spaceForLabels = 150,
+        height = document.querySelector('.chart').getBoundingClientRect().height,
         barchartFallbackColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color'),
         matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color')
 
-    // Color scale
-    let color = d3.scaleOrdinal()
+    let svg = d3.select('.chart')
+
+    var y0 = d3.scaleBand()
+        .rangeRound([0, height])
+        .paddingInner(0.1)
+
+    var y1 = d3.scaleBand()
+
+    var x = d3.scaleLinear()
+        .range([width, 0])
+
+    var xAxis = d3.axisBottom()
+        .scale(x)
+
+    var yAxis = d3.axisLeft()
+        .scale(y0)
+        .tickSize(0)
+
+    var color = d3.scaleOrdinal()
         .range([barchartFallbackColor, matchedHouseholdColor])
 
-    let x = d3.scaleLinear()
-        .domain([0, d3.max(zippedData)])
-        .range([0, width])
+    let expenseItems = data.map(d => d.post)
+    var rateNames = ['persoonlijk', 'gemiddeld']
 
-    // Create bars
-    let bar = chart.selectAll('g')
-        .data(zippedData)
-        .enter().append('g')
-        .attr('transform', (d, i) => 'translate(' + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.bars.length))) + ')')
+    y0.domain(expenseItems)
+    y1.domain(rateNames).range([0, y0.bandwidth()]);
+    x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
-    bar.append('rect')
-        .attr('height', barHeight)
-        .attr('fill', (d, i) => color(i % data.bars.length))
-        .transition().duration(1000)
-        .attr('width', x)
+    // Aanmaken X-as
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .attr('class', 'x-as')
+        .call(xAxis);
 
-    // Draw labels
-    bar.append('text')
-        .attr('x', (d, i) => -10)
-        .attr('y', groupHeight / 2)
-        .text(function (d, i) {
-            if (i % data.bars.length === 0) {
-                return data.labels[Math.floor(i / data.bars.length)].charAt(0).toUpperCase() + data.labels[Math.floor(i / data.bars.length)].slice(1)
-            } else {
-                return ""
-            }
-        })
-        .attr('class', 'label')
-        .call(wrap, 140)
-}
+    //Aanmaken Y-as
+    svg.append("g")
+        .attr('class', 'y-as')
+        .call(yAxis)
 
-// Creates a span when the text has a width larger then pixels
-function wrap(text, width) {
-    text.each(function () {
-        var text = d3.select(this),
-            words = text.text().split(/\s+/).reverse(),
-            word,
-            line = [],
-            lineHeight = 1.1,
-            x = text.attr('x'),
-            y = text.attr('y'),
-            dy = 0,
-            tspan = text.text(null)
-            .append('tspan')
-            .attr('x', x)
-            .attr('y', y)
-            .attr('dy', dy + 'em')
-        while (word = words.pop()) {
-            line.push(word)
-            tspan.text(line.join(' '))
-            if (tspan.node().getComputedTextLength() > width) {
-                line.pop()
-                tspan.text(line.join(' '))
-                line = [word]
-                tspan = text.append('tspan')
-                    .attr('x', x)
-                    .attr('y', y)
-                    .attr('dy', lineHeight + dy + 'em')
-                    .text(word)
-            }
-        }
-    })
+    // Selecteert de group waar de twee bars in verschijnen
+    var groups = svg.selectAll("bars")
+        .data(data)
+        .enter().append("g")
+        .attr("transform", (d => "translate(0," + y0(d.post) + ")"))
+        .attr('class', 'group')
+
+    // Selecteert de bar zelf 
+    groups.selectAll("rect")
+        .data((d => d.bedragen))
+        .enter().append("rect")
+        .attr("height", y1.bandwidth())
+        .attr("y", (d => y1(d.data)))
+        .style("fill", (d => color(d.data)))
+
+    groups.selectAll("rect")
+        .transition()
+        .attr("x", 0)
+        .attr("width", (d => width - x(d.bedrag)))
 }
 
 // Merges the dataset structure to our own structure which is determined by the form
@@ -1062,35 +1046,6 @@ function mergeDataObjects(object) {
     return objectStructure
 }
 
-// Prepares the data for D3 -> creates 1 object with keys and values of both household for the same category
-function transformDataForD3(personal_household, average_household) {
-    const categories = [],
-        averageValues = []
-    average_household.forEach(category => {
-        categories.push(category.post)
-        averageValues.push(category.bedrag)
-    })
-
-    const personalValues = []
-    personal_household.forEach(category => {
-        personalValues.push(category.bedrag)
-    })
-
-    const data = {
-        labels: categories,
-        bars: [{
-                label: 'personal_values',
-                values: personalValues
-            },
-            {
-                label: 'average_values',
-                values: averageValues
-            }
-        ]
-    }
-    return data
-}
-
 function calcMoneyPile() {
     const moneyPile = document.getElementById('moneyPile')
 
@@ -1113,88 +1068,124 @@ function calcMoneyPile() {
     }
 }
 
-
-
-let personalHouseHoldZeroState = [{
+let householdZerostate = [{
         post: "woning",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "energie",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "lokale lasten",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "telefoon, televisie, internet",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "verzekeringen",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "onderwijs",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "contributies en abonnementen",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "vervoer",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "reserverings uitgaven",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     },
     {
         post: "huishoudelijke uitgaven",
-        bedrag: 0
-    }
-]
-
-let averageHouseholdZeroState = [{
-        post: "woning",
-        bedrag: 0
-    },
-    {
-        post: "energie",
-        bedrag: 0
-    },
-    {
-        post: "lokale lasten",
-        bedrag: 0
-    },
-    {
-        post: "telefoon, televisie, internet",
-        bedrag: 0
-    },
-    {
-        post: "verzekeringen",
-        bedrag: 0
-    },
-    {
-        post: "onderwijs",
-        bedrag: 0
-    },
-    {
-        post: "contributies en abonnementen",
-        bedrag: 0
-    },
-    {
-        post: "vervoer",
-        bedrag: 0
-    },
-    {
-        post: "reserverings uitgaven",
-        bedrag: 0
-    },
-    {
-        post: "huishoudelijke uitgaven",
-        bedrag: 0
+        bedragen: [{
+                data: "persoonlijk",
+                bedrag: 0
+            },
+            {
+                data: "gemiddeld",
+                bedrag: 0
+            }
+        ]
     }
 ]
