@@ -268,6 +268,8 @@ function updateProgressbar(currentForm) {
                 determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
                 sumExpenses()
                 findMatchingHousehold() //match your personal household with a household form the database
+
+                createBarChartZeroState()
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
@@ -859,6 +861,7 @@ document.getElementById('demo').addEventListener('click', function () { //super 
     checkIfValueIsAllowed(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //value validation
     checkAdditionalQuestions(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //check for additional questions
     updateProgressbar(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //progress-bar
+    createBarChartZeroState()
     updateProgressIndicators(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //progress indicator
     updateTotalSum(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //total income
     fixSelectFocus(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //fix select focus state
@@ -1119,6 +1122,52 @@ let householdZerostate = [{
 
 
 
+function createBarChartZeroState() {
+    let data = householdZerostate
+
+    let width = document.querySelector('.chart').getBoundingClientRect().width,
+        height = document.querySelector('.chart').getBoundingClientRect().height,
+        svg = d3.select('.chart')
+
+    let x = d3.scaleLinear()
+        .range([width, 0])
+
+    let y0 = d3.scaleBand()
+        .rangeRound([0, height])
+        .paddingInner(0.1)
+
+    let xAxis = d3.axisBottom()
+        .scale(x)
+
+    let yAxis = d3.axisLeft()
+        .scale(y0)
+        .tickSize(0)
+
+    let expenseItems = data.map(d => d.post)
+    y0.domain(expenseItems)
+    x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
+
+    let groups = svg.append('g')
+    // Aanmaken X-as
+    groups.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .attr('class', 'x axis')
+        .call(xAxis);
+
+    //Aanmaken Y-as
+    groups.append("g")
+        .attr('class', 'y axis')
+        .call(yAxis)
+
+    let barchart = d3.select('svg > g')
+
+    // Selecteert de group waar de twee bars in verschijnen
+    barchart.selectAll("bars")
+        .data(data)
+        .enter().append("g")
+        .attr("transform", (d => "translate(0," + y0(d.post) + ")"))
+        .attr('class', 'group')
+}
 
 // https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
 function createBarchart(data) {
@@ -1135,56 +1184,25 @@ function createBarchart(data) {
         matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
         svg = d3.select('.chart')
 
+    let x = d3.scaleLinear()
+        .range([width, 0])
+    x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
+
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
         .paddingInner(0.1)
 
+    let expenseItems = data.map(d => d.post)
+    y0.domain(expenseItems)
+
     let y1 = d3.scaleBand()
-
-    let x = d3.scaleLinear()
-        .range([width, 0])
-
-    let xAxis = d3.axisBottom()
-        .scale(x)
-
-    let yAxis = d3.axisLeft()
-        .scale(y0)
-        .tickSize(0)
-
-    let groups = svg.append('g')
-
-    // Aanmaken X-as
-    groups.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .attr('class', 'x axis')
-        .call(xAxis);
-
-    //Aanmaken Y-as
-    groups.append("g")
-        .attr('class', 'y axis')
-        .call(yAxis)
+    let rateNames = ['persoonlijk', 'gemiddeld']
+    y1.domain(rateNames).range([0, y0.bandwidth()])
 
     let color = d3.scaleOrdinal()
         .range([barchartFallbackColor, matchedHouseholdColor])
 
-    let expenseItems = data.map(d => d.post)
-    let rateNames = ['persoonlijk', 'gemiddeld']
-
-    y0.domain(expenseItems)
-    y1.domain(rateNames).range([0, y0.bandwidth()]);
-    x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
-
-    // Selecteert de group waar de twee bars in verschijnen
-    groups.selectAll("bars")
-        .data(data)
-        .enter().append("g")
-        .attr("transform", (d => "translate(0," + y0(d.post) + ")"))
-        .attr('class', 'group')
-
-
-    // Selecteert de bar zelf 
     let bars = svg.selectAll('.group')
-
     let bar = bars.selectAll('rect')
 
     bar
