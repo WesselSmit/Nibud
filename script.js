@@ -266,6 +266,8 @@ function updateProgressbar(currentForm) {
             document.getElementById('scroll_indicator_uw_situatie').classList.remove('inactive')
             if (a === 0) {
                 determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
+                sumExpenses()
+                findMatchingHousehold() //match your personal household with a household form the database
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
@@ -580,8 +582,6 @@ function determineYourSituation() { //create personal houseHold Object with uw_s
         income = yourSituation.netto_maandinkomen + yourSituation.netto_vakantiegeld + yourSituation.reiskostenvergoeding + yourSituation.dertiende_maand + yourSituation.bijverdiensten + yourSituation.netto_maandinkomenPartner + yourSituation.netto_vakantiegeldPartner + yourSituation.reiskostenvergoedingPartner + yourSituation.dertiende_maandPartner + yourSituation.bijverdienstenPartner + yourSituation.kinderbijslag + yourSituation.zorgtoeslag + yourSituation.kindgebonden_budget + yourSituation.huurtoeslag + yourSituation.kinderopvangtoeslag + yourSituation.teruggave_belasting + yourSituation.alimentatie + yourSituation.kostgeld_inwonende_personen + yourSituation.inkomsten_uit_vermogen + yourSituation.gemeentelijke_ondersteuning + yourSituation.overige_inkomsten
     }
     personalHousehold.inkomen = income
-
-    console.log(yourSituation)
 }
 
 function sumExpenses() { //calc epxenses
@@ -671,7 +671,6 @@ function sumExpenses() { //calc epxenses
     for (const expense of personalHousehold.uitgavenPosten) {
         personalHousehold.totaleUitgaven = personalHousehold.totaleUitgaven + expense.bedrag
     }
-    findMatchingHousehold() //match your personal household with a household form the database
 }
 
 function calculateCategoryCost(category, cost) { //calc the cost of all inputs in the passed category
@@ -685,6 +684,8 @@ function calculateCategoryCost(category, cost) { //calc the cost of all inputs i
 
 
 function findMatchingHousehold() { //find a matching household -> most similar to personal household
+    console.log(personalHousehold)
+
     let matchingHouseHoldType = allDataHouseHolds.filter(data => data.huishoudType === personalHousehold.huishoudType), //filter on houseHoldType
         smallestDifference = 1000000 //good default is so big it'll definitely be overwritten
 
@@ -705,8 +706,6 @@ function findMatchingHousehold() { //find a matching household -> most similar t
         }
     })
 
-    console.log(personalHousehold)
-
     for (const match of matches) { //calc the difference for each match (best match has smallest difference)
         let difference
         if (personalHousehold.uitgavenPosten[0].bedrag >= match.uitgavenPosten[0].bedrag) {
@@ -718,7 +717,6 @@ function findMatchingHousehold() { //find a matching household -> most similar t
     }
 
     matches.sort((highest, lowest) => highest.difference - lowest.difference) //sort matches from best - worst
-
     matchingHouseHold = matches[0]
 }
 
@@ -929,7 +927,6 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 // Merges the dataset structure to our own structure which is determined by the form
 function mergeDataObjects(object) {
-    console.log(object)
     let objectStructure = [{
         post: "woning",
         bedrag: object.uitgavenPosten[0].bedrag
@@ -971,6 +968,7 @@ function mergeDataObjects(object) {
         bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
     }
     ]
+
     return objectStructure
 }
 
@@ -1118,7 +1116,6 @@ let householdZerostate = [{
 }
 ]
 
-
 // https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
 function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
@@ -1159,6 +1156,8 @@ function createBarchart(data) {
     y0.domain(expenseItems)
     y1.domain(rateNames).range([0, y0.bandwidth()]);
     x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
+
+    console.log(Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag)))))
 
     let workspace = svg.append('g')
 
