@@ -1143,7 +1143,7 @@ function createBarChartZeroState() {
         .scale(y0)
         .tickSize(0)
 
-    let expenseItems = data.map(d => d.post)
+    let expenseItems = data.map(d => d.post.charAt(0).toUpperCase() + d.post.slice(1))
     y0.domain(expenseItems)
     x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
@@ -1156,26 +1156,22 @@ function createBarChartZeroState() {
 
     //Aanmaken Y-as
     groups.append("g")
+        .attr("transform", "translate(140, 0)")
         .attr('class', 'y axis')
         .call(yAxis)
+        .selectAll(".tick text")
+        .call(wrap, 140)
 
     let barchart = d3.select('svg > g')
-
-    // Selecteert de group waar de twee bars in verschijnen
     barchart.selectAll("bars")
         .data(data)
         .enter().append("g")
-        .attr("transform", (d => "translate(0," + y0(d.post) + ")"))
+        .attr("transform", (d => "translate(150," + y0(d.post.charAt(0).toUpperCase() + d.post.slice(1)) + ")"))
         .attr('class', 'group')
 }
 
-// https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
 function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
-
-    // for (const group of document.querySelectorAll('svg g:first-of-type')) {
-    //     group.remove()
-    // }
 
     // D3 letiables
     let width = document.querySelector('.chart').getBoundingClientRect().width,
@@ -1215,4 +1211,38 @@ function createBarchart(data) {
         .merge(bar)
         .transition().duration(1000)
         .attr("width", (d => width - x(d.bedrag)))
+}
+
+
+function wrap(text, width) {
+    text.each(function () {
+        var text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1,
+            x = text.attr('x'),
+            y = text.attr('y'),
+            dy = 0,
+            tspan = text.text(null)
+                .append('tspan')
+                .attr('x', x)
+                .attr('y', y)
+                .attr('dy', dy + 'em')
+        while (word = words.pop()) {
+            line.push(word)
+            tspan.text(line.join(' '))
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop()
+                tspan.text(line.join(' '))
+                line = [word]
+                tspan = text.append('tspan')
+                    .attr('x', x)
+                    .attr('y', y)
+                    .attr('dy', ++lineNumber * lineHeight + dy + 'em')
+                    .text(word)
+            }
+        }
+    })
 }

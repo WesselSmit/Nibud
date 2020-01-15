@@ -851,10 +851,10 @@ label.fixWithHide {
 
 .chart {
     position: absolute;
-    width: 850px;
+    width: 80%;
     height: 85%;
     top: 6%;
-    left: 15%;
+    left: 3%;
 }
 
 .label {
