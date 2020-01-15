@@ -1125,12 +1125,13 @@ let householdZerostate = [{
 function createBarChartZeroState() {
     let data = householdZerostate
 
-    let width = document.querySelector('.chart').getBoundingClientRect().width,
+    let width = document.querySelector('.chart').getBoundingClientRect().width - 140,
         height = document.querySelector('.chart').getBoundingClientRect().height,
         svg = d3.select('.chart')
 
     let x = d3.scaleLinear()
         .range([width, 0])
+        .domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
@@ -1145,9 +1146,11 @@ function createBarChartZeroState() {
 
     let expenseItems = data.map(d => d.post.charAt(0).toUpperCase() + d.post.slice(1))
     y0.domain(expenseItems)
-    x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
     let groups = svg.append('g')
+        .attr("transform", "translate(140, 0)")
+
+
     // Aanmaken X-as
     groups.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -1156,7 +1159,7 @@ function createBarChartZeroState() {
 
     //Aanmaken Y-as
     groups.append("g")
-        .attr("transform", "translate(140, 0)")
+        // .attr("transform", "translate(140, 0)")
         .attr('class', 'y axis')
         .call(yAxis)
         .selectAll(".tick text")
@@ -1166,7 +1169,7 @@ function createBarChartZeroState() {
     barchart.selectAll("bars")
         .data(data)
         .enter().append("g")
-        .attr("transform", (d => "translate(150," + y0(d.post.charAt(0).toUpperCase() + d.post.slice(1)) + ")"))
+        .attr("transform", (d => "translate(0," + y0(d.post.charAt(0).toUpperCase() + d.post.slice(1)) + ")"))
         .attr('class', 'group')
 }
 
@@ -1174,7 +1177,7 @@ function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
 
     // D3 letiables
-    let width = document.querySelector('.chart').getBoundingClientRect().width,
+    let width = document.querySelector('.chart').getBoundingClientRect().width - 140,
         height = document.querySelector('.chart').getBoundingClientRect().height,
         barchartFallbackColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color'),
         matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
@@ -1182,7 +1185,7 @@ function createBarchart(data) {
 
     let x = d3.scaleLinear()
         .range([width, 0])
-    x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
+        .domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
@@ -1200,6 +1203,7 @@ function createBarchart(data) {
 
     let bars = svg.selectAll('.group')
     let bar = bars.selectAll('rect')
+    let text = bars.selectAll('text')
 
     bar
         .data((d => d.bedragen))
@@ -1211,6 +1215,20 @@ function createBarchart(data) {
         .merge(bar)
         .transition().duration(1000)
         .attr("width", (d => width - x(d.bedrag)))
+
+    text
+        .data((d => d.bedragen))
+        .enter().append('text')
+        .merge(text)
+        .attr("y", (d => y1(d.data) + 24))
+        .transition().duration(1000)
+        .attr("x", d => {
+            return width - x(d.bedrag) + 10
+
+            //TODO: Vergelijk text coordinaten met svg coordinaten en fix
+            // console.log(this.getBoundingClientRect().x + this.getBoundingClientRect().width)
+        })
+        .text(d => d.bedrag)
 }
 
 
