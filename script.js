@@ -1124,10 +1124,9 @@ let householdZerostate = [{
 function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
 
-    // hacky oplossing
-    // for (const group of document.querySelectorAll('svg g:first-of-type')) {
-    //     group.remove()
-    // }
+    for (const group of document.querySelectorAll('svg g:first-of-type')) {
+        group.remove()
+    }
 
     // D3 letiables
     let width = document.querySelector('.chart').getBoundingClientRect().width,
@@ -1150,16 +1149,16 @@ function createBarchart(data) {
         .scale(y0)
         .tickSize(0)
 
-    let groups = svg.append('g')
+    let test = svg.append('g')
 
     // Aanmaken X-as
-    groups.append("g")
+    test.append("g")
         .attr("transform", "translate(0," + height + ")")
         .attr('class', 'x axis')
         .call(xAxis);
 
     //Aanmaken Y-as
-    groups.append("g")
+    test.append("g")
         .attr('class', 'y axis')
         .call(yAxis)
 
@@ -1174,7 +1173,7 @@ function createBarchart(data) {
     x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
     // Selecteert de group waar de twee bars in verschijnen
-    groups.selectAll("bars")
+    test.selectAll("bars")
         .data(data)
         .enter().append("g")
         .attr("transform", (d => "translate(0," + y0(d.post) + ")"))
@@ -1183,6 +1182,7 @@ function createBarchart(data) {
 
     // Selecteert de bar zelf 
     let bars = svg.selectAll('.group')
+
     let bar = bars.selectAll('rect')
 
     bar
