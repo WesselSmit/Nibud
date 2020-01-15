@@ -862,76 +862,82 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 
 
 
-
 // https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
 function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
 
-    // D3 variables
+    // todo: Updatefunctie moet de: 
+    // * X en Y-as updaten
+    // * Bars updaten
+
+    // D3 letiables
     let width = document.querySelector('.chart').getBoundingClientRect().width,
         height = document.querySelector('.chart').getBoundingClientRect().height,
         barchartFallbackColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color'),
-        matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color')
+        matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
+        svg = d3.select('.chart')
 
-    let svg = d3.select('.chart')
-
-    var y0 = d3.scaleBand()
+    let y0 = d3.scaleBand()
         .rangeRound([0, height])
         .paddingInner(0.1)
 
-    var y1 = d3.scaleBand()
+    let y1 = d3.scaleBand()
 
-    var x = d3.scaleLinear()
+    let x = d3.scaleLinear()
         .range([width, 0])
 
-    var xAxis = d3.axisBottom()
+    let xAxis = d3.axisBottom()
         .scale(x)
 
-    var yAxis = d3.axisLeft()
+    let yAxis = d3.axisLeft()
         .scale(y0)
         .tickSize(0)
 
-    var color = d3.scaleOrdinal()
+    let color = d3.scaleOrdinal()
         .range([barchartFallbackColor, matchedHouseholdColor])
 
     let expenseItems = data.map(d => d.post)
-    var rateNames = ['persoonlijk', 'gemiddeld']
+    let rateNames = ['persoonlijk', 'gemiddeld']
 
     y0.domain(expenseItems)
     y1.domain(rateNames).range([0, y0.bandwidth()]);
     x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
+    let workspace = svg.append('g')
+
     // Aanmaken X-as
-    svg.append("g")
+    workspace.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .attr('class', 'x-as')
+        .attr('class', 'x axis')
         .call(xAxis);
 
     //Aanmaken Y-as
-    svg.append("g")
-        .attr('class', 'y-as')
+    workspace.append("g")
+        .attr('class', 'y axis')
         .call(yAxis)
 
+
     // Selecteert de group waar de twee bars in verschijnen
-    var groups = svg.selectAll("bars")
+    workspace.selectAll("bars")
         .data(data)
         .enter().append("g")
         .attr("transform", (d => "translate(0," + y0(d.post) + ")"))
         .attr('class', 'group')
 
     // Selecteert de bar zelf 
-    groups.selectAll("rect")
+    let bars = workspace.selectAll('.group')
+
+    bars.selectAll("rect")
         .data((d => d.bedragen))
         .enter().append("rect")
         .attr("height", y1.bandwidth())
         .attr("y", (d => y1(d.data)))
         .style("fill", (d => color(d.data)))
-
-    groups.selectAll("rect")
         .transition()
         .attr("x", 0)
         .attr("width", (d => width - x(d.bedrag)))
 }
+
 
 // Merges the dataset structure to our own structure which is determined by the form
 function mergeDataObjects(object) {

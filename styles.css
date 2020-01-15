@@ -801,6 +801,13 @@ label.fixWithHide {
     top: calc(200vh + 25px);
 }
 
+.axis path,
+.axis line {
+  fill: none;
+  stroke: white;
+  shape-rendering: crispEdges;
+}
+
 #legenda {
     width: 100%;
     height: 50px;
@@ -844,10 +851,10 @@ label.fixWithHide {
 
 .chart {
     position: absolute;
-    width: 1008px;
+    width: 850px;
     height: 85%;
     top: 6%;
-    left: 3%;
+    left: 15%;
 }
 
 .label {
