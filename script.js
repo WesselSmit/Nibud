@@ -268,6 +268,7 @@ function updateProgressbar(currentForm) {
                 determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
                 sumExpenses()
                 findMatchingHousehold() //match your personal household with a household form the database
+                generateEmptyBarChart()
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
@@ -593,77 +594,77 @@ function sumExpenses() { //calc epxenses
         yourExpenses[input.id] = parseInt(input.value)
 
         expenseArray = [{ //all possibilities
-                post: "huur/hypotheek",
-                bedrag: calculateCategoryCost(5, cost)
-            },
-            {
-                post: "gas",
-                bedrag: yourExpenses.gas
-            },
-            {
-                post: "elektriciteit",
-                bedrag: yourExpenses.elektriciteit
-            },
-            {
-                post: "water",
-                bedrag: yourExpenses.water
-            },
-            {
-                post: "lokale lasten",
-                bedrag: calculateCategoryCost(7, cost)
-            },
-            {
-                post: "telefoon, televisie, internet",
-                bedrag: calculateCategoryCost(8, cost)
-            },
-            {
-                post: "verzekeringen",
-                bedrag: calculateCategoryCost(9, cost)
-            },
-            {
-                post: "onderwijs",
-                bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
-            },
-            {
-                post: "kinderopvang",
-                bedrag: yourExpenses.kinderopvang
-            },
-            {
-                post: "contributies en abonnementen",
-                bedrag: calculateCategoryCost(11, cost)
-            },
-            {
-                post: "vervoer",
-                bedrag: calculateCategoryCost(12, cost)
-            },
-            {
-                post: "kleding en schoenen",
-                bedrag: yourExpenses.kleding_en_schoenen
-            },
-            {
-                post: "inventaris",
-                bedrag: yourExpenses.inventaris
-            },
-            {
-                post: "onderhoud huis en tuin",
-                bedrag: yourExpenses.onderhoud_huis_en_tuin
-            },
-            {
-                post: "niet-vergoede ziektekosten",
-                bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
-            },
-            {
-                post: "vrijetijdsuitgaven",
-                bedrag: yourExpenses.vrijetijdsuitgaven
-            },
-            {
-                post: "voeding",
-                bedrag: yourExpenses.voeding
-            },
-            {
-                post: "overige huishoudelijke uitgaven",
-                bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
-            }
+            post: "huur/hypotheek",
+            bedrag: calculateCategoryCost(5, cost)
+        },
+        {
+            post: "gas",
+            bedrag: yourExpenses.gas
+        },
+        {
+            post: "elektriciteit",
+            bedrag: yourExpenses.elektriciteit
+        },
+        {
+            post: "water",
+            bedrag: yourExpenses.water
+        },
+        {
+            post: "lokale lasten",
+            bedrag: calculateCategoryCost(7, cost)
+        },
+        {
+            post: "telefoon, televisie, internet",
+            bedrag: calculateCategoryCost(8, cost)
+        },
+        {
+            post: "verzekeringen",
+            bedrag: calculateCategoryCost(9, cost)
+        },
+        {
+            post: "onderwijs",
+            bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
+        },
+        {
+            post: "kinderopvang",
+            bedrag: yourExpenses.kinderopvang
+        },
+        {
+            post: "contributies en abonnementen",
+            bedrag: calculateCategoryCost(11, cost)
+        },
+        {
+            post: "vervoer",
+            bedrag: calculateCategoryCost(12, cost)
+        },
+        {
+            post: "kleding en schoenen",
+            bedrag: yourExpenses.kleding_en_schoenen
+        },
+        {
+            post: "inventaris",
+            bedrag: yourExpenses.inventaris
+        },
+        {
+            post: "onderhoud huis en tuin",
+            bedrag: yourExpenses.onderhoud_huis_en_tuin
+        },
+        {
+            post: "niet-vergoede ziektekosten",
+            bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
+        },
+        {
+            post: "vrijetijdsuitgaven",
+            bedrag: yourExpenses.vrijetijdsuitgaven
+        },
+        {
+            post: "voeding",
+            bedrag: yourExpenses.voeding
+        },
+        {
+            post: "overige huishoudelijke uitgaven",
+            bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
+        }
         ]
     })
     personalHousehold.uitgavenPosten = expenseArray
@@ -684,8 +685,6 @@ function calculateCategoryCost(category, cost) { //calc the cost of all inputs i
 
 
 function findMatchingHousehold() { //find a matching household -> most similar to personal household
-    console.log(personalHousehold)
-
     let matchingHouseHoldType = allDataHouseHolds.filter(data => data.huishoudType === personalHousehold.huishoudType), //filter on houseHoldType
         smallestDifference = 1000000 //good default is so big it'll definitely be overwritten
 
@@ -931,45 +930,45 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 // Merges the dataset structure to our own structure which is determined by the form
 function mergeDataObjects(object) {
     let objectStructure = [{
-            post: "woning",
-            bedrag: object.uitgavenPosten[0].bedrag
-        },
-        {
-            post: "energie",
-            bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
-        },
-        {
-            post: "lokale lasten",
-            bedrag: object.uitgavenPosten[4].bedrag
-        },
-        {
-            post: "telefoon, televisie, internet",
-            bedrag: object.uitgavenPosten[5].bedrag
-        },
-        {
-            post: "verzekeringen",
-            bedrag: object.uitgavenPosten[6].bedrag
-        },
-        {
-            post: "onderwijs",
-            bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
-        },
-        {
-            post: "contributies en abonnementen",
-            bedrag: object.uitgavenPosten[9].bedrag
-        },
-        {
-            post: "vervoer",
-            bedrag: object.uitgavenPosten[10].bedrag
-        },
-        {
-            post: "reserverings uitgaven",
-            bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
-        },
-        {
-            post: "huishoudelijke uitgaven",
-            bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
-        }
+        post: "woning",
+        bedrag: object.uitgavenPosten[0].bedrag
+    },
+    {
+        post: "energie",
+        bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
+    },
+    {
+        post: "lokale lasten",
+        bedrag: object.uitgavenPosten[4].bedrag
+    },
+    {
+        post: "telefoon, televisie, internet",
+        bedrag: object.uitgavenPosten[5].bedrag
+    },
+    {
+        post: "verzekeringen",
+        bedrag: object.uitgavenPosten[6].bedrag
+    },
+    {
+        post: "onderwijs",
+        bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
+    },
+    {
+        post: "contributies en abonnementen",
+        bedrag: object.uitgavenPosten[9].bedrag
+    },
+    {
+        post: "vervoer",
+        bedrag: object.uitgavenPosten[10].bedrag
+    },
+    {
+        post: "reserverings uitgaven",
+        bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
+    },
+    {
+        post: "huishoudelijke uitgaven",
+        bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
+    }
     ]
 
     return objectStructure
@@ -998,141 +997,133 @@ function calcMoneyPile() {
 }
 
 let householdZerostate = [{
-        post: "woning",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
+    post: "woning",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
     },
     {
-        post: "energie",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "lokale lasten",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "telefoon, televisie, internet",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "verzekeringen",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "onderwijs",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "contributies en abonnementen",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "vervoer",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "reserverings uitgaven",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "huishoudelijke uitgaven",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
+        data: "gemiddeld",
+        bedrag: 0
     }
+    ]
+},
+{
+    post: "energie",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "lokale lasten",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "telefoon, televisie, internet",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "verzekeringen",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "onderwijs",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "contributies en abonnementen",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "vervoer",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "reserverings uitgaven",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "huishoudelijke uitgaven",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+}
 ]
 
-// https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
-function createBarchart(data) {
-    document.getElementById('legenda').classList.remove('hide')
 
-    // todo: Updatefunctie moet de: 
-    // * X en Y-as updaten
-    // * Bars updaten
 
-    // D3 letiables
-    let width = document.querySelector('.chart').getBoundingClientRect().width,
-        height = document.querySelector('.chart').getBoundingClientRect().height,
-        barchartFallbackColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color'),
-        matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
-        svg = d3.select('.chart')
+function generateEmptyBarChart() {
+    let svg = d3.select('.chart'),
+        width = document.querySelector('.chart').getBoundingClientRect().width,
+        height = document.querySelector('.chart').getBoundingClientRect().height
 
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
@@ -1150,6 +1141,38 @@ function createBarchart(data) {
         .scale(y0)
         .tickSize(0)
 
+    // Aanmaken X-as
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .attr('class', 'x axis')
+        .call(xAxis);
+
+    //Aanmaken Y-as
+    svg.append("g")
+        .attr('class', 'y axis')
+        .call(yAxis)
+}
+
+// https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
+function createBarchart(data) {
+    document.getElementById('legenda').classList.remove('hide')
+
+    // D3 letiables
+    let width = document.querySelector('.chart').getBoundingClientRect().width,
+        height = document.querySelector('.chart').getBoundingClientRect().height,
+        barchartFallbackColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color'),
+        matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
+        svg = d3.select('.chart')
+
+    let y0 = d3.scaleBand()
+        .rangeRound([0, height])
+        .paddingInner(0.1)
+
+    let y1 = d3.scaleBand()
+
+    let x = d3.scaleLinear()
+        .range([width, 0])
+
     let color = d3.scaleOrdinal()
         .range([barchartFallbackColor, matchedHouseholdColor])
 
@@ -1160,31 +1183,17 @@ function createBarchart(data) {
     y1.domain(rateNames).range([0, y0.bandwidth()]);
     x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
-    console.log(Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag)))))
-
-    let workspace = svg.append('g')
-
-    // Aanmaken X-as
-    workspace.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .attr('class', 'x axis')
-        .call(xAxis);
-
-    //Aanmaken Y-as
-    workspace.append("g")
-        .attr('class', 'y axis')
-        .call(yAxis)
-
-
     // Selecteert de group waar de twee bars in verschijnen
-    workspace.selectAll("bars")
+    svg.selectAll("bars")
         .data(data)
         .enter().append("g")
         .attr("transform", (d => "translate(0," + y0(d.post) + ")"))
         .attr('class', 'group')
 
+    console.log(svg.selectAll("bars").data(data))
+
     // Selecteert de bar zelf 
-    let bars = workspace.selectAll('.group')
+    let bars = svg.selectAll('.group')
 
     bars.selectAll("rect")
         .data((d => d.bedragen))
