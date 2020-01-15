@@ -1150,7 +1150,6 @@ function createBarChartZeroState() {
     let groups = svg.append('g')
         .attr("transform", "translate(140, 0)")
 
-
     // Aanmaken X-as
     groups.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -1159,7 +1158,6 @@ function createBarChartZeroState() {
 
     //Aanmaken Y-as
     groups.append("g")
-        // .attr("transform", "translate(140, 0)")
         .attr('class', 'y axis')
         .call(yAxis)
         .selectAll(".tick text")
@@ -1179,7 +1177,6 @@ function createBarchart(data) {
     // D3 letiables
     let width = document.querySelector('.chart').getBoundingClientRect().width - 140,
         height = document.querySelector('.chart').getBoundingClientRect().height,
-        barchartFallbackColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color'),
         matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
         svg = d3.select('.chart')
 
@@ -1198,21 +1195,37 @@ function createBarchart(data) {
     let rateNames = ['persoonlijk', 'gemiddeld']
     y1.domain(rateNames).range([0, y0.bandwidth()])
 
-    let color = d3.scaleOrdinal()
-        .range([barchartFallbackColor, matchedHouseholdColor])
-
     let bars = svg.selectAll('.group')
     let bar = bars.selectAll('rect')
     let text = bars.selectAll('text')
+    let p = 0
 
     bar
         .data((d => d.bedragen))
         .enter().append("rect")
         .attr("height", y1.bandwidth())
         .attr("y", (d => y1(d.data)))
-        .style("fill", (d => color(d.data)))
         .attr("x", 0)
         .merge(bar)
+        .attr('fill', () => {
+            let barColor = matchedHouseholdColor,
+                valueDifference
+            if (p % 2 === 0) {
+                let arr = [data[p / 2].bedragen[0].bedrag, data[p / 2].bedragen[1].bedrag]
+                valueDifference = ((arr[0] - arr[1]) / arr[1]) * 100
+
+                //TODO: de grenzen moeten nog bepaald worden, voor nu staat de grens hieronder hardcoded op 100
+                if (valueDifference < -10) {
+                    barColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-negative-color')
+                } else if (valueDifference > 10) {
+                    barColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-positive-color')
+                } else {
+                    barColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color')
+                }
+            }
+            p++
+            return barColor
+        })
         .transition().duration(1000)
         .attr("width", (d => width - x(d.bedrag)))
 
@@ -1230,7 +1243,6 @@ function createBarchart(data) {
         })
         .text(d => d.bedrag)
 }
-
 
 function wrap(text, width) {
     text.each(function () {
