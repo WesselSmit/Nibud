@@ -268,7 +268,6 @@ function updateProgressbar(currentForm) {
                 determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
                 sumExpenses()
                 findMatchingHousehold() //match your personal household with a household form the database
-                generateEmptyBarChart()
                 a++
             }
         } else if (currentForm === document.querySelector('section:nth-of-type(2)') && currentForm.contains(currentEl)) {
@@ -1120,10 +1119,22 @@ let householdZerostate = [{
 
 
 
-function generateEmptyBarChart() {
-    let svg = d3.select('.chart'),
-        width = document.querySelector('.chart').getBoundingClientRect().width,
-        height = document.querySelector('.chart').getBoundingClientRect().height
+
+// https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
+function createBarchart(data) {
+    document.getElementById('legenda').classList.remove('hide')
+
+    // hacky oplossing
+    // for (const group of document.querySelectorAll('svg g:first-of-type')) {
+    //     group.remove()
+    // }
+
+    // D3 letiables
+    let width = document.querySelector('.chart').getBoundingClientRect().width,
+        height = document.querySelector('.chart').getBoundingClientRect().height,
+        barchartFallbackColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color'),
+        matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
+        svg = d3.select('.chart')
 
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
@@ -1139,37 +1150,18 @@ function generateEmptyBarChart() {
         .scale(y0)
         .tickSize(0)
 
+    let groups = svg.append('g')
+
     // Aanmaken X-as
-    svg.append("g")
+    groups.append("g")
         .attr("transform", "translate(0," + height + ")")
         .attr('class', 'x axis')
         .call(xAxis);
 
     //Aanmaken Y-as
-    svg.append("g")
+    groups.append("g")
         .attr('class', 'y axis')
         .call(yAxis)
-}
-
-// https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
-function createBarchart(data) {
-    document.getElementById('legenda').classList.remove('hide')
-
-    // D3 letiables
-    let width = document.querySelector('.chart').getBoundingClientRect().width,
-        height = document.querySelector('.chart').getBoundingClientRect().height,
-        barchartFallbackColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color'),
-        matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
-        svg = d3.select('.chart')
-
-    let y0 = d3.scaleBand()
-        .rangeRound([0, height])
-        .paddingInner(0.1)
-
-    let y1 = d3.scaleBand()
-
-    let x = d3.scaleLinear()
-        .range([width, 0])
 
     let color = d3.scaleOrdinal()
         .range([barchartFallbackColor, matchedHouseholdColor])
@@ -1182,24 +1174,25 @@ function createBarchart(data) {
     x.domain([0, Math.max.apply(Math, data.map(o => (Math.max(o.bedragen[0].bedrag, o.bedragen[1].bedrag))))])
 
     // Selecteert de group waar de twee bars in verschijnen
-    svg.selectAll("bars")
+    groups.selectAll("bars")
         .data(data)
         .enter().append("g")
         .attr("transform", (d => "translate(0," + y0(d.post) + ")"))
         .attr('class', 'group')
 
-    console.log(svg.selectAll("bars").data(data))
 
     // Selecteert de bar zelf 
     let bars = svg.selectAll('.group')
+    let bar = bars.selectAll('rect')
 
-    bars.selectAll("rect")
+    bar
         .data((d => d.bedragen))
         .enter().append("rect")
         .attr("height", y1.bandwidth())
         .attr("y", (d => y1(d.data)))
         .style("fill", (d => color(d.data)))
-        .transition()
         .attr("x", 0)
+        .merge(bar)
+        .transition().duration(1000)
         .attr("width", (d => width - x(d.bedrag)))
 }
