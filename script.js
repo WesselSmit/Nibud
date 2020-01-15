@@ -360,8 +360,6 @@ function updateProgressIndicators(currentEl) {
                     expenseFieldsetTotal = expenseFieldsetTotal + parseInt(expense.value)
                 })
 
-                // console.log(householdZerostate)
-
                 householdZerostate.forEach(post => {
                     if (currentEl.querySelector('legend').textContent.toLowerCase() == post.post) {
                         post.bedragen[0].bedrag = expenseFieldsetTotal
@@ -582,6 +580,8 @@ function determineYourSituation() { //create personal houseHold Object with uw_s
         income = yourSituation.netto_maandinkomen + yourSituation.netto_vakantiegeld + yourSituation.reiskostenvergoeding + yourSituation.dertiende_maand + yourSituation.bijverdiensten + yourSituation.netto_maandinkomenPartner + yourSituation.netto_vakantiegeldPartner + yourSituation.reiskostenvergoedingPartner + yourSituation.dertiende_maandPartner + yourSituation.bijverdienstenPartner + yourSituation.kinderbijslag + yourSituation.zorgtoeslag + yourSituation.kindgebonden_budget + yourSituation.huurtoeslag + yourSituation.kinderopvangtoeslag + yourSituation.teruggave_belasting + yourSituation.alimentatie + yourSituation.kostgeld_inwonende_personen + yourSituation.inkomsten_uit_vermogen + yourSituation.gemeentelijke_ondersteuning + yourSituation.overige_inkomsten
     }
     personalHousehold.inkomen = income
+
+    console.log(yourSituation)
 }
 
 function sumExpenses() { //calc epxenses
@@ -593,77 +593,77 @@ function sumExpenses() { //calc epxenses
         yourExpenses[input.id] = parseInt(input.value)
 
         expenseArray = [{ //all possibilities
-                post: "huur/hypotheek",
-                bedrag: calculateCategoryCost(5, cost)
-            },
-            {
-                post: "gas",
-                bedrag: yourExpenses.gas
-            },
-            {
-                post: "elektriciteit",
-                bedrag: yourExpenses.elektriciteit
-            },
-            {
-                post: "water",
-                bedrag: yourExpenses.water
-            },
-            {
-                post: "lokale lasten",
-                bedrag: calculateCategoryCost(7, cost)
-            },
-            {
-                post: "telefoon, televisie, internet",
-                bedrag: calculateCategoryCost(8, cost)
-            },
-            {
-                post: "verzekeringen",
-                bedrag: calculateCategoryCost(9, cost)
-            },
-            {
-                post: "onderwijs",
-                bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
-            },
-            {
-                post: "kinderopvang",
-                bedrag: yourExpenses.kinderopvang
-            },
-            {
-                post: "contributies en abonnementen",
-                bedrag: calculateCategoryCost(11, cost)
-            },
-            {
-                post: "vervoer",
-                bedrag: calculateCategoryCost(12, cost)
-            },
-            {
-                post: "kleding en schoenen",
-                bedrag: yourExpenses.kleding_en_schoenen
-            },
-            {
-                post: "inventaris",
-                bedrag: yourExpenses.inventaris
-            },
-            {
-                post: "onderhoud huis en tuin",
-                bedrag: yourExpenses.onderhoud_huis_en_tuin
-            },
-            {
-                post: "niet-vergoede ziektekosten",
-                bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
-            },
-            {
-                post: "vrijetijdsuitgaven",
-                bedrag: yourExpenses.vrijetijdsuitgaven
-            },
-            {
-                post: "voeding",
-                bedrag: yourExpenses.voeding
-            },
-            {
-                post: "overige huishoudelijke uitgaven",
-                bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
-            }
+            post: "huur/hypotheek",
+            bedrag: calculateCategoryCost(5, cost)
+        },
+        {
+            post: "gas",
+            bedrag: yourExpenses.gas
+        },
+        {
+            post: "elektriciteit",
+            bedrag: yourExpenses.elektriciteit
+        },
+        {
+            post: "water",
+            bedrag: yourExpenses.water
+        },
+        {
+            post: "lokale lasten",
+            bedrag: calculateCategoryCost(7, cost)
+        },
+        {
+            post: "telefoon, televisie, internet",
+            bedrag: calculateCategoryCost(8, cost)
+        },
+        {
+            post: "verzekeringen",
+            bedrag: calculateCategoryCost(9, cost)
+        },
+        {
+            post: "onderwijs",
+            bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
+        },
+        {
+            post: "kinderopvang",
+            bedrag: yourExpenses.kinderopvang
+        },
+        {
+            post: "contributies en abonnementen",
+            bedrag: calculateCategoryCost(11, cost)
+        },
+        {
+            post: "vervoer",
+            bedrag: calculateCategoryCost(12, cost)
+        },
+        {
+            post: "kleding en schoenen",
+            bedrag: yourExpenses.kleding_en_schoenen
+        },
+        {
+            post: "inventaris",
+            bedrag: yourExpenses.inventaris
+        },
+        {
+            post: "onderhoud huis en tuin",
+            bedrag: yourExpenses.onderhoud_huis_en_tuin
+        },
+        {
+            post: "niet-vergoede ziektekosten",
+            bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
+        },
+        {
+            post: "vrijetijdsuitgaven",
+            bedrag: yourExpenses.vrijetijdsuitgaven
+        },
+        {
+            post: "voeding",
+            bedrag: yourExpenses.voeding
+        },
+        {
+            post: "overige huishoudelijke uitgaven",
+            bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
+        }
         ]
     })
     personalHousehold.uitgavenPosten = expenseArray
@@ -705,6 +705,8 @@ function findMatchingHousehold() { //find a matching household -> most similar t
         }
     })
 
+    console.log(personalHousehold)
+
     for (const match of matches) { //calc the difference for each match (best match has smallest difference)
         let difference
         if (personalHousehold.uitgavenPosten[0].bedrag >= match.uitgavenPosten[0].bedrag) {
@@ -716,6 +718,7 @@ function findMatchingHousehold() { //find a matching household -> most similar t
     }
 
     matches.sort((highest, lowest) => highest.difference - lowest.difference) //sort matches from best - worst
+
     matchingHouseHold = matches[0]
 }
 
@@ -924,8 +927,196 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
     })
 }
 
+// Merges the dataset structure to our own structure which is determined by the form
+function mergeDataObjects(object) {
+    console.log(object)
+    let objectStructure = [{
+        post: "woning",
+        bedrag: object.uitgavenPosten[0].bedrag
+    },
+    {
+        post: "energie",
+        bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
+    },
+    {
+        post: "lokale lasten",
+        bedrag: object.uitgavenPosten[4].bedrag
+    },
+    {
+        post: "telefoon, televisie, internet",
+        bedrag: object.uitgavenPosten[5].bedrag
+    },
+    {
+        post: "verzekeringen",
+        bedrag: object.uitgavenPosten[6].bedrag
+    },
+    {
+        post: "onderwijs",
+        bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
+    },
+    {
+        post: "contributies en abonnementen",
+        bedrag: object.uitgavenPosten[9].bedrag
+    },
+    {
+        post: "vervoer",
+        bedrag: object.uitgavenPosten[10].bedrag
+    },
+    {
+        post: "reserverings uitgaven",
+        bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
+    },
+    {
+        post: "huishoudelijke uitgaven",
+        bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
+    }
+    ]
+    return objectStructure
+}
 
+function calcMoneyPile() {
+    const moneyPile = document.getElementById('moneyPile')
 
+    let yourIncomeMoney = 0,
+        yourExpensesMoney = 0
+
+    for (const money of document.querySelectorAll('[data_question="2"] input[type="number"][data_path="true"]')) {
+        yourIncomeMoney = yourIncomeMoney + parseInt(money.value)
+    }
+    for (const money of document.querySelectorAll('section:nth-of-type(2) input[type="number"][data_path="true"]')) {
+        if (parseInt(money.value) >= 0) {
+            yourExpensesMoney = yourExpensesMoney + parseInt(money.value)
+        }
+    }
+
+    if ((yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height >= 550) {
+        moneyPile.style.marginTop = "550px"
+    } else {
+        moneyPile.style.marginTop = (yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height + "px"
+    }
+}
+
+let householdZerostate = [{
+    post: "woning",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "energie",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "lokale lasten",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "telefoon, televisie, internet",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "verzekeringen",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "onderwijs",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "contributies en abonnementen",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "vervoer",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "reserverings uitgaven",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+},
+{
+    post: "huishoudelijke uitgaven",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ]
+}
+]
 
 
 // https://stackoverflow.com/questions/51570854/d3-vertical-line-beetween-grouped-chart-bars-spacing
@@ -1003,195 +1194,3 @@ function createBarchart(data) {
         .attr("x", 0)
         .attr("width", (d => width - x(d.bedrag)))
 }
-
-
-// Merges the dataset structure to our own structure which is determined by the form
-function mergeDataObjects(object) {
-    let objectStructure = [{
-            post: "woning",
-            bedrag: object.uitgavenPosten[0].bedrag
-        },
-        {
-            post: "energie",
-            bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
-        },
-        {
-            post: "lokale lasten",
-            bedrag: object.uitgavenPosten[4].bedrag
-        },
-        {
-            post: "telefoon, televisie, internet",
-            bedrag: object.uitgavenPosten[5].bedrag
-        },
-        {
-            post: "verzekeringen",
-            bedrag: object.uitgavenPosten[6].bedrag
-        },
-        {
-            post: "onderwijs",
-            bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
-        },
-        {
-            post: "contributies en abonnementen",
-            bedrag: object.uitgavenPosten[9].bedrag
-        },
-        {
-            post: "vervoer",
-            bedrag: object.uitgavenPosten[10].bedrag
-        },
-        {
-            post: "reserverings uitgaven",
-            bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
-        },
-        {
-            post: "huishoudelijke uitgaven",
-            bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
-        }
-    ]
-
-    return objectStructure
-}
-
-function calcMoneyPile() {
-    const moneyPile = document.getElementById('moneyPile')
-
-    let yourIncomeMoney = 0,
-        yourExpensesMoney = 0
-
-    for (const money of document.querySelectorAll('[data_question="2"] input[type="number"][data_path="true"]')) {
-        yourIncomeMoney = yourIncomeMoney + parseInt(money.value)
-    }
-    for (const money of document.querySelectorAll('section:nth-of-type(2) input[type="number"][data_path="true"]')) {
-        if (parseInt(money.value) >= 0) {
-            yourExpensesMoney = yourExpensesMoney + parseInt(money.value)
-        }
-    }
-
-    if ((yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height >= 550) {
-        moneyPile.style.marginTop = "550px"
-    } else {
-        moneyPile.style.marginTop = (yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height + "px"
-    }
-}
-
-let householdZerostate = [{
-        post: "woning",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "energie",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "lokale lasten",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "telefoon, televisie, internet",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "verzekeringen",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "onderwijs",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "contributies en abonnementen",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "vervoer",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "reserverings uitgaven",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    },
-    {
-        post: "huishoudelijke uitgaven",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ]
-    }
-]
