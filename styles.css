@@ -626,6 +626,7 @@ fieldset>p {
     text-decoration: underline;
 }
 
+svg.hide,
 section.hide,
 legend.hide,
 [data_question="5"]>fieldset.hide,
@@ -803,9 +804,9 @@ label.fixWithHide {
 
 .axis path,
 .axis line {
-  fill: none;
-  stroke: white;
-  shape-rendering: crispEdges;
+    fill: none;
+    stroke: white;
+    shape-rendering: crispEdges;
 }
 
 #legenda {
