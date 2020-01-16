@@ -1253,9 +1253,9 @@ function createBarchart(data) {
                 let arr = [data[p / 2].bedragen[0].bedrag, data[p / 2].bedragen[1].bedrag]
                 valueDifference = ((arr[0] - arr[1]) / arr[1]) * 100
 
-                if (valueDifference < -10) {
+                if (valueDifference < -15) {
                     barColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-negative-color')
-                } else if (valueDifference > 10) {
+                } else if (valueDifference > 15) {
                     barColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-positive-color')
                 } else {
                     barColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-normal-color')
@@ -1282,7 +1282,7 @@ function createBarchart(data) {
         .data((d => d.bedragen))
         .enter().append('text')
         .merge(text)
-        .attr("y", (d => y1(d.data) + 24))
+        .attr("y", (d => y1(d.data) + 18))
         .transition().duration(1000)
         .attr("x", d => width - x(d.bedrag) + 10)
         .text(function (d) {
