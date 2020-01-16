@@ -1261,7 +1261,13 @@ function createBarchart(data) {
             return barColor
         })
         .transition().duration(1000)
-        .attr("width", (d => width - x(d.bedrag)))
+        .attr("width", function (d) {
+            if (d.bedrag != 0) {
+                return width - x(d.bedrag)
+            } else {
+                return 1
+            }
+        })
 
     text
         .data((d => d.bedragen))
