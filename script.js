@@ -416,7 +416,7 @@ function updateTotalSum(currentEl) {
                 const subTotalText = totalDisplay.textContent.split(':')[0] //get category-specific text
                 totalSum = totalSum + parseInt(currentInput.value) //add newly added input
 
-                totalDisplay.textContent = subTotalText + ": " + totalSum + " euro"
+                totalDisplay.textContent = subTotalText + ": €" + totalSum + ",-"
                 totalDisplay.classList.remove('hide')
                 questionsAnswered++
             }
