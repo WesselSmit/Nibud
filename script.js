@@ -373,8 +373,24 @@ function updateProgressIndicators(currentEl) {
                 let averageHousehold = mergeDataObjects(matchingHouseHold),
                     arrayIndex = parseInt(currentEl.getAttribute('data_question')) - 5
 
-                householdZerostate[arrayIndex].bedragen[1].bedrag = averageHousehold[arrayIndex].bedrag
+                householdZerostate.forEach(personalpost => {
+                    if (currentEl.querySelector('legend').textContent.toLowerCase() == personalpost.post) {
+                        averageHousehold.forEach(averagepost => {
+                            if (personalpost.post === averagepost.post) {
+                                personalpost.bedragen[1].bedrag = averagepost.bedrag
+                            }
+                        })
 
+                    }
+                })
+
+                householdZerostate.forEach(post => {
+                    post.difference = post.bedragen[0].bedrag - post.bedragen[1].bedrag
+                })
+
+                householdZerostate.sort(function (x, y) {
+                    return d3.descending(x.difference, y.difference);
+                })
                 createBarchart(householdZerostate)
             }
         }
@@ -1008,7 +1024,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "energie",
@@ -1020,7 +1037,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "lokale lasten",
@@ -1032,7 +1050,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "telefoon, televisie, internet",
@@ -1044,7 +1063,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "verzekeringen",
@@ -1056,7 +1076,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "onderwijs",
@@ -1068,7 +1089,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "contributies en abonnementen",
@@ -1080,7 +1102,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "vervoer",
@@ -1092,7 +1115,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "reserverings uitgaven",
@@ -1104,7 +1128,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 },
 {
     post: "huishoudelijke uitgaven",
@@ -1116,7 +1141,8 @@ let householdZerostate = [{
         data: "gemiddeld",
         bedrag: 0
     }
-    ]
+    ],
+    difference: 0
 }
 ]
 
@@ -1135,7 +1161,8 @@ function createBarChartZeroState() {
 
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
-        .paddingInner(0.1)
+        .paddingInner(0.2)
+        .domain(data.map(d => d.post.charAt(0).toUpperCase() + d.post.slice(1)))
 
     let xAxis = d3.axisBottom()
         .scale(x)
@@ -1143,9 +1170,6 @@ function createBarChartZeroState() {
     let yAxis = d3.axisLeft()
         .scale(y0)
         .tickSize(0)
-
-    let expenseItems = data.map(d => d.post.charAt(0).toUpperCase() + d.post.slice(1))
-    y0.domain(expenseItems)
 
     let groups = svg.append('g')
         .attr("transform", "translate(140, 0)")
@@ -1174,11 +1198,14 @@ function createBarChartZeroState() {
 function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
 
+    console.log(data)
+
     // D3 letiables
     let width = document.querySelector('.chart').getBoundingClientRect().width - 190,
         height = document.querySelector('.chart').getBoundingClientRect().height,
         matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
-        svg = d3.select('.chart')
+        svg = d3.select('.chart'),
+        rateNames = ['persoonlijk', 'gemiddeld']
 
     let x = d3.scaleLinear()
         .range([width, 0])
@@ -1186,27 +1213,38 @@ function createBarchart(data) {
 
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
-        .paddingInner(0.1)
-
-    let expenseItems = data.map(d => d.post)
-    y0.domain(expenseItems)
+        .paddingInner(0.2)
+        .domain(data.map(d => d.post.charAt(0).toUpperCase() + d.post.slice(1)))
 
     let y1 = d3.scaleBand()
-    let rateNames = ['persoonlijk', 'gemiddeld']
-    y1.domain(rateNames).range([0, y0.bandwidth()])
+        .domain(rateNames).range([0, y0.bandwidth()])
 
-    let bars = svg.selectAll('.group')
-    let bar = bars.selectAll('rect')
-    let text = bars.selectAll('text')
-    let p = 0
+    let yAxis = d3.axisLeft()
+        .scale(y0)
+        .tickSize(0)
+
+    d3.select('.y')
+        .call(yAxis)
+        .selectAll(".tick text")
+        .call(wrap, 140)
+
+
+    let bars = svg.selectAll('.group'),
+        bar = bars.selectAll('rect'),
+        text = bars.selectAll('text'),
+        p = 0
+
+    bars
+        .data(data)
+        .attr("y", (d => y0(d.difference)))
 
     bar
         .data((d => d.bedragen))
         .enter().append("rect")
         .attr("height", y1.bandwidth())
-        .attr("y", (d => y1(d.data)))
         .attr("x", 0)
         .merge(bar)
+        .attr("y", (d => y1(d.data)))
         .attr('fill', () => {
             let barColor = matchedHouseholdColor,
                 valueDifference
@@ -1235,11 +1273,7 @@ function createBarchart(data) {
         .merge(text)
         .attr("y", (d => y1(d.data) + 24))
         .transition().duration(1000)
-        .attr("x", d => {
-            return width - x(d.bedrag) + 10
-
-            //TODO: Vergelijk text coordinaten met svg coordinaten en fix
-        })
+        .attr("x", d => width - x(d.bedrag) + 10)
         .text(d => d.bedrag)
 }
 
