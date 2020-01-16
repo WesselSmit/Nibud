@@ -7,9 +7,9 @@
     --invalid-color: #E74C3C;
     --valid-color: #45B44E;
     --matchedHousehold-color: #BDC3C7;
-    --yourHousehold-positive-color: #4A44AF;
-    --yourHousehold-normal-color: #6C5FFF;
-    --yourHousehold-negative-color: #A59FFC;
+    --yourHousehold-positive-color: #E5833B;
+    --yourHousehold-normal-color: #E5D13B;
+    --yourHousehold-negative-color: #43C666;
 }
 
 html {
