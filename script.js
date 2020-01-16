@@ -370,8 +370,7 @@ function updateProgressIndicators(currentEl) {
                     }
                 })
 
-                let averageHousehold = mergeDataObjects(matchingHouseHold),
-                    arrayIndex = parseInt(currentEl.getAttribute('data_question')) - 5
+                let averageHousehold = mergeDataObjects(matchingHouseHold)
 
                 householdZerostate.forEach(personalpost => {
                     if (currentEl.querySelector('legend').textContent.toLowerCase() == personalpost.post) {
@@ -389,7 +388,7 @@ function updateProgressIndicators(currentEl) {
                 })
 
                 householdZerostate.sort(function (x, y) {
-                    return d3.descending(x.difference, y.difference);
+                    return d3.descending(x.difference, y.difference)
                 })
                 createBarchart(householdZerostate)
             }
