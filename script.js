@@ -1263,11 +1263,13 @@ function createBarchart(data) {
         .transition().duration(1000)
         .attr("width", function (d) {
             if (d.bedrag != 0) {
-                this.classList.add('hasHadAWidth')
+                // this.classList.add('hasHadAWidth')
                 return width - x(d.bedrag)
-            } else if (this.classList.contains('hasHadAWidth')) {
-                return 1
-            } else {
+            }
+            // else if (this.classList.contains('hasHadAWidth')) {
+            // return 1
+            // } 
+            else {
                 return 0
             }
         })
@@ -1281,11 +1283,14 @@ function createBarchart(data) {
         .attr("x", d => width - x(d.bedrag) + 10)
         .text(function (d) {
             if (d.bedrag != 0) {
-                this.classList.add('hasBeenActive')
+                // this.classList.add('hasBeenActive')
                 return d.bedrag
-            } else if (this.classList.contains('hasBeenActive')) {
-                return 0
-            } else {
+            }
+            // else if (this.classList.contains('hasBeenActive')) {
+            // this.classList.remove('hasBeenActive')
+            // return 0
+            // } 
+            else {
                 return ''
             }
         })
