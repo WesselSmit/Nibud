@@ -573,7 +573,7 @@ function determineYourSituation() { //create personal houseHold Object with uw_s
     if (yourSituation.partner == "false" && yourSituation.kinderen == 2) {
         personalHousehold.huishoudType = "eenouder met 2 kinderen"
     }
-    if (yourSituation.partner == "false" && yourSituation.kinderen == 3) {
+    if (yourSituation.partner == "false" && yourSituation.kinderen == 3 || yourSituation.partner == "false" && yourSituation.kinderen == 4 || yourSituation.partner == "false" && yourSituation.kinderen == 5) {
         personalHousehold.huishoudType = "eenouder met 3 kinderen"
     }
     if (yourSituation.partner == "true" && yourSituation.kinderen == 0) {
@@ -588,7 +588,7 @@ function determineYourSituation() { //create personal houseHold Object with uw_s
     if (yourSituation.partner == "true" && yourSituation.kinderen == 2) {
         personalHousehold.huishoudType = "paar met 2 kinderen"
     }
-    if (yourSituation.partner == "true" && yourSituation.kinderen == 3) {
+    if (yourSituation.partner == "true" && yourSituation.kinderen == 3 || yourSituation.partner == "false" && yourSituation.kinderen == 4 || yourSituation.partner == "false" && yourSituation.kinderen == 5) {
         personalHousehold.huishoudType = "paar met 3 kinderen"
     }
 
@@ -1198,9 +1198,7 @@ function createBarChartZeroState() {
 function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
 
-    console.log(data)
-
-    // D3 letiables
+    // D3 variables
     let width = document.querySelector('.chart').getBoundingClientRect().width - 190,
         height = document.querySelector('.chart').getBoundingClientRect().height,
         matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
@@ -1274,7 +1272,13 @@ function createBarchart(data) {
         .attr("y", (d => y1(d.data) + 24))
         .transition().duration(1000)
         .attr("x", d => width - x(d.bedrag) + 10)
-        .text(d => d.bedrag)
+        .text(function (d) {
+            if (d.bedrag != 0) {
+                return d.bedrag
+            } else {
+                return ''
+            }
+        })
 }
 
 function wrap(text, width) {
