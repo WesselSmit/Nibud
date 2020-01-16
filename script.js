@@ -1125,7 +1125,7 @@ let householdZerostate = [{
 function createBarChartZeroState() {
     let data = householdZerostate
 
-    let width = document.querySelector('.chart').getBoundingClientRect().width - 140,
+    let width = document.querySelector('.chart').getBoundingClientRect().width - 190,
         height = document.querySelector('.chart').getBoundingClientRect().height,
         svg = d3.select('.chart')
 
@@ -1175,7 +1175,7 @@ function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
 
     // D3 letiables
-    let width = document.querySelector('.chart').getBoundingClientRect().width - 140,
+    let width = document.querySelector('.chart').getBoundingClientRect().width - 190,
         height = document.querySelector('.chart').getBoundingClientRect().height,
         matchedHouseholdColor = getComputedStyle(document.documentElement).getPropertyValue('--matchedHousehold-color'),
         svg = d3.select('.chart')
@@ -1239,7 +1239,6 @@ function createBarchart(data) {
             return width - x(d.bedrag) + 10
 
             //TODO: Vergelijk text coordinaten met svg coordinaten en fix
-            // console.log(this.getBoundingClientRect().x + this.getBoundingClientRect().width)
         })
         .text(d => d.bedrag)
 }
@@ -1257,7 +1256,7 @@ function wrap(text, width) {
             dy = 0,
             tspan = text.text(null)
                 .append('tspan')
-                .attr('x', x)
+                .attr('x', -10)
                 .attr('y', y)
                 .attr('dy', dy + 'em')
         while (word = words.pop()) {
@@ -1268,7 +1267,7 @@ function wrap(text, width) {
                 tspan.text(line.join(' '))
                 line = [word]
                 tspan = text.append('tspan')
-                    .attr('x', x)
+                    .attr('x', -10)
                     .attr('y', y)
                     .attr('dy', ++lineNumber * lineHeight + dy + 'em')
                     .text(word)
