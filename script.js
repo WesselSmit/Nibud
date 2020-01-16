@@ -1249,7 +1249,6 @@ function createBarchart(data) {
                 let arr = [data[p / 2].bedragen[0].bedrag, data[p / 2].bedragen[1].bedrag]
                 valueDifference = ((arr[0] - arr[1]) / arr[1]) * 100
 
-                //TODO: de grenzen moeten nog bepaald worden, voor nu staat de grens hieronder hardcoded op 100
                 if (valueDifference < -10) {
                     barColor = getComputedStyle(document.documentElement).getPropertyValue('--yourHousehold-negative-color')
                 } else if (valueDifference > 10) {
