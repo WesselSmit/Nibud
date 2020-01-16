@@ -1272,7 +1272,10 @@ function createBarchart(data) {
         .attr("x", d => width - x(d.bedrag) + 10)
         .text(function (d) {
             if (d.bedrag != 0) {
+                this.classList.add('hasBeenActive')
                 return d.bedrag
+            } else if (this.classList.contains('hasBeenActive')) {
+                return 0
             } else {
                 return ''
             }
