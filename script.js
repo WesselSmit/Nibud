@@ -1196,9 +1196,6 @@ function createBarChartZeroState() {
 
 function createBarchart(data) {
     document.getElementById('legenda').classList.remove('hide')
-    document.querySelector('.chart').classList.remove('hide')
-
-    document.querySelector('.x g text').style.display = "none"
 
     // D3 variables
     let width = document.querySelector('.chart').getBoundingClientRect().width - 190,
