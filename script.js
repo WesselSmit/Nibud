@@ -9,6 +9,7 @@ const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
 
 
 let tooltipData, //receives toolltip-data (async)
+    bespaarTips,
     pressedKey, //last fired event.key
     secondCar = false,
     a,
@@ -27,6 +28,10 @@ data.getData() //fetch dataset-data
 data.getTooltips() //fetch tooltip-data
     .then(data => tooltipData = data)
     .then(data => addTooltips())
+    .catch(err => console.log(err))
+
+data.getHighestExpenses() //fetch tooltip-data
+    .then(data => bespaarTips = data)
     .catch(err => console.log(err))
 
 
@@ -80,6 +85,7 @@ document.querySelectorAll('input, select').forEach(input =>
         fixSelectFocus(this) //fix select focus state
         calculateSaldo() //calculate saldo
         calcMoneyPile()
+        getHighestExpenses()
     }))
 document.querySelectorAll('input, select').forEach(input =>
     input.addEventListener('keydown', function (e) {
@@ -393,7 +399,6 @@ function updateProgressIndicators(currentEl) {
                 householdZerostate.sort(function (x, y) {
                     return d3.descending(x.difference, y.difference)
                 })
-                console.log(householdZerostate)
                 createBarchart(householdZerostate)
             }
         }
@@ -1331,4 +1336,27 @@ function wrap(text, width) {
             }
         }
     })
+}
+
+// Gets the the top 3 differences and get tooltips
+function getHighestExpenses() {
+    let top3Expenses = []
+    for (let i = 0; i < 3; i++) {
+        top3Expenses.push(householdZerostate[i])
+    }
+
+    let bespaarTipsArray = []
+    top3Expenses.forEach(post => {
+        Object.entries(bespaarTips).forEach(tip => {
+            if (post.post === tip[0]) {
+                bespaarTipsArray.push({
+                    post: tip[0].charAt(0).toUpperCase() + tip[0].slice(1),
+                    tip: tip[1]
+                })
+            }
+        })
+    })
+
+    console.log(document.querySelectorAll('#uw_resultaat > div:nth-of-type(3) div'))
+    console.log(bespaarTipsArray)
 }
