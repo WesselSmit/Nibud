@@ -541,6 +541,16 @@ function calculateSaldo() { //calculate the saldo 'overview'
     } else {
         document.getElementById('saldo').classList.add('negative')
     }
+
+    let saldoDifference = yourIncomeSaldo - yourExpensesSaldo
+
+    if ((saldoDifference / yourIncomeSaldo) * 100 > 5) {
+        document.querySelector('#uw_resultaat > div:last-of-type h2').textContent = "Goed bezig!"
+        document.querySelector('#uw_resultaat > div:last-of-type p').textContent = "Wellicht zijn er posten waar je meer geld op kunt pakken."
+    } else {
+        document.querySelector('#uw_resultaat > div:last-of-type h2').textContent = "Er zijn kansen om geld te besparen!"
+        document.querySelector('#uw_resultaat > div:last-of-type p').textContent = "Bekijk de handige bespaar tips hieronder."
+    }
 }
 
 
@@ -1362,5 +1372,6 @@ function getHighestExpenses() {
         bespaarDivs[i].querySelector('h4').textContent = bespaarTipsArray[i].post
         bespaarDivs[i].querySelector('p').textContent = bespaarTipsArray[i].tip
     }
-
 }
+
+
