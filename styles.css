@@ -947,17 +947,17 @@ label.fixWithHide {
 
 #uw_resultaat>div:nth-of-type(4) {
     background-color: white;
-    padding: 5px;
+    padding: 15px;
     position: absolute;
     top: 305vh;
     right: 200px;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 #uw_resultaat>div:nth-of-type(4) h2 {
     background-color: unset;
     padding: 0px;
-    margin: 0px;
+    margin-bottom: 10px;
 }
 
 #uw_resultaat>div:nth-of-type(4) p {
