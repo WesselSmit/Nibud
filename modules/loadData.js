@@ -1,6 +1,7 @@
 export default {
     getData,
-    getTooltips
+    getTooltips,
+    getHighestExpenses
 }
 
 export async function getData() {
@@ -13,5 +14,11 @@ export async function getTooltips() {
     const response = await fetch('../tooltip.json')
     const json = await response.json()
     return json.tooltips[0]
+}
+
+export async function getHighestExpenses() {
+    const response = await fetch('../bespaartips.json')
+    const json = await response.json()
+    return json.bespaartips[0]
 }
 
