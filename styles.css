@@ -235,6 +235,56 @@ img#simsAuto {
     transition: margin-top 0.3s linear;
 }
 
+#moneyIndicator {
+    background-color: white;
+    padding: 3px 7px 5px 7px;
+    border: 2px solid var(--dark-gray-color);
+    border-radius: var(--border-radius);
+    position: fixed;
+    right: 9vw;
+    top: 29.3vh;
+    text-align: end;
+    font-size: 12px;
+    z-index: 1000000;
+    transition: margin-top 0.3s linear;
+}
+
+#moneyIndicator span {
+    height: 0px;
+    padding: 0px;
+}
+
+#moneyIndicator:after {
+    content: '';
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    border: 20px solid transparent;
+    border-left-color: var(--dark-gray-color);
+    border-right: 0px;
+    margin-top: -20px;
+    margin-right: -14px;
+    transform: scale(0.3);
+}
+
+#moneyIndicator span:after {
+    content: '';
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    border: 18px solid transparent;
+    border-left-color: white;
+    border-right: 0px;
+    margin-top: -18px;
+    margin-right: -11px;
+    z-index: 10000000;
+    transform: scale(0.3);
+}
+
 section:nth-of-type(2) {
     background-color: white;
 }
@@ -732,7 +782,7 @@ label.fixWithHide {
 #uw_resultaat div a,
 .chart text {
     color: var(--header-text-color);
- }
+}
 
 #uw_resultaat>div:first-of-type h2 {
     background: unset;
