@@ -1357,6 +1357,10 @@ function getHighestExpenses() {
         })
     })
 
-    console.log(document.querySelectorAll('#uw_resultaat > div:nth-of-type(3) div'))
-    console.log(bespaarTipsArray)
+    const bespaarDivs = document.querySelectorAll('#uw_resultaat > div:nth-of-type(3) div')
+    for (let i = 0; i < bespaarTipsArray.length; i++) {
+        bespaarDivs[i].querySelector('h4').textContent = bespaarTipsArray[i].post
+        bespaarDivs[i].querySelector('p').textContent = bespaarTipsArray[i].tip
+    }
+
 }

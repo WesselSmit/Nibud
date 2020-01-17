@@ -908,6 +908,7 @@ label.fixWithHide {
 
 #uw_resultaat>div:nth-of-type(3) h2 {
     background-color: unset;
+    margin-bottom: 8px;
 }
 
 #uw_resultaat>div:nth-of-type(3) div {
