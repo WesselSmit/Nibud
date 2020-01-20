@@ -1383,6 +1383,7 @@ function getHighestExpenses() {
 
     const bespaarDivs = document.querySelectorAll('#uw_resultaat > div:nth-of-type(3) div')
     for (let i = 0; i < bespaarTipsArray.length; i++) {
+        bespaarDivs[i].querySelector('img').src = "./media/sims/" + bespaarTipsArray[i].post + ".svg"
         bespaarDivs[i].querySelector('h4').textContent = bespaarTipsArray[i].post
         bespaarDivs[i].querySelector('p').textContent = bespaarTipsArray[i].tip
     }
