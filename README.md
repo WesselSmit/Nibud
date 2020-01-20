@@ -1,7 +1,7 @@
 # Project NIBUD
 
 ## De opdracht
-Het Budgethandboek is een belangrijk hulpmiddel die het NIBUD biedt met als doel om meer grip te krijgen op je geld. Dit boek is momenteel een fysiek product en wordt door budgetcoaches gebruikt in gesprekken met cliënten. Het doel is om een door middel van een digitale tool de begrotingen en informatie uit het fysieke Budgethandboek te presenteren. Denk hierbij goed na over hoe het gebruikt kan worden door budgetcoaches en hoe je het zelf fijn zou vinden om inzicht te krijgen in je inkomsten en uitgaven.
+Het Budgethandboek is een belangrijk hulpmiddel die het NIBUD biedt met als doel om meer grip te krijgen op je geld. Dit boek is momenteel een fysiek product en wordt door budgetcoaches gebruikt in gesprekken met cliënten. Het doel is om door middel van een digitale tool de begrotingen en informatie uit het fysieke Budgethandboek te presenteren. Denk hierbij goed na over hoe het gebruikt kan worden door budgetcoaches en hoe je het zelf fijn zou vinden om inzicht te krijgen in je inkomsten en uitgaven.
 
 ### Over de opdrachtgever, het NIBUD
 Al sinds 1979 onderzoekt het Nibud hoe mensen met geld omgaan en ondersteunt hen daarbij. Het voorkomen van geldproblemen is ons doel. Wij doen, verzamelen en combineren onderzoek naar financieel gedrag en bestedingspatronen en vertalen deze naar bruikbare adviezen en toepassingen. Wij zorgen voor een onafhankelijke blik op hoe mensen met geld omgaan en laten zien wat financieel gezien mogelijk is.
