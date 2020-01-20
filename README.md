@@ -1,4 +1,4 @@
-# Project NIBUD
+# Geldstapelen
 
 ## De opdracht
 Het Budgethandboek is een belangrijk hulpmiddel die het NIBUD biedt met als doel om meer grip te krijgen op je geld. Dit boek is momenteel een fysiek product en wordt door budgetcoaches gebruikt in gesprekken met cliënten. Het doel is om door middel van een digitale tool de begrotingen en informatie uit het fysieke Budgethandboek te presenteren. Denk hierbij goed na over hoe het gebruikt kan worden door budgetcoaches en hoe je het zelf fijn zou vinden om inzicht te krijgen in je inkomsten en uitgaven.
