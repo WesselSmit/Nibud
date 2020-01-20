@@ -50,10 +50,10 @@ Wanneer de gebruiker een vraag beantwoord en de verification acht het als verkee
 Wanneer de gebruiker zijn inkomen invult wordt dit opgeslagen en wordt dit bedrag weergegeven in de Geldstapel. Dit is het geld wat de gebruiker door de tool inzicht geeft in het verschil tussen zijn inkomsten en uitgaven. Elke keer dat de gebruiker een uitgavepost invult verdwijnt dat geld van de geldstapel.
 
 ### Barchart
-Hier worden de uitgaven van de gebruiker vergeleken met zijn vergelijkbaar huishouden. Wanneer de gebruiker een categorie volledig heeft ingevult worden er twee bars gerendert, een van jouw uitgave en een van hoeveel het vergelijkbaar huishouden uitgeeft. Afhankelijk van het verschil krijgt de jouw bar een bepaalde kleur. Namelijk wanneer jouw uitgaven 15% hoger zijn wordt deze oranje, wanneer deze 15% lager zijn wordt deze groen. Elk percentage daartussen is geel. De bars worden gesorteerd op verschil, op deze manier krijg je de grootste verschillen bovenaan en kun je meteen zien op welke posten je het meest kunt besparen.
+Hier worden de uitgaven van de gebruiker vergeleken met zijn vergelijkbaar huishouden. Wanneer de gebruiker een categorie volledig heeft ingevult worden er twee bars gerendert, een van jouw uitgave en een van hoeveel het vergelijkbaar huishouden uitgeeft. Afhankelijk van het verschil krijgt jouw bar een bepaalde kleur. Wanneer jouw uitgaven 15% hoger zijn wordt deze oranje, wanneer deze 15% lager zijn wordt deze groen. Elke waarde daartussen is geel. De bars worden gesorteerd op verschil, op deze manier krijg je de grootste verschillen bovenaan en kun je meteen zien op welke posten je het meest kunt besparen.
 
 ### Persoonlijke tips
-Voor de drie posten met het grootste verschil wordt er, voor elke post, een tip gegeven waardoor de gebruiker gemakkelijk zou kunnen bezuinigen. Deze tips komen van het NIBUD zelf, ook wordt er nog advies gegeven om eventueel naar een budgetcoach te stappen.
+Voor de drie posten met het grootste verschil wordt er voor elke post een tip gegeven waarmee de gebruiker mogelijk kan bezuinigen. Deze tips komen van het NIBUD zelf, ook wordt er nog advies gegeven om eventueel met een budgetcoach contact op te nemen.
 
 ## Inhoudsopgave
 * [Install notes](#Install-notes)
