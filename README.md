@@ -38,11 +38,13 @@ Om ervoor te zorgen dat tool goed functioneert hebben we input verification toeg
 * Wiskundige karakters (, . + -)
 * Te grote en te kleine waardes (min en max values)
 
-Wanneer de gebruiker toch iets invult wat fout is, krijgt hij een melding die verteld wat de gebruiker fout doet. 
+Wanneer de gebruiker toch iets invult wat fout is, krijgt hij een melding die verteld wat de gebruiker fout doet. Ook word de input rood zodat de gebruiker weet bij welke vraag er iets niet klopt. 
 
 **Progress indicators**
 
-Omdat het formulier lang is willen we de gebruiker inzicht geven in zijn progressie. Dit doen we door een progressiebalk aan de bovenkant van elk formulier. Omdat we gebruik maken van progressive disclosure in het formulier en hierdoor dus niet alle inputs altijd zichtbaar zijn gebruiken we ook progress indicators voor de categorieën. Hierdoor hoeft de gebruiker niet alle velden open te klappen om te zien waar de fout zit.
+Omdat het formulier lang is willen we de gebruiker inzicht geven in zijn progressie. Dit doen we door een progressiebalk aan de bovenkant van elk formulier. Omdat we gebruik maken van progressive disclosure in het formulier en hierdoor dus niet alle inputs altijd zichtbaar zijn gebruiken we ook progress indicators voor de categorieën. Hierdoor hoeft de gebruiker niet alle velden open te klappen om te zien waar de fout zit. 
+
+Wanneer de gebruiker een vraag beantwoord en de verification acht het als verkeerd word de progress indicator ook rood. Op deze manier kan de gebruiker in een oog opslag zien bij welke vraag de fout zit. Dit voorkomt dat de gebruiker alle progressive-disclosure categorieën moet openklappen om de fout te vinden.
 
 ### Geldstapel
 Wanneer de gebruiker zijn inkomen invult wordt dit opgeslagen en wordt dit bedrag laten zien in de Geldstapel. Dit het geld wat de gebruiker door de tool heen inzicht geeft in het verschil tussen zijn inkomsten en uitgaven. Wanneer de gebruiker begint met het invullen van zijn uitgaven wordt zijn geldstapel kleiner en krijgt hij inzicht in hoeveel van zijn geld naar elke post gaat en wat hij uiteindelijk overhoud of te kort komt.
