@@ -930,6 +930,13 @@ document.addEventListener('scroll', function () { //hide demo button on scroll i
         window.scrollY + secondSection.getBoundingClientRect().bottom < window.scrollY + demoButton.getBoundingClientRect().top) {
         demoButton.classList.remove('invisible')
     }
+
+    //hide/show the moneyPile indicator 
+    if (window.scrollY < ((window.innerHeight * 2) - 300) || window.scrollY > ((window.innerHeight * 3) - 300)) {
+        document.getElementById('moneyIndicator').classList.add('hide')
+    } else {
+        document.getElementById('moneyIndicator').classList.remove('hide')
+    }
 })
 
 document.querySelector('#scroll_indicator').addEventListener('click', function () { //auto scroll
@@ -1017,7 +1024,9 @@ function calcMoneyPile() {
         yourExpensesMoney = 0
 
     for (const money of document.querySelectorAll('[data_question="2"] input[type="number"][data_path="true"]')) {
-        yourIncomeMoney = yourIncomeMoney + parseInt(money.value)
+        if (parseInt(money.value) >= 0) {
+            yourIncomeMoney = yourIncomeMoney + parseInt(money.value)
+        }
     }
     for (const money of document.querySelectorAll('section:nth-of-type(2) input[type="number"][data_path="true"]')) {
         if (parseInt(money.value) >= 0) {
