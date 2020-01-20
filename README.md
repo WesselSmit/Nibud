@@ -10,7 +10,7 @@ Al sinds 1979 onderzoekt het Nibud hoe mensen met geld omgaan en ondersteunt hen
 
 
 ## Concept
-De budgettool 'Geldstapelen' geeft inzicht in jouw uitgaven op basis van je situatie. Je wordt vergeleken met het huishouden die het meest overeenkomt en je uitgaven worden verdeeld in tien categorieën. Op basis van deze tien categorieën worden je uitgaven vergeleken en krijg je inzicht in de posten waarin je veelste veel uitgeeft, rond het gemiddelde zit of juist heel weinig aan uitgeeft. Dit wordt allemaal visueel weergegeven aan de hand van een datavisualisatie.
+De budgettool 'Geldstapelen' geeft inzicht in jouw uitgaven op basis van je situatie. Je wordt vergeleken met het huishouden dat het meest met jou overeenkomt en je uitgaven worden verdeeld in tien categorieën. Op basis van deze tien categorieën worden je uitgaven vergeleken en krijg je inzicht in de posten waarin je heel veel uitgeeft, rond het gemiddelde zit of juist heel weinig aan uitgeeft. Dit wordt allemaal visueel weergegeven aan de hand van een datavisualisatie.
 
 <img width="600" src="https://user-images.githubusercontent.com/45405413/72725777-f167f580-3b86-11ea-880b-97f0b175e4d4.png">
 <img width="600" src="https://user-images.githubusercontent.com/45405413/72725776-f167f580-3b86-11ea-98cc-7691dcb50b11.png">
