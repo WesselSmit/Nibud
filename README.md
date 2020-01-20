@@ -14,7 +14,7 @@ De budgettool 'Geldstapelen' geeft inzicht in jouw uitgaven op basis van je situ
 
 <img width="600" src="https://user-images.githubusercontent.com/45405413/72725777-f167f580-3b86-11ea-880b-97f0b175e4d4.png">
 
-> De gebruiker brengt zijn situatie in kaart en het word visueel weergegeven dmv een sims plaatje.
+> De gebruiker brengt zijn situatie in kaart en het word visueel weergegeven door middel van een sims plaatje.
 
 <img width="600" src="https://user-images.githubusercontent.com/45405413/72725776-f167f580-3b86-11ea-98cc-7691dcb50b11.png">
 
@@ -88,9 +88,9 @@ Om het best vergelijkbare huishouden te vinden kijken we naar meerdere variabele
 3. Omdat de mogelijkheid bestaat dat er meerdere huishoudens overblijven is de laatste variable waar we naar kijken: **Woonkosten** (huur/hypotheek). Hier wordt het huishouden met de meest vergelijkbare woonkosten gekozen, en is dit dus de match.
 
 ### Transformeren van de data
-Het Budgethandboek hanteert 18 categorieën vooe alle uitgaven. Een aantal categorieën bestonden maar uit een of enkele posten die gemakkelijk onder te brengen waren in een van de andere categorieën. Omdat we een andere structuur hadden aangenomen moest de data ook getransformeerd worden.
+Het Budgethandboek hanteert 18 categorieën voor alle uitgaven. Een aantal categorieën bestonden maar uit een of enkele posten die gemakkelijk onder te brengen waren in een van de andere categorieën. Omdat we een andere structuur bij het formulier hadden aangenomen moest de data ook getransformeerd worden.
 
-Hiervoor hebben we een leeg object aangemaakt waarin we de posten op dezelfde manier gestructureerd hebben. Dit hebben we gedaan voor het de data die de gebruiker invult en de data uit de dataset. Op deze manier wordt de data ingeladen in d3.
+Hiervoor hebben we een leeg object aangemaakt waarin we de posten op dezelfde manier als bij het formulier gestructureerd hebben. Dit hebben we gedaan voor het de data die de gebruiker invult en de data uit de dataset. Op deze manier wordt de data ingeladen in d3.
 
 <details><summary>D3 Datastructuur</summary>
 
@@ -134,10 +134,10 @@ Deze bron hebben we gebruikt om de csv data file van Nibud om te zetten naar een
 Deze bron hebben we gebruikt om te kijken wat een goede aanpak is voor het stylen van een select HTML tag.
 
 ### [Digit Regex](https://stackoverflow.com/questions/5917082/regular-expression-to-match-numbers-with-or-without-commas-and-decimals-in-text)
-Deze bron hebben we gebruikt om een regex te krijgen die alleen de digits matched.
+Van deze bron hebben we een regex gebruikt die alleen digits matched.
 
 ### [CSS Arrow :before/:after](http://www.cssarrowplease.com/)
-Deze bron hebben we gebruikt om te kijken hoe je arrow kan maken dmv pseudo-elementen en borders.
+Deze bron hebben we gebruikt om te kijken hoe je een arrow kan maken door middel van pseudo-elementen en borders.
 
 ### [CSS Pop Animation](http://bouncejs.com/#{l:1,s:[{T:%22c%22,e:%22B%22,d:5000,D:0,f:{x:1,y:1},t:{x:4,y:4},s:3,b:4}]})
 Deze bron hebben we gebruikt om de 'sims' pop animatie te maken, op deze website kan je met een interface CSS animaties maken.
@@ -147,9 +147,6 @@ Deze bron hebben we gebruikt om text transparant te maken voor een animatie.
 
 ### [D3 Grouped Barchart Example](https://blockbuilder.org/bricedev/0d95074b6d83a77dc3ad)
 Deze code hebben we gebruikt als example code, dit betekent dat we dit voorbeeld hebben omgebouwd naar onze eigen barchart met onze eigen functionaliteiten en styling.
-
-### [D3 Sorting](https://stackoverflow.com/questions/46205118/how-to-sort-a-d3-bar-chart-based-on-an-array-of-objects-by-value-or-key)
-Deze bron hebben we gebruikt om te kijken hoe je een barchart sorteert. 
 
 ### [D3 Label Wrapping](https://stackoverflow.com/questions/38487512/wrapping-long-text-labels-in-d3-without-extra-new-lines)
 Deze bron hebben we gebruikt om de te lange labels op een nieuwe regel te forceren.
