@@ -152,5 +152,5 @@ Deze code hebben we gebruikt als example code, dit betekent dat we dit voorbeeld
 Deze bron hebben we gebruikt om de te lange labels op een nieuwe regel te forceren.
 
 ### [First Character Uppercase](https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript)
-Deze bron hebben we gebruikt om de D3 labels Uppercase te kunnen maken.
+Deze bron hebben we gebruikt om het eerste karakter van de labels uppercase te maken.
 
