@@ -57,6 +57,7 @@ Voor de drie posten met het grootste verschil wordt er voor elke post een tip ge
 
 ## Inhoudsopgave
 * [Install notes](#Install-notes)
+* [Dependency](#Dependency)
 * [Data manipulatie](#Data-manipulatie)
 * [Nice-to-haves](#Nice-to-haves)
 * [Credits](#Credits)
@@ -68,7 +69,7 @@ Clone de repository van Github
 
 Run de applicatie met een code editor live preview of host de source code met service zoals github-pages.
 
-## Dependecy
+## Dependency
 Deze applicatie maakt gebruik van de D3 library.
 
 ## Data manipulatie
