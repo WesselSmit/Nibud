@@ -77,13 +77,13 @@ De data die wij gebruiken is aangeleverd door NIBUD. Deze data is in de vorm van
 
 ### Opschonen van de data
 We laden de data in als CSV en maken hier een array met objecten van.
-De data bevat alle informatie voor huishoudens. Deze data hebben we zelf gegroepeerd om alle verschillende huishoudtypes op te halen. De huishoudens die leven van een minimum inkomen (uitkering) zijn gecategoriseerd met de getallen 1 en 2. Dit betekend dat hun inkomsten evenveel is als hun uitgaven. Dit hebben wij aangepast in deze objecten.
+De data bevat alle informatie voor huishoudens. Deze data hebben we zelf gegroepeerd om alle verschillende huishoudtypes op te halen. De huishoudens die leven van een minimum inkomen (uitkering) zijn gecategoriseerd met de getallen 1 en 2. Dit betekend dat hun inkomsten evenveel is als hun uitgaven. De waardes 1 & 2 hebben wij vervangen met de bijhorende uitgaven zodat we getallen hebben om mee te vergelijken.
 
 ### Matchen van vergelijkbaar-huishoud objecten
-Om het best vergelijkbare huishouden te vinden kijken we naar meerdere factoren:
-1. We kijken naar het huishoudtype (gezinssamenstelling) van de gebruiker en vergelijken deze met de data. Vervolgens filteren we alle niet overeenkomende huishoudens eruit.
+Om het best vergelijkbare huishouden te vinden kijken we naar meerdere variabelen:
+1. We kijken naar het huishoudtype (gezinssamenstelling) van de gebruiker en vergelijken deze met de data. Vervolgens filteren we alle niet-overeenkomende huishoudens eruit.
 > Dit filtert ~90% van de data uit de dataset
-2. Vervolgens kijken we naar het inkomen. We pakken het meest dichstbijzijnde inkomen.
+2. Vervolgens kijken we naar het inkomen en gebruiken we het meest dichtstbijzijnde inkomen.
 > Dit filtert nog ~9% van de data uit de dataset.
 3. Omdat de mogelijkheid bestaat dat er meerdere huishoudens overblijven is de laatste variable waar we naar kijken: **Woonkosten** (huur/hypotheek). Hier wordt het huishouden met de meest vergelijkbare woonkosten gekozen, en is dit dus de match.
 
