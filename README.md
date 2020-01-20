@@ -68,6 +68,9 @@ Clone de repository van Github
 
 Run de applicatie met een code editor live preview of host de source code met service zoals github-pages.
 
+## Dependecy
+Deze applicatie maakt gebruik van de D3 library.
+
 ## Data manipulatie
 De data die wij gebruiken is aangeleverd door NIBUD. Deze data is in de vorm van een Excel document. De data bevat verschillende huishoudtypes en hun uitgaven.
 
