@@ -6,7 +6,7 @@ Het Budgethandboek is een belangrijk hulpmiddel die het NIBUD biedt met als doel
 ### Over de opdrachtgever, het NIBUD
 Al sinds 1979 onderzoekt het Nibud hoe mensen met geld omgaan en ondersteunt hen daarbij. Het voorkomen van geldproblemen is ons doel. Wij doen, verzamelen en combineren onderzoek naar financieel gedrag en bestedingspatronen en vertalen deze naar bruikbare adviezen en toepassingen. Wij zorgen voor een onafhankelijke blik op hoe mensen met geld omgaan en laten zien wat financieel gezien mogelijk is.
 
-[Bron](www.nibud.nl/consumenten/het-nibud/organisatie)
+[Bron](https://www.nibud.nl/consumenten/het-nibud/organisatie)
 
 
 ## Concept
