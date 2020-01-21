@@ -629,77 +629,77 @@ function sumExpenses() { //calc epxenses
         yourExpenses[input.id] = parseInt(input.value)
 
         expenseArray = [{ //all possibilities
-                post: "huur/hypotheek",
-                bedrag: calculateCategoryCost(5, cost)
-            },
-            {
-                post: "gas",
-                bedrag: yourExpenses.gas
-            },
-            {
-                post: "elektriciteit",
-                bedrag: yourExpenses.elektriciteit
-            },
-            {
-                post: "water",
-                bedrag: yourExpenses.water
-            },
-            {
-                post: "lokale lasten",
-                bedrag: calculateCategoryCost(7, cost)
-            },
-            {
-                post: "telefoon, televisie, internet",
-                bedrag: calculateCategoryCost(8, cost)
-            },
-            {
-                post: "verzekeringen",
-                bedrag: calculateCategoryCost(9, cost)
-            },
-            {
-                post: "onderwijs",
-                bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
-            },
-            {
-                post: "kinderopvang",
-                bedrag: yourExpenses.kinderopvang
-            },
-            {
-                post: "contributies en abonnementen",
-                bedrag: calculateCategoryCost(11, cost)
-            },
-            {
-                post: "vervoer",
-                bedrag: calculateCategoryCost(12, cost)
-            },
-            {
-                post: "kleding en schoenen",
-                bedrag: yourExpenses.kleding_en_schoenen
-            },
-            {
-                post: "inventaris",
-                bedrag: yourExpenses.inventaris
-            },
-            {
-                post: "onderhoud huis en tuin",
-                bedrag: yourExpenses.onderhoud_huis_en_tuin
-            },
-            {
-                post: "niet-vergoede ziektekosten",
-                bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
-            },
-            {
-                post: "vrijetijdsuitgaven",
-                bedrag: yourExpenses.vrijetijdsuitgaven
-            },
-            {
-                post: "voeding",
-                bedrag: yourExpenses.voeding
-            },
-            {
-                post: "overige huishoudelijke uitgaven",
-                bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
-            }
+            post: "huur/hypotheek",
+            bedrag: calculateCategoryCost(5, cost)
+        },
+        {
+            post: "gas",
+            bedrag: yourExpenses.gas
+        },
+        {
+            post: "elektriciteit",
+            bedrag: yourExpenses.elektriciteit
+        },
+        {
+            post: "water",
+            bedrag: yourExpenses.water
+        },
+        {
+            post: "lokale lasten",
+            bedrag: calculateCategoryCost(7, cost)
+        },
+        {
+            post: "telefoon, televisie, internet",
+            bedrag: calculateCategoryCost(8, cost)
+        },
+        {
+            post: "verzekeringen",
+            bedrag: calculateCategoryCost(9, cost)
+        },
+        {
+            post: "onderwijs",
+            bedrag: yourExpenses.schoolkosten_kinderen + yourExpenses.studiekosten_volwassenen
+        },
+        {
+            post: "kinderopvang",
+            bedrag: yourExpenses.kinderopvang
+        },
+        {
+            post: "contributies en abonnementen",
+            bedrag: calculateCategoryCost(11, cost)
+        },
+        {
+            post: "vervoer",
+            bedrag: calculateCategoryCost(12, cost)
+        },
+        {
+            post: "kleding en schoenen",
+            bedrag: yourExpenses.kleding_en_schoenen
+        },
+        {
+            post: "inventaris",
+            bedrag: yourExpenses.inventaris
+        },
+        {
+            post: "onderhoud huis en tuin",
+            bedrag: yourExpenses.onderhoud_huis_en_tuin
+        },
+        {
+            post: "niet-vergoede ziektekosten",
+            bedrag: yourExpenses.zelfzorgmiddelen + yourExpenses.eigen_risico_zorgverzekering + yourExpenses.eigen_bijdragen_en_betalingen_zorg
+        },
+        {
+            post: "vrijetijdsuitgaven",
+            bedrag: yourExpenses.vrijetijdsuitgaven
+        },
+        {
+            post: "voeding",
+            bedrag: yourExpenses.voeding
+        },
+        {
+            post: "overige huishoudelijke uitgaven",
+            bedrag: yourExpenses.was_en_schoonmaakartikelen + yourExpenses.persoonlijke_verzorging + yourExpenses.huishoudelijke_dienstverlening + yourExpenses.huisdieren + yourExpenses.roken + yourExpenses.diversen
+        }
         ]
     })
     personalHousehold.uitgavenPosten = expenseArray
@@ -981,45 +981,45 @@ for (const indicator of document.querySelectorAll('.scrollIndicator')) { //hide 
 // Merges the dataset structure to our own structure which is determined by the form
 function mergeDataObjects(object) {
     let objectStructure = [{
-            post: "woning",
-            bedrag: object.uitgavenPosten[0].bedrag
-        },
-        {
-            post: "energie",
-            bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
-        },
-        {
-            post: "lokale lasten",
-            bedrag: object.uitgavenPosten[4].bedrag
-        },
-        {
-            post: "telefoon, televisie, internet",
-            bedrag: object.uitgavenPosten[5].bedrag
-        },
-        {
-            post: "verzekeringen",
-            bedrag: object.uitgavenPosten[6].bedrag
-        },
-        {
-            post: "onderwijs",
-            bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
-        },
-        {
-            post: "contributies en abonnementen",
-            bedrag: object.uitgavenPosten[9].bedrag
-        },
-        {
-            post: "vervoer",
-            bedrag: object.uitgavenPosten[10].bedrag
-        },
-        {
-            post: "reserverings uitgaven",
-            bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
-        },
-        {
-            post: "huishoudelijke uitgaven",
-            bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
-        }
+        post: "woning",
+        bedrag: object.uitgavenPosten[0].bedrag
+    },
+    {
+        post: "energie",
+        bedrag: object.uitgavenPosten[1].bedrag + object.uitgavenPosten[2].bedrag + object.uitgavenPosten[3].bedrag
+    },
+    {
+        post: "lokale lasten",
+        bedrag: object.uitgavenPosten[4].bedrag
+    },
+    {
+        post: "telefoon, televisie, internet",
+        bedrag: object.uitgavenPosten[5].bedrag
+    },
+    {
+        post: "verzekeringen",
+        bedrag: object.uitgavenPosten[6].bedrag
+    },
+    {
+        post: "onderwijs",
+        bedrag: object.uitgavenPosten[7].bedrag + object.uitgavenPosten[8].bedrag
+    },
+    {
+        post: "contributies en abonnementen",
+        bedrag: object.uitgavenPosten[9].bedrag
+    },
+    {
+        post: "vervoer",
+        bedrag: object.uitgavenPosten[10].bedrag
+    },
+    {
+        post: "reserverings uitgaven",
+        bedrag: object.uitgavenPosten[11].bedrag + object.uitgavenPosten[12].bedrag + object.uitgavenPosten[13].bedrag + object.uitgavenPosten[14].bedrag + object.uitgavenPosten[15].bedrag
+    },
+    {
+        post: "huishoudelijke uitgaven",
+        bedrag: object.uitgavenPosten[16].bedrag + object.uitgavenPosten[17].bedrag
+    }
     ]
 
     return objectStructure
@@ -1054,144 +1054,141 @@ function calcMoneyPile() {
 }
 
 let householdZerostate = [{
-        post: "woning",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
+    post: "woning",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
     },
     {
-        post: "energie",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
-    },
-    {
-        post: "lokale lasten",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
-    },
-    {
-        post: "telefoon, televisie, internet",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
-    },
-    {
-        post: "verzekeringen",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
-    },
-    {
-        post: "onderwijs",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
-    },
-    {
-        post: "contributies en abonnementen",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
-    },
-    {
-        post: "vervoer",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
-    },
-    {
-        post: "reserverings uitgaven",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
-    },
-    {
-        post: "huishoudelijke uitgaven",
-        bedragen: [{
-                data: "persoonlijk",
-                bedrag: 0
-            },
-            {
-                data: "gemiddeld",
-                bedrag: 0
-            }
-        ],
-        difference: 0
+        data: "gemiddeld",
+        bedrag: 0
     }
+    ],
+    difference: 0
+},
+{
+    post: "energie",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+},
+{
+    post: "lokale lasten",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+},
+{
+    post: "telefoon, televisie, internet",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+},
+{
+    post: "verzekeringen",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+},
+{
+    post: "onderwijs",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+},
+{
+    post: "contributies en abonnementen",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+},
+{
+    post: "vervoer",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+},
+{
+    post: "reserverings uitgaven",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+},
+{
+    post: "huishoudelijke uitgaven",
+    bedragen: [{
+        data: "persoonlijk",
+        bedrag: 0
+    },
+    {
+        data: "gemiddeld",
+        bedrag: 0
+    }
+    ],
+    difference: 0
+}
 ]
 
 
-// De functies 
-// * createBarChartZeroState
-// * createBarchart
-// komen beide voor uit de volgende bron: https://blockbuilder.org/bricedev/0d95074b6d83a77dc3ad
-// Deze code is bijna helemaal omgeschreven maar deze code is wel gebruikt voor het begrijpen van de D3 logica
 
+// Gebruikte bron voor de D3 functies: https://blockbuilder.org/bricedev/0d95074b6d83a77dc3ad
+// Deze code is bijna helemaal omgeschreven maar deze code is wel gebruikt voor het begrijpen van de D3 logica
 function createBarChartZeroState() {
     let data = householdZerostate
 
@@ -1206,6 +1203,7 @@ function createBarChartZeroState() {
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
         .paddingInner(0.3)
+        // Om het eerste karakter van de string naar een hoofdletter te veranderen is de volgende bron gebruikt: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
         .domain(data.map(d => d.post.charAt(0).toUpperCase() + d.post.slice(1)))
 
     let xAxis = d3.axisBottom()
@@ -1235,6 +1233,7 @@ function createBarChartZeroState() {
     barchart.selectAll("bars")
         .data(data)
         .enter().append("g")
+        // Om het eerste karakter van de string naar een hoofdletter te veranderen is de volgende bron gebruikt: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
         .attr("transform", (d => "translate(0," + y0(d.post.charAt(0).toUpperCase() + d.post.slice(1)) + ")"))
         .attr('class', 'group')
 }
@@ -1256,6 +1255,7 @@ function createBarchart(data) {
     let y0 = d3.scaleBand()
         .rangeRound([0, height])
         .paddingInner(0.3)
+        // Om het eerste karakter van de string naar een hoofdletter te veranderen is de volgende bron gebruikt: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
         .domain(data.map(d => d.post.charAt(0).toUpperCase() + d.post.slice(1)))
 
     let y1 = d3.scaleBand()
@@ -1361,13 +1361,13 @@ function createBarchart(data) {
         }
     })
     for (let i = 1; i < validQuestionCategories.length + 1; i++) {
-        console.log(document.querySelector('#datavisualisatie > div:last-of-type span:nth-of-type(' + i + ')'), i)
         if (i < 10) {
             document.querySelector('#datavisualisatie > div:last-of-type span:nth-of-type(' + i + ')').classList.add('hide')
         }
     }
 }
 
+// Voor de functie om de labels op meerdere regels te krijgen hebben we de volgende bron gebruikt: https://stackoverflow.com/questions/38487512/wrapping-long-text-labels-in-d3-without-extra-new-lines
 function wrap(text, width) {
     text.each(function () {
         var text = d3.select(this),
@@ -1380,10 +1380,10 @@ function wrap(text, width) {
             y = text.attr('y'),
             dy = 0,
             tspan = text.text(null)
-            .append('tspan')
-            .attr('x', -10)
-            .attr('y', y)
-            .attr('dy', dy + 'em')
+                .append('tspan')
+                .attr('x', -10)
+                .attr('y', y)
+                .attr('dy', dy + 'em')
         while (word = words.pop()) {
             line.push(word)
             tspan.text(line.join(' '))
@@ -1413,6 +1413,7 @@ function getHighestExpenses() {
         Object.entries(bespaarTips).forEach(tip => {
             if (post.post === tip[0]) {
                 bespaarTipsArray.push({
+                    // Om het eerste karakter van de string naar een hoofdletter te veranderen is de volgende bron gebruikt: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
                     post: tip[0].charAt(0).toUpperCase() + tip[0].slice(1),
                     tip: tip[1]
                 })

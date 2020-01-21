@@ -78,6 +78,7 @@ body {
     margin: 0px 0px 10px 0px;
 }
 
+/* Voor de transparante tekst met achtergrond hebben we de volgende bron gebruikt: https://codepen.io/CameronFitzwilliam/pen/pamobO */
 .cheatText {
     animation: cheatText infinite 1s;
     animation-fill-mode: forwards;
@@ -260,6 +261,7 @@ img#simsAuto {
     padding: 0px;
 }
 
+/* Het stijlen van de indicator hebben de we volgende bron gebruikt: http://www.cssarrowplease.com/ */
 #moneyIndicator:after {
     content: '';
     position: absolute;
@@ -299,6 +301,7 @@ section:nth-of-type(2) {
     animation: simsPop 0.5s 1 0s ease-in-out;
 }
 
+/* Voor de animatie op de svgs in de persoonlijke visualisatie hebben we de volgende bron gebruikt: http://bouncejs.com/#{l:1,s:[{T:%22c%22,e:%22B%22,d:5000,D:0,f:{x:1,y:1},t:{x:4,y:4},s:3,b:4}]} */
 @keyframes simsPop {
     0% {
         transform: scale(0.1);
@@ -654,6 +657,7 @@ input[type="radio"] {
     outline: none;
 }
 
+/* Voor het stijlen van de select hebben we de volgende bron gebruikt: https://stackoverflow.com/questions/38870246/html-css-change-color-of-select-arrow */
 .select-box select {
     width: 104%;
     border: 0px;

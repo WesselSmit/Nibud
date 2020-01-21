@@ -3,6 +3,7 @@ export default {
     createHousehold
 }
 
+// Gebruikte bron: https://gist.github.com/iwek/7154578
 export function createIndividualObjects(string) {
     const csvRows = string.split('\n'), //break up the massive string
         delimiter = ';'
@@ -22,6 +23,7 @@ export function createIndividualObjects(string) {
                 currentRow[j] = currentRow[j].replace(' ', '') //replace unnecessary whitespace 
             }
 
+            // Gebruikte bron voor de Digit Regex: https://stackoverflow.com/questions/5917082/regular-expression-to-match-numbers-with-or-without-commas-and-decimals-in-text
             if (currentRow[j].match(/^\d+$/)) {
                 currentRow[j] = parseInt(currentRow[j]) //convert string to integer
             }
