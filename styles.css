@@ -1093,3 +1093,7 @@ label.fixWithHide {
     grid-column: 2 / 3;
     margin: 0px;
 }
+
+span.hide {
+    right: 9999px;
+}
