@@ -871,6 +871,18 @@ label.fixWithHide {
     shape-rendering: crispEdges;
 }
 
+.chart {
+    position: absolute;
+    width: 80%;
+    height: 72%;
+    top: 10%;
+    left: 3%;
+}
+
+.label {
+    text-anchor: end;
+}
+
 #legenda {
     width: 100%;
     padding-top: 10px;
@@ -914,7 +926,7 @@ label.fixWithHide {
     margin: 0px;
 }
 
-#datavisualisatie > p:first-of-type {
+#datavisualisatie>p:first-of-type {
     position: absolute;
     left: 14%;
     top: 0%;
@@ -923,16 +935,8 @@ label.fixWithHide {
     color: var(--header-text-color);
 }
 
-.chart {
-    position: absolute;
-    width: 80%;
-    height: 72%;
-    top: 10%;
-    left: 3%;
-}
-
-.label {
-    text-anchor: end;
+#uw_resultaat>div:first-of-type>h2 {
+    padding-bottom: 0px;
 }
 
 #uw_resultaat>div:nth-of-type(2) {
@@ -986,7 +990,9 @@ label.fixWithHide {
 
 #uw_resultaat>div:nth-of-type(3) h2 {
     background-color: unset;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-size: 25px;
 }
 
 #uw_resultaat>div:nth-of-type(3)>p {
