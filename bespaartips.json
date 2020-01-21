@@ -1,16 +1,14 @@
 {
-    "bespaartips": [
-        {
-            "woning": "U zou bijvoorbeeld de spullen die u heeft kunnen uitlenen of zelfs minder spullen zelf kopen en af en toe eens zelf lenen.",
-            "energie": "Maak kieren rond ramen en buitendeuren dicht met zelfklevend tochtband of met tochtstrips. Dan blijft de warmte binnen en de kou buiten.",
-            "lokale lasten": "Als u net boven het bijstandsniveau zit dan kunt u op sommige vlakken een (gedeeltelijke) kwijtschelding krijgen.",
-            "telefoon, televisie, internet": "Vermijd abonnementen te nemen voor opties die u zelf niet gaat gebruiken",
-            "verzekeringen": "Controleer of u niet dubbel bent verzekerd of zelfs iets verzekerd wat u niet nodig heeft.",
-            "onderwijs": "Koop uw boeken tweedehands. Boeken kunnen soms heel duur zijn en dit is een uitgave waar u gemakkelijk op kunt besparen. U zou ook wat minder naar de kantine kunnen gaan.",
-            "contributies en abonnementen": "loop jaarlijks alle (slapende) abonnementen na: wilt u ze nog behouden? en maak hierbij ook een overzicht met alle contributies en abonnementskosten.",
-            "vervoer": "Samen bereik je meer: denk bijvoorbeeld aan ruil, of deelsystemen.",
-            "reserverings uitgaven": "Neem zelf eten, drinken en lekkers mee. Vermijd dure terrasjes, maar zoek een bankje of neem een kleedje mee naar het park.",
-            "huishoudelijke uitgaven": "Kijk naar wat u al in huis heeft: vaak al bijna genoeg voor een creatieve maaltijd. Maak voor wat u wel nodig heeft een boodschappenlijstje. Zo’n lijstje kan ook handig zijn als u gaat winkelen voor kleding, boeken of cadeautjes."
-        }
-    ]
+    "bespaartips": [{
+        "woning": "U zou bijvoorbeeld de spullen die u heeft kunnen uitlenen of zelfs minder spullen zelf kopen en af en toe eens zelf lenen.",
+        "energie": "Maak kieren rond ramen en buitendeuren dicht met zelfklevend tochtband of met tochtstrips. Dan blijft de warmte binnen en de kou buiten.",
+        "lokale lasten": "Als u net boven het bijstandsniveau zit dan kunt u op sommige vlakken een (gedeeltelijke) kwijtschelding krijgen.",
+        "telefoon, televisie, internet": "Vermijd abonnementen te nemen voor opties die u zelf niet gaat gebruiken.",
+        "verzekeringen": "Controleer of u niet dubbel bent verzekerd of zelfs iets verzekerd wat u niet nodig heeft.",
+        "onderwijs": "Koop uw boeken tweedehands. Boeken kunnen soms heel duur zijn en dit is een uitgave waar u gemakkelijk op kunt besparen. U zou ook wat minder naar de kantine kunnen gaan.",
+        "contributies en abonnementen": "loop jaarlijks alle (slapende) abonnementen na: wilt u ze nog behouden? en maak hierbij ook een overzicht met alle contributies en abonnementskosten.",
+        "vervoer": "Samen bereik je meer: denk bijvoorbeeld aan ruil, of deelsystemen.",
+        "reserverings uitgaven": "Neem zelf eten, drinken en lekkers mee. Vermijd dure terrasjes, maar zoek een bankje of neem een kleedje mee naar het park.",
+        "huishoudelijke uitgaven": "Kijk naar wat u al in huis heeft: vaak al bijna genoeg voor een creatieve maaltijd. Maak voor wat u wel nodig heeft een boodschappenlijstje. Zo’n lijstje kan ook handig zijn als u gaat winkelen voor kleding, boeken of cadeautjes."
+    }]
 }
