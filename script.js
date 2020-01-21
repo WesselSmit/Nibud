@@ -819,87 +819,87 @@ simsInputs.forEach(input => { //determine what sims image should be shown
 
 
 
+// * UNCOMMENT THIS FUNCTION FOR THE DEMO (ENABLES SECRET BUTTON THAT FILLS IN VALUES SO THE USER DON'T HAVE TO DO IT)
+// document.getElementById('demo').addEventListener('click', function () { //super secret demo function (fills in all inputs for easy testing)
+//     //show the cheat mode enabled pop-up
+//     document.getElementById('cheatPopUp').classList.remove('invisible')
+//     setTimeout(function () { //show cheat mode popup animation
+//         document.getElementById('cheatPopUp').classList.add('invisible')
+//     }, 2500);
 
-document.getElementById('demo').addEventListener('click', function () { //super secret demo function (fills in all inputs for easy testing)
-    //show the cheat mode enabled pop-up
-    document.getElementById('cheatPopUp').classList.remove('invisible')
-    setTimeout(function () { //show cheat mode popup animation
-        document.getElementById('cheatPopUp').classList.add('invisible')
-    }, 2500);
+//     //give all determining questions a value
+//     document.getElementById('leeftijd').value = 30
+//     document.getElementById('wel-partner').checked = true
+//     document.getElementById('kinderen').value = 2
+//     document.getElementById('kind1').value = 6
+//     document.getElementById('kind2').value = 2
+//     document.getElementById('woningtype').options.selectedIndex = 2
+//     document.getElementById('bouwjaar').options.selectedIndex = 3
+//     document.getElementById('huur').checked = true
+//     document.getElementById('car').options.selectedIndex = 3
+//     document.getElementById('kilometers').options.selectedIndex = 3
+//     document.getElementById('nieuw').checked = true
 
-    //give all determining questions a value
-    document.getElementById('leeftijd').value = 30
-    document.getElementById('wel-partner').checked = true
-    document.getElementById('kinderen').value = 2
-    document.getElementById('kind1').value = 6
-    document.getElementById('kind2').value = 2
-    document.getElementById('woningtype').options.selectedIndex = 2
-    document.getElementById('bouwjaar').options.selectedIndex = 3
-    document.getElementById('huur').checked = true
-    document.getElementById('car').options.selectedIndex = 3
-    document.getElementById('kilometers').options.selectedIndex = 3
-    document.getElementById('nieuw').checked = true
+//     //remove hide class & set data_path to true for all new questions
+//     for (const item of document.querySelectorAll('section:nth-of-type(2), #has_a_car, #kind2, [for="kind2"], #kind1, [for="kind1"], #partnersInkomen, #showHuur, [data_question="5"] > fieldset:first-of-type, [data_question="12"] div:nth-of-type(2)')) {
+//         item.classList.remove('hide')
 
-    //remove hide class & set data_path to true for all new questions
-    for (const item of document.querySelectorAll('section:nth-of-type(2), #has_a_car, #kind2, [for="kind2"], #kind1, [for="kind1"], #partnersInkomen, #showHuur, [data_question="5"] > fieldset:first-of-type, [data_question="12"] div:nth-of-type(2)')) {
-        item.classList.remove('hide')
+//         if (item.type === 'number') {
+//             item.setAttribute('data_path', true)
+//         } else if (item.id === "partnersInkomen" || item.id === "showHuur" || item === document.querySelector('[data_question="5"] > fieldset:first-of-type') || item === document.querySelector('[data_question="12"] div:nth-of-type(2)')) {
+//             item.querySelectorAll('input[type="number"]').forEach(item => {
+//                 item.setAttribute('data_path', true)
+//                 item.value = 0
+//             })
+//         }
+//     }
+//     document.querySelector('[data_question="5"]').classList.add('hide')
 
-        if (item.type === 'number') {
-            item.setAttribute('data_path', true)
-        } else if (item.id === "partnersInkomen" || item.id === "showHuur" || item === document.querySelector('[data_question="5"] > fieldset:first-of-type') || item === document.querySelector('[data_question="12"] div:nth-of-type(2)')) {
-            item.querySelectorAll('input[type="number"]').forEach(item => {
-                item.setAttribute('data_path', true)
-                item.value = 0
-            })
-        }
-    }
-    document.querySelector('[data_question="5"]').classList.add('hide')
+//     for (const item of document.querySelectorAll('[data_path="true"]')) {
+//         if (item.type == "number" && item.value == "") {
+//             if (item.id === "netto_maandinkomen") {
+//                 item.value = 2000
+//             } else if (item.id === "showHuur") {
+//                 item.value = 0
+//             } else {
+//                 item.value = 0
+//             }
+//         }
+//     }
 
-    for (const item of document.querySelectorAll('[data_path="true"]')) {
-        if (item.type == "number" && item.value == "") {
-            if (item.id === "netto_maandinkomen") {
-                item.value = 2000
-            } else if (item.id === "showHuur") {
-                item.value = 0
-            } else {
-                item.value = 0
-            }
-        }
-    }
-
-    //show the sims animations
-    document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
-    document.getElementById('simsVrouw').classList.add('animation_target')
-    for (let i = 1; i < 3; i++) {
-        document.querySelector('#simsKind' + i).src = ""
-        if (i < 3) {
-            document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
-            document.querySelector('#simsKind' + i).classList.add('animation_target')
-        }
-    }
-    document.getElementById('simsHuis').src = "media/sims/tussenwoning_huis.svg"
-    document.getElementById('simsHuis').classList.add('animation_target')
-    document.getElementById('simsAuto').src = "media/sims/compacte_auto.svg"
-    document.getElementById('simsAuto').classList.add('animation_target')
+//     //show the sims animations
+//     document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
+//     document.getElementById('simsVrouw').classList.add('animation_target')
+//     for (let i = 1; i < 3; i++) {
+//         document.querySelector('#simsKind' + i).src = ""
+//         if (i < 3) {
+//             document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
+//             document.querySelector('#simsKind' + i).classList.add('animation_target')
+//         }
+//     }
+//     document.getElementById('simsHuis').src = "media/sims/tussenwoning_huis.svg"
+//     document.getElementById('simsHuis').classList.add('animation_target')
+//     document.getElementById('simsAuto').src = "media/sims/compacte_auto.svg"
+//     document.getElementById('simsAuto').classList.add('animation_target')
 
 
-    //call all functions to update progress, moneyPile, result etc.
-    a = 0
-    b = 0
-    c = 0
-    determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
-    sumExpenses()
-    findMatchingHousehold() //match your personal household with a household form the database
-    checkIfValueIsAllowed(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //value validation
-    checkAdditionalQuestions(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //check for additional questions
-    updateProgressbar(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //progress-bar
-    createBarChartZeroState()
-    updateProgressIndicators(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //progress indicator
-    updateTotalSum(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //total income
-    fixSelectFocus(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //fix select focus state
-    calculateSaldo() //calculate saldo
-    calcMoneyPile()
-})
+//     //call all functions to update progress, moneyPile, result etc.
+//     a = 0
+//     b = 0
+//     c = 0
+//     determineYourSituation() //when all uw_situatie questions are answered -> create a personal household object
+//     sumExpenses()
+//     findMatchingHousehold() //match your personal household with a household form the database
+//     checkIfValueIsAllowed(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //value validation
+//     checkAdditionalQuestions(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //check for additional questions
+//     updateProgressbar(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //progress-bar
+//     createBarChartZeroState()
+//     updateProgressIndicators(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //progress indicator
+//     updateTotalSum(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //total income
+//     fixSelectFocus(document.querySelector('[data_question="7"] input[type="number"][data_path="true"]')) //fix select focus state
+//     calculateSaldo() //calculate saldo
+//     calcMoneyPile()
+// })
 
 
 
