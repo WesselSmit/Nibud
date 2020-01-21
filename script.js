@@ -766,7 +766,7 @@ simsInputs.forEach(input => { //determine what sims image should be shown
         })
 
         if (input.id == "wel-partner") { //partner
-            document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
+            document.getElementById('simsVrouw').src = "./media/sims/vrouw.svg"
             document.getElementById('simsVrouw').classList.add('animation_target')
         }
         if (input.id == "geen-partner") {
@@ -780,20 +780,20 @@ simsInputs.forEach(input => { //determine what sims image should be shown
                 document.querySelector('#simsKind' + i).src = ""
 
                 if (i < parseInt(input.value) + 1) {
-                    document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
+                    document.querySelector('#simsKind' + i).src = "./media/sims/kind" + i + ".svg"
                     document.querySelector('#simsKind' + i).classList.add('animation_target')
                 }
             }
         }
         if (input.id == "woningtype") { //house
             if (input.value === 'appartement') {
-                document.getElementById('simsHuis').src = "media/sims/appartement_huis.svg"
+                document.getElementById('simsHuis').src = "./media/sims/appartement_huis.svg"
             } else if (input.value === 'tussenwoning') {
-                document.getElementById('simsHuis').src = "media/sims/tussenwoning_huis.svg"
+                document.getElementById('simsHuis').src = "./media/sims/tussenwoning_huis.svg"
             } else if (input.value === 'hoekwoning') {
-                document.getElementById('simsHuis').src = "media/sims/hoekwoning_huis.svg"
+                document.getElementById('simsHuis').src = "./media/sims/hoekwoning_huis.svg"
             } else if (input.value === 'vrijstaand') {
-                document.getElementById('simsHuis').src = "media/sims/vrijstaand_huis.svg"
+                document.getElementById('simsHuis').src = "./media/sims/vrijstaand_huis.svg"
             }
             document.getElementById('simsHuis').classList.add('animation_target')
         }
@@ -804,13 +804,13 @@ simsInputs.forEach(input => { //determine what sims image should be shown
                     document.getElementById('simsAuto').src = ""
                 }, 500)
             } else if (input.value === 'klein') {
-                document.getElementById('simsAuto').src = "media/sims/kleine_auto.svg"
+                document.getElementById('simsAuto').src = "./media/sims/kleine_auto.svg"
             } else if (input.value === 'compact') {
-                document.getElementById('simsAuto').src = "media/sims/compacte_auto.svg"
+                document.getElementById('simsAuto').src = "./media/sims/compacte_auto.svg"
             } else if (input.value === 'compact_middenklasse') {
-                document.getElementById('simsAuto').src = "media/sims/compacte_middenklasse_auto.svg"
+                document.getElementById('simsAuto').src = "./media/sims/compacte_middenklasse_auto.svg"
             } else if (input.value === 'middenklasse') {
-                document.getElementById('simsAuto').src = "media/sims/middenklasse_auto.svg"
+                document.getElementById('simsAuto').src = "./media/sims/middenklasse_auto.svg"
             }
             document.getElementById('simsAuto').classList.add('animation_target')
         }
@@ -868,18 +868,18 @@ simsInputs.forEach(input => { //determine what sims image should be shown
 //     }
 
 //     //show the sims animations
-//     document.getElementById('simsVrouw').src = "media/sims/vrouw.svg"
+//     document.getElementById('simsVrouw').src = "./media/sims/vrouw.svg"
 //     document.getElementById('simsVrouw').classList.add('animation_target')
 //     for (let i = 1; i < 3; i++) {
 //         document.querySelector('#simsKind' + i).src = ""
 //         if (i < 3) {
-//             document.querySelector('#simsKind' + i).src = "media/sims/kind" + i + ".svg"
+//             document.querySelector('#simsKind' + i).src = "./media/sims/kind" + i + ".svg"
 //             document.querySelector('#simsKind' + i).classList.add('animation_target')
 //         }
 //     }
-//     document.getElementById('simsHuis').src = "media/sims/tussenwoning_huis.svg"
+//     document.getElementById('simsHuis').src = "./media/sims/tussenwoning_huis.svg"
 //     document.getElementById('simsHuis').classList.add('animation_target')
-//     document.getElementById('simsAuto').src = "media/sims/compacte_auto.svg"
+//     document.getElementById('simsAuto').src = "./media/sims/compacte_auto.svg"
 //     document.getElementById('simsAuto').classList.add('animation_target')
 
 
