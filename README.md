@@ -1,5 +1,15 @@
 # Geldstapelen
 
+## Inhoudsopgave
+* [De opdracht](#De-opdracht)
+* [Concept](#Concept)
+* [Features](#Features)
+* [Install notes](#Install-notes)
+* [Dependency](#Dependency)
+* [Data manipulatie](#Data-manipulatie)
+* [Nice-to-haves](#Nice-to-haves)
+* [Credits](#Credits)
+
 ## De opdracht
 Het Budgethandboek is een belangrijk hulpmiddel die het NIBUD biedt met als doel om meer grip te krijgen op je geld. Dit boek is momenteel een fysiek product en wordt door budgetcoaches gebruikt in gesprekken met cliënten. Het doel is om door middel van een digitale tool de begrotingen en informatie uit het fysieke Budgethandboek te presenteren. Denk hierbij goed na over hoe het gebruikt kan worden door budgetcoaches en hoe je het zelf fijn zou vinden om inzicht te krijgen in je inkomsten en uitgaven.
 
@@ -14,7 +24,7 @@ De budgettool 'Geldstapelen' geeft inzicht in jouw uitgaven op basis van je situ
 
 <img width="600" src="https://user-images.githubusercontent.com/45405413/72725777-f167f580-3b86-11ea-880b-97f0b175e4d4.png">
 
-> De gebruiker brengt zijn situatie in kaart en het word visueel weergegeven door middel van een sims plaatje.
+> De gebruiker brengt zijn situatie in kaart. Dit wordt visueel weergeven door middel van een gepersonaliseerde afbeelding.
 
 <img width="600" src="https://user-images.githubusercontent.com/45405413/72725776-f167f580-3b86-11ea-98cc-7691dcb50b11.png">
 
@@ -22,7 +32,7 @@ De budgettool 'Geldstapelen' geeft inzicht in jouw uitgaven op basis van je situ
 
 ## Features
 
-### Sims
+### Gepersonaliseerde afbeelding
 De tool begint met het invullen van je eigen situatie, dit is belangrijk omdat op basis van deze gegevens er een huishouden wordt geselecteert waar je mee vergeleken wordt. Dit hebben we interessanter gemaakt door dit visueel te maken. Wanneer de gebruiker zijn gezinssamenstelling, woning en auto invult zijn deze terug te zien in de tool. Deze blijven door de hele tool zichtbaar voor een persoonlijk gevoel.
 
 ### Formulier
@@ -55,13 +65,6 @@ Hier worden de uitgaven van de gebruiker vergeleken met zijn vergelijkbaar huish
 ### Persoonlijke tips
 Voor de drie posten met het grootste verschil wordt er voor elke post een tip gegeven waarmee de gebruiker mogelijk kan bezuinigen. Deze tips komen van het NIBUD zelf, ook wordt er nog advies gegeven om eventueel met een budgetcoach contact op te nemen.
 
-## Inhoudsopgave
-* [Install notes](#Install-notes)
-* [Dependency](#Dependency)
-* [Data manipulatie](#Data-manipulatie)
-* [Nice-to-haves](#Nice-to-haves)
-* [Credits](#Credits)
-
 ## Install notes
 Clone de repository van Github
 
@@ -77,7 +80,7 @@ De data die wij gebruiken is aangeleverd door NIBUD. Deze data is in de vorm van
 
 ### Opschonen van de data
 We laden de data in als CSV en maken hier een array met objecten van.
-De data bevat alle informatie voor huishoudens. Deze data hebben we zelf gegroepeerd om alle verschillende huishoudtypes op te halen. De huishoudens die leven van een minimum inkomen (uitkering) zijn gecategoriseerd met de getallen 1 en 2. Dit betekend dat hun inkomsten evenveel is als hun uitgaven. De waardes 1 & 2 hebben wij vervangen met de bijhorende uitgaven zodat we getallen hebben om mee te vergelijken.
+De data bevat alle informatie voor huishoudens. Deze data hebben we zelf gegroepeerd om alle verschillende huishoudtypes op te halen. De huishoudens die leven van een minimum inkomen (uitkering) zijn gecategoriseerd met de getallen 1 en 2. Dit betekend dat hun inkomsten evenveel is als hun uitgaven. De waardes 1 & 2 hebben wij vervangen met de bijhorende uitgaven zodat we getallen hebben om mee te vergelijken. 
 
 ### Matchen van vergelijkbaar-huishoud objecten
 Om het best vergelijkbare huishouden te vinden kijken we naar meerdere variabelen:
@@ -121,8 +124,8 @@ Een kleine indicator die aangeeft in welke viewport je zit, dit past goed bij de
 ### Barchart Breedte Categorieën 
 In de barchart hebben we 3 categorieën; deze categorieën worden gebruikt om de kleuren van de barcharts te bepalen. Als we meer tijd hadden willen we ook graag de breedtes laten afhangen van de categorie om net iets meer onderscheid tussen de verschillende categorieën te creëeren.
 
-### Sims Animatie
-Bij "uw situatie" word er aan de hand van de gebruikers input een plaatje weergegeven (sims), de sims komen tevoorschijn & verdwijnen met een animatie. De animatie is momenteel alleen te zien wanneer de gebruiker voor het eerst de vraag beantwoord. Als we meer tijd zouden hebben zouden we ook een animatie willen toevoegen voor wanneer de gebruiker van een bestaande input naar een andere input verandert.
+### Animatie van de persoonlijke afbeelding
+Bij "uw situatie" word er aan de hand van de gebruikers input een plaatje weergegeven, de onderwerpen (gezin, auto en woning) komen tevoorschijn en verdwijnen met een animatie. De animatie is momenteel alleen te zien wanneer de gebruiker voor het eerst de vraag beantwoord. Als we meer tijd zouden hebben zouden we ook een animatie willen toevoegen voor wanneer de gebruiker van een bestaande input naar een andere input verandert.
 
 ## Credits
 Tijdens dit project hebben we meerdere bronnen gebruikt als voorbeeld/inspiratie/code:
@@ -140,7 +143,7 @@ Van deze bron hebben we een regex gebruikt die alleen digits matched.
 Deze bron hebben we gebruikt om te kijken hoe je een arrow kan maken door middel van pseudo-elementen en borders.
 
 ### [CSS Pop Animation](http://bouncejs.com/#{l:1,s:[{T:%22c%22,e:%22B%22,d:5000,D:0,f:{x:1,y:1},t:{x:4,y:4},s:3,b:4}]})
-Deze bron hebben we gebruikt om de 'sims' pop animatie te maken, op deze website kan je met een interface CSS animaties maken.
+Deze bron hebben we gebruikt voor de animatie die je ziet wanneer de gebruiker zijn situatie aan het samenstellen is en er onderwerpen in het plaatje verschijnen. Op deze website kan je door middel van een interface animaties maken van CSS.
 
 ### [CSS Transparent Styling](https://codepen.io/CameronFitzwilliam/pen/pamobO)
 Deze bron hebben we gebruikt om text transparant te maken voor een animatie.
