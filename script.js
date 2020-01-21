@@ -1,5 +1,5 @@
-import data from './modules/loadData.js'
-import transform from './modules/transformData.js'
+import data from '/modules/loadData.js'
+import transform from '/modules/transformData.js'
 
 
 const allQuestionCategories = d3.selectAll('.question_category')._groups[0],
