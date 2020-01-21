@@ -87,7 +87,7 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: url(media/cheatTextBackground.png);
+    background-image: url(.media/cheatTextBackground.png);
     background-size: auto;
     background-attachment: unset;
     background-position: 0%;
