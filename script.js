@@ -859,10 +859,8 @@ document.getElementById('demo').addEventListener('click', function () { //super 
             if (item.id === "netto_maandinkomen") {
                 item.value = 2000
             } else if (item.id === "showHuur") {
-                item.value = 0 //TODO: vul deze in met dezelfde waarde als huur bij woning in uw_uitgaven
-            }
-            //TODO: zet hier allemaal if statements voor elke eerste input per category om de waarde te hardcoden
-            else {
+                item.value = 0
+            } else {
                 item.value = 0
             }
         }
@@ -930,12 +928,22 @@ document.addEventListener('scroll', function () { //hide demo button on scroll i
         demoButton.classList.remove('invisible')
     }
 
+
+
+
+    //TODO werkt nog niet
     //hide/show the moneyPile indicator 
-    if (window.scrollY < ((window.innerHeight * 2) - 300) || window.scrollY > ((window.innerHeight * 3) - 300)) {
-        document.getElementById('moneyIndicator').classList.add('hide')
-    } else {
-        document.getElementById('moneyIndicator').classList.remove('hide')
-    }
+    // if (secondSection.classList.contains('hide') === false &&
+    //     document.getElementById('moneyIndicator').getBoundingClientRect().top + window.scrollY >
+    //     secondSection.getBoundingClientRect().y + secondSection.getBoundingClientRect().height + window.scrollY ||
+    //     secondSection.classList.contains('hide') === false &&
+    //     secondSection.getBoundingClientRect().top + window.scrollY > document.getElementById('moneyIndicator').getBoundingClientRect().top + window.scrollY) {
+    //     console.log('hide')
+    //     document.getElementById('moneyIndicator').classList.add('hide')
+    // } else {
+    //     console.log('show')
+    //     document.getElementById('moneyIndicator').classList.remove('hide')
+    // }
 })
 
 document.querySelector('#scroll_indicator').addEventListener('click', function () { //auto scroll
@@ -1325,6 +1333,32 @@ function createBarchart(data) {
                 return ''
             }
         })
+
+
+
+
+
+    let validQuestionCategories = []
+    document.querySelectorAll('[data_question]').forEach(category => {
+        if (parseInt(category.getAttribute('data_question')) > 4) {
+            let allquestions = 0,
+                answeredQuestions = 0
+            for (const question of category.querySelectorAll('[data_path="true"]')) {
+                allquestions++
+                if (question.value != "" && question.classList.contains('invalid') === false) {
+                    answeredQuestions++
+                }
+            }
+            if (allquestions === answeredQuestions) {
+                validQuestionCategories.push(category)
+            }
+        }
+    })
+    for (let i = 1; i < validQuestionCategories.length + 1; i++) {
+        if (i < 10) {
+            document.querySelector('#datavisualisatie > div:last-of-type span:nth-of-type(' + i + ')').classList.add('hide')
+        }
+    }
 }
 
 function wrap(text, width) {
