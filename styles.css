@@ -889,7 +889,6 @@ label.fixWithHide {
 
 #datavisualisatie div:last-of-type span {
     position: absolute;
-    display: block;
     background-color: var(--light-gray-color);
     padding: 1px;
     width: 100%;
