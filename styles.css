@@ -879,6 +879,58 @@ label.fixWithHide {
     left: 3%;
 }
 
+#datavisualisatie div:last-of-type {
+    position: absolute;
+    width: 65%;
+    height: 75%;
+    top: 9%;
+    left: 14.1%;
+}
+
+#datavisualisatie div:last-of-type span {
+    position: absolute;
+    display: block;
+    background-color: var(--light-gray-color);
+    padding: 1px;
+    width: 100%;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(1) {
+    top: 7.6vh;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(2) {
+    top: 15vh;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(3) {
+    top: 22.5vh;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(4) {
+    top: 29.6vh;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(5) {
+    top: 37vh;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(6) {
+    top: 44.2vh;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(7) {
+    top: 51.5vh;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(8) {
+    top: 58.8vh;
+}
+
+#datavisualisatie div:last-of-type span:nth-of-type(9) {
+    top: 66.2vh;
+}
+
 .label {
     text-anchor: end;
 }
@@ -934,6 +986,7 @@ label.fixWithHide {
     font-weight: 600;
     color: var(--header-text-color);
 }
+
 
 #uw_resultaat>div:first-of-type>h2 {
     padding-bottom: 0px;
