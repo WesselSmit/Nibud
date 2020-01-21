@@ -926,7 +926,7 @@ label.fixWithHide {
 
 #uw_resultaat>div:nth-of-type(2) {
     position: absolute;
-    top: 393vh;
+    top: 390vh;
     left: 100px;
     background-color: white;
 }
@@ -942,6 +942,11 @@ label.fixWithHide {
     margin-left: 10px;
 }
 
+#uw_resultaat>div:nth-of-type(2)>p:first-of-type {
+    margin: 0px;
+    padding: 10px 10px 0px 10px;
+    text-align: center;
+}
 
 #uw_resultaat>div:nth-of-type(2)>p:last-of-type {
     margin: 0px;
