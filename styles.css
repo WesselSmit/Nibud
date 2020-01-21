@@ -87,7 +87,7 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: url(.media/cheatTextBackground.png);
+    background-image: url(./media/cheatTextBackground.png);
     background-size: auto;
     background-attachment: unset;
     background-position: 0%;
@@ -232,7 +232,7 @@ img#simsAuto {
     top: 31vh;
     height: 550px;
     width: 79px;
-    background-image: url('./media/sims/money_opacity.svg');
+    background-image: url(./media/sims/money_opacity.svg);
     background-repeat: no-repeat;
     overflow: hidden;
 }
