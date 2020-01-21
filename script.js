@@ -546,11 +546,9 @@ function calculateSaldo() { //calculate the saldo 'overview'
     let saldoDifference = yourIncomeSaldo - yourExpensesSaldo
 
     if ((saldoDifference / yourIncomeSaldo) * 100 > 5) {
-        document.querySelector('#uw_resultaat > div:last-of-type h2').textContent = "Goed bezig!"
-        document.querySelector('#uw_resultaat > div:last-of-type p').textContent = "Wellicht zijn er posten waar je meer geld op kunt pakken."
+        document.querySelector('#uw_resultaat > div:nth-of-type(3) h2').textContent = "Goed bezig!"
     } else {
-        document.querySelector('#uw_resultaat > div:last-of-type h2').textContent = "Er zijn kansen om geld te besparen!"
-        document.querySelector('#uw_resultaat > div:last-of-type p').textContent = "Bekijk de handige bespaar tips hieronder."
+        document.querySelector('#uw_resultaat > div:nth-of-type(3) h2').textContent = "Er zijn kansen om geld te besparen!"
     }
 }
 
@@ -1038,7 +1036,6 @@ function calcMoneyPile() {
     if ((yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height >= 550) {
         moneyPile.style.marginTop = "550px"
         document.querySelector('#moneyIndicator').style.marginTop = "550px"
-
     } else {
         moneyPile.style.marginTop = (yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height + "px"
         document.querySelector('#moneyIndicator').style.marginTop = (yourExpensesMoney / yourIncomeMoney) * money.getBoundingClientRect().height + "px"

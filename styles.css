@@ -967,7 +967,7 @@ label.fixWithHide {
 #uw_resultaat>div:nth-of-type(3) {
     width: 30vw;
     position: absolute;
-    top: 340vh;
+    top: 337vh;
     left: 100px;
     padding: 10px;
     background-color: white;
@@ -975,7 +975,12 @@ label.fixWithHide {
 
 #uw_resultaat>div:nth-of-type(3) h2 {
     background-color: unset;
-    margin-bottom: 8px;
+    padding-bottom: 5px;
+}
+
+#uw_resultaat>div:nth-of-type(3)>p {
+    margin: 0px 0px 10px 0px;
+    padding-left: 15px;
 }
 
 #uw_resultaat>div:nth-of-type(3) div {
@@ -995,7 +1000,8 @@ label.fixWithHide {
     height: 60px;
     grid-column: 1 / 2;
     grid-row: 1 / -1;
-    margin: 15px auto 0px auto;
+    align-self: center;
+    justify-self: center;
 }
 
 #uw_resultaat>div:nth-of-type(3) div h4 {
@@ -1010,24 +1016,4 @@ label.fixWithHide {
 #uw_resultaat>div:nth-of-type(3) div p {
     grid-column: 2 / 3;
     margin: 0px;
-}
-
-#uw_resultaat>div:nth-of-type(4) {
-    background-color: white;
-    padding: 15px;
-    position: absolute;
-    top: 305vh;
-    right: 200px;
-    max-width: 500px;
-}
-
-#uw_resultaat>div:nth-of-type(4) h2 {
-    background-color: unset;
-    padding: 0px;
-    margin-bottom: 10px;
-}
-
-#uw_resultaat>div:nth-of-type(4) p {
-    margin: 0px;
-    font-size: 20px;
 }
