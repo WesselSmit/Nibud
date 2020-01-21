@@ -80,7 +80,9 @@ De data die wij gebruiken is aangeleverd door NIBUD. Deze data is in de vorm van
 
 ### Opschonen van de data
 We laden de data in als CSV en maken hier een array met objecten van.
-De data bevat alle informatie voor huishoudens. Deze data hebben we zelf gegroepeerd om alle verschillende huishoudtypes op te halen. De huishoudens die leven van een minimum inkomen (uitkering) zijn gecategoriseerd met de getallen 1 en 2. Dit betekend dat hun inkomsten evenveel is als hun uitgaven. De waardes 1 & 2 hebben wij vervangen met de bijhorende uitgaven zodat we getallen hebben om mee te vergelijken. 
+De data bevat alle informatie voor huishoudens. Deze data hebben we zelf gegroepeerd om alle verschillende huishoudtypes op te halen. De huishoudens die leven van een minimum inkomen (uitkering) zijn gecategoriseerd met de getallen 1 en 2. Dit betekend dat hun inkomsten evenveel is als hun uitgaven. De waardes 1 & 2 hebben wij vervangen met de bijhorende uitgaven zodat we getallen hebben om mee te vergelijken. Verder hebben we `.` karakters eruit gehaald om ervoor te zorgen dat we gemakkelijk met de waardes kunnen rekenen.
+
+Lege waardes & 0 waardes komen niet voor in de dataset en is dus ook niks mee gedaan.
 
 ### Matchen van vergelijkbaar-huishoud objecten
 Om het best vergelijkbare huishouden te vinden kijken we naar meerdere variabelen:
