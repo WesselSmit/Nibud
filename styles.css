@@ -686,7 +686,10 @@ fieldset>p {
     text-decoration: underline;
 }
 
-span.hide,
+#moneyIndicator.hide {
+    right: 9999px;
+}
+
 svg.hide,
 section.hide,
 legend.hide,
